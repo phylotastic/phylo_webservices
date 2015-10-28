@@ -1,0 +1,16 @@
+[05/Sep/2015:11:42:43] ENGINE Listening for SIGHUP.
+[05/Sep/2015:11:42:43] ENGINE Listening for SIGTERM.
+[05/Sep/2015:11:42:43] ENGINE Listening for SIGUSR1.
+[05/Sep/2015:11:42:43] ENGINE Bus STARTING
+[05/Sep/2015:11:42:43] ENGINE Started monitor thread 'Autoreloader'.
+[05/Sep/2015:11:42:43] ENGINE Started monitor thread '_TimeoutMonitor'.
+[05/Sep/2015:11:42:43] ENGINE Serving on http://0.0.0.0:5001
+[05/Sep/2015:11:42:43] ENGINE Bus STARTED
+[05/Sep/2015:13:32:49] ENGINE Listening for SIGHUP.
+[05/Sep/2015:13:32:49] ENGINE Listening for SIGTERM.
+[05/Sep/2015:13:32:49] ENGINE Listening for SIGUSR1.
+[05/Sep/2015:13:32:49] ENGINE Bus STARTING
+[05/Sep/2015:13:32:49] ENGINE Started monitor thread 'Autoreloader'.
+[05/Sep/2015:13:32:49] ENGINE Started monitor thread '_TimeoutMonitor'.
+[05/Sep/2015:13:32:49] ENGINE Serving on http://0.0.0.0:5001
+[05/Sep/2015:13:32:49] ENGINE Bus STARTED

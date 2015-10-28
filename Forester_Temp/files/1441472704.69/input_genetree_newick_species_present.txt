@@ -1,0 +1,21 @@
+Ailuropoda melanoleuca
+Bos taurus
+Callithrix jacchus
+Canis lupus familiaris
+Cavia porcellus
+Cricetulus griseus
+Equus caballus
+Heterocephalus glaber
+Homo sapiens
+Macaca mulatta
+Monodelphis domestica
+Mus musculus
+Myotis davidii
+Nasonia vitripennis
+Ornithorhynchus anatinus
+Oryctolagus cuniculus
+Otolemur garnettii
+Papio anubis
+Pteropus alecto
+Rattus norvegicus
+Tupaia chinensis

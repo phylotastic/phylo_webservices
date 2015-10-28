@@ -1,0 +1,1 @@
+((((((((((Rattus_norvegicus,Mus_musculus)),(Heterocephalus_glaber,Cavia_porcellus))),Oryctolagus_cuniculus),(((Callithrix_jacchus,(Macaca_mulatta,Homo_sapiens))),Otolemur_garnettii)),(((Bos_taurus,Equus_caballus),Ailuropoda_melanoleuca),Pteropus_alecto))),Monodelphis_domestica),Ornithorhynchus_anatinus);

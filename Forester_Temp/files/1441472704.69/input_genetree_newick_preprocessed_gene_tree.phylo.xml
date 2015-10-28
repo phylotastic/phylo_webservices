@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
+<phylogeny rooted="false" rerootable="true">
+  <clade>
+    <clade>
+      <name>rodents</name>
+      <branch_length>0.863602</branch_length>
+      <clade>
+        <name>gb_EDL15931_1_rodents_</name>
+        <branch_length>0.0810187</branch_length>
+        <taxonomy>
+          <scientific_name>Mus musculus</scientific_name>
+        </taxonomy>
+        <sequence>
+          <accession source="ncbi">EDL15931</accession>
+          <name>Mus musculus (house mouse) cDNA sequence BC018371, isoform CRA_a</name>
+        </sequence>
+      </clade>
+      <clade>
+        <name>dbj_BAE41499_1_rodents_</name>
+        <branch_length>0.0</branch_length>
+        <taxonomy>
+          <scientific_name>Mus musculus</scientific_name>
+        </taxonomy>
+        <sequence>
+          <accession source="ncbi">BAE41499</accession>
+          <name>Mus musculus (house mouse) hypothetical protein</name>
+        </sequence>
+      </clade>
+    </clade>
+    <clade>
+      <branch_length>0.863602</branch_length>
+      <clade>
+        <name>ref_NP_001123084_1_wasps__c__</name>
+        <branch_length>0.0</branch_length>
+        <taxonomy>
+          <scientific_name>Nasonia vitripennis</scientific_name>
+        </taxonomy>
+        <sequence>
+          <accession source="refseq">NP_001123084 XP_001601588</accession>
+          <name>MAK10 homolog, amino-acid N-acetyltransferase subunit vitripennis]</name>
+        </sequence>
+      </clade>
+      <clade>
+        <branch_length>0.792069</branch_length>
+        <clade>
+          <branch_length>0.0556055</branch_length>
+          <clade>
+            <name>ref_NP_084429_2_rodents_</name>
+            <branch_length>0.0</branch_length>
+            <taxonomy>
+              <scientific_name>Mus musculus</scientific_name>
+            </taxonomy>
+            <sequence>
+              <accession source="refseq">NP_084429 NP_796157</accession>
+              <name>N-alpha-acetyltransferase 35, NatC auxiliary subunit musculus]</name>
+            </sequence>
+          </clade>
+          <clade>
+            <branch_length>0.00676744</branch_length>
+            <clade>
+              <branch_length>0.00932868</branch_length>
+              <clade>
+                <branch_length>0.00381934</branch_length>
+                <clade>
+                  <branch_length>0.0129016</branch_length>
+                  <clade>
+                    <name>gb_EHA99683_1_rodents_</name>
+                    <branch_length>0.0057767</branch_length>
+                    <taxonomy>
+                      <scientific_name>Heterocephalus glaber</scientific_name>
+                    </taxonomy>
+                    <sequence>
+                      <accession source="ncbi">EHA99683</accession>
+                      <name>Heterocephalus glaber (naked mole-rat) MAK10-like protein</name>
+                      <location>chr Unknown</location>
+                    </sequence>
+                  </clade>
+                  <clade>
+                    <branch_length>0.00136599</branch_length>
+                    <clade>
+                      <branch_length>7.49811E-4</branch_length>
+                      <clade>
+                        <branch_length>5.33352E-4</branch_length>
+                        <clade>
+                          <branch_length>0.01758827</branch_length>
+                          <clade>
+                            <name>ref_XP_003341702_1_marsupials_</name>
+                            <branch_length>0.01916599</branch_length>
+                            <taxonomy>
+                              <scientific_name>Monodelphis domestica</scientific_name>
+                            </taxonomy>
+                            <sequence>
+                              <accession source="refseq">XP_003341702</accession>
+                              <name>PREDICTED: LOW QUALITY PROTEIN: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                              <gene_name>NAA35</gene_name>
+                              <location>chr 6</location>
+                            </sequence>
+                          </clade>
+                          <clade>
+                            <name>ref_XP_001518085_1_monotremes_</name>
+                            <branch_length>0.00766485</branch_length>
+                            <taxonomy>
+                              <scientific_name>Ornithorhynchus anatinus</scientific_name>
+                            </taxonomy>
+                            <sequence>
+                              <accession source="refseq">XP_001518085</accession>
+                              <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit, partial</name>
+                              <location>chr Unknown</location>
+                            </sequence>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <branch_length>0.00130913</branch_length>
+                          <clade>
+                            <branch_length>0.00453629</branch_length>
+                            <clade>
+                              <branch_length>0.00309422</branch_length>
+                              <clade>
+                                <name>ref_NP_001180040_1_even_toed_ungulates_</name>
+                                <branch_length>0.0043149</branch_length>
+                                <taxonomy>
+                                  <scientific_name>Bos taurus</scientific_name>
+                                </taxonomy>
+                                <sequence>
+                                  <accession source="refseq">NP_001180040 XP_873484</accession>
+                                  <name>N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                  <gene_name>NAA35</gene_name>
+                                  <location>chr 8, 8</location>
+                                </sequence>
+                              </clade>
+                              <clade>
+                                <name>gb_ELK09098_1_bats_</name>
+                                <branch_length>0.0012407</branch_length>
+                                <taxonomy>
+                                  <scientific_name>Pteropus alecto</scientific_name>
+                                </taxonomy>
+                                <sequence>
+                                  <accession source="ncbi">ELK09098</accession>
+                                  <name>Pteropus alecto (black flying fox) Protein MAK10 like protein</name>
+                                  <location>chr Unknown</location>
+                                </sequence>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <name>ref_XP_003783038_1_primates_</name>
+                              <branch_length>0.0</branch_length>
+                              <taxonomy>
+                                <scientific_name>Otolemur garnettii</scientific_name>
+                              </taxonomy>
+                              <sequence>
+                                <accession source="refseq">XP_003783038</accession>
+                                <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                <gene_name>NAA35</gene_name>
+                                <location>chr Unknown</location>
+                              </sequence>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <name>ref_XP_003911924_1_primates_</name>
+                            <branch_length>0.03782469</branch_length>
+                            <taxonomy>
+                              <scientific_name>Papio anubis</scientific_name>
+                            </taxonomy>
+                            <sequence>
+                              <accession source="refseq">XP_003911924</accession>
+                              <name>PREDICTED: LOW QUALITY PROTEIN: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                              <location>chr 15</location>
+                            </sequence>
+                          </clade>
+                        </clade>
+                      </clade>
+                      <clade>
+                        <branch_length>9.12105E-4</branch_length>
+                        <clade>
+                          <branch_length>5.35822E-4</branch_length>
+                          <clade>
+                            <name>gb_AAI51760_1_even_toed_ungulates_</name>
+                            <branch_length>0.00712441</branch_length>
+                            <taxonomy>
+                              <scientific_name>Bos taurus</scientific_name>
+                            </taxonomy>
+                            <sequence>
+                              <accession source="ncbi">AAI51760</accession>
+                              <name>Bos taurus (cattle) partial MAK10 protein</name>
+                              <gene_name>MAK10</gene_name>
+                              <cross_references>
+                                <accession source="interpro">IPR007244</accession>
+                                <accession source="uniprot">A7E388</accession>
+                              </cross_references>
+                            </sequence>
+                          </clade>
+                          <clade>
+                            <name>carnivores</name>
+                            <branch_length>3.05292E-4</branch_length>
+                            <clade>
+                              <name>gb_EFB13320_1_carnivores_</name>
+                              <branch_length>2.0697E-5</branch_length>
+                              <taxonomy>
+                                <scientific_name>Ailuropoda melanoleuca</scientific_name>
+                              </taxonomy>
+                              <sequence>
+                                <accession source="ncbi">EFB13320</accession>
+                                <name>Ailuropoda melanoleuca (giant panda) partial hypothetical protein</name>
+                                <location>chr Unknown</location>
+                              </sequence>
+                            </clade>
+                            <clade>
+                              <name>ref_XP_533507_3_carnivores_</name>
+                              <branch_length>0.00139017</branch_length>
+                              <taxonomy>
+                                <scientific_name>Canis lupus familiaris</scientific_name>
+                              </taxonomy>
+                              <sequence>
+                                <accession source="refseq">XP_533507</accession>
+                                <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit isoformX1</name>
+                                <location>chr 1</location>
+                              </sequence>
+                            </clade>
+                          </clade>
+                        </clade>
+                        <clade>
+                          <branch_length>3.93038E-4</branch_length>
+                          <clade>
+                            <name>primates</name>
+                            <branch_length>0.00247842</branch_length>
+                            <clade>
+                              <branch_length>0.001394106</branch_length>
+                              <clade>
+                                <branch_length>7.19761E-4</branch_length>
+                                <clade>
+                                  <name>ref_NP_001181318_1_primates_</name>
+                                  <branch_length>4.218E-6</branch_length>
+                                  <taxonomy>
+                                    <scientific_name>Macaca mulatta</scientific_name>
+                                  </taxonomy>
+                                  <sequence>
+                                    <accession source="refseq">NP_001181318 XP_001107941</accession>
+                                    <name>N-alpha-acetyltransferase 35, NatC auxiliary subunit mulatta]</name>
+                                    <gene_name>NAA35</gene_name>
+                                    <location>chr 15</location>
+                                    <cross_references>
+                                      <accession source="geneid">710122</accession>
+                                    </cross_references>
+                                  </sequence>
+                                </clade>
+                                <clade>
+                                  <name>gb_EHH23878_1_primates_</name>
+                                  <branch_length>0.0</branch_length>
+                                  <taxonomy>
+                                    <scientific_name>Macaca mulatta</scientific_name>
+                                  </taxonomy>
+                                  <sequence>
+                                    <accession source="ncbi">EHH23878</accession>
+                                    <name>Macaca mulatta (Rhesus monkey) Protein MAK10-like protein</name>
+                                    <location>chr 15</location>
+                                  </sequence>
+                                </clade>
+                              </clade>
+                              <clade>
+                                <branch_length>7.58185E-4</branch_length>
+                                <clade>
+                                  <branch_length>7.04172E-4</branch_length>
+                                  <clade>
+                                    <name>gb_EAW62704_1_primates_</name>
+                                    <branch_length>0.0</branch_length>
+                                    <taxonomy>
+                                      <scientific_name>Homo sapiens</scientific_name>
+                                    </taxonomy>
+                                    <sequence>
+                                      <accession source="ncbi">EAW62704</accession>
+                                      <name>Homo sapiens (human) MAK10 homolog, amino-acid N-acetyltransferase subunit, (S</name>
+                                    </sequence>
+                                  </clade>
+                                  <clade>
+                                    <branch_length>6.36221E-4</branch_length>
+                                    <clade>
+                                      <name>dbj_BAB15097_1_primates_</name>
+                                      <branch_length>0.00340561</branch_length>
+                                      <taxonomy>
+                                        <scientific_name>Homo sapiens</scientific_name>
+                                      </taxonomy>
+                                      <sequence>
+                                        <accession source="ncbi">BAB15097</accession>
+                                        <name>Homo sapiens (human) hypothetical protein</name>
+                                        <cross_references>
+                                          <accession source="hgnc">24340</accession>
+                                          <accession source="interpro">IPR007244</accession>
+                                          <accession source="uniprot">Q5VZE5</accession>
+                                        </cross_references>
+                                      </sequence>
+                                    </clade>
+                                    <clade>
+                                      <branch_length>3.33877E-4</branch_length>
+                                      <clade>
+                                        <name>dbj_BAF84928_1_primates_</name>
+                                        <branch_length>2.49147E-4</branch_length>
+                                        <taxonomy>
+                                          <scientific_name>Homo sapiens</scientific_name>
+                                        </taxonomy>
+                                        <sequence>
+                                          <accession source="ncbi">BAF84928</accession>
+                                          <name>Homo sapiens (human) hypothetical protein</name>
+                                          <cross_references>
+                                            <accession source="interpro">IPR007244</accession>
+                                          </cross_references>
+                                        </sequence>
+                                      </clade>
+                                      <clade>
+                                        <name>gb_EAW62703_1_primates_</name>
+                                        <branch_length>0.0</branch_length>
+                                        <taxonomy>
+                                          <scientific_name>Homo sapiens</scientific_name>
+                                        </taxonomy>
+                                        <sequence>
+                                          <accession source="ncbi">EAW62703</accession>
+                                          <name>Homo sapiens (human) MAK10 homolog, amino-acid N-acetyltransferase subunit, (S</name>
+                                        </sequence>
+                                      </clade>
+                                    </clade>
+                                  </clade>
+                                </clade>
+                                <clade>
+                                  <name>ref_NP_078911_3_primates_</name>
+                                  <branch_length>0.0</branch_length>
+                                  <taxonomy>
+                                    <scientific_name>Homo sapiens</scientific_name>
+                                  </taxonomy>
+                                  <sequence>
+                                    <accession source="refseq">NP_078911</accession>
+                                    <name>N-alpha-acetyltransferase 35, NatC auxiliary subunit sapiens]</name>
+                                  </sequence>
+                                </clade>
+                              </clade>
+                            </clade>
+                            <clade>
+                              <name>ref_XP_002742816_1_primates_</name>
+                              <branch_length>0.00485795</branch_length>
+                              <taxonomy>
+                                <scientific_name>Callithrix jacchus</scientific_name>
+                              </taxonomy>
+                              <sequence>
+                                <accession source="refseq">XP_002742816</accession>
+                                <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                <gene_name>NAA35</gene_name>
+                                <location>chr 1</location>
+                                <cross_references>
+                                  <accession source="geneid">100413490</accession>
+                                </cross_references>
+                              </sequence>
+                            </clade>
+                          </clade>
+                          <clade>
+                            <branch_length>0.00112225</branch_length>
+                            <clade>
+                              <name>ref_XP_001496308_1_odd_toed_ungulates_</name>
+                              <branch_length>0.00154296</branch_length>
+                              <taxonomy>
+                                <scientific_name>Equus caballus</scientific_name>
+                              </taxonomy>
+                              <sequence>
+                                <accession source="refseq">XP_001496308</accession>
+                                <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                <gene_name>NAA35</gene_name>
+                                <location>chr 23</location>
+                              </sequence>
+                            </clade>
+                            <clade>
+                              <branch_length>0.0023674</branch_length>
+                              <clade>
+                                <branch_length>0.00799303</branch_length>
+                                <clade>
+                                  <name>gb_ELW72920_1_placentals_</name>
+                                  <branch_length>0.00318844</branch_length>
+                                  <taxonomy>
+                                    <scientific_name>Tupaia chinensis</scientific_name>
+                                  </taxonomy>
+                                  <sequence>
+                                    <accession source="ncbi">ELW72920</accession>
+                                    <name>Tupaia chinensis (Chinese tree shrew) N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                    <location>chr Unknown</location>
+                                  </sequence>
+                                </clade>
+                                <clade>
+                                  <name>ref_XP_003475008_1_rodents_</name>
+                                  <branch_length>0.0121734</branch_length>
+                                  <taxonomy>
+                                    <scientific_name>Cavia porcellus</scientific_name>
+                                  </taxonomy>
+                                  <sequence>
+                                    <accession source="refseq">XP_003475008</accession>
+                                    <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                    <gene_name>Naa35</gene_name>
+                                    <location>chr Unknown</location>
+                                    <cross_references>
+                                      <accession source="geneid">100726315</accession>
+                                    </cross_references>
+                                  </sequence>
+                                </clade>
+                              </clade>
+                              <clade>
+                                <name>gb_ELK33481_1_bats_</name>
+                                <branch_length>0.0364383</branch_length>
+                                <taxonomy>
+                                  <scientific_name>Myotis davidii</scientific_name>
+                                </taxonomy>
+                                <sequence>
+                                  <accession source="ncbi">ELK33481</accession>
+                                  <name>Myotis davidii N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                                  <location>chr Unknown</location>
+                                </sequence>
+                              </clade>
+                            </clade>
+                          </clade>
+                        </clade>
+                      </clade>
+                    </clade>
+                    <clade>
+                      <name>ref_XP_002708343_1_rabbits___hares_</name>
+                      <branch_length>0.00517007</branch_length>
+                      <taxonomy>
+                        <scientific_name>Oryctolagus cuniculus</scientific_name>
+                      </taxonomy>
+                      <sequence>
+                        <accession source="refseq">XP_002708343</accession>
+                        <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                        <gene_name>NAA35</gene_name>
+                        <location>chr 1</location>
+                        <cross_references>
+                          <accession source="geneid">100358576</accession>
+                        </cross_references>
+                      </sequence>
+                    </clade>
+                  </clade>
+                </clade>
+                <clade>
+                  <name>ref_XP_003512117_1_rodents_</name>
+                  <branch_length>0.00761608</branch_length>
+                  <taxonomy>
+                    <scientific_name>Cricetulus griseus</scientific_name>
+                  </taxonomy>
+                  <sequence>
+                    <accession source="refseq">XP_003512117</accession>
+                    <name>PREDICTED: N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                    <location>chr Unknown</location>
+                  </sequence>
+                </clade>
+              </clade>
+              <clade>
+                <name>rodents</name>
+                <branch_length>0.0103089</branch_length>
+                <clade>
+                  <name>sp_Q6DKG0_1_rodents_</name>
+                  <branch_length>0.0</branch_length>
+                  <taxonomy>
+                    <scientific_name>Rattus norvegicus</scientific_name>
+                  </taxonomy>
+                  <sequence>
+                    <accession source="uniprot">Q6DKG0</accession>
+                    <name>N-alpha-acetyltransferase 35, NatC auxiliary subunit</name>
+                    <gene_name>Naa35</gene_name>
+                  </sequence>
+                </clade>
+                <clade>
+                  <name>ref_NP_579858_1_rodents_</name>
+                  <branch_length>0.00417733</branch_length>
+                  <taxonomy>
+                    <scientific_name>Rattus norvegicus</scientific_name>
+                  </taxonomy>
+                  <sequence>
+                    <accession source="refseq">NP_579858</accession>
+                    <name>N-alpha-acetyltransferase 35, NatC auxiliary subunit norvegicus]</name>
+                    <gene_name>Naa35</gene_name>
+                    <location>chr 17</location>
+                  </sequence>
+                </clade>
+              </clade>
+            </clade>
+            <clade>
+              <name>gb_AAM52342_1_rodents_</name>
+              <branch_length>0.0</branch_length>
+              <taxonomy>
+                <scientific_name>Mus musculus</scientific_name>
+              </taxonomy>
+              <sequence>
+                <accession source="ncbi">AAM52342</accession>
+                <name>Mus musculus (house mouse) embryonic growth-associated protein EGAP</name>
+                <location>chr 11</location>
+                <cross_references>
+                  <accession source="interpro">IPR007244</accession>
+                  <accession source="uniprot">Q6PHQ8</accession>
+                </cross_references>
+              </sequence>
+            </clade>
+          </clade>
+        </clade>
+        <clade>
+          <name>gb_AAH27201_1_rodents_</name>
+          <branch_length>0.0</branch_length>
+          <taxonomy>
+            <scientific_name>Mus musculus</scientific_name>
+          </taxonomy>
+          <sequence>
+            <accession source="ncbi">AAH27201</accession>
+            <name>Mus musculus (house mouse) partial Mak10 protein</name>
+          </sequence>
+        </clade>
+      </clade>
+    </clade>
+  </clade>
+</phylogeny>
+</phyloxml>
