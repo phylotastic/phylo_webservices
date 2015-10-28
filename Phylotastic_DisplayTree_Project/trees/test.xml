@@ -1,0 +1,140 @@
+<phyloxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd" xmlns="http://www.phyloxml.org">
+<phylogeny rooted="true">
+  <clade> 
+    <events>
+      <duplications>1</duplications>
+    </events>
+    <clade>
+      <branch_length>0.102645</branch_length> 
+      <events>
+        <speciations>1</speciations>
+      </events>
+      <clade>
+        <name>rabbits_hares</name>
+        <branch_length>0.103221</branch_length>
+        <events>
+          <duplications>1</duplications>
+        </events>
+        <clade>
+          <name>ref_NP_001164886_1</name>
+          <branch_length>0.0148714</branch_length>
+          <taxonomy>
+            <scientific_name>Oryctolagus cuniculus</scientific_name>
+          </taxonomy>
+          <sequence>
+            <accession source="refseq">NP_001164886</accession>
+            <name>zeta globin</name>
+          </sequence>
+        </clade>
+        <clade>
+          <name>ref_NP_001164885_1</name>
+          <branch_length>0.0143319</branch_length>
+          <taxonomy>
+            <scientific_name>Oryctolagus cuniculus</scientific_name>
+          </taxonomy>
+          <sequence>
+            <accession source="refseq">NP_001164885 XP_008251009</accession>
+            <name>hemoglobin subunit zeta</name>
+          </sequence>
+        </clade>
+      </clade>
+      <clade>
+        <branch_length>0.0314799</branch_length>
+        <events>
+          <speciations>1</speciations>
+        </events>
+        <clade>
+          <name>ref_XP_002920198_1</name>
+          <branch_length>0.115529</branch_length>
+          <taxonomy>
+            <scientific_name>Ailuropoda melanoleuca</scientific_name>
+          </taxonomy>
+          <sequence>
+            <accession source="refseq">XP_002920198</accession>
+            <name>PREDICTED: hemoglobin subunit zeta</name>
+            <location>chr Unknown</location>
+          </sequence>
+        </clade>
+        <clade>
+          <name>ref_XP_001788743_1</name>
+          <branch_length>0.109471</branch_length>
+          <taxonomy>
+            <scientific_name>Bos taurus</scientific_name>
+          </taxonomy>
+          <sequence>
+            <accession source="refseq">XP_001788743</accession>
+            <name>PREDICTED: hemoglobin subunit zeta</name>
+            <location>chr 25</location>
+          </sequence>
+        </clade>
+      </clade>
+    </clade>
+    <clade>
+      <branch_length>0.347866</branch_length>
+      <events>
+        <duplications>1</duplications>
+      </events>
+      <clade>
+        <name>ref_XP_002802385_1</name>
+        <branch_length>0.0759175</branch_length>
+        <taxonomy>
+          <scientific_name>Macaca mulatta</scientific_name>
+        </taxonomy>
+        <sequence>
+          <accession source="refseq">XP_002802385</accession>
+          <name>PREDICTED: hemoglobin subunit mu-like isoform 2</name>
+          <location>chr 20</location>
+        </sequence>
+      </clade>
+      <clade>
+        <branch_length>0.0769142</branch_length>
+        <events>
+          <speciations>1</speciations>
+        </events>
+        <clade>
+          <branch_length>0.0531958</branch_length>
+          <events>
+            <speciations>1</speciations>
+          </events>
+          <clade>
+            <name>ref_NP_001077237_1</name>
+            <branch_length>0.0776932</branch_length>
+            <taxonomy>
+              <scientific_name>Bos taurus</scientific_name>
+            </taxonomy>
+            <sequence>
+              <accession source="refseq">NP_001077237 XP_871598</accession>
+              <name>hemoglobin subunit mu</name>
+              <location>chr 25</location>
+            </sequence>
+          </clade>
+          <clade>
+            <name>ref_XP_002920200_1</name>
+            <branch_length>0.0449015</branch_length>
+            <taxonomy>
+              <scientific_name>Ailuropoda melanoleuca</scientific_name>
+            </taxonomy>
+            <sequence>
+              <accession source="refseq">XP_002920200</accession>
+              <name>PREDICTED: hemoglobin subunit mu</name>
+              <location>chr Unknown</location>
+            </sequence>
+          </clade>
+        </clade>
+        <clade>
+          <name>ref_NP_001180633_1</name>
+          <branch_length>0.0290655</branch_length>
+          <taxonomy>
+            <scientific_name>Macaca mulatta</scientific_name>
+          </taxonomy>
+          <sequence>
+            <accession source="refseq">NP_001180633 XP_001083142</accession>
+            <name>hemoglobin subunit mu</name>
+            <location>chr 20</location>
+          </sequence>
+        </clade>
+      </clade>
+    </clade>
+  </clade>
+</phylogeny>
+</phyloxml>

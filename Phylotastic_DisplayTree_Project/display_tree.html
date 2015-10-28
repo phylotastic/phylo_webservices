@@ -1,0 +1,120 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../Phylotastic_DisplayTree_Project/js/yui/build/cssfonts/fonts-min.css" /> 
+    <script type="text/javascript" src="../Phylotastic_DisplayTree_Project/js/raphael/raphael-min.js" ></script> 
+    <script type="text/javascript" src="../Phylotastic_DisplayTree_Project/js/yui/build/yui/yui.js"></script> 
+    <script type="text/javascript" src="../Phylotastic_DisplayTree_Project/js/jsphylosvg-min.js"></script> 
+    <!-- unitip -->
+    <link rel="stylesheet" type="text/css" href="../Phylotastic_DisplayTree_Project/js/unitip/css/unitip.css" > 
+    <script type="text/javascript" src="../Phylotastic_DisplayTree_Project/js/unitip/js/unitip.js"></script>  
+    <script type="text/javascript">
+    
+    var QueryString = function () {
+    	  // This function is anonymous, is executed immediately and 
+    	  // the return value is assigned to QueryString!
+    	  var query_string = {};
+    	  var query = window.location.search.substring(1);
+    	  var vars = query.split("&");
+    	  for (var i=0;i<vars.length;i++) {
+    	    var pair = vars[i].split("=");
+    	        // If first entry with this name
+    	    if (typeof query_string[pair[0]] === "undefined") {
+    	      query_string[pair[0]] = decodeURIComponent(pair[1]);
+    	        // If second entry with this name
+    	    } else if (typeof query_string[pair[0]] === "string") {
+    	      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+    	      query_string[pair[0]] = arr;
+    	        // If third or later entry with this name
+    	    } else {
+    	      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    	    }
+    	  } 
+    	    return query_string;
+    }();
+    
+    function httpGet(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    
+    window.onload = function(){
+        YUI().use('oop', 'json-stringify', 'io-base', 'event', 'event-delegate', function(Y){
+            var uri = QueryString.uri.trim();
+            var format = QueryString.format.trim();           
+            function complete(id, o, args) {
+                if (format === "newick_uri"){
+                    //var data = o.responseText; // Response data. 
+                    var uri = QueryString.uri.trim();
+                    if (!uri){
+                    	throw new Error("URI required !");
+                    }  
+                    
+                    var data = httpGet(uri);
+	                var dataObject = {
+	                		    newick: data,
+	                            //xml: data,
+	                            fileSource: true
+	                            
+	                        };      
+                } else if (format === "phyloxml_uri") {
+                	//var data = o.responseXML; // Response data.
+                	var uri = QueryString.uri.trim();
+                	if (!uri){
+                        throw new Error("URI required !");
+                    }
+                	var data = httpGet(uri);
+                    var dataObject = {
+                                //newick: data,
+                                xml: data,
+                                fileSource: true
+                                
+                    };
+                } else if (format === "newick_text"){
+                	//var data = o.responseXML; // Response data.
+                	var data = QueryString.tree_data.trim();
+                	if (!data) {
+                		throw new Error("Tree Data required !");
+                	}
+                	
+                    var dataObject = {
+                                newick: data,
+                                //xml: data,
+                                //fileSource: true   
+                    };
+                } else if (format === "phyloxml_text"){
+                	//var data = o.responseXML; // Response data.
+                    var data = QueryString.tree_data.trim();
+                    if (!data) {
+                        throw new Error("Tree Data required !");
+                    }
+                    var dataObject = {
+                                //newick: data,
+                                xml: data,
+                                //fileSource: true   
+                    };
+                } else {
+                	throw new Error("Error!");
+                }
+
+                Smits.PhyloCanvas.Render.Style.line.stroke = 'rgb(0,0,255)';    // Color lines blue
+                Smits.PhyloCanvas.Render.Style.text["font-size"] = 11;          // Increase font size to 16pt               
+                phylocanvas = new Smits.PhyloCanvas(
+                    dataObject,
+                    'svgCanvas', 
+                    800, 800
+                );
+                init(); //unitip
+            };
+            Y.on('io:complete', complete, Y);
+            var request = Y.io(uri);
+        });
+    };
+    </script>
+</head>
+<body>
+    <div id="svgCanvas"> </div>
+</body>
+</html>     
