@@ -1,0 +1,32 @@
+[16/Oct/2015:17:21:10] ENGINE Listening for SIGHUP.
+[16/Oct/2015:17:21:10] ENGINE Listening for SIGTERM.
+[16/Oct/2015:17:21:10] ENGINE Listening for SIGUSR1.
+[16/Oct/2015:17:21:10] ENGINE Bus STARTING
+[16/Oct/2015:17:21:10] ENGINE Started monitor thread 'Autoreloader'.
+[16/Oct/2015:17:21:10] ENGINE Started monitor thread '_TimeoutMonitor'.
+[16/Oct/2015:17:21:10] ENGINE Serving on http://0.0.0.0:5003
+[16/Oct/2015:17:21:10] ENGINE Bus STARTED
+[16/Oct/2015:17:21:30] HTTP Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/cherrypy/_cprequest.py", line 670, in respond
+    response.body = self.handler()
+  File "/Library/Python/2.7/site-packages/cherrypy/lib/encoding.py", line 217, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/Library/Python/2.7/site-packages/cherrypy/_cpdispatch.py", line 61, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "/Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py", line 99, in runWSFunctionWithWSDL_json
+    cl = cherrypy.request.headers['Content-Length']
+  File "/Library/Python/2.7/site-packages/cherrypy/lib/httputil.py", line 377, in __getitem__
+    return dict.__getitem__(self, str(key).title())
+KeyError: 'Content-Length'
+
+[16/Oct/2015:17:21:30] HTTP 
+Request Headers:
+  CONNECTION: keep-alive
+  COOKIE: csrftoken=GHQmdWNppjIKa9OSK94oyipmgrOTOS2K
+  HOST: 127.0.0.1:5003
+  UPGRADE-INSECURE-REQUESTS: 1
+  Remote-Addr: 127.0.0.1
+  ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+  USER-AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36
+  ACCEPT-LANGUAGE: vi-VN,vi;q=0.8,fr-FR;q=0.6,fr;q=0.4,en-US;q=0.2,en;q=0.2
+  ACCEPT-ENCODING: gzip, deflate, sdch

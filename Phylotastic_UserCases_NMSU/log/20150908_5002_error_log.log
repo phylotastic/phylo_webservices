@@ -1,0 +1,20 @@
+[08/Sep/2015:09:23:56] ENGINE Bus STARTING
+[08/Sep/2015:09:23:56] ENGINE Started monitor thread '_TimeoutMonitor'.
+[08/Sep/2015:09:23:56] ENGINE Started monitor thread 'Autoreloader'.
+[08/Sep/2015:09:23:56] ENGINE Serving on http://0.0.0.0:5002
+[08/Sep/2015:09:23:56] ENGINE Bus STARTED
+[08/Sep/2015:15:24:54] ENGINE Bus STARTING
+[08/Sep/2015:15:24:54] ENGINE Started monitor thread '_TimeoutMonitor'.
+[08/Sep/2015:15:24:54] ENGINE Started monitor thread 'Autoreloader'.
+[08/Sep/2015:15:24:54] ENGINE Serving on http://0.0.0.0:5002
+[08/Sep/2015:15:24:54] ENGINE Bus STARTED
+[08/Sep/2015:15:42:30] ENGINE Bus STARTING
+[08/Sep/2015:15:42:30] ENGINE Started monitor thread '_TimeoutMonitor'.
+[08/Sep/2015:15:42:30] ENGINE Started monitor thread 'Autoreloader'.
+[08/Sep/2015:15:42:30] ENGINE Serving on http://0.0.0.0:5002
+[08/Sep/2015:15:42:30] ENGINE Bus STARTED
+[08/Sep/2015:16:23:52] ENGINE Bus STARTING
+[08/Sep/2015:16:23:52] ENGINE Started monitor thread '_TimeoutMonitor'.
+[08/Sep/2015:16:23:52] ENGINE Started monitor thread 'Autoreloader'.
+[08/Sep/2015:16:23:52] ENGINE Serving on http://0.0.0.0:5002
+[08/Sep/2015:16:23:52] ENGINE Bus STARTED

@@ -1,0 +1,273 @@
+[07/Oct/2015:17:25:34] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:25:34] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:25:34] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:25:34] ENGINE Bus STARTING
+[07/Oct/2015:17:25:34] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:25:34] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:25:34] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:25:34] ENGINE Bus STARTED
+[07/Oct/2015:17:30:54] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:30:54] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:30:54] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:30:54] ENGINE Bus STARTING
+[07/Oct/2015:17:30:54] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:30:54] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:30:54] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:30:54] ENGINE Bus STARTED
+[07/Oct/2015:17:31:35] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:31:35] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:31:35] ENGINE Bus STOPPING
+[07/Oct/2015:17:31:35] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:31:35] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:31:35] ENGINE Bus STOPPED
+[07/Oct/2015:17:31:35] ENGINE Bus EXITING
+[07/Oct/2015:17:31:35] ENGINE Bus EXITED
+[07/Oct/2015:17:31:35] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:31:35] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:31:35] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:31:35] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:31:35] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:31:35] ENGINE Bus STARTING
+[07/Oct/2015:17:31:35] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:31:35] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:31:35] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:31:35] ENGINE Bus STARTED
+[07/Oct/2015:17:31:39] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:31:39] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:31:39] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:31:39] ENGINE Bus STARTING
+[07/Oct/2015:17:31:39] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:31:39] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:31:39] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:31:39] ENGINE Bus STARTED
+[07/Oct/2015:17:31:55] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:31:55] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:31:55] ENGINE Bus STOPPING
+[07/Oct/2015:17:31:55] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:31:55] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:31:55] ENGINE Bus STOPPED
+[07/Oct/2015:17:31:55] ENGINE Bus EXITING
+[07/Oct/2015:17:31:55] ENGINE Bus EXITED
+[07/Oct/2015:17:31:55] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:31:55] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:31:55] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:31:55] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:31:55] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:31:55] ENGINE Bus STARTING
+[07/Oct/2015:17:31:55] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:31:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:31:55] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:31:55] ENGINE Bus STARTED
+[07/Oct/2015:17:32:22] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:32:22] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:32:22] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:32:22] ENGINE Bus STARTING
+[07/Oct/2015:17:32:22] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:32:22] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:32:22] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:32:22] ENGINE Bus STARTED
+[07/Oct/2015:17:32:35] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:32:35] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:32:35] ENGINE Bus STOPPING
+[07/Oct/2015:17:32:35] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:32:35] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:32:35] ENGINE Bus STOPPED
+[07/Oct/2015:17:32:35] ENGINE Bus EXITING
+[07/Oct/2015:17:32:35] ENGINE Bus EXITED
+[07/Oct/2015:17:32:35] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:32:35] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:32:35] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:32:35] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:32:35] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:32:35] ENGINE Bus STARTING
+[07/Oct/2015:17:32:35] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:32:35] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:32:35] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:32:35] ENGINE Bus STARTED
+[07/Oct/2015:17:32:45] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:32:45] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:32:45] ENGINE Bus STOPPING
+[07/Oct/2015:17:32:45] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:32:45] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:32:45] ENGINE Bus STOPPED
+[07/Oct/2015:17:32:45] ENGINE Bus EXITING
+[07/Oct/2015:17:32:45] ENGINE Bus EXITED
+[07/Oct/2015:17:32:45] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:32:45] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:32:46] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:32:46] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:32:46] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:32:46] ENGINE Bus STARTING
+[07/Oct/2015:17:32:46] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:32:46] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:32:46] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:32:46] ENGINE Bus STARTED
+[07/Oct/2015:17:32:49] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:32:49] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:32:49] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:32:49] ENGINE Bus STARTING
+[07/Oct/2015:17:32:49] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:32:49] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:32:49] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:32:49] ENGINE Bus STARTED
+[07/Oct/2015:17:33:02] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:33:02] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:33:02] ENGINE Bus STOPPING
+[07/Oct/2015:17:33:02] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:33:02] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:02] ENGINE Bus STOPPED
+[07/Oct/2015:17:33:02] ENGINE Bus EXITING
+[07/Oct/2015:17:33:02] ENGINE Bus EXITED
+[07/Oct/2015:17:33:02] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:33:02] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:33:03] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:33:03] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:33:03] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:33:03] ENGINE Bus STARTING
+[07/Oct/2015:17:33:03] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:33:03] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:03] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:33:03] ENGINE Bus STARTED
+[07/Oct/2015:17:33:08] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:33:08] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:33:08] ENGINE Bus STOPPING
+[07/Oct/2015:17:33:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:33:08] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:08] ENGINE Bus STOPPED
+[07/Oct/2015:17:33:08] ENGINE Bus EXITING
+[07/Oct/2015:17:33:08] ENGINE Bus EXITED
+[07/Oct/2015:17:33:08] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:33:08] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:33:08] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:33:08] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:33:08] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:33:08] ENGINE Bus STARTING
+[07/Oct/2015:17:33:08] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:33:08] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:08] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:33:08] ENGINE Bus STARTED
+[07/Oct/2015:17:33:19] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:33:19] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:33:19] ENGINE Bus STOPPING
+[07/Oct/2015:17:33:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:33:19] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:19] ENGINE Bus STOPPED
+[07/Oct/2015:17:33:19] ENGINE Bus EXITING
+[07/Oct/2015:17:33:19] ENGINE Bus EXITED
+[07/Oct/2015:17:33:19] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:33:19] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:33:19] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:33:19] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:33:19] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:33:19] ENGINE Bus STARTING
+[07/Oct/2015:17:33:19] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:33:19] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:19] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:33:19] ENGINE Bus STARTED
+[07/Oct/2015:17:33:22] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:33:22] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:33:22] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:33:22] ENGINE Bus STARTING
+[07/Oct/2015:17:33:22] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:33:22] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:33:22] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:33:22] ENGINE Bus STARTED
+[07/Oct/2015:17:34:36] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:34:36] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:34:36] ENGINE Bus STOPPING
+[07/Oct/2015:17:34:36] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:34:36] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:34:36] ENGINE Bus STOPPED
+[07/Oct/2015:17:34:36] ENGINE Bus EXITING
+[07/Oct/2015:17:34:36] ENGINE Bus EXITED
+[07/Oct/2015:17:34:36] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:34:36] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:34:36] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:34:36] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:34:36] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:34:36] ENGINE Bus STARTING
+[07/Oct/2015:17:34:36] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:34:36] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:34:36] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:34:36] ENGINE Bus STARTED
+[07/Oct/2015:17:34:36] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:34:36] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:34:36] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:34:36] ENGINE Bus STARTING
+[07/Oct/2015:17:34:36] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:34:36] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:34:39] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:34:39] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:34:39] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:34:39] ENGINE Bus STARTING
+[07/Oct/2015:17:34:39] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:34:39] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:34:44] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x1029b1310>>
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/cherrypy/process/wspbus.py", line 205, in publish
+    output.append(listener(*args, **kwargs))
+  File "/Library/Python/2.7/site-packages/cherrypy/_cpserver.py", line 168, in start
+    ServerAdapter.start(self)
+  File "/Library/Python/2.7/site-packages/cherrypy/process/servers.py", line 170, in start
+    wait_for_free_port(*self.bind_addr)
+  File "/Library/Python/2.7/site-packages/cherrypy/process/servers.py", line 439, in wait_for_free_port
+    raise IOError("Port %r not free on %r" % (port, host))
+IOError: Port 5003 not free on '0.0.0.0'
+
+[07/Oct/2015:17:34:44] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/Library/Python/2.7/site-packages/cherrypy/process/wspbus.py", line 243, in start
+    self.publish('start')
+  File "/Library/Python/2.7/site-packages/cherrypy/process/wspbus.py", line 223, in publish
+    raise exc
+ChannelFailures: IOError("Port 5003 not free on '0.0.0.0'",)
+
+[07/Oct/2015:17:34:44] ENGINE Bus STOPPING
+[07/Oct/2015:17:34:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) already shut down
+[07/Oct/2015:17:34:44] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:34:44] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:34:44] ENGINE Bus STOPPED
+[07/Oct/2015:17:34:44] ENGINE Bus EXITING
+[07/Oct/2015:17:34:44] ENGINE Bus EXITED
+[07/Oct/2015:17:34:58] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:34:58] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:34:58] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:34:58] ENGINE Bus STARTING
+[07/Oct/2015:17:34:58] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:34:58] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:34:59] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:34:59] ENGINE Bus STARTED
+[07/Oct/2015:17:36:38] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:36:38] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:36:38] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:36:38] ENGINE Bus STARTING
+[07/Oct/2015:17:36:38] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:36:38] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:36:38] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:36:38] ENGINE Bus STARTED
+[07/Oct/2015:17:37:18] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:37:18] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:37:18] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:37:18] ENGINE Bus STARTING
+[07/Oct/2015:17:37:18] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:37:18] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:37:18] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:37:18] ENGINE Bus STARTED
+[07/Oct/2015:17:38:24] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py changed.
+[07/Oct/2015:17:38:24] ENGINE Stopped thread 'Autoreloader'.
+[07/Oct/2015:17:38:24] ENGINE Bus STOPPING
+[07/Oct/2015:17:38:24] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5003)) shut down
+[07/Oct/2015:17:38:24] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Oct/2015:17:38:24] ENGINE Bus STOPPED
+[07/Oct/2015:17:38:24] ENGINE Bus EXITING
+[07/Oct/2015:17:38:24] ENGINE Bus EXITED
+[07/Oct/2015:17:38:25] ENGINE Waiting for child threads to terminate...
+[07/Oct/2015:17:38:25] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_WSExecution_WebServices_Project/Phylotastic_WSExecution_Running.py
+[07/Oct/2015:17:38:25] ENGINE Listening for SIGHUP.
+[07/Oct/2015:17:38:25] ENGINE Listening for SIGTERM.
+[07/Oct/2015:17:38:25] ENGINE Listening for SIGUSR1.
+[07/Oct/2015:17:38:25] ENGINE Bus STARTING
+[07/Oct/2015:17:38:25] ENGINE Started monitor thread 'Autoreloader'.
+[07/Oct/2015:17:38:25] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Oct/2015:17:38:25] ENGINE Serving on http://0.0.0.0:5003
+[07/Oct/2015:17:38:25] ENGINE Bus STARTED

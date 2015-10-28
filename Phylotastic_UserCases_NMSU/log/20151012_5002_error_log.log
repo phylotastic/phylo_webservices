@@ -1,0 +1,70 @@
+[12/Oct/2015:23:33:55] ENGINE Bus STARTING
+[12/Oct/2015:23:33:55] ENGINE Started monitor thread 'Autoreloader'.
+[12/Oct/2015:23:33:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[12/Oct/2015:23:33:55] ENGINE Serving on http://0.0.0.0:5002
+[12/Oct/2015:23:33:55] ENGINE Bus STARTED
+[12/Oct/2015:23:35:30] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/support/UserCase_GenerateTree_FromWebPage.py changed.
+[12/Oct/2015:23:35:30] ENGINE Stopped thread 'Autoreloader'.
+[12/Oct/2015:23:35:30] ENGINE Bus STOPPING
+[12/Oct/2015:23:35:30] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5002)) shut down
+[12/Oct/2015:23:35:30] ENGINE Stopped thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:30] ENGINE Bus STOPPED
+[12/Oct/2015:23:35:30] ENGINE Bus EXITING
+[12/Oct/2015:23:35:30] ENGINE Bus EXITED
+[12/Oct/2015:23:35:30] ENGINE Waiting for child threads to terminate...
+[12/Oct/2015:23:35:30] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py
+[12/Oct/2015:23:35:30] ENGINE Bus STARTING
+[12/Oct/2015:23:35:30] ENGINE Started monitor thread 'Autoreloader'.
+[12/Oct/2015:23:35:30] ENGINE Started monitor thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:30] ENGINE Serving on http://0.0.0.0:5002
+[12/Oct/2015:23:35:30] ENGINE Bus STARTED
+[12/Oct/2015:23:35:40] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py changed.
+[12/Oct/2015:23:35:40] ENGINE Stopped thread 'Autoreloader'.
+[12/Oct/2015:23:35:40] ENGINE Bus STOPPING
+[12/Oct/2015:23:35:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5002)) shut down
+[12/Oct/2015:23:35:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:40] ENGINE Bus STOPPED
+[12/Oct/2015:23:35:40] ENGINE Bus EXITING
+[12/Oct/2015:23:35:40] ENGINE Bus EXITED
+[12/Oct/2015:23:35:40] ENGINE Waiting for child threads to terminate...
+[12/Oct/2015:23:35:40] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py
+[12/Oct/2015:23:35:40] ENGINE Bus STARTING
+[12/Oct/2015:23:35:40] ENGINE Started monitor thread 'Autoreloader'.
+[12/Oct/2015:23:35:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:41] ENGINE Serving on http://0.0.0.0:5002
+[12/Oct/2015:23:35:41] ENGINE Bus STARTED
+[12/Oct/2015:23:35:45] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py changed.
+[12/Oct/2015:23:35:45] ENGINE Stopped thread 'Autoreloader'.
+[12/Oct/2015:23:35:45] ENGINE Bus STOPPING
+[12/Oct/2015:23:35:45] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5002)) shut down
+[12/Oct/2015:23:35:45] ENGINE Stopped thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:45] ENGINE Bus STOPPED
+[12/Oct/2015:23:35:45] ENGINE Bus EXITING
+[12/Oct/2015:23:35:45] ENGINE Bus EXITED
+[12/Oct/2015:23:35:45] ENGINE Waiting for child threads to terminate...
+[12/Oct/2015:23:35:45] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py
+[12/Oct/2015:23:35:45] ENGINE Bus STARTING
+[12/Oct/2015:23:35:45] ENGINE Started monitor thread 'Autoreloader'.
+[12/Oct/2015:23:35:45] ENGINE Started monitor thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:45] ENGINE Serving on http://0.0.0.0:5002
+[12/Oct/2015:23:35:45] ENGINE Bus STARTED
+[12/Oct/2015:23:35:52] ENGINE Restarting because /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py changed.
+[12/Oct/2015:23:35:52] ENGINE Stopped thread 'Autoreloader'.
+[12/Oct/2015:23:35:52] ENGINE Bus STOPPING
+[12/Oct/2015:23:35:52] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5002)) shut down
+[12/Oct/2015:23:35:52] ENGINE Stopped thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:52] ENGINE Bus STOPPED
+[12/Oct/2015:23:35:52] ENGINE Bus EXITING
+[12/Oct/2015:23:35:52] ENGINE Bus EXITED
+[12/Oct/2015:23:35:52] ENGINE Waiting for child threads to terminate...
+[12/Oct/2015:23:35:52] ENGINE Re-spawning /Volumes/Develop_Data_MacOS/All_Workspace/PHP_Python_Workspace/Phylotastic_UserCases_NMSU/Phylotastic_UserCases_WebServices_Running.py
+[12/Oct/2015:23:35:52] ENGINE Bus STARTING
+[12/Oct/2015:23:35:52] ENGINE Started monitor thread 'Autoreloader'.
+[12/Oct/2015:23:35:52] ENGINE Started monitor thread '_TimeoutMonitor'.
+[12/Oct/2015:23:35:52] ENGINE Serving on http://0.0.0.0:5002
+[12/Oct/2015:23:35:52] ENGINE Bus STARTED
+[12/Oct/2015:23:36:54] ENGINE Bus STARTING
+[12/Oct/2015:23:36:54] ENGINE Started monitor thread 'Autoreloader'.
+[12/Oct/2015:23:36:54] ENGINE Started monitor thread '_TimeoutMonitor'.
+[12/Oct/2015:23:36:54] ENGINE Serving on http://0.0.0.0:5002
+[12/Oct/2015:23:36:54] ENGINE Bus STARTED
