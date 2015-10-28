@@ -13,6 +13,7 @@ headers = {'content-type': 'application/json'}
 def execute_webservice(jsonPayload):
     response = requests.post(url, data=jsonPayload, headers=headers)
     null_response = {'Result': 'null'} 
+    
     if response.status_code == requests.codes.ok:    
         res_json = json.loads(response.text)
     else:
@@ -33,6 +34,16 @@ def create_json_payload(wsFunctionName, wsWsdlUrl, wsInputParams):
 #------------------------------------------------
 def is_ascii(str_val):
     return bool(re.match(r'[\x00-\x7F]+$', str_val))
+
+
+#--------------------------------------------------
+def urlify(s):
+    # Remove all non-word characters (everything except numbers and letters)
+    #s = re.sub(r"[^\w\s]", '', s)
+    # Replace all runs of whitespace with a single dash
+    s = re.sub(r"\s+", '+', s)
+    
+    return s
 
 # ~~~~~~~~~~~~~~~~~~~~~ WebService1 ~~~~~~~~~~~~~~~~~~~~~~~~~
 # WebService1: gnrd.wsdl
@@ -55,7 +66,7 @@ def run_webservice1(wsFuncName, wsFuncParam):
     
     #wait for the token to be activated    
     print "Waiting for the token to be activated"    
-    time.sleep(25)
+    time.sleep(20)
         
     return str_token 
 
@@ -247,9 +258,11 @@ def get_inducedSubtree(ottIdList):
 
 #-----------------------------------------------------------
 
-def run_usecase2(inputURL):
+def run_usecase_text(inputText):
+    url_friendly_text = urlify(inputText)    
+    
     print "Executing webservice1"
-    ws1_result = run_webservice1('findScientificNamesWithURL', inputURL)
+    ws1_result = run_webservice1('findScientificNamesWithText', url_friendly_text)
     
     print "Executing webservice2"
     ws2_result = run_webservice2(ws1_result)    
@@ -264,11 +277,12 @@ def run_usecase2(inputURL):
 #--------------------------------------------
 #if __name__ == '__main__':
 
-    #inputURL = 'https://species.wikimedia.org/wiki/Vulpes_vulpes_vulpes'    
-#    inputURL = 'https://en.wikipedia.org/wiki/Setophaga'
-    #inputURL = 'https://species.wikimedia.org/wiki/Morganucodontidae'
-#    usecase2_result = run_usecase2(inputURL)
-#    print "Result:"    
-#    print usecase2_result
+    #inputURL = 'https://en.wikipedia.org/wiki/Aster'    
+    #inputURL = 'https://en.wikipedia.org/wiki/Setophaga'
+    #inputTEXT = 'A+Patagioenas+inornata+is+a+species+of+bird+in+the+order+Columbiformes+and+genus+Patagioenas+P.oenops+Hispaniola+Columba+inornata+Columbidae'
+    #inputTEXT = 'A Patagioenas inornata is a species of bird in Columbidae family with order Columbiformes and genus Patagioenas. P.oenops and Hispaniola are subspecies'
+    #usecase2_result = run_usecase_text(inputTEXT)    
+    #print "Final Result:"    
+    #print usecase2_result
     
        

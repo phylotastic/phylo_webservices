@@ -13,12 +13,14 @@ import collections
 import subprocess
 from pprint import pprint
 from support import UserCase_GenerateTree_FromWebPage
+from support import usecase_text
 from __builtin__ import True
-from Carbon.Aliases import true
+
 
 
 USER_CASE_1 = "generateGeneSpeciesReconciliationTree"
 USER_CASE_2 = "generateTreesFromWebPages"
+USER_CASE_2_2 = "generateTreesFromText"
 WS_NAME = "phylotastic_ws"
 
 ROOT_FOLDER = os.getcwd()
@@ -91,7 +93,20 @@ def readContent(url):
         return url
 
 def runWebServiceFunction(FUNCTION_NAME,WSDL_URL,PARAMS,TYPE_RUNNING):
-   return "Run"   
+    try:
+        shellCall = []
+        shellCall.append("java")
+        shellCall.append("-jar")
+        shellCall.append("%s" %(os.path.join(ROOT_FOLDER,"model/WSClient.jar")))
+        shellCall.append("%s" %(str(WSDL_URL)))
+        shellCall.append("%s" %(TYPE_RUNNING))
+        shellCall.append("%s" %(FUNCTION_NAME))
+        for param in PARAMS:
+            shellCall.append(param)
+        print shellCall
+        return run_command(shellCall)
+    except:
+        return None
 def parseWorkFlow_Configuration(WF_CON_FILE):
     with open(WF_CON_FILE) as data_file:    
         data = json.load(data_file)
@@ -213,6 +228,24 @@ class Phylotastic_UserCase_2_GenerateTreesFromWebPages(object):
     #Public /index
     index.exposed = True
     work_flow_1.exposed = True
+
+class Phylotastic_UserCase_2_GenerateTreesFromText(object):
+    def index(self):
+        return "Use case 2 (Abu Saleh) : Autogenerate trees for Text ";
+    def work_flow_1(self,**request_data):
+        try:
+            inputTEXT = str(request_data['text']).strip();
+            
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        usecase2_result = usecase_text.run_usecase_text(inputTEXT)  
+        
+        return usecase2_result;
+        
+    #Public /index
+    index.exposed = True
+    work_flow_1.exposed = True
     
 if __name__ == '__main__':
     #Configure Server
@@ -233,5 +266,6 @@ if __name__ == '__main__':
     #Starting Server
     cherrypy.tree.mount(Phylotastic_UserCase_1_GeneSpeciesReconciliationTree(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_1)), conf_user_case_1)
     cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromWebPages(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2)), conf_user_case_1)
+    cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromText(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2_2)), conf_user_case_1)
     cherrypy.engine.start()
     cherrypy.engine.block()
