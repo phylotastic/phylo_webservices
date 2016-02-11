@@ -12,8 +12,8 @@ import sys
 import collections
 import subprocess
 from pprint import pprint
-from support import UserCase_GenerateTree_FromWebPage
-from support import usecase_text
+from support import UserCase_GetTree_FromWebPage, UseCase_GetTree
+from support import UseCase_GetTree_FromText, treebase_api
 from __builtin__ import True
 
 
@@ -221,7 +221,7 @@ class Phylotastic_UserCase_2_GenerateTreesFromWebPages(object):
         except:
             return return_response_error(400,"error","Missing parameters inputURL","JSON")
         
-        usecase2_result = UserCase_GenerateTree_FromWebPage.run_usecase2(inputURL)
+        usecase2_result = UseCase_GetTree.run_UseCase(inputURL, 2)
         
         return usecase2_result;
         
@@ -239,13 +239,31 @@ class Phylotastic_UserCase_2_GenerateTreesFromText(object):
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
-        usecase2_result = usecase_text.run_usecase_text(inputTEXT)  
+        usecase2_result = UseCase_GetTree.run_UseCase(inputTEXT, 1)  
         
         return usecase2_result;
         
     #Public /index
     index.exposed = True
     work_flow_1.exposed = True
+
+class Phylotastic_TreeBase_API(object):
+    def index(self):
+        return "Tree Base API (Abu Saleh) : Build Tree from Taxon ";
+    def run(self,**request_data):
+        try:
+            taxon = str(request_data['taxon']).strip();
+            
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        treebase_result = treebase_api.get_tree(taxon)   
+        
+        return treebase_result;
+        
+    #Public /index
+    index.exposed = True
+    run.exposed = True
     
 if __name__ == '__main__':
     #Configure Server
@@ -267,5 +285,6 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Phylotastic_UserCase_1_GeneSpeciesReconciliationTree(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_1)), conf_user_case_1)
     cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromWebPages(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2)), conf_user_case_1)
     cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromText(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2_2)), conf_user_case_1)
+    cherrypy.tree.mount(Phylotastic_TreeBase_API(), '/%s/%s' %(str(WS_NAME),str("treebase_api")), conf_user_case_1)
     cherrypy.engine.start()
     cherrypy.engine.block()
