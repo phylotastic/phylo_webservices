@@ -13,7 +13,7 @@ import collections
 import subprocess
 from cherrypy import tools
 
-from support import taxon_to_species_service
+from support import taxon_to_species_service_OpenTree
 from support import extract_names_service
 from support import resolve_names_service
 from support import get_tree_service
@@ -118,19 +118,19 @@ class Taxon_to_Species_Service_API(object):
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
-        service_result = taxon_to_species_service.get_all_species(taxon)   
+        service_result = taxon_to_species_service_OpenTree.get_all_species(taxon)   
         
         return service_result;
 
     def country_species(self,**request_data):
         try:
             taxon = str(request_data['taxon']).strip();
- 	    country = str(request_data['country']).strip();
+            country = str(request_data['country']).strip();
             
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
-        service_result = taxon_to_species_service.get_country_species(taxon, country)   
+        service_result = taxon_to_species_service_OpenTree.get_country_species(taxon, country)   
         
         return service_result;
 
