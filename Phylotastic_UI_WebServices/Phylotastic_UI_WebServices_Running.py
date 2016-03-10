@@ -279,9 +279,15 @@ class Get_Tree_OpenTree_Service_API(object):
     get_tree.exposed = True
     tree.exposed = True
 
+def CORS():
+    print "Run CORS"
+    cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
+    cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
 
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
+    print "Thu ran CORS"
+    cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
     cherrypy.config.update({'server.socket_host': '0.0.0.0',
                             'server.socket_port': 5004,
@@ -297,13 +303,21 @@ if __name__ == '__main__':
                }
                
     }
+    conf_thanhnh = {
+             '/':{
+                'tools.CORS.on': True
+             }
+    }
+    cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
+    cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
+
     #Starting Server
     #cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromText(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2_2)), conf_user_case_1)
     cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_user_case_1)
-    cherrypy.tree.mount(Find_ScientificNames_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group2)) )
-    cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot") )
-    cherrypy.tree.mount(Resolve_ScientificNames_GNR_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"gnr") )
-    cherrypy.tree.mount(Get_Tree_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"ot") )
+    cherrypy.tree.mount(Find_ScientificNames_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group2)), conf_thanhnh )
+    cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
+    cherrypy.tree.mount(Resolve_ScientificNames_GNR_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"gnr"), conf_thanhnh )
+    cherrypy.tree.mount(Get_Tree_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"ot"),conf_thanhnh )
 
     cherrypy.engine.start()
     cherrypy.engine.block()
