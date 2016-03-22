@@ -7,7 +7,7 @@ from bson.json_util import dumps
 
 dbName = "SpeciesList"
 dataCollectionName ="userSpecieslist"
-counterCollectionName = "listCounters"
+counterCollectionName = "listCounter"
 
 #connection to Mongo DB
 def connect_mongodb(host='localhost', port=27017):
@@ -19,7 +19,32 @@ def connect_mongodb(host='localhost', port=27017):
 
  	return conn
 
-#-------------------------------------
+#get all public lists
+def get_public_lists(conn, include_all):
+ 	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]
+ 	documents = data_collection.find({"lists.is_public":{"$eq":True}},{"user_id":1, "lists":1, "_id":0})
+ 	
+ 	if documents.count() == 0:
+ 		message = "No public lists found"
+  		status_code = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		message = "Success"
+ 		status_code = 200
+ 	
+ 	public_lists = []
+ 	for doc in documents:
+ 	 	#public_list_obj = {}	
+ 		#public_list_obj['user_id'] = doc['user_id']
+  	 	user_lists = doc['lists'] 				
+ 		for list_obj in user_lists:
+ 		 	list_json = retrieve_list_mgdb_obj(list_obj, include_all)
+ 	 	#public_list_obj['lists'] = list_json
+ 		 	public_lists.append(list_json)
+
+ 	return json.dumps({'public_lists': public_lists, "message": message, "status_code": status_code})
+
+#-----------------------------------------
 #get lists of a user from the database
 def get_user_lists(user_id, conn, include_all):
   	db = conn[dbName]
@@ -27,112 +52,136 @@ def get_user_lists(user_id, conn, include_all):
  	document = data_collection.find({"user_id":user_id},{"lists" : 1});	
   	
  	if document.count() == 0:
- 		message = "No user found"
+ 		message = "No user found with ID %s" %(user_id)
   		status_code = 204  #The server successfully processed the request and is not returning any content	
  	else:
  		message = "Success"
  		status_code = 200
  	
- 	user_lists_obj = []
  	user_lists = []
  	for ulist in document:
   		lists = ulist['lists'] 				
  		for list_obj in lists:
-  			list_json = {}
- 			list_short_json = {} 
-  			
- 			list_json['list_id'] = list_obj['list_id']			
-  			list_short_json['list_id'] = list_obj['list_id']
-			
- 			list_json['list_title'] = list_obj['title']  		 	
- 			list_short_json['list_title'] = list_obj['title']
+ 			list_json = retrieve_list_mgdb_obj(list_obj, include_all)
+ 			user_lists.append(list_json)
  			
- 			list_json['list_description'] = list_obj['description']
- 			list_json['list_date_published'] = list_obj['date_published'].strftime("%m-%d-%Y")
- 			list_json['list_author'] = list_obj['author']
-  			list_json['list_curator'] = list_obj['curator']			
- 			list_json['list_curation_date'] = list_obj['curation_date'].strftime("%m-%d-%Y")
- 			list_json['list_source'] = list_obj['source']
- 			list_json['list_keywords'] = list_obj['keywords']
- 			list_json['list_focal_clade'] = list_obj['focal_clade']
- 			list_json['list_extra_info'] = list_obj['extra_info']
- 			#list_json['is_list_public'] = list_obj['is_public']  # hidden property
- 		 	#list_json['list_origin'] = list_obj['origin'] 		# hidden property
-
- 			user_lists_obj.append(list_json)
- 			user_lists.append(list_short_json)
- 
- 	if include_all:
- 	 	return json.dumps({"user_id": user_id, 'lists': user_lists_obj, "message": message, "status_code": status_code})
- 	else:
- 		return json.dumps({"user_id": user_id, 'lists': user_lists, "message": message, "status_code": status_code})
+ 	return json.dumps({"user_id": user_id, 'lists': user_lists, "message": message, "status_code": status_code})
 
 #-----------------------------------------
-#get species of a list of a particular user from the database
-def get_user_list_species(user_id, list_id, conn, include_all):
+#get species of a list from the database
+def get_list_species(list_id, conn, include_all):
  	db = conn[dbName]
  	data_collection = db[dataCollectionName]	
- 	document = data_collection.find({"user_id":user_id},{"lists" : 1});
+ 	document = data_collection.find({"lists.list_id":list_id},{"lists" : 1});
  	
  	if document.count() == 0:
- 		message = "No user found"
+  		found_list = False		
+ 		message = "No list found with ID %s" % (list_id)
  		status_code = 204  #The server successfully processed the request and is not returning any content
  	else:
+ 		found_list = True
  		message = "Success"
   	 	status_code = 200
 
- 	found_list = False	
  	species_list_obj = []
  	species_list = []
  	for ulist in document:
   		lists = ulist['lists'] 				
  		for list_obj in lists:
- 			if list_obj['list_id'] == list_id: 			
-				found_list = True	 			
- 				sp_lst = list_obj['species']
- 				for species_obj in sp_lst:
- 				 	species_json = {}
-	  			 	species_json['vernacular_name'] = species_obj['vernacular_name']
-			 		species_json['scientific_name'] = species_obj['scientific_name']  		 	
-	 			 	species_json['scientific_name_authorship'] = species_obj['scientific_name_authorship']
- 					species_json['family'] = species_obj['family']
- 					species_json['order'] = species_obj['order']
- 					species_json['phylum'] = species_obj['phylum']
- 					species_json['nomenclature_code'] = species_obj['nomenclature_code']
- 	 				species_list_obj.append(species_json)
- 					#only the scientific names of species 
- 					species_list.append(species_obj['scientific_name']) 
- 	
- 	if found_list == False:
- 		message = "Invalid List ID"
- 	 	status_code = 404 #The requested resource could not be found but may be available again in the future
-
+ 		 	sp_lst = list_obj['species']
+ 			for species_obj in sp_lst:
+ 			 	species_json = {}
+	  			species_json['vernacular_name'] = species_obj['vernacular_name']
+			 	species_json['scientific_name'] = species_obj['scientific_name']  		 	
+	 			species_json['scientific_name_authorship'] = species_obj['scientific_name_authorship']
+ 			 	species_json['family'] = species_obj['family']
+ 			 	species_json['order'] = species_obj['order']
+ 			 	species_json['phylum'] = species_obj['phylum']
+ 			 	species_json['nomenclature_code'] = species_obj['nomenclature_code']
+ 	 		 	species_list_obj.append(species_json)
+ 				#only the scientific names of species 
+ 				species_list.append(species_obj['scientific_name']) 
+ 		
  	if include_all:
- 		return json.dumps({"user_id": user_id, "list_id": list_id, "species": species_list_obj, "message": message, "status_code": status_code})
+ 		return json.dumps({"list_id": list_id, "species": species_list_obj, "message": message, "status_code": status_code})
  	else:
- 		return json.dumps({"user_id": user_id, "list_id": list_id, "species": species_list, "message": message, "status_code": status_code}) 
-	
+ 		return json.dumps({"list_id": list_id, "species": species_list, "message": message, "status_code": status_code}) 
+
 #---------------------------------------------------------------
-#insert lists into the database
-def insert_user_lists(list_info, conn):
+#insert species to an existing list (supports adding multiple species) 
+def insert_species_to_list(input_json, conn):
+ 	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]
+
+ 	try:
+ 		#input_info_json = json.loads(input_json)
+ 		input_info_json = input_json
+ 		user_id =  input_info_json["user_id"]
+ 		list_id = input_info_json["list_id"]	
+ 		species_info = input_info_json["species"]
+ 	except KeyError, e:
+ 		return  json.dumps({"message": "KeyError-%s"% str(e), "status_code": 500}) 
+ 	except IndexError, e:
+ 		return  json.dumps({"message": "IndexError-%s"% str(e), "status_code": 500}) 	
+
+ 	document = data_collection.find({"user_id":user_id},{"lists" : 1});	
+  	
+ 	if document.count() == 0:
+ 		message = "No user found with ID %s" %(user_id)
+  		user_found = False 		
+ 		status_code = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		message = "Success"
+ 		user_found = True
+ 		status_code = 200
+ 
+ 	if not(user_found):
+ 	 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})	
+ 	
+ 	list_found = False
+ 	
+ 	for ulist in document:
+  		lists = ulist['lists'] 				
+ 		for list_obj in lists:
+  			if list_id == list_obj['list_id']:
+ 				for species in species_info:
+ 		 			sp_name = species['scientific_name']
+			 		data_collection.update({"user_id": user_id, "lists.list_id": list_id, "lists.species.scientific_name": {"$nin": [sp_name]}},{"$push": {"lists.$.species": species}})	
+  				list_found = True 				
+ 				break;
+ 			
+ 	if list_found:
+ 	 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})
+ 	else:
+ 		message = "No list found with ID %s" %(list_id)
+ 		status_code = 204
+ 		return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})
+ 	
+#--------------------------------------------------------------
+#insert a list into the database
+def insert_user_list(list_info, conn):
  	db = conn[dbName]
  	data_collection = db[dataCollectionName]
  	counter_collection = db[counterCollectionName]
- 	
- 	#list_info_json = json.loads(list_info)
- 	list_info_json = list_info
-  	user_id =  list_info_json["user_id"]
- 	user_name = list_info_json["user_name"]	
- 	
- 	sequence = "list_id_" + str(user_id)
 
- 	user_found = False
+ 	try:
+ 		#list_info_json = json.loads(list_info)	
+ 		list_info_json = list_info
+ 		user_id =  list_info_json["user_id"]
+ 		user_name = list_info_json["user_name"]	
+ 	except KeyError, e:
+ 		return  json.dumps({"message": "KeyError-%s"% str(e), "status_code": 500}) 
+ 	except IndexError, e:
+ 		return  json.dumps({"message": "IndexError-%s"% str(e), "status_code": 500})
+
+ 	sequence = "unique_list_id"
+
  	document = data_collection.find({"user_id":user_id})
  	if document.count() == 0:
- 		#new user
- 		createNewSequence(counter_collection, sequence)
+ 		#user does not have any list
+ 		user_found = False
  	else:
- 		#exsiting user
+ 		#user already has some lists
  		user_found = True
 
  	list_id = getNextSequence(counter_collection, sequence)
@@ -147,11 +196,8 @@ def insert_user_lists(list_info, conn):
  	 	 	document = { "user_id": user_id, "user_name": user_name, "lists":[list_mgdb_obj] }
  	 	 	status = data_collection.insert(document)
  	except:
- 	 	seq_doc = counter_collection.find({"_id": sequence})
- 		valid_mgdb_list = False
- 		if seq_doc.count() != 0:
- 			removeSequence(counter_collection, sequence)	
- 	
+ 	 	valid_mgdb_list = False
+ 			
  	if not(valid_mgdb_list):
  		return json.dumps({'message': "Error parsing input json", 'status_code': 500})	
  	elif status != None:
@@ -159,7 +205,7 @@ def insert_user_lists(list_info, conn):
  	else:
  		return json.dumps({'message': "Error inserting document", 'status_code': 500})
  	
-#--------------------------------------
+#-------------------------------------------------------
 #create list object to store in mongodb 
 def create_list_mgdb_obj(list_info, list_id):
  	list_json = json.loads(list_info)
@@ -189,6 +235,105 @@ def create_list_mgdb_obj(list_info, list_id):
  	#print list_mgdb_obj
  	return list_mgdb_obj
 
+#-----------------------------------------------
+#retrieve list info from mongodb list_obj 
+def retrieve_list_mgdb_obj(list_obj, include_all=True):
+ 	list_json = {}
+ 	list_short_json = {} 
+  			
+ 	list_json['list_id'] = list_obj['list_id']			
+  	list_short_json['list_id'] = list_obj['list_id']
+			
+ 	list_json['list_title'] = list_obj['title']  		 	
+ 	list_short_json['list_title'] = list_obj['title']
+ 			
+ 	list_json['list_description'] = list_obj['description']
+ 	list_json['list_date_published'] = list_obj['date_published'].strftime("%m-%d-%Y")
+ 	list_json['list_author'] = list_obj['author']
+  	list_json['list_curator'] = list_obj['curator']			
+ 	list_json['list_curation_date'] = list_obj['curation_date'].strftime("%m-%d-%Y")
+ 	list_json['list_source'] = list_obj['source']
+ 	list_json['list_keywords'] = list_obj['keywords']
+  	list_json['list_focal_clade'] = list_obj['focal_clade']
+ 	list_json['list_extra_info'] = list_obj['extra_info']
+ 	list_json['is_list_public'] = list_obj['is_public']  # hidden property
+ 	list_json['list_origin'] = list_obj['origin'] 		# hidden property
+
+ 	if include_all: 
+ 		return list_json
+ 	else:
+ 		return list_short_json
+
+#-------------------------------------------------------
+#remove species from an existing list (supports removing multiple species) 
+def remove_species_from_list(input_json, conn):
+ 	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]
+ 	
+ 	try:
+ 		#input_info_json = json.loads(input_json)	
+ 		input_info_json = input_json
+ 		user_id =  input_info_json["user_id"]
+ 		list_id = input_info_json["list_id"]	
+ 		species_info = input_info_json["species"]
+ 	except KeyError, e:
+ 		return  json.dumps({"message": "KeyError-%s"% str(e), "status_code": 500}) 
+ 	except IndexError, e:
+ 		return  json.dumps({"message": "IndexError-%s"% str(e), "status_code": 500}) 		
+
+ 	document = data_collection.find({"user_id":user_id},{"lists" : 1});	
+  	if document.count() == 0:
+ 		message = "No user found with ID %s" %(user_id)
+  		user_found = False 		
+ 		status_code = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		message = "Success"
+ 		user_found = True
+ 		status_code = 200
+ 
+ 	if not(user_found):
+ 	 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})	
+ 	
+ 	document2 = data_collection.find({"user_id": user_id, "lists.list_id": list_id},{"lists" : 1});
+  	if document2.count() == 0:	
+ 	 	message = "No list found with ID %s" %(list_id)
+ 		status_code = 204  #The server successfully processed the request and is not returning any content	 	
+ 	else:
+ 		for species in species_info:
+ 		 	#sp_name = species['scientific_name']
+ 			sp_name = species			
+ 			data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$pull": {"lists.$.species": {"scientific_name": sp_name}}})
+  				
+ 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})
+ 		
+#----------------------------------------------------------
+#remove a list of a user from the database
+def remove_user_list(user_id, list_id, conn):
+  	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]
+ 	
+ 	document = data_collection.find({"user_id":user_id},{"lists" : 1});		
+  	if document.count() == 0:
+ 		message = "No user found with ID %s" %(user_id)
+  		user_found = False 		
+ 		status_code = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		message = "Success"
+ 		user_found = True
+ 		status_code = 200
+ 
+ 	if not(user_found):
+ 	 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})	
+
+ 	document2 = data_collection.find({"user_id": user_id, "lists.list_id": list_id},{"lists" : 1});
+  	if document2.count() == 0:	
+ 	 	message = "No list found with ID %s" %(list_id)
+ 		status_code = 204  #The server successfully processed the request and is not returning any content	 	
+ 	else:
+ 		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$pull": {"lists": {"list_id":list_id}}})
+
+ 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})
+ 	
 #----------------------------------------------------
 #create a sequence for the list_id (in 'counters' collection)
 def	createNewSequence(collection, seq_name): 
@@ -207,6 +352,7 @@ def getNextSequence(collection, seq_name):
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == "__main__":
-# 	conn = connect_mongodb()
- 	
+ 	#conn = connect_mongodb()
+ 	#input_json = '{"user_id": 2, "list_id": 2, "species": [{"scientific_name": "my species3"},{"scientific_name": "Acer ginnala"}]}'
+ 	#remove_species_from_list(input_json, conn) 	
   	
