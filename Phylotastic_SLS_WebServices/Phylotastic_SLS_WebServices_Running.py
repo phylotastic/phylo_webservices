@@ -95,6 +95,18 @@ class Species_List_Service_API(object):
         
         return service_result;
 
+    #-----------------------------------------------------
+    def find_lists(self, include_all=False, user_id=-1, **request_data):
+        try:
+ 			search_query = str(request_data['keyword']).strip();
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        conn = species_list_service.connect_mongodb()
+        service_result = species_list_service.find_lists(conn, search_query, int(user_id), include_all)   
+        
+        return service_result;
+
  	#--------------------------------------------
     def remove_list(self, **request_data):
         try:
@@ -159,6 +171,7 @@ class Species_List_Service_API(object):
     index.exposed = True
     get_user_lists.exposed = True
     get_public_lists.exposed = True
+    find_lists.exposed = True
     get_species.exposed = True
     insert_list.exposed = True
     remove_list.exposed = True

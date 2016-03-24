@@ -34,17 +34,57 @@ def get_public_lists(conn, include_all):
  	
  	public_lists = []
  	for doc in documents:
- 	 	#public_list_obj = {}	
- 		#public_list_obj['user_id'] = doc['user_id']
   	 	user_lists = doc['lists'] 				
  		for list_obj in user_lists:
  		 	list_json = retrieve_list_mgdb_obj(list_obj, include_all)
- 	 	#public_list_obj['lists'] = list_json
- 		 	public_lists.append(list_json)
+ 	 	 	is_public_list = list_obj['is_public']
+ 			if is_public_list:
+ 		 	 	public_lists.append(list_json)
 
  	return json.dumps({'public_lists': public_lists, "message": message, "status_code": status_code})
 
 #-----------------------------------------
+#find lists using keywords
+def find_lists(conn, search_query, user_id, include_all):
+ 	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]
+ 	query = '"'+search_query+'"'
+
+ 	documents = data_collection.find({"$text":{"$search": query}})
+
+ 	if user_id == -1:	
+ 		#documents = data_collection.find({"$text":{"$search": search_query }, "lists.is_public":{"$eq":True}})
+ 		find_public = True
+ 	else:
+ 		#documents = data_collection.find({"$text":{"$search": search_query }, "user_id": {"$eq": user_id}})
+ 		find_public = False
+ 	
+ 	found_lists = []
+ 	for doc in documents:
+ 		u_id = doc['user_id']
+ 		user_lists = doc['lists'] 				
+ 		for list_obj in user_lists:
+ 		 	list_json = retrieve_list_mgdb_obj(list_obj, include_all)
+ 		 	is_public_list = list_obj['is_public']
+ 		 	
+ 		 	if find_public:
+ 				if is_public_list:
+ 	 	 	 	 	found_lists.append(list_json)
+ 		 	else:
+ 				if user_id == u_id:
+ 	 	 	 	 	found_lists.append(list_json)
+
+ 	if len(found_lists) == 0:
+ 		message = "No lists found"
+  		status_code = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		message = "Success"
+ 		status_code = 200
+
+ 	return json.dumps({'lists': found_lists, "message": message, "status_code": status_code})
+
+#--------------------------------------------------
+
 #get lists of a user from the database
 def get_user_lists(user_id, conn, include_all):
   	db = conn[dbName]
