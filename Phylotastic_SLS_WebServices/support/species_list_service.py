@@ -256,6 +256,7 @@ def insert_user_list(list_info, conn):
  	elif status != None:
  		response['message'] = "Success"
  		response['status_code'] = 200
+ 		response['list_id'] = list_id
  	else:
  		response['message'] = "Error inserting document"
  		response['status_code'] = 500
