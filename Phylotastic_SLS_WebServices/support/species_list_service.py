@@ -214,15 +214,20 @@ def insert_user_list(list_info, conn):
  	data_collection = db[dataCollectionName]
  	counter_collection = db[counterCollectionName]
 
+ 	response = {}
  	try:
  		#list_info_json = json.loads(list_info)	
  		list_info_json = list_info
  		user_id =  list_info_json["user_id"]
  		user_name = list_info_json["user_name"]	
  	except KeyError, e:
- 		return  json.dumps({"message": "KeyError-%s"% str(e), "status_code": 500}) 
+ 		response['message'] = "KeyError-%s"% str(e)
+ 		response['status_code'] = 500
+ 		return response 
  	except IndexError, e:
- 		return  json.dumps({"message": "IndexError-%s"% str(e), "status_code": 500})
+ 		response['message'] = "IndexError-%s"% str(e)
+ 		response['status_code'] = 500
+ 		return response
 
  	sequence = "unique_list_id"
 
@@ -236,24 +241,24 @@ def insert_user_list(list_info, conn):
 
  	list_id = getNextSequence(counter_collection, sequence)
  	
- 	valid_mgdb_list = True
- 	status = None
- 	try: 	
- 	 	list_mgdb_obj = create_list_mgdb_obj(json.dumps(list_info_json['list']), list_id)
- 		if user_found:
- 	 	 	status = data_collection.update({"user_id":user_id},{"$push":{"lists":list_mgdb_obj}})
- 	 	else:	
- 	 	 	document = { "user_id": user_id, "user_name": user_name, "lists":[list_mgdb_obj] }
- 	 	 	status = data_collection.insert(document)
- 	except:
- 	 	valid_mgdb_list = False
- 			
- 	response = {}
- 	     		
- 	if not(valid_mgdb_list):
- 		response['message'] = "Error parsing input json"
- 		response['status_code'] = 500	
- 	elif status != None:
+ 	insert_status = None
+ 	 	
+ 	mgdb_obj = create_list_mgdb_obj(json.dumps(list_info_json['list']), list_id)
+ 	
+ 	if not(mgdb_obj['mg_obj_valid']):
+ 	 	response['message'] = "Error parsing input json: %s" %(mgdb_obj['mg_obj'])
+ 		response['status_code'] = 500
+ 	 	return response	
+ 	else:
+ 	 	list_mgdb_obj = mgdb_obj['mg_obj']
+
+ 	if user_found:
+ 	 	insert_status = data_collection.update({"user_id":user_id},{"$push":{"lists":list_mgdb_obj}})
+ 	else:	
+ 	 	document = { "user_id": user_id, "user_name": user_name, "lists":[list_mgdb_obj] }
+ 	 	insert_status = data_collection.insert(document)
+ 	
+ 	if insert_status != None:
  		response['message'] = "Success"
  		response['status_code'] = 200
  		response['list_id'] = list_id
@@ -267,15 +272,29 @@ def insert_user_list(list_info, conn):
 #-------------------------------------------------------
 #create list object to store in mongodb 
 def create_list_mgdb_obj(list_info, list_id):
- 	list_json = json.loads(list_info)
-  	
- 	date_published_str = list_json['list_date_published']	
+ list_json = json.loads(list_info)
+ mgdb_obj_validity = {}  	
+ mgdb_obj_validity['mg_obj_valid'] = True
+ mgdb_obj_validity['mg_obj'] = ''
+ 
+ try:	
+ 	date_published_str = list_json['list_date_published']
+ 	date_validity = is_date_valid(date_published_str)
+ 	if not(date_validity['date_valid']):
+ 		mgdb_obj_validity['mg_obj_valid'] = False
+ 		mgdb_obj_validity['mg_obj'] = date_validity['message']
+ 		return mgdb_obj_validity
  	date_published_obj = datetime.datetime.strptime(date_published_str, "%m-%d-%Y")
   	#date_published_obj = datetime.datetime(2009, 11, 12)
  	curation_date_str = list_json['list_curation_date']	
+ 	date_validity = is_date_valid(curation_date_str)
+ 	if not(date_validity['date_valid']):
+ 		mgdb_obj_validity['mg_obj_valid'] = False
+ 		mgdb_obj_validity['mg_obj'] = date_validity['message']
+ 		return mgdb_obj_validity	
  	curation_date_obj = datetime.datetime.strptime(curation_date_str, "%m-%d-%Y")
  	#curation_date_obj = datetime.datetime(2010, 11, 12)
-
+	
  	list_mgdb_obj = {"list_id": list_id,
          "title": list_json['list_title'],
          "description": list_json['list_description'],
@@ -292,7 +311,13 @@ def create_list_mgdb_obj(list_info, list_id):
  		 "species": list_json['list_species']
  	}
  	#print list_mgdb_obj
- 	return list_mgdb_obj
+ 	mgdb_obj_validity['mg_obj_valid'] = True
+ 	mgdb_obj_validity['mg_obj'] = list_mgdb_obj
+ except KeyError, e:
+ 	mgdb_obj_validity['mg_obj'] = "KeyError-%s"% str(e)
+ 	mgdb_obj_validity['mg_obj_valid'] = False
+
+ return mgdb_obj_validity
 
 #-----------------------------------------------
 #retrieve list info from mongodb list_obj 
@@ -401,6 +426,21 @@ def remove_user_list(user_id, list_id, conn):
  		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$pull": {"lists": {"list_id":list_id}}})
 
  	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})
+
+#------------------------------------------------
+def is_date_valid(date_str):
+ validity_response = {}
+ validity_response['date_valid'] = True
+ validity_response['message'] = "Success"
+
+ try:	
+ 	date_obj = datetime.datetime.strptime(date_str, "%m-%d-%Y")
+ 	date_st = date_obj.strftime("%m-%d-%Y")
+ except ValueError, e:
+ 	validity_response['date_valid'] = False
+ 	validity_response['message'] = "%s does not match format 'mm-dd-yyyy' " % date_str
+
+ return validity_response
  	
 #----------------------------------------------------
 #create a sequence for the list_id (in 'counters' collection)
