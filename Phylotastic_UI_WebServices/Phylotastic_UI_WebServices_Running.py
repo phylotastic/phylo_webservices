@@ -184,7 +184,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
-        service_result = resolve_names_service.resolve_names_OT(nameslist)   
+        service_result = resolve_names_service.resolve_names_OT(nameslist, False, False, False)   
         
         return service_result;
     #------------------------------------------------
@@ -198,7 +198,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
-        service_result = resolve_names_service.resolve_names_OT(nameslist, True)   
+        service_result = resolve_names_service.resolve_names_OT(nameslist, False, False, True)   
         
         return service_result;
 
@@ -245,7 +245,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class Get_Tree_OpenTree_Service_API(object):
     def index(self):
-        return "Get_Tree_OpenTree_Service_API API (Abu Saleh) : Get Subtree or Induced Subtree from OpenTree";
+        return "Get_Tree_OpenTree_Service_API API (Abu Saleh) : Get Induced Subtree from OpenTree";
     #---------------------------------------------
     def get_tree(self,**request_data):
         try:
@@ -254,8 +254,8 @@ class Get_Tree_OpenTree_Service_API(object):
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
- 	nameslist_json = resolve_names_service.resolve_names_OT(taxalist, True)
- 	nameslist = nameslist_json["resolvedNames"]
+        nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False, True)
+        nameslist = nameslist_json["resolvedNames"]
         service_result = get_tree_service.get_tree_OT(nameslist)   
         
         return service_result;

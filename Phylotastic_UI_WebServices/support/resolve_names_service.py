@@ -1,3 +1,4 @@
+#resolver service: version 2
 import json
 import time
 import requests
@@ -42,32 +43,6 @@ def resolve_sn_gnr(scNames, post):
         return json.dumps({'resolvedNames': resolvedNamesList}) 
         
 #----------------------------------------------    
-'''
-#get the final-api result using the token
-def get_token_result(response_json):
-        
-    #get the token value from token url
-    token_url = response_json['token_url']
-    tokenURL, token = token_url.split('=', 1)
-    str_token = str(token);
-    
-    #wait for the token to be activated    
-    #print "Waiting for the token to be activated"    
-    #time.sleep(20)
-    
-    payload = {
-        'token': str_token,
-    }
-    #print str_token
-    
-    encoded_payload = urllib.urlencode(payload)
-    
-    while True:
-        token_result = requests.get(api_url, params=encoded_payload, headers=headers) 
-        result_json = json.loads(token_result.text)
-        if token_result.status_code == result_json['status']:
-           return result_json 
-'''
 
 #~~~~~~~~~~~~~~~~~~~~ Process Scientific Names List ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def make_api_friendly_list(scNamesList):
@@ -88,11 +63,12 @@ def make_api_friendly_list(scNamesList):
                 
 
 #~~~~~~~~~~~~~~~~~~~~ (OpenTree-TNRS)~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def resolve_sn_ot(scNames, post):
+def resolve_sn_ot(scNames, do_fuzzy_match, multi_match, post):
     opentree_api_url = 'https://api.opentreeoflife.org/v2/tnrs/match_names'
     
     payload = {
-        'names': scNames
+        'names': scNames,
+ 		'do_approximate_matching': do_fuzzy_match
     }
     jsonPayload = json.dumps(payload)
    
@@ -103,27 +79,46 @@ def resolve_sn_ot(scNames, post):
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
         rsnames_list = data_json['results'] 
-        for element in rsnames_list:
-            rsname_json = element['matches'][0]
-            rsname = rsname_json['matched_name']
- 	    namesList = {}
- 	    namesList['matched_name'] = rsname_json['matched_name']
- 	    namesList['search_string'] = rsname_json['search_string']	 
-            namesList['match_type'] = 'Exact' if rsname_json['is_approximate_match'] else 'Fuzzy'
-            namesList['synonyms'] = rsname_json['synonyms']
- 	    namesList['taxon_id'] = rsname_json['ot:ottId']
- 	    namesList['resolver_name'] = 'OT'	
- 	    resolvedNamesList.append(namesList)
- 	            
+        resolvedNamesList = get_resolved_names(rsnames_list, do_fuzzy_match, multi_match)
+        #write_result(resolvedNamesList)
+    
     if post: 	    
      	return {'resolvedNames': resolvedNamesList}
     else: 
         return json.dumps({'resolvedNames': resolvedNamesList}) 
 
-#--------------------------------------------
-def resolve_names_OT(inputNamesList, post=False): 
+#-------------------------------------------
+def get_resolved_names(results, do_fuzzy_match, multi_match):
+ 	resolvedNameslist = []
+ 	
+ 	for element in results:
+ 		match_list = element['matches']
+ 		
+ 		for match_result in match_list:
+ 			namesList = {}
+ 			search_str = match_result['search_string']
+ 			match_str = match_result['matched_name']
+ 			match_type = match_result['is_approximate_match']
+ 			match_score = match_result['score']
+ 			ott_id = match_result['ot:ottId']
+ 			synonyms = match_result['synonyms']
+ 			if float(match_score) > 0.5:	     	
+ 				namesList['matched_name'] = match_str
+ 				namesList['search_string'] = search_str	 
+ 				namesList['match_type'] = 'Exact' if not(match_type) else 'Fuzzy'
+ 				namesList['synonyms'] = synonyms
+ 				namesList['taxon_id'] = ott_id
+ 				namesList['resolver_name'] = 'OT'	
+ 				resolvedNameslist.append(namesList)
+ 				if not(multi_match) and do_fuzzy_match:
+ 					break;
+ 	#print len(resolvedNameslist)
+ 	return resolvedNameslist
 
-    final_result = resolve_sn_ot(inputNamesList, post)    
+#--------------------------------------------
+def resolve_names_OT(inputNamesList, do_fuzzy_match=True, multi_match=False, post=False): 
+
+    final_result = resolve_sn_ot(inputNamesList, do_fuzzy_match, multi_match, post)    
     
     return final_result
 
@@ -134,15 +129,27 @@ def resolve_names_GNR(inputNamesList, post=False):
     final_result = resolve_sn_gnr(api_friendly_list, post)    
     
     return final_result
-        
-#-------------------------------------------------
-if __name__ == '__main__':
 
-    inputList = ["Formica aquilonia", "Formica dirksi", "Formica exsectoides", "Formica pacifica", "Formica sanguinea", "Formicidae"]
-    #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"]
-    result = resolve_names_GNR(inputList)    
-    print result
-    result = resolve_names_OT(inputList)
-    print result
+#------------------------------------------------------
+def write_result(final_result):
+    result_file = open('tnrs_response.txt', 'w')
+    result_file.write(str(final_result))
+    result_file.close()
+
+#---------------------------------------        
+def read_input():
+ 	with open('tnrs_input.txt', 'r') as f:
+ 		read_data = f.read()
+ 	return read_data
+#-------------------------------------------------
+#if __name__ == '__main__':
+
+    #inputList = ["Astar"]
+    #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"] 
+    #print result
+    #st_time = time.time()
+    #result = resolve_names_OT(inputList, True, True)
+    #en_time = time.time()
+    #print en_time-st_time
     
        
