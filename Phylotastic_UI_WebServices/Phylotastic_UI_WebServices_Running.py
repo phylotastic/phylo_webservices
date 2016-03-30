@@ -17,6 +17,7 @@ from support import taxon_to_species_service_OpenTree
 from support import extract_names_service
 from support import resolve_names_service
 from support import get_tree_service
+from support import species_to_image_service_EOL
 #from support import usecase_text, treebase_api
 
 from __builtin__ import True
@@ -25,6 +26,7 @@ WebService_Group1 = "ts"
 WebService_Group2 = "fn"
 WebService_Group3 = "tnrs"
 WebService_Group4 = "gt"
+WebService_Group5 = "si"
 
 WS_NAME = "phylotastic_ws"
 
@@ -37,14 +39,6 @@ ERROR_LOG_CHERRYPY_5004 = ROOT_FOLDER + "/log/%s_5004_error_log.log" %(str(datet
 
 
 #Prefix Filename
-
-class MultipleLevelsOfDictionary(collections.OrderedDict):
-    def __getitem__(self,item):
-        try:
-            return collections.OrderedDict.__getitem__(self,item)
-        except:
-            value = self[item] = type(self)()
-            return value
 
 def return_response_error(code,type,mess,format="JSON"):
     if (format=="JSON"):
@@ -73,6 +67,7 @@ def run_command(command):
     except Exception,err:
         print err
         return None
+
 def is_json(myjson):
     try:
         json.loads(myjson)
@@ -81,14 +76,6 @@ def is_json(myjson):
         return False
     return True
 
-def readContent(url):
-    import urllib2
-    data = []
-    if (url[:7] == "http://"):
-        data = urllib2.urlopen(url)
-        return data
-    else:
-        return url
 
 def runWebServiceFunction(FUNCTION_NAME,WSDL_URL,PARAMS,TYPE_RUNNING):
     try:
@@ -106,7 +93,7 @@ def runWebServiceFunction(FUNCTION_NAME,WSDL_URL,PARAMS,TYPE_RUNNING):
     except:
         return None
 
-    
+#--------------------------------------------------------------    
 class Taxon_to_Species_Service_API(object):
     def index(self):
         return "Taxon_to_Species_Service API (Abu Saleh) : Get Species from Taxon";
@@ -140,7 +127,46 @@ class Taxon_to_Species_Service_API(object):
     all_species.exposed = True
     country_species.exposed = True
 
+#------------------------------------------------------------
+class Species_Image_Service_API(object):
+    def index(self):
+        return "Species_Image_Service API (Abu Saleh) : Find images of species";
 
+    #---------------------------------------------
+    def get_images(self, **request_data):
+        try:
+            sp_lst = str(request_data['species']).strip();
+            specieslist = sp_lst.split('|')
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        service_result = species_to_image_service_EOL.get_images_species(specieslist)   
+        
+        return service_result;
+
+ 	#-----------------------------------------------	
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def images(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            #print input_json
+            species_list = input_json["species"]
+            #if not (is_json(input_json)):
+ 			#	return return_response_error(400,"error","content-type must be application/json","JSON") 				 
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        service_result = species_to_image_service_EOL.get_images_species(species_list, True)   
+           
+        return service_result;
+ 	#------------------------------------------------
+    #Public /index
+    index.exposed = True
+    get_images.exposed = True
+    images.exposed = True
+
+#--------------------------------------------------------------
 class Find_ScientificNames_Service_API(object):
     def index(self):
         return "Find_ScientificNames_Service API (Abu Saleh) : Find Scientific names from Url, Text, Files";
@@ -314,6 +340,8 @@ if __name__ == '__main__':
     #Starting Server
     #cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromText(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2_2)), conf_user_case_1)
     cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_user_case_1)
+    cherrypy.tree.mount(Species_Image_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group5), "eol"),conf_user_case_1 )
+
     cherrypy.tree.mount(Find_ScientificNames_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group2)), conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_GNR_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"gnr"), conf_thanhnh )
