@@ -304,8 +304,8 @@ def replace_species_in_list(input_json, conn):
 
  	response = {}
  	try:
- 		input_info_json = json.loads(input_json)	
- 		#input_info_json = input_json
+ 		#input_info_json = json.loads(input_json)	
+ 		input_info_json = input_json
  		user_id =  input_info_json["user_id"]
  		list_id = input_info_json["list_id"]
  		species_info = input_info_json["species"]
