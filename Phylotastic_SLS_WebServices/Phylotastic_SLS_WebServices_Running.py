@@ -84,6 +84,18 @@ class Species_List_Service_API(object):
         return service_result;
 
     #------------------------------------------------
+    def get_list(self, include_all=False, **request_data):
+        try:
+ 			list_id = str(request_data['list_id']).strip();
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        conn = species_list_service.connect_mongodb()
+        service_result = species_list_service.get_list(int(list_id), conn, include_all)   
+        
+        return service_result;
+
+    #------------------------------------------------
     def get_species(self, include_all=False, **request_data):
         try:
  			list_id = str(request_data['list_id']).strip();
@@ -119,7 +131,23 @@ class Species_List_Service_API(object):
         service_result = species_list_service.remove_user_list(int(user_id), int(list_id), conn)   
         
         return service_result;
-  	
+
+  	#---------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def replace_species(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            #if not (is_json(input_json)):
+ 			#	return return_response_error(400,"error","content-type must be application/json","JSON") 				 
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        conn = species_list_service.connect_mongodb()
+        service_result = species_list_service.replace_species_in_list(input_json, conn)   
+           
+        return service_result;
+
   	#-----------------------------------------------	
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
@@ -171,11 +199,13 @@ class Species_List_Service_API(object):
     index.exposed = True
     get_user_lists.exposed = True
     get_public_lists.exposed = True
+    get_list.exposed = True
     find_lists.exposed = True
     get_species.exposed = True
     insert_list.exposed = True
     remove_list.exposed = True
     insert_species.exposed = True
+    replace_species.exposed = True
     remove_species.exposed = True
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

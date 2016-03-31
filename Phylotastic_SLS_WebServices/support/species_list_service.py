@@ -44,6 +44,34 @@ def get_public_lists(conn, include_all):
  	return json.dumps({'public_lists': public_lists, "message": message, "status_code": status_code})
 
 #-----------------------------------------
+#get list properties of an existing list
+def get_list(list_id, conn, include_all):
+ 	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]	
+ 	document = data_collection.find({"lists.list_id":list_id},{"lists" : 1});
+ 	
+ 	if document.count() == 0:
+  		found_list = False		
+ 		message = "No list found with ID %s" % (list_id)
+ 		status_code = 204  #The server successfully processed the request and is not returning any content
+ 	else:
+ 		found_list = True
+ 		message = "Success"
+  	 	status_code = 200
+	
+ 	for ulist in document:
+  		lists = ulist['lists'] 				
+ 		for mglist_obj in lists:
+ 		 	if list_id == mglist_obj['list_id']:
+ 				list_obj = retrieve_list_mgdb_obj(mglist_obj, True)
+ 				if include_all:
+ 		 	 		list_obj['list_species'] = mglist_obj['species']
+ 	if found_list:	 	 	 		 	
+ 		return json.dumps({"list": list_obj, "message": message, "status_code": status_code})
+ 	else:
+ 		return json.dumps({"message": message, "status_code": status_code})
+
+#-----------------------------------------
 #find lists using keywords
 def find_lists(conn, search_query, user_id, include_all):
  	db = conn[dbName]
@@ -268,7 +296,60 @@ def insert_user_list(list_info, conn):
 
  	return response
 
+#----------------------------------------------------
+#replace species array of an existing list with new species array
+def replace_species_in_list(input_json, conn):
+ 	db = conn[dbName]
+ 	data_collection = db[dataCollectionName]
+
+ 	response = {}
+ 	try:
+ 		input_info_json = json.loads(input_json)	
+ 		#input_info_json = input_json
+ 		user_id =  input_info_json["user_id"]
+ 		list_id = input_info_json["list_id"]
+ 		species_info = input_info_json["species"]
+ 	except KeyError, e:
+ 		response['message'] = "KeyError-%s"% str(e)
+ 		response['status_code'] = 500
+ 		return response 
+ 	except IndexError, e:
+ 		response['message'] = "IndexError-%s"% str(e)
+ 		response['status_code'] = 500
+ 		return response
+
+ 	species_obj_validity = is_species_obj_valid(species_info)
+ 	if not(species_obj_validity['species_obj_valid']):
+ 		response['message'] = species_obj_validity['species_obj']
+ 		response['status_code'] = 500	
+ 	 	return response
+
+ 	document = data_collection.find({"user_id":user_id},{"lists" : 1});	
+  	if document.count() == 0:
+ 		message = "No user found with ID %s" %(user_id)
+  		user_found = False 		
+ 		status_code = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		message = "Success"
+ 		user_found = True
+ 		status_code = 200
+ 
+ 	response['user_id'] = user_id
+ 	response['message'] = message
+ 	response['status_code'] = status_code
+
+ 	if not(user_found):
+ 	 	return response
  	
+ 	document2 = data_collection.find({"user_id": user_id, "lists.list_id": list_id},{"lists" : 1});
+  	if document2.count() == 0:	
+ 		response['message'] = "No list found with ID %s" %(list_id)
+ 		response['status_code'] = 204  #The server successfully processed the request and is not returning any content	
+ 	else:
+ 		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$set": {"lists.$.species": species_info}})
+  				
+ 	return response
+
 #-------------------------------------------------------
 #create list object to store in mongodb 
 def create_list_mgdb_obj(list_info, list_id):
@@ -276,6 +357,12 @@ def create_list_mgdb_obj(list_info, list_id):
  mgdb_obj_validity = {}  	
  mgdb_obj_validity['mg_obj_valid'] = True
  mgdb_obj_validity['mg_obj'] = ''
+
+ species_obj_validity = is_species_obj_valid(list_json['list_species'])
+ if not(species_obj_validity['species_obj_valid']):
+ 	mgdb_obj_validity['mg_obj_valid'] = False
+ 	mgdb_obj_validity['mg_obj'] = species_obj_validity['species_obj']	
+ 	return mgdb_obj_validity
  
  try:	
  	date_published_str = list_json['list_date_published']
@@ -441,6 +528,26 @@ def is_date_valid(date_str):
  	validity_response['message'] = "%s does not match format 'mm-dd-yyyy' " % date_str
 
  return validity_response
+
+#------------------------------------------------------
+def is_species_obj_valid(species_obj_list):
+ 	species_obj_validity = {}
+ 	species_obj_validity['species_obj'] = ""
+ 	species_obj_validity['species_obj_valid'] = True	
+ 	try:
+ 		for species_json in species_obj_list:
+ 			vernacular_name = species_json['vernacular_name']
+ 			scientific_name = species_json['scientific_name']
+ 			scientific_name_authorship = species_json['scientific_name_authorship']
+ 	 		family = species_json['family']
+ 			order =	species_json['order']
+ 			phylum = species_json['phylum']
+ 			nomenclature_code = species_json['nomenclature_code']
+ 	except KeyError, e:
+ 		species_obj_validity['species_obj'] = "KeyError-%s"% str(e)
+ 		species_obj_validity['species_obj_valid'] = False 
+
+ 	return species_obj_validity	
  	
 #----------------------------------------------------
 #create a sequence for the list_id (in 'counters' collection)
