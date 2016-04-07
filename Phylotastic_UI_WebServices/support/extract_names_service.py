@@ -5,7 +5,7 @@ import re
 import ast
 import urllib
 
-api_url = "http://gnrd.globalnames.org/name_finder.json?"
+api_url = "http://finder.globalnames.org/name_finder.json?"
 headers = {'content-type': 'application/json'}
 
 #get scientific names from URL
@@ -16,16 +16,14 @@ def get_sn_url(inputURL):
     
     encoded_payload = urllib.urlencode(payload)
     response = requests.get(api_url, params=encoded_payload, headers=headers) 
-    #print response.text
     
     scientificNamesList = []
-    
-    if response.status_code == requests.codes.ok:    
+     
+    if response.status_code == 303:    
         data_json = json.loads(response.text)
     else:
         return json.dumps({'scientificNames': scientificNamesList}) 
     
-    #print "Getting token"
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
@@ -61,22 +59,20 @@ def get_token_result(response_json):
     token_url = response_json['token_url']
     tokenURL, token = token_url.split('=', 1)
     str_token = str(token);
-    
-    #wait for the token to be activated    
+        
     #print "Waiting for the token to be activated"    
     #time.sleep(20)
     
     payload = {
         'token': str_token,
     }
-    #print str_token
     
     encoded_payload = urllib.urlencode(payload)
     
     while True:
-        token_result = requests.get(api_url, params=encoded_payload, headers=headers) 
+        token_result = requests.get(api_url, params=encoded_payload, headers=headers)
         result_json = json.loads(token_result.text)
-        if token_result.status_code == result_json['status']:
+        if token_result.status_code != 303:
            return result_json 
 
 #---------------------------------------------------
@@ -89,16 +85,13 @@ def get_sn_text(inputTEXT):
     encoded_payload = urllib.urlencode(payload)
     response = requests.get(api_url, params=encoded_payload, headers=headers) 
  
-    print response.text
-    print response.status_code
     scientificNamesList = []
     
-    if response.status_code == requests.codes.ok:    
+    if response.status_code == 303:    
         data_json = json.loads(response.text)
     else:
         return json.dumps({'scientificNames': scientificNamesList}) 
     
-    #print "Getting token"
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
@@ -122,7 +115,6 @@ def extract_names_TEXT(inputTEXT):
 #--------------------------------------------
 
 #if __name__ == '__main__':
-
     #inputURL = 'https://en.wikipedia.org/wiki/Aster'    
     #inputURL = 'https://en.wikipedia.org/wiki/Setophaga'
     #inputURL = 'https://species.wikimedia.org/wiki/Morganucodontidae'

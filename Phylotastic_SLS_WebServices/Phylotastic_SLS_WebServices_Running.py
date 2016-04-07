@@ -72,7 +72,7 @@ class Species_List_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         conn = species_list_service.connect_mongodb()
-        service_result = species_list_service.get_user_lists(int(user_id), conn, include_all)   
+        service_result = species_list_service.get_user_lists(user_id, conn, include_all)   
         
         return service_result;
 
@@ -115,7 +115,7 @@ class Species_List_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         conn = species_list_service.connect_mongodb()
-        service_result = species_list_service.find_lists(conn, search_query, int(user_id), include_all)   
+        service_result = species_list_service.find_lists(conn, search_query, user_id, include_all)   
         
         return service_result;
 
@@ -128,7 +128,7 @@ class Species_List_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         conn = species_list_service.connect_mongodb()
-        service_result = species_list_service.remove_user_list(int(user_id), int(list_id), conn)   
+        service_result = species_list_service.remove_user_list(user_id, int(list_id), conn)   
         
         return service_result;
 
