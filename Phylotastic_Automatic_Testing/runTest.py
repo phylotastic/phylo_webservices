@@ -28,7 +28,34 @@ if (result_case_1 == True and result_case_2 == True and result_case_3 == True):
 else:
     result_ws_1 = False
 print "========================================================="
-if (result_ws_1 == True):
+
+
+########################################################
+#Test Web Service 2 : Find Scientific Names on free-form text
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_2 = False
+text="The lemon dove (Columba larvata) is a species of bird in the pigeon family Columbidae found in montane forests of sub-Saharan Africa."
+print "Start Test WS 2 : Find Scientific Names on free-form text"
+print "Case 1 : Paramter TEXT = %s \n" %(str(text))
+result_case_1 = False
+result_case_1 = web_services.testService_FindScientificNamesOnText_WS_2(text,["Columba larvata", "Columbidae"])
+print "---------------------------------------------------------"
+text="Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries."
+print "Start Test WS 2 : Find Scientific Names on free-form text"
+print "Case 2 : Paramter TEXT = %s \n" %(str(text))
+result_case_2 = False
+result_case_2 = web_services.testService_FindScientificNamesOnText_WS_2(text,["Formica polyctena", "Tetramorium caespitum", "Pseudomyrmex", "Adetomyrma venatrix", "Carebara diversa", "Formicinae"])
+print "---------------------------------------------------------"
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_2 = True
+    print("Sucessful ! Web Service 2 : Find Scientific Names on free-form text IS WORKING WELL")
+else:
+    result_ws_2 = False
+print "========================================================="
+
+if (result_ws_1 == True and result_ws_2 == True):
     exit(0)
 else:
     exit(1)
