@@ -4,6 +4,6 @@ python:
 cache: pip
 install:
   - pip install -r requirements.txt
-  - pip install cherrypy
+  - pip install requests
 script:
   - python Phylotastic_Automatic_Testing/runTest.py
