@@ -16,7 +16,7 @@ def isJSON(string):
     except ValueError, e:
        return False
     return True
-def testService_FindScientificNamesOnWebPages_WS_1(param_url):
+def testService_FindScientificNamesOnWebPages_WS_1(param_url,expected_output):
     param_structure = {
     	'url' : param_url
     }
@@ -33,8 +33,14 @@ def testService_FindScientificNamesOnWebPages_WS_1(param_url):
        if (type(json_object["scientificNames"]) is not list):
            print("Error ; JSON format is not correct")
            exit(1)
+       #Check correct output data
+       set_expected_ouput = set(expected_output)
+       set_result = set(json_object["scientificNames"])
+       if (not set_expected_ouput.issubset(set_result)):
+           print("Error : Web Service's result could be in-correct");
+           exit(1)
        return True
     else:
        print("Error : Exit 1")
+       return False
        exit(1)
-    return ws1_json_result

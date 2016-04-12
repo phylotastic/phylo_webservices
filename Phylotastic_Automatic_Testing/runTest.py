@@ -9,28 +9,25 @@ result_ws_1 = False
 url="https://en.wikipedia.org/wiki/Plain_pigeon"
 print "Start Test WS 1 : Find Scientific Names on web pages"
 print "Case 1 : Paramter URL = %s \n" %(str(url))
-result_case_1 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url)
+result_case_1 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url,["Patagioenas inornata wetmorei", "Animalia", "Chordata", "Columbiformes"])
 print "---------------------------------------------------------"
 url="http://en.wikipedia.org/wiki/Ant"
 print "Start Test WS 1 : Find Scientific Names on web pages"
 print "Case 2 : Paramter URL = %s \n" %(str(url))
-result_case_2 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url)
+result_case_2 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url,["Animalia", "Arthropoda", "Insecta", "Hymenoptera", "Apocrita", "Vespoidea", "Formicidae"])
 print "---------------------------------------------------------"
 url="http://www.fws.gov/westvirginiafieldoffice/PDF/beechridgehcp/Appendix_D_Table_D-1.pdf"
 print "Start Test WS 1 : Find Scientific Names on web pages"
 print "Case 3 : Paramter URL = %s \n" %(str(url))
 #result_case_3 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url)
 result_case_3 = True
-print "========================================================="
-
-
+print "---------------------------------------------------------"
 if (result_case_1 == True and result_case_2 == True and result_case_3 == True):
     result_ws_1 = True
     print("Sucessful ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
 else:
     result_ws_1 = False
-
-
+print "========================================================="
 if (result_ws_1 == True):
     exit(0)
 else:
