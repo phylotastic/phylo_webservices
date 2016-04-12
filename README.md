@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/phylotastic/phylo_webservices)](https://travis-ci.org/phylotastic/phylo_webservices)
+[![Build Status](https://api.travis-ci.org/phylotastic/datelife.svg)](https://travis-ci.org/phylotastic/phylo_webservices)
 
 # Phylotastic_WebService_Projects
 ##This repository contains all Web Services that the NMSU team has created :
