@@ -5,6 +5,7 @@ import web_services
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
+result_ws_1 = False
 url="https://en.wikipedia.org/wiki/Plain_pigeon"
 print "Start Test WS 1 : Find Scientific Names on web pages"
 print "Case 1 : Paramter URL = %s \n" %(str(url))
@@ -24,6 +25,13 @@ print "========================================================="
 
 
 if (result_case_1 == True and result_case_2 == True and result_case_3 == True):
+    result_ws_1 = True
+    print("Sucessful ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
+else:
+    result_ws_1 = False
+
+
+if (result_ws_1 == True):
     exit(0)
 else:
     exit(1)
