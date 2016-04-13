@@ -62,12 +62,12 @@ names="Setophaga striata|Setophaga megnolia|Setophaga angilae|Setophaga plumbea|
 print "Start Test WS 3 : Resolve Scientific Names with Open Tree TNRS - GET method"
 print "Case 1 : Paramter NAMES = %s \n" %(str(names))
 result_case_1 = False
-result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Dendroica plumbea", "Setophaga plumbea"])
+result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Setophaga striata", "Setophaga plumbea"])
 print "---------------------------------------------------------"
 names="Formica polyctena|Formica exsectoides|Formica pecefica"
 print "Case 2 : Paramter NAMES = %s \n" %(str(names))
 result_case_2 = False
-result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Formica polyctenum", "Formica polyctena"])
+result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Formica polyctena", "Formica exsectoides"])
 print "---------------------------------------------------------"
 if (result_case_1 == True and result_case_2 == True):
     result_ws_2 = True
@@ -86,22 +86,25 @@ json_input='{"scientificNames": ["Setophaga striata","Setophaga megnolia","Setop
 print "Start Test WS 3 : Resolve Scientific Names with Open Tree TNRS - POST method"
 print "Case 1 : Paramter = %s \n" %(str(json_input))
 result_case_1 = False
-result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Dendroica plumbea", "Setophaga plumbea"])
+result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Setophaga striata", "Setophaga plumbea"])
 print "---------------------------------------------------------"
 json_input='{"scientificNames": ["Formica exsectoides", "Formica pecefica", "Formica polyctena"]}'
 print "Case 2 : Paramter  = %s \n" %(str(json_input))
 result_case_2 = False
-result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Formica polyctenum", "Formica polyctena"])
+result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Formica polyctena", "Formica exsectoides"])
 print "---------------------------------------------------------"
 if (result_case_1 == True and result_case_2 == True):
-    result_ws_2 = True
-    print("Sucessful ! Web Service 3 : esolve Scientific Names with Open Tree TNRS - POST method IS WORKING WELL")
+    result_ws_3 = True
+    print("Sucessful ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS - POST method IS WORKING WELL")
 else:
-    result_ws_2 = False
+    result_ws_3 = False
 print "========================================================="
 
 
-if (result_ws_1 == True and result_ws_2 == True):
+########################################################
+#Finally Result
+########################################################
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True):
     exit(0)
 else:
     exit(1)

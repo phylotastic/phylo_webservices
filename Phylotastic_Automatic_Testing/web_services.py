@@ -18,6 +18,9 @@ WS_3_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/ot/r
 WS_3_HEADER = {'content-type':'application/json'}
 
 WS_3_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/ot/names"
+
+WS_4_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/gnr/resolve"
+WS_4_HEADER = {'content-type':'application/json'}
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -104,7 +107,11 @@ def testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(param_names,expected_o
        print("Pass : Returned data contains object 'resolvedNames'")
        #Check correct output data
        set_expected_ouput = set(expected_output)
-       set_result = set(json_object["resolvedNames"][0]["synonyms"])
+       list_result = []
+       for index, item in enumerate(json_object["resolvedNames"]):
+           list_result.append(json_object["resolvedNames"][index]["matched_name"])
+
+       set_result = set(list_result)
        if (not set_expected_ouput.issubset(set_result)):
            print("Error : Web Service's result could be in-correct");
            exit(1)
@@ -136,9 +143,45 @@ def testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_param_names,expe
     print("Pass : Returned data contains object 'resolvedNames'")
     #Check correct output data
     set_expected_ouput = set(expected_output)
-    set_result = set(json_object["resolvedNames"][0]["synonyms"])
+    list_result = []
+    for index, item in enumerate(json_object["resolvedNames"]):
+        list_result.append(json_object["resolvedNames"][index]["matched_name"])
+
+    set_result = set(list_result)
     if (not set_expected_ouput.issubset(set_result)):
         print("Error : Web Service's result could be in-correct");
         exit(1)
     print("Pass : Returned data contains expected output")
     return True
+def testService_ResolveScientificNamesGNR_TNRS_WS_4_GET(param_names,expected_output):
+    param_structure = {
+    	'names' : param_names
+    }
+    encoded_param_structure = urllib.urlencode(param_structure)
+    response = requests.get(WS_4_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_3_HEADER)
+    if (response.status_code == requests.codes.ok):
+       ws4_json_result = response.text
+       if (isJSON(str(ws4_json_result)) == False):
+           print("Error : Web Service 4's result is not JSON Format")
+           exit(1)
+       print("Pass : Returned data is JSON format")
+       json_object = json.loads(str(ws4_json_result))
+       if (type(json_object["resolvedNames"]) is not list):
+           print("Error : JSON format is not correct")
+           exit(1)
+       print("Pass : Returned data contains object 'resolvedNames'")
+       #Check correct output data
+       set_expected_ouput = set(expected_output)
+       list_result = []
+       for index, item in enumerate(json_object["resolvedNames"]):
+           list_result.append(json_object["resolvedNames"][index]["matched_name"])
+       set_result = set(list_result)
+       if (not set_expected_ouput.issubset(set_result)):
+           print("Error : Web Service's result could be in-correct");
+           exit(1)
+       print("Pass : Returned data contains expected output")
+       return True
+    else:
+       print("Error : Exit 4")
+       return False
+       exit(1)
