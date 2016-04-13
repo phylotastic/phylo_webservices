@@ -16,11 +16,12 @@ WS_2_HEADER = {'content-type':'application/json'};
 
 WS_3_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/ot/resolve"
 WS_3_HEADER = {'content-type':'application/json'}
-
 WS_3_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/ot/names"
 
 WS_4_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/gnr/resolve"
 WS_4_HEADER = {'content-type':'application/json'}
+WS_4_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/gnr/names"
+
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -185,3 +186,35 @@ def testService_ResolveScientificNamesGNR_TNRS_WS_4_GET(param_names,expected_out
        print("Error : Exit 4")
        return False
        exit(1)
+def testService_ResolveScientificNamesGNR_TNRS_WS_4_POST(json_param_names,expected_output):
+    data = json_param_names
+    url = WS_4_RESOURCES_URL_POST
+    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+    f = urllib2.urlopen(req)
+    result_cmd = ""
+    for x in f:
+        result_cmd = str(x)
+        break
+    f.close()
+
+    if (isJSON(str(result_cmd)) == False):
+        print("Error : Web Service 4's result is not JSON Format")
+        exit(1)
+    print("\nPass : Returned data is JSON format")
+    json_object = json.loads(str(result_cmd))
+    if (type(json_object["resolvedNames"]) is not list):
+        print("Error : JSON format is not correct")
+        exit(1)
+    print("Pass : Returned data contains object 'resolvedNames'")
+    #Check correct output data
+    set_expected_ouput = set(expected_output)
+    list_result = []
+    for index, item in enumerate(json_object["resolvedNames"]):
+        list_result.append(json_object["resolvedNames"][index]["matched_name"])
+
+    set_result = set(list_result)
+    if (not set_expected_ouput.issubset(set_result)):
+        print("Error : Web Service's result could be in-correct");
+        exit(1)
+    print("Pass : Returned data contains expected output")
+    return True

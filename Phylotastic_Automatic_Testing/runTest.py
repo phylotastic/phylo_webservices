@@ -70,10 +70,10 @@ result_case_2 = False
 result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Formica polyctena", "Formica exsectoides"])
 print "---------------------------------------------------------"
 if (result_case_1 == True and result_case_2 == True):
-    result_ws_2 = True
+    result_ws_3 = True
     print("Sucessful ! Web Service 3 : esolve Scientific Names with Open Tree TNRS - GET method IS WORKING WELL")
 else:
-    result_ws_2 = False
+    result_ws_3 = False
 print "========================================================="
 
 ########################################################
@@ -102,9 +102,59 @@ print "========================================================="
 
 
 ########################################################
+#Test Web Service 4 : Resolve Scientific Names with GNR TNRS - GET method
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_4 = False
+names="Setophaga striata|Setophaga megnolia|Setophaga angilae|Setophaga plumbea|Setophaga virens"
+print "Start Test WS 4 : Resolve Scientific Names with GNR TNRS - GET method"
+print "Case 1 : Paramter NAMES = %s \n" %(str(names))
+result_case_1 = False
+result_case_1 = web_services.testService_ResolveScientificNamesGNR_TNRS_WS_4_GET(names,["Setophaga striata", "Setophaga plumbea"])
+print "---------------------------------------------------------"
+names="Formica polyctena|Formica exsectoides|Formica pecefica"
+print "Case 2 : Paramter NAMES = %s \n" %(str(names))
+result_case_2 = False
+result_case_2 = web_services.testService_ResolveScientificNamesGNR_TNRS_WS_4_GET(names,["Formica polyctena", "Formica exsectoides"])
+print "---------------------------------------------------------"
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_4 = True
+    print("Sucessful ! Web Service 4 : Resolve Scientific Names with GNR TNRS - GET method IS WORKING WELL")
+else:
+    result_ws_4 = False
+print "========================================================="
+
+
+########################################################
+#Test Web Service 4 : Resolve Scientific Names with GNR TNRS - POST METHOD
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_4 = False
+json_input='{"scientificNames": ["Setophaga striata","Setophaga megnolia","Setophaga angilae","Setophaga plumbea","Setophaga virens"]}'
+print "Start Test WS 4 : Resolve Scientific Names with GNR TNRS - POST METHOD"
+print "Case 1 : Paramter = %s \n" %(str(json_input))
+result_case_1 = False
+result_case_1 = web_services.testService_ResolveScientificNamesGNR_TNRS_WS_4_POST(json_input,["Setophaga striata", "Setophaga plumbea"])
+print "---------------------------------------------------------"
+json_input='{"scientificNames": ["Formica exsectoides", "Formica pecefica", "Formica polyctena"]}'
+print "Case 2 : Paramter  = %s \n" %(str(json_input))
+result_case_2 = False
+result_case_2 = web_services.testService_ResolveScientificNamesGNR_TNRS_WS_4_POST(json_input,["Formica polyctena", "Formica exsectoides"])
+print "---------------------------------------------------------"
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_4 = True
+    print("Sucessful ! Web Service 4 : Resolve Scientific Names with GNR TNRS  - POST method IS WORKING WELL")
+else:
+    result_ws_4 = False
+print "========================================================="
+
+
+########################################################
 #Finally Result
 ########################################################
-if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True):
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True):
     exit(0)
 else:
     exit(1)
