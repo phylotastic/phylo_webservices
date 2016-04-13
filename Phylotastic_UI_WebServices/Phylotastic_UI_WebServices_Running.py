@@ -18,6 +18,7 @@ from support import extract_names_service
 from support import resolve_names_service
 from support import get_tree_service
 from support import species_to_image_service_EOL
+from support import taxon_genome_species_service_NCBI
 #from support import usecase_text, treebase_api
 
 from __builtin__ import True
@@ -94,6 +95,26 @@ def runWebServiceFunction(FUNCTION_NAME,WSDL_URL,PARAMS,TYPE_RUNNING):
         return None
 
 #--------------------------------------------------------------    
+class Taxon_Genome_Service_API(object):
+    def index(self):
+        return "Taxon_Genome_Service_API (Abu Saleh) : Find species (of a taxon) that have genome sequence in NCBI";
+    #---------------------------------------------
+    def genome_species(self, **request_data):
+        try:
+            taxonName = str(request_data['taxon']).strip();
+            
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        service_result = taxon_genome_species_service_NCBI.get_genome_species(taxonName)   
+        
+        return service_result;
+ 	#------------------------------------------------
+    #Public /index
+    index.exposed = True
+    genome_species.exposed = True
+
+#------------------------------------------------------------
 class Taxon_to_Species_Service_API(object):
     def index(self):
         return "Taxon_to_Species_Service API (Abu Saleh) : Get Species from Taxon";
@@ -339,8 +360,9 @@ if __name__ == '__main__':
 
     #Starting Server
     #cherrypy.tree.mount(Phylotastic_UserCase_2_GenerateTreesFromText(), '/%s/%s' %(str(WS_NAME),str(USER_CASE_2_2)), conf_user_case_1)
-    cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_user_case_1)
-    cherrypy.tree.mount(Species_Image_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group5), "eol"),conf_user_case_1 )
+    cherrypy.tree.mount(Taxon_Genome_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "ncbi"), conf_thanhnh)
+    cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_thanhnh)
+    cherrypy.tree.mount(Species_Image_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group5), "eol"),conf_thanhnh)
 
     cherrypy.tree.mount(Find_ScientificNames_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group2)), conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
