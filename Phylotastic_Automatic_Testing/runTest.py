@@ -76,6 +76,31 @@ else:
     result_ws_2 = False
 print "========================================================="
 
+########################################################
+#Test Web Service 3 : Resolve Scientific Names with Open Tree TNRS - POST method
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_3 = False
+json_input='{"scientificNames": ["Setophaga striata","Setophaga megnolia","Setophaga angilae","Setophaga plumbea","Setophaga virens"]}'
+print "Start Test WS 3 : Resolve Scientific Names with Open Tree TNRS - POST method"
+print "Case 1 : Paramter = %s \n" %(str(json_input))
+result_case_1 = False
+result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Dendroica plumbea", "Setophaga plumbea"])
+print "---------------------------------------------------------"
+json_input='{"scientificNames": ["Formica exsectoides", "Formica pecefica", "Formica polyctena"]}'
+print "Case 2 : Paramter  = %s \n" %(str(json_input))
+result_case_2 = False
+result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Formica polyctenum", "Formica polyctena"])
+print "---------------------------------------------------------"
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_2 = True
+    print("Sucessful ! Web Service 3 : esolve Scientific Names with Open Tree TNRS - POST method IS WORKING WELL")
+else:
+    result_ws_2 = False
+print "========================================================="
+
+
 if (result_ws_1 == True and result_ws_2 == True):
     exit(0)
 else:
