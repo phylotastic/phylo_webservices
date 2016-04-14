@@ -6,6 +6,7 @@ import requests
 import os
 import sys
 import subprocess
+from newick import loads
 #Define Resources URI for Testing Web Service
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 WS_1_RESOURCES_URI = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_url";
@@ -22,6 +23,9 @@ WS_4_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/gnr/
 WS_4_HEADER = {'content-type':'application/json'}
 WS_4_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/gnr/names"
 
+WS_5_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/gt/ot/get_tree"
+WS_5_HEADER = {'content-type':'application/json'}
+WS_5_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/gt/ot/tree"
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -30,6 +34,12 @@ def isJSON(string):
        json_object = json.loads(string)
     except ValueError, e:
        return False
+    return True
+def isNewick(string):
+    try:
+        newick_data = loads(string)
+    except ValueError, e:
+        return False
     return True
 def testService_FindScientificNamesOnWebPages_WS_1(param_url,expected_output):
     param_structure = {
@@ -218,3 +228,69 @@ def testService_ResolveScientificNamesGNR_TNRS_WS_4_POST(json_param_names,expect
         exit(1)
     print("Pass : Returned data contains expected output")
     return True
+def testService_GetPhylogeneticTreeFrom_OpenTree_5_GET(param_taxa,expected_output):
+    param_structure = {
+    	'taxa' : param_taxa
+    }
+    encoded_param_structure = urllib.urlencode(param_structure)
+    response = requests.get(WS_5_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_3_HEADER)
+    if (response.status_code == requests.codes.ok):
+       ws5_json_result = response.text
+       if (isJSON(str(ws5_json_result)) == False):
+           print("Error : Web Service 5's result is not JSON Format")
+           exit(1)
+       print("Pass : Returned data is JSON format")
+       json_object = json.loads(str(ws5_json_result))
+       if ((json_object["message"] != "Success") and (json_object["newick"] is None or json_object["newick"] == "")):
+           print("Error : JSON format is not correct")
+           exit(1)
+       print("Pass : Returned data contains object 'message' and 'newick'")
+       #Check correct output data
+       tree_data = json_object["newick"]
+       if (not isNewick(tree_data)):
+           print("Error : Web Service's result is NOT a Newick tree");
+           exit(1)
+       print("Pass : Returned data is Newick tree")
+       if (str(tree_data).strip().upper() == str(expected_output).strip().upper()):
+           print("Pass : Returned data contains expected output")
+           return True
+       else:
+           print("Error : Web Service's result could be in-correct")
+           return False
+    else:
+       print("Error : Exit 4")
+       return False
+       exit(1)
+def testService_GetPhylogeneticTreeFrom_OpenTree_5_POST(json_param_taxa,expected_output):
+    data = json_param_taxa
+    url = WS_5_RESOURCES_URL_POST
+    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+    f = urllib2.urlopen(req)
+    result_cmd = ""
+    for x in f:
+        result_cmd = str(x)
+        break
+    f.close()
+
+    ws5_json_result = result_cmd
+    if (isJSON(str(ws5_json_result)) == False):
+        print("Error : Web Service 5's result is not JSON Format")
+        exit(1)
+    print("Pass : Returned data is JSON format")
+    json_object = json.loads(str(ws5_json_result))
+    if ((json_object["message"] != "Success") and (json_object["newick"] is None or json_object["newick"] == "")):
+        print("Error : JSON format is not correct")
+        exit(1)
+    print("Pass : Returned data contains object 'message' and 'newick'")
+    #Check correct output data
+    tree_data = json_object["newick"]
+    if (not isNewick(tree_data)):
+        print("Error : Web Service's result is NOT a Newick tree");
+        exit(1)
+    print("Pass : Returned data is Newick tree")
+    if (str(tree_data).strip().upper() == str(expected_output).strip().upper()):
+        print("Pass : Returned data contains expected output")
+        return True
+    else:
+        print("Error : Web Service's result could be in-correct")
+        return False

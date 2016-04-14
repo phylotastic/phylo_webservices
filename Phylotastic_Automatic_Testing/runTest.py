@@ -71,7 +71,7 @@ result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_G
 print "---------------------------------------------------------"
 if (result_case_1 == True and result_case_2 == True):
     result_ws_3 = True
-    print("Sucessful ! Web Service 3 : esolve Scientific Names with Open Tree TNRS - GET method IS WORKING WELL")
+    print("Sucessful ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS - GET method IS WORKING WELL")
 else:
     result_ws_3 = False
 print "========================================================="
@@ -148,6 +148,45 @@ if (result_case_1 == True and result_case_2 == True):
     print("Sucessful ! Web Service 4 : Resolve Scientific Names with GNR TNRS  - POST method IS WORKING WELL")
 else:
     result_ws_4 = False
+print "========================================================="
+
+
+########################################################
+#Test Web Service 5 : Get Phylogenetic Trees from Open Tree of Life - GET method
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_5 = False
+taxa="Setophaga striata|Setophaga magnolia|Setophaga angelae|Setophaga plumbea|Setophaga virens"
+print "Start Test WS 5 : Get Phylogenetic Trees from Open Tree of Life - GET method"
+print "Case 1 : Paramter TAXA = %s \n" %(str(taxa))
+result_case_1 = False
+result_case_1 = web_services.testService_GetPhylogeneticTreeFrom_OpenTree_5_GET(taxa,"(((Setophaga_striata_ott60236,Setophaga_magnolia_ott3597209),Setophaga_virens_ott3597195),(Setophaga_plumbea_ott3597205,Setophaga_angelae_ott3597191))Setophaga_ott666104;")
+print "---------------------------------------------------------"
+if (result_case_1 == True):
+    result_ws_5 = True
+    print("Sucessful ! Web Service 5 : Get Phylogenetic Trees from Open Tree of Life - GET method IS WORKING WELL")
+else:
+    result_ws_5 = False
+print "========================================================="
+
+########################################################
+#Test Web Service 5 : Get Phylogenetic Trees from Open Tree of Life - POST method
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_5 = False
+json_input='{"resolvedNames": [{"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga striata", "search_string": "setophaga strieta", "synonyms": ["Dendroica striata", "Setophaga striata"], "taxon_id": 60236}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga magnolia", "search_string": "setophaga magnolia", "synonyms": ["Dendroica magnolia", "Setophaga magnolia"], "taxon_id": 3597209}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga angelae", "search_string": "setophaga angilae", "synonyms": ["Dendroica angelae", "Setophaga angelae"], "taxon_id": 3597191}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga plumbea", "search_string": "setophaga plambea", "synonyms": ["Dendroica plumbea", "Setophaga plumbea"], "taxon_id": 3597205}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga virens", "search_string": "setophaga virens", "synonyms": ["Dendroica virens", "Setophaga virens"], "taxon_id": 3597195}]}'
+print "Start Test WS 5 : Get Phylogenetic Trees from Open Tree of Life - POST method"
+print "Case 1 : Paramter  = %s \n" %(str(json_input))
+result_case_1 = False
+result_case_1 = web_services.testService_GetPhylogeneticTreeFrom_OpenTree_5_POST(json_input,"(((Setophaga_striata_ott60236,Setophaga_magnolia_ott3597209),Setophaga_virens_ott3597195),(Setophaga_plumbea_ott3597205,Setophaga_angelae_ott3597191))Setophaga_ott666104;")
+print "---------------------------------------------------------"
+if (result_case_1 == True):
+    result_ws_5 = True
+    print("Sucessful ! Web Service 5 : Get Phylogenetic Trees from Open Tree of Life - POST method IS WORKING WELL")
+else:
+    result_ws_5 = False
 print "========================================================="
 
 
