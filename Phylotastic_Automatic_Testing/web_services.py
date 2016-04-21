@@ -449,7 +449,7 @@ def testService_GetSpeciesNCBI_WS_9_GET(param_taxon,expected_output):
        if ((json_object["status_code"] is None) or (json_object["status_code"] == "")):
            print("Error : JSON format is not correct")
            exit(1)
-       print("Pass : Returned data contains object 'species' 'images'")
+       print("Pass : Returned data contains object 'species'")
        #Check correct output data
        set_expected_ouput = set(expected_output)
        set_result = set(json_object["species"])

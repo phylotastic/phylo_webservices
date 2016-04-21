@@ -288,7 +288,7 @@ print "========================================================="
 print "========================================================="
 result_ws_9 = False
 taxon="Panthera"
-print "Start Test WS 8 : Get Species (of a Taxon) that have genome sequence in NCBI"
+print "Start Test WS 9 : Get Species (of a Taxon) that have genome sequence in NCBI"
 print "Case 1 : Paramter taxon = %s \n" %(str(taxon))
 result_case_1 = False
 result_case_1 = web_services.testService_GetSpeciesNCBI_WS_9_GET(taxon,["Panthera tigris amoyensis", "Panthera tigris altaica", "Panthera tigris"])
