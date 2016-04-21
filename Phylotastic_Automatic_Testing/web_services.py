@@ -37,6 +37,10 @@ WS_8_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/ge
 WS_8_HEADER = {'content-type':'application/json'}
 WS_8_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/images"
 
+WS_9_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/ncbi/genome_species"
+WS_9_HEADER = {'content-type':'application/json'}
+WS_9_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/ncbi/genome_species"
+
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -426,3 +430,36 @@ def testService_GetImagesURLListOfSpecies_WS_8_POST(json_param_species,expected_
         exit(1)
     print("Pass : Returned data contains expected output")
     return True
+def testService_GetSpeciesNCBI_WS_9_GET(param_taxon,expected_output):
+    param_structure = {
+    	'taxon' : param_species
+    }
+    encoded_param_structure = urllib.urlencode(param_structure)
+    response = requests.get(WS_9_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_9_HEADER)
+    if (response.status_code == requests.codes.ok):
+       ws9_json_result = response.text
+       if (isJSON(str(ws9_json_result)) == False):
+           print("Error : Web Service 9's result is not JSON Format")
+           exit(1)
+       print("Pass : Returned data is JSON format")
+       json_object = json.loads(str(ws9_json_result))
+       if (type(json_object["species"]) is not list):
+           print("Error : JSON format is not correct")
+           exit(1)
+       if ((json_object["status_code"] is None) or (json_object["status_code"] == "")):
+           print("Error : JSON format is not correct")
+           exit(1)
+       print("Pass : Returned data contains object 'species' 'images'")
+       #Check correct output data
+       set_expected_ouput = set(expected_output)
+       set_result = set(json_object["species"])
+       if (not set_expected_ouput.issubset(set_result)):
+          print("Error : Web Service's result could be in-correct");
+          exit(1)
+
+       print("Pass : Returned data contains expected output")
+       return True
+    else:
+       print("Error : Exit 1")
+       return False
+       exit(1)

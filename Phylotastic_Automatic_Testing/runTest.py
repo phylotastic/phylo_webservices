@@ -256,7 +256,7 @@ result_case_1 = web_services.testService_GetImagesURLListOfSpecies_WS_8_GET(spec
 print "---------------------------------------------------------"
 if (result_case_1 == True):
     result_ws_8 = True
-    print("Sucessful ! 8 : Get Image URLs of a list of species - GET method IS WORKING WELL")
+    print("Sucessful ! Web Service 8 : Get Image URLs of a list of species - GET method IS WORKING WELL")
 else:
     result_ws_8 = False
 print "========================================================="
@@ -275,7 +275,34 @@ result_case_1 = web_services.testService_GetImagesURLListOfSpecies_WS_8_POST(jso
 print "---------------------------------------------------------"
 if (result_case_1 == True):
     result_ws_8 = True
-    print("Sucessful ! 8 : Get Image URLs of a list of species - POST method IS WORKING WELL")
+    print("Sucessful ! Web Service 8 : Get Image URLs of a list of species - POST method IS WORKING WELL")
+else:
+    result_ws_8 = False
+print "========================================================="
+
+
+########################################################
+#Test Web Service 9 : Get Species (of a Taxon) that have genome sequence in NCBI
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_9 = False
+taxon="Panthera"
+print "Start Test WS 8 : Get Species (of a Taxon) that have genome sequence in NCBI"
+print "Case 1 : Paramter taxon = %s \n" %(str(taxon))
+result_case_1 = False
+result_case_1 = web_services.testService_GetSpeciesNCBI_WS_9_GET(taxon,["Panthera tigris amoyensis", "Panthera tigris altaica", "Panthera tigris"])
+print "---------------------------------------------------------"
+
+taxon="Rodentia"
+print "Case 2 : Paramter taxon = %s \n" %(str(taxon))
+result_case_2 = False
+result_case_2 = web_services.testService_GetSpeciesNCBI_WS_9_GET(taxon,["Nannospalax galili", "Fukomys damarensis", "Myodes glareolus", "Peromyscus maniculatus bairdii"])
+print "---------------------------------------------------------"
+
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_9 = True
+    print("Sucessful ! Web Service 9 : Get Species (of a Taxon) that have genome sequence in NCBI IS WORKING WELL")
 else:
     result_ws_8 = False
 print "========================================================="
@@ -283,7 +310,7 @@ print "========================================================="
 ########################################################
 #Finally Result
 ########################################################
-if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True and result_ws_8 == True):
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True and result_ws_8 == True and result_ws_9 == True):
     exit(0)
 else:
     exit(1)
