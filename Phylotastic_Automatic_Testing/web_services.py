@@ -432,7 +432,7 @@ def testService_GetImagesURLListOfSpecies_WS_8_POST(json_param_species,expected_
     return True
 def testService_GetSpeciesNCBI_WS_9_GET(param_taxon,expected_output):
     param_structure = {
-    	'taxon' : param_species
+    	'taxon' : param_taxon
     }
     encoded_param_structure = urllib.urlencode(param_structure)
     response = requests.get(WS_9_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_9_HEADER)
