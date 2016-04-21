@@ -214,10 +214,37 @@ else:
     result_ws_6 = False
 print "========================================================="
 
+
+########################################################
+#Test Web Service 7 : Get all Species from a Taxon filtered by country
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_7 = False
+taxon='Panthera'
+country='Bangladesh'
+print "Start Test WS 7 : Get all Species from a Taxon filtered by country"
+print "Case 1 : Paramter Taxon = %s ; Country = %s \n" %(str(taxon),str(country))
+result_case_1 = False
+result_case_1 = web_services.testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(taxon,country,[])
+print "---------------------------------------------------------"
+taxon='Felidae'
+country='Nepal'
+print "Case 2: Paramter Taxon = %s ; Country = %s \n" %(str(taxon),str(country))
+result_case_2= False
+result_case_2 = web_services.testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(taxon,country,[])
+
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_7 = True
+    print("Sucessful ! Web Service 7 : Get all Species from a Taxon filtered by country IS WORKING WELL")
+else:
+    result_ws_7 = False
+print "========================================================="
+
 ########################################################
 #Finally Result
 ########################################################
-if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True):
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True):
     exit(0)
 else:
     exit(1)
