@@ -32,6 +32,11 @@ WS_6_HEADER = {'content-type':'application/json'}
 
 WS_7_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/country_species"
 WS_7_HEADER = {'content-type':'application/json'}
+
+WS_8_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/get_images"
+WS_8_HEADER = {'content-type':'application/json'}
+WS_8_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/images"
+
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -359,3 +364,65 @@ def testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(param_taxon,param_
        print("Error : Exit 1")
        return False
        exit(1)
+def testService_GetImagesURLListOfSpecies_WS_8_GET(param_species,expected_output):
+    param_structure = {
+    	'species' : param_species
+    }
+    encoded_param_structure = urllib.urlencode(param_structure)
+    response = requests.get(WS_8_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_8_HEADER)
+    if (response.status_code == requests.codes.ok):
+       ws8_json_result = response.text
+       if (isJSON(str(ws8_json_result)) == False):
+           print("Error : Web Service 8's result is not JSON Format")
+           exit(1)
+       print("Pass : Returned data is JSON format")
+       json_object = json.loads(str(ws8_json_result))
+       if (type(json_object["species"][0]["images"]) is not list):
+           print("Error : JSON format is not correct")
+           exit(1)
+       if ((json_object["status_code"] is None) or (json_object["status_code"] == "")):
+           print("Error : JSON format is not correct")
+           exit(1)
+       print("Pass : Returned data contains object 'species' 'images'")
+       #Check correct output data
+       #set_expected_ouput = set(expected_output)
+       #set_result = set(json_object["species"][0]["images"])
+       #if (not set_expected_ouput.issubset(set_result)):
+    #       print("Error : Web Service's result could be in-correct");
+    #       exit(1)
+       if (json_object["species"][0]["images"][0]["eolMediaURL"] != expected_output):
+           print("Error : Web Service's result could be in-correct");
+           exit(1)
+       print("Pass : Returned data contains expected output")
+       return True
+    else:
+       print("Error : Exit 1")
+       return False
+       exit(1)
+def testService_GetImagesURLListOfSpecies_WS_8_POST(json_param_species,expected_output):
+    data = json_param_species
+    url = WS_8_RESOURCES_URL_POST
+    req = urllib2.Request(url, data, {'Content-Type': 'application/json'})
+    f = urllib2.urlopen(req)
+    result_cmd = ""
+    for x in f:
+        result_cmd = str(x)
+        break
+    f.close()
+
+    ws8_json_result = result_cmd
+    if (isJSON(str(ws8_json_result)) == False):
+        print("Error : Web Service 8's result is not JSON Format")
+        exit(1)
+    print("Pass : Returned data is JSON format")
+    json_object = json.loads(str(ws8_json_result))
+    if ((json_object["message"] != "Success") or (type(json_object["species"][0]["images"]) is not list)):
+        print("Error : JSON format is not correct")
+        exit(1)
+    print("Pass : Returned data contains object 'species' 'images'")
+    #Check correct output data
+    if (json_object["species"][0]["images"][0]["eolMediaURL"] != expected_output):
+        print("Error : Web Service's result could be in-correct");
+        exit(1)
+    print("Pass : Returned data contains expected output")
+    return True

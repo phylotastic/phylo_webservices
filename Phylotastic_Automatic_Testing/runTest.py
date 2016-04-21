@@ -241,10 +241,49 @@ else:
     result_ws_7 = False
 print "========================================================="
 
+
+########################################################
+#Test Web Service 8 : Get Image URLs of a list of species - GET method
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_8 = False
+species="Panthera leo|Panthera onca|Panthera pardus"
+print "Start Test WS 8 : Get Image URLs of a list of species - GET method"
+print "Case 1 : Paramter species = %s \n" %(str(species))
+result_case_1 = False
+result_case_1 = web_services.testService_GetImagesURLListOfSpecies_WS_8_GET(species,"http://media.eol.org/content/2015/11/13/05/46343_orig.jpg")
+print "---------------------------------------------------------"
+if (result_case_1 == True):
+    result_ws_8 = True
+    print("Sucessful ! 8 : Get Image URLs of a list of species - GET method IS WORKING WELL")
+else:
+    result_ws_8 = False
+print "========================================================="
+
+########################################################
+#Test Web Service 8 : Get Image URLs of a list of species - POST method
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_8 = False
+json_param_species='{"species": ["Catopuma badia","Catopuma temminckii"]}'
+print "Start Test WS 8 : Get Image URLs of a list of species - POST method"
+print "Case 1 : Paramter = %s \n" %(str(json_param_species))
+result_case_1 = False
+result_case_1 = web_services.testService_GetImagesURLListOfSpecies_WS_8_POST(json_param_species,"http://media.eol.org/content/2014/01/04/04/58116_orig.jpg")
+print "---------------------------------------------------------"
+if (result_case_1 == True):
+    result_ws_8 = True
+    print("Sucessful ! 8 : Get Image URLs of a list of species - POST method IS WORKING WELL")
+else:
+    result_ws_8 = False
+print "========================================================="
+
 ########################################################
 #Finally Result
 ########################################################
-if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True):
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True and result_ws_8 == True):
     exit(0)
 else:
     exit(1)
