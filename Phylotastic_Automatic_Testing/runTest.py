@@ -191,9 +191,33 @@ print "========================================================="
 
 
 ########################################################
+#Test Web Service 6 : Get all Species from a Taxon
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+result_ws_6 = False
+taxon='Vulpes'
+print "Start Test WS 6 : Get all Species from a Taxon"
+print "Case 1 : Paramter Taxon = %s \n" %(str(taxon))
+result_case_1 = False
+result_case_1 = web_services.testService_GetAllSpeciesFromATaxon_WS_6(taxon,["Vulpes environmental sample", "Vulpes stenognathus", "Vulpes bengalensis"])
+print "---------------------------------------------------------"
+taxon='Canidae'
+print "Case 2 : Paramter Taxon = %s \n" %(str(taxon))
+result_case_2 = False
+result_case_2 = web_services.testService_GetAllSpeciesFromATaxon_WS_6(taxon,["Aelurodon taxoides", "Aelurodon asthenostylus", "Aelurodon ferox", "Aelurodon montanensis"])
+
+if (result_case_1 == True and result_case_2 == True):
+    result_ws_6 = True
+    print("Sucessful ! Web Service 6 : Get all Species from a Taxon IS WORKING WELL")
+else:
+    result_ws_6 = False
+print "========================================================="
+
+########################################################
 #Finally Result
 ########################################################
-if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True):
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True):
     exit(0)
 else:
     exit(1)

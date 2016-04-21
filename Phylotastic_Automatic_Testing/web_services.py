@@ -26,6 +26,9 @@ WS_4_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/gnr
 WS_5_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/gt/ot/get_tree"
 WS_5_HEADER = {'content-type':'application/json'}
 WS_5_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/gt/ot/tree"
+
+WS_6_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/all_species"
+WS_6_HEADER = {'content-type':'application/json'}
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -294,3 +297,32 @@ def testService_GetPhylogeneticTreeFrom_OpenTree_5_POST(json_param_taxa,expected
     else:
         print("Error : Web Service's result could be in-correct")
         return False
+def testService_GetAllSpeciesFromATaxon_WS_6(param_taxon,expected_output):
+    param_structure = {
+    	'taxon' : param_taxon
+    }
+    encoded_param_structure = urllib.urlencode(param_structure)
+    response = requests.get(WS_6_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_6_HEADER)
+    if (response.status_code == requests.codes.ok):
+       ws6_json_result = response.text
+       if (isJSON(str(ws6_json_result)) == False):
+           print("Error : Web Service 6's result is not JSON Format")
+           exit(1)
+       print("Pass : Returned data is JSON format")
+       json_object = json.loads(str(ws6_json_result))
+       if (type(json_object["species"]) is not list):
+           print("Error : JSON format is not correct")
+           exit(1)
+       print("Pass : Returned data contains object 'species'")
+       #Check correct output data
+       set_expected_ouput = set(expected_output)
+       set_result = set(json_object["species"])
+       if (not set_expected_ouput.issubset(set_result)):
+           print("Error : Web Service's result could be in-correct");
+           exit(1)
+       print("Pass : Returned data contains expected output")
+       return True
+    else:
+       print("Error : Exit 1")
+       return False
+       exit(1)
