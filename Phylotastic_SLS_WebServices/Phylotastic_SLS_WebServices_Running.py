@@ -113,7 +113,8 @@ class Species_List_Service_API(object):
    
         return service_result;
 
-  	#-----------------------------------------------	
+  	#-----------------------------------------------
+    '''	
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def remove_species(self,**request_data):
@@ -135,7 +136,8 @@ class Species_List_Service_API(object):
         service_result = species_list_service.remove_species_from_list(input_json, conn)   
         conn.close()
    
-        return service_result; 	
+        return service_result;
+    ''' 	
  	#------------------------------------------------   
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
@@ -153,7 +155,7 @@ class Species_List_Service_API(object):
    
         return service_result
  	#-----------------------------------------------
-
+    '''
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def insert_species(self,**request_data):
@@ -168,16 +170,17 @@ class Species_List_Service_API(object):
         service_result = species_list_service.insert_species_to_list(input_json, conn)   
         conn.close()   
         return service_result;
-
+    '''
 
     #Public /index
     index.exposed = True
     get_list.exposed = True
     insert_list.exposed = True
     remove_list.exposed = True
-    insert_species.exposed = True
-    remove_species.exposed = True
     replace_species.exposed = True
+    #insert_species.exposed = True
+    #remove_species.exposed = True
+    
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #--------------------------------------------------------------------------------------------

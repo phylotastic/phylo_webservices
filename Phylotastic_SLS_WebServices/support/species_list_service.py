@@ -115,9 +115,9 @@ def get_user_lists(db_collection, user_id, verbose, content):
 #------------------------------------------------------------
 #get an existing list of a particular user (or public list) from the database 
 def get_list_by_id(db_collection, user_id, list_id, verbose, content):
- 	query_result = check_existance_user_list(db_collection, "user_id", user_id) 
- 	if query_result['status_code'] == 204:
- 		return json.dumps(query_result)
+ 	#query_result = check_existance_user_list(db_collection, "user_id", user_id) 
+ 	#if query_result['status_code'] == 204:
+ 		#return json.dumps(query_result)
  		
  	document = db_collection.find({"lists.list_id":list_id})
 
@@ -206,6 +206,7 @@ def get_list_species(db_collection, list_id, include_all):
 	 			 	species_json['scientific_name_authorship'] = species_obj['scientific_name_authorship']
  			 	 	species_json['family'] = species_obj['family']
  			 	 	species_json['order'] = species_obj['order']
+ 			 		#species_json['class'] = species_obj['class']
  			 	 	species_json['phylum'] = species_obj['phylum']
  			 	 	species_json['nomenclature_code'] = species_obj['nomenclature_code']
  	 		 	 	species_list_obj.append(species_json)
@@ -709,6 +710,7 @@ def is_species_obj_valid(species_obj_list):
  			scientific_name_authorship = species_json['scientific_name_authorship']
  	 		family = species_json['family']
  			order =	species_json['order']
+ 			#sp_class =	species_json['class']
  			phylum = species_json['phylum']
  			nomenclature_code = species_json['nomenclature_code']
  	except KeyError, e:
