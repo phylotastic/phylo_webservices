@@ -145,8 +145,8 @@ def check_species_by_country(species, country):
     res_json = json.loads(matched_result.text) 
     
     countryList = []
-    for country in res_json:
-        countryList.append(country['name'])
+    for place in res_json:
+        countryList.append(place['name'])
     
     #commonList = list(set(countries).intersection(set(countryList)))
     
@@ -160,7 +160,7 @@ def get_all_species(inputTaxon):
  	
  	ott_id = match_taxon(inputTaxon)
  	if ott_id == -1:
- 		final_result = create_json_msg(inputTaxon,[], 'No Taxon matched with %s' %(inputTaxon), 404)
+ 		final_result = create_json_msg(inputTaxon,[], 'No Taxon matched with %s' %(inputTaxon), 204)
  		return final_result
  	
  	species_list = []
@@ -193,7 +193,7 @@ def get_country_species(inputTaxon, country):
 
  	ott_id = match_taxon(inputTaxon)
  	if ott_id == -1:
- 		final_result = create_json_msg(inputTaxon, [], 'No Taxon found', 404)
+ 		final_result = create_json_msg(inputTaxon, [], 'No Taxon matched with %s' %(inputTaxon), 204)
  		return final_result
  	
  	conn = connect_mongodb()
@@ -203,21 +203,21 @@ def get_country_species(inputTaxon, country):
  		if len(species_list) != 0:
  			final_result = create_json_msg(inputTaxon, species_list, 'Success', 200)
  		else:
- 			final_result = create_json_msg(inputTaxon, species_list, 'No species found on this country', 206) 
+ 			final_result = create_json_msg(inputTaxon, species_list, 'No species found on this country', 204) 
  		print "Cache found"
  		return final_result	
  	else:
  		conn.close()
  		all_species_result = get_all_species(inputTaxon)  
   		all_species_json = json.loads(all_species_result)
- 		status_code = all_species_json['statuscode']
+ 		status_code = all_species_json['status_code']
   		species_list = all_species_json['species']
  		message = all_species_json['message']	
  	
  		#species_list.sort()
     	#countries = ['Bhutan', 'Nepal', 'Canada']
 
- 		if status_code == 404 or status_code == 204:  #no taxon found or no species found
+ 		if status_code == 204:  #no taxon found or no species found
   			return all_species_json
  		elif status_code == 200:
  		 	species_lst = []
@@ -238,7 +238,7 @@ def get_country_species(inputTaxon, country):
 
 def create_json_msg(input_taxon, species_lst, msg, code):
  	
- 	return json.dumps({'taxon': input_taxon,'species': species_lst, 'message': msg, 'statuscode': code})
+ 	return json.dumps({'taxon': input_taxon,'species': species_lst, 'message': msg, 'status_code': code})
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
@@ -249,14 +249,12 @@ def create_json_msg(input_taxon, species_lst, msg, code):
  	#inputTaxon = 'Carnivora' #order
  	#inputTaxon = 'Tremarctos'
 	#inputTaxon = 'Mustelidae' 
- 	#inputTaxon = 'Ursi'  
+ 	#inputTaxon = 'Panthera'  
  	#country = 'Bangladesh'
  	#country = 'Brazil'
- 	#country = 'USA'
+ 	#country = 'Nepal'
  	#start_time = time.time()    
- 	
  	#print get_all_species(inputTaxon)
  	#print get_country_species(inputTaxon, country)
  	#end_time = time.time()
- 	
  	#print end_time-start_time

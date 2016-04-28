@@ -1,3 +1,4 @@
+#find names service: version 1.0
 import json
 import time
 import requests
@@ -5,7 +6,7 @@ import re
 import ast
 import urllib
 
-api_url = "http://finder.globalnames.org/name_finder.json?"
+api_url = "http://gnrd.globalnames.org/name_finder.json?"
 headers = {'content-type': 'application/json'}
 
 #get scientific names from URL
