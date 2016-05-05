@@ -206,7 +206,7 @@ def get_list_species(db_collection, list_id, include_all):
 	 			 	species_json['scientific_name_authorship'] = species_obj['scientific_name_authorship']
  			 	 	species_json['family'] = species_obj['family']
  			 	 	species_json['order'] = species_obj['order']
- 			 		#species_json['class'] = species_obj['class']
+ 			 		species_json['class'] = species_obj['class']
  			 	 	species_json['phylum'] = species_obj['phylum']
  			 	 	species_json['nomenclature_code'] = species_obj['nomenclature_code']
  	 		 	 	species_list_obj.append(species_json)
@@ -516,6 +516,49 @@ def create_list_mgdb_obj(list_info, list_id):
 
  try:	
  	date_published_str = list_json['list_date_published']
+ 	date_published_obj = date_published_str
+ 	curation_date_str = list_json['list_curation_date']
+ 	curation_date_obj = curation_date_str
+
+ 	list_mgdb_obj = {"list_id": list_id,
+         "title": list_json['list_title'],
+         "description": list_json['list_description'],
+         "author": list_json['list_author'],
+         "date_published": date_published_obj,
+         "curator": list_json['list_curator'],
+         "curation_date": curation_date_obj,
+         "source": list_json['list_source'],		
+         "keywords": list_json['list_keywords'],
+         "focal_clade": list_json['list_focal_clade'],
+         "extra_info": list_json['list_extra_info'],
+         "is_public": list_json['is_list_public'],
+         "origin": list_json['list_origin'],
+ 		 "species": list_json['list_species']
+ 	}
+ 	#print list_mgdb_obj
+ 	mgdb_obj_validity['mg_obj_valid'] = True
+ 	mgdb_obj_validity['mg_obj'] = list_mgdb_obj
+ except KeyError, e:
+ 	mgdb_obj_validity['mg_obj'] = "KeyError-%s"% str(e)
+ 	mgdb_obj_validity['mg_obj_valid'] = False
+
+ return mgdb_obj_validity
+
+'''
+def create_list_mgdb_obj(list_info, list_id):
+ list_json = json.loads(list_info)
+ mgdb_obj_validity = {}  	
+ mgdb_obj_validity['mg_obj_valid'] = True
+ mgdb_obj_validity['mg_obj'] = ''
+
+ species_obj_validity = is_species_obj_valid(list_json['list_species'])
+ if not(species_obj_validity['species_obj_valid']):
+  	mgdb_obj_validity['mg_obj_valid'] = False
+ 	mgdb_obj_validity['mg_obj'] = species_obj_validity['species_obj']	
+ 	return mgdb_obj_validity
+
+ try:	
+ 	date_published_str = list_json['list_date_published']
  	if len(date_published_str) != 0 and not("NA" in date_published_str.upper()):
  		date_validity = is_date_valid(date_published_str)
  		if not(date_validity['date_valid']):
@@ -561,7 +604,7 @@ def create_list_mgdb_obj(list_info, list_id):
  	mgdb_obj_validity['mg_obj_valid'] = False
 
  return mgdb_obj_validity
-
+'''
 #-----------------------------------------------
 #retrieve list info from mongodb list_obj 
 def retrieve_list_mgdb_obj(list_obj, verbose=False):
@@ -575,23 +618,25 @@ def retrieve_list_mgdb_obj(list_obj, verbose=False):
  	list_short_json['list_title'] = list_obj['title']
  			
  	list_json['list_description'] = list_obj['description']
+ 	list_json['list_date_published'] = list_obj['date_published']
  	#check the availability of date_published
- 	date_published_obj = list_obj['date_published']
- 	date_availability = isinstance(date_published_obj, datetime.datetime)
- 	if date_availability:
- 	 	list_json['list_date_published'] = date_published_obj.strftime("%m-%d-%Y")
- 	else:
-		list_json['list_date_published'] = date_published_obj
+ 	#date_published_obj = list_obj['date_published']
+ 	#date_availability = isinstance(date_published_obj, datetime.datetime)
+ 	#if date_availability:
+ 	 	#list_json['list_date_published'] = date_published_obj.strftime("%m-%d-%Y")
+ 	#else:
+		#list_json['list_date_published'] = date_published_obj
 
  	list_json['list_author'] = list_obj['author']
   	list_json['list_curator'] = list_obj['curator']			
-	#check the availability of curation_date
- 	curation_date_obj = list_obj['curation_date']
- 	date_availability = isinstance(curation_date_obj, datetime.datetime)
- 	if date_availability:
- 	 	list_json['list_curation_date'] = curation_date_obj.strftime("%m-%d-%Y")
- 	else:
-		list_json['list_curation_date'] = curation_date_obj
+	list_json['list_curation_date'] = list_obj['curation_date']
+ 	#check the availability of curation_date
+ 	#curation_date_obj = list_obj['curation_date']
+ 	#date_availability = isinstance(curation_date_obj, datetime.datetime)
+ 	#if date_availability:
+ 	# 	list_json['list_curation_date'] = curation_date_obj.strftime("%m-%d-%Y")
+ 	#else:
+    #	list_json['list_curation_date'] = curation_date_obj
 
  	list_json['list_source'] = list_obj['source']
  	list_json['list_keywords'] = list_obj['keywords']
@@ -690,14 +735,29 @@ def is_date_valid(date_str):
  validity_response['message'] = "Success"
 
  try:	
- 	date_obj = datetime.datetime.strptime(date_str, "%m-%d-%Y")
- 	date_st = date_obj.strftime("%m-%d-%Y")
+ 	#date_obj = datetime.datetime.strptime(date_str, "%m-%d-%Y")
+ 	#date_st = date_obj.strftime("%m-%d-%Y")
+ 	date_obj = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+ 	date_st = date_obj.strftime("%Y-%m-%d")
  except ValueError, e:
  	validity_response['date_valid'] = False
- 	validity_response['message'] = "%s does not match format 'mm-dd-yyyy' " % date_str
+ 	#validity_response['message'] = "%s does not match format 'mm-dd-yyyy' " % date_str
+ 	validity_response['message'] = "%s does not match format 'yyyy-mm-dd' " % date_str
 
  return validity_response
 
+#-----------------------------------------------------------
+'''
+def validate_date(date_text):
+    try:
+        #print datetime.datetime.strptime(date_text, "%Y-%m-%d").strftime('%Y-%m-%d')
+        #print date_text
+        if date_text != datetime.datetime.strptime(date_text, "%Y-%m-%d").strftime('%Y-%m-%d'):
+            raise ValueError
+        return True
+    except ValueError:
+        return False
+'''
 #------------------------------------------------------
 def is_species_obj_valid(species_obj_list):
  	species_obj_validity = {}
@@ -710,7 +770,7 @@ def is_species_obj_valid(species_obj_list):
  			scientific_name_authorship = species_json['scientific_name_authorship']
  	 		family = species_json['family']
  			order =	species_json['order']
- 			#sp_class =	species_json['class']
+ 			sp_class =	species_json['class']
  			phylum = species_json['phylum']
  			nomenclature_code = species_json['nomenclature_code']
  	except KeyError, e:
@@ -746,3 +806,4 @@ def getNextSequence(collection, seq_name):
  	#print reduceSequence(counter_collection, 'unique_list_id')
  	#input_json = '{"user_id": 2, "list_id": 22, "species": [{"family": "", "scientific_name": "my species 1", "scientific_name_authorship": "", "vernacular_name": "W", "phylum": "", "nomenclature_code": "I", "order": "new"}, {"family": "", "scientific_name": "my species 2", "scientific_name_authorship": "", "vernacular_name": "D", "phylum": "", "nomenclature_code": "C", "order": ""}]}'
  	#print check_existance_user_list(data_collection, "user_id", "102")
+ 	#validate_date("2015-1-12")
