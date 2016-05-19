@@ -123,7 +123,7 @@ def get_images_species(inputSpeciesList, post=False):
  		outputSpeciesList.append(species_obj)	
  	
  	response['message'] = "Success"
- 	response['statuscode'] = 200
+ 	response['status_code'] = 200
  	response['species'] = outputSpeciesList
 
  	if post:
