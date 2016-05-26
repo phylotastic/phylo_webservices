@@ -1,4 +1,4 @@
-#resolver service: version 2
+#resolver service: version 3
 import json
 import time
 import requests
@@ -63,7 +63,7 @@ def make_api_friendly_list(scNamesList):
                 
 
 #~~~~~~~~~~~~~~~~~~~~ (OpenTree-TNRS)~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def resolve_sn_ot(scNames, do_fuzzy_match, multi_match, post):
+def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
     opentree_api_url = 'https://api.opentreeoflife.org/v2/tnrs/match_names'
     
     payload = {
@@ -82,11 +82,8 @@ def resolve_sn_ot(scNames, do_fuzzy_match, multi_match, post):
         resolvedNamesList = get_resolved_names(rsnames_list, do_fuzzy_match, multi_match)
         #write_result(resolvedNamesList)
     
-    if post: 	    
-     	return {'resolvedNames': resolvedNamesList}
-    else: 
-        return json.dumps({'resolvedNames': resolvedNamesList}) 
-
+    return resolvedNamesList
+ 
 #-------------------------------------------
 def get_resolved_names(results, do_fuzzy_match, multi_match):
  	resolvedNameslist = []
@@ -115,12 +112,27 @@ def get_resolved_names(results, do_fuzzy_match, multi_match):
  	#print len(resolvedNameslist)
  	return resolvedNameslist
 
+#---------------------------------
+def create_sublists(lst, size=200):
+	return [lst[i:i+size] for i in xrange(0, len(lst), size)]
+
 #--------------------------------------------
 def resolve_names_OT(inputNamesList, do_fuzzy_match=True, multi_match=False, post=False): 
+    list_size = 250
+    final_result = []
 
-    final_result = resolve_sn_ot(inputNamesList, do_fuzzy_match, multi_match, post)    
+    if len(inputNamesList) > list_size:
+    	sublists = create_sublists(inputNamesList, list_size)
+    	for sublst in sublists:
+    		resolvedNameslst = resolve_sn_ot(sublst, do_fuzzy_match, multi_match)
+    		final_result.extend(resolvedNameslst)
+    else:
+    	final_result = resolve_sn_ot(inputNamesList, do_fuzzy_match, multi_match)
     
-    return final_result
+    if post: 	    
+     	return {'resolvedNames': final_result}
+    else: 
+        return json.dumps({'resolvedNames': final_result}) 
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, post=False): 
@@ -132,7 +144,7 @@ def resolve_names_GNR(inputNamesList, post=False):
 
 #------------------------------------------------------
 def write_result(final_result):
-    result_file = open('tnrs_response.txt', 'w')
+    result_file = open('tnrs_response2.txt', 'w')
     result_file.write(str(final_result))
     result_file.close()
 
@@ -145,11 +157,14 @@ def read_input():
 #if __name__ == '__main__':
 
     #inputList = ["Astar"]
-    #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"] 
+    #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"]
+    
+    #result = resolve_names_GNR(inputList)    
     #print result
     #st_time = time.time()
-    #result = resolve_names_OT(inputList, True, True)
+    #result = resolve_names_OT(inputList, True, True, True)
     #en_time = time.time()
+    #print result
     #print en_time-st_time
     
        

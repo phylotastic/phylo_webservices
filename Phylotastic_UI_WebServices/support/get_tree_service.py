@@ -31,6 +31,7 @@ def get_inducedSubtree(ottIdList):
  		data_json = json.loads(response.text)
  		newick_tree_str = data_json['newick']		
  		inducedtree_info['message'] = "Success"
+ 		inducedtree_info['status_code'] = 200
     else:
         #print response.text
         try: 
@@ -39,10 +40,12 @@ def get_inducedSubtree(ottIdList):
          	if 'Not enough valid node or ott ids' in error_msg:
  				inducedtree_info['message'] = "Not enough valid node or ott ids provided to construct a subtree (there must be at least two)"
          	else:
- 				inducedtree_info['message'] = error_msg
+ 		 		inducedtree_info['message'] = error_msg
+         	inducedtree_info['status_code'] = 204
      	except ValueError:
      		inducedtree_info['message'] =  "induced_subtree method: Decoding of JSON error message failed"
- 	
+     		inducedtree_info['status_code'] = 500 	
+    
     inducedtree_info['newick'] = newick_tree_str
  	
     return inducedtree_info
@@ -53,7 +56,8 @@ def subtree(ottidList):
     #single species
     if len(ottidList) < 2:
        result['newick'] = ""
-       result['message'] = "Not enough valid nodes provided to construct a subtree (there must be at least two)"        
+       result['message'] = "Not enough valid nodes provided to construct a subtree (there must be at least two)"
+       result['status_code'] = 204 
        return result
     
  	#multiple species
@@ -71,6 +75,7 @@ def get_tree_OT(resolvedNames, post=False):
     if ListSize == 0:
  		response['newick'] = ""
  		response['message'] = "List of resolved names empty"
+ 		response['status_code'] = 204
   		if post:
  			return response;
  		else:		
@@ -85,6 +90,7 @@ def get_tree_OT(resolvedNames, post=False):
         else:
  			response['newick'] = ""
  			response['message'] = "Wrong TNRS. Need to resolve with OpenTree TNRS"
+ 			response['status_code'] = 204
  			if post:
  				return response;
  			else:		
