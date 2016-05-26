@@ -184,7 +184,7 @@ def testService_ResolveScientificNamesGNR_TNRS_WS_4_GET(param_names,expected_out
     	'names' : param_names
     }
     encoded_param_structure = urllib.urlencode(param_structure)
-    response = requests.get(WS_4_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_3_HEADER)
+    response = requests.get(WS_4_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_4_HEADER)
     if (response.status_code == requests.codes.ok):
        ws4_json_result = response.text
        if (isJSON(str(ws4_json_result)) == False):
@@ -248,7 +248,7 @@ def testService_GetPhylogeneticTreeFrom_OpenTree_5_GET(param_taxa,expected_outpu
     	'taxa' : param_taxa
     }
     encoded_param_structure = urllib.urlencode(param_structure)
-    response = requests.get(WS_5_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_3_HEADER)
+    response = requests.get(WS_5_RESOURCES_URL_GET, params=encoded_param_structure, headers=WS_5_HEADER)
     if (response.status_code == requests.codes.ok):
        ws5_json_result = response.text
        if (isJSON(str(ws5_json_result)) == False):
