@@ -1,11 +1,28 @@
 import web_services
+import helper
 
 ########################################################
 #Test Web Service 1 : Find Scientific Names on web pages
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_1 = False
+result_ws_1 = True
+files_list = helper.get_filepaths("FN_WS")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
+print "Cases:"
+for f in input_files:
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+	ws1_input = input_list[0]
+	ws1_output = helper.find_outputfile(output_files, file_no)
+ 	ws1_results.append(web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output))
+
+for result in ws1_results:
+	result_ws_1 = (result_ws_1 and result)
+ 	if not(result_ws_1):
+		break; 
+'''
 url="https://en.wikipedia.org/wiki/Plain_pigeon"
 print "Start Test WS 1 : Find Scientific Names on web pages"
 print "Case 1 : Paramter URL = %s \n" %(str(url))
@@ -25,6 +42,7 @@ if (result_case_1 == True and result_case_2 == True and result_case_3 == True):
     print("Sucessful ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
 else:
     result_ws_1 = False
+'''
 print "========================================================="
 
 
