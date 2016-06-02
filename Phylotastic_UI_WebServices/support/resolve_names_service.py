@@ -36,11 +36,13 @@ def resolve_sn_gnr(scNames, post):
  	    namesList['taxon_id'] = element['results'][0]['taxon_id']	
             namesList['resolver_name'] = 'GNR'
  	    resolvedNamesList.append(namesList)
-    
-    if post: 	    
-        return {'resolvedNames': resolvedNamesList}
+ 	    status_code = 200
     else:
-        return json.dumps({'resolvedNames': resolvedNamesList}) 
+        status_code = 500
+    if post: 	    
+        return {'resolvedNames': resolvedNamesList, 'status_code': status_code}
+    else:
+        return json.dumps({'resolvedNames': resolvedNamesList, 'status_code': status_code}) 
         
 #----------------------------------------------    
 
@@ -81,8 +83,11 @@ def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
         rsnames_list = data_json['results'] 
         resolvedNamesList = get_resolved_names(rsnames_list, do_fuzzy_match, multi_match)
         #write_result(resolvedNamesList)
+        status_code = 200
+    else:
+        status_code = 500
     
-    return resolvedNamesList
+    return {'resolvedNames': resolvedNamesList, 'status_code': status_code}
  
 #-------------------------------------------
 def get_resolved_names(results, do_fuzzy_match, multi_match):
@@ -124,15 +129,22 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match=True, multi_match=False, pos
     if len(inputNamesList) > list_size:
     	sublists = create_sublists(inputNamesList, list_size)
     	for sublst in sublists:
-    		resolvedNameslst = resolve_sn_ot(sublst, do_fuzzy_match, multi_match)
+    		resolvedResult = resolve_sn_ot(sublst, do_fuzzy_match, multi_match)
+    		resolvedNameslst = resolvedResult['resolvedNames']
     		final_result.extend(resolvedNameslst)
+    	status_code = resolvedResult['status_code']
     else:
-    	final_result = resolve_sn_ot(inputNamesList, do_fuzzy_match, multi_match)
-    
+    	resolvedResult = resolve_sn_ot(inputNamesList, do_fuzzy_match, multi_match)
+    	final_result = resolvedResult['resolvedNames']
+    	status_code = resolvedResult['status_code']
+
+    if len(final_result) <= 0 and status_code != 500:
+    	status_code = 204
+
     if post: 	    
-     	return {'resolvedNames': final_result}
+     	return {'resolvedNames': final_result, 'status_code': status_code}
     else: 
-        return json.dumps({'resolvedNames': final_result}) 
+        return json.dumps({'resolvedNames': final_result, 'status_code': status_code}) 
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, post=False): 

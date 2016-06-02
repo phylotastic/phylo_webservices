@@ -23,15 +23,15 @@ def get_sn_url(inputURL):
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
     else:
-        return json.dumps({'scientificNames': scientificNamesList}) 
+        return json.dumps({'scientificNames': scientificNamesList,'status_code': 500}) 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return json.dumps({'scientificNames': scientificNamesList}) 
+         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 204}) 
     else:
          scientificNamesList = get_sn(token_result['names']) 
-         return json.dumps({'scientificNames': scientificNamesList}) 
+         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 200}) 
      
 #----------------------------------------------    
 #get scientific names from final api-result
@@ -91,15 +91,15 @@ def get_sn_text(inputTEXT):
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
     else:
-        return json.dumps({'scientificNames': scientificNamesList}) 
+        return json.dumps({'scientificNames': scientificNamesList, 'status_code': 500}) 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return json.dumps({'scientificNames': scientificNamesList}) 
+         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 204}) 
     else:
          scientificNamesList = get_sn(token_result['names']) 
-         return json.dumps({'scientificNames': scientificNamesList}) 
+         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 200}) 
 
 #-----------------------------------------------------------
 

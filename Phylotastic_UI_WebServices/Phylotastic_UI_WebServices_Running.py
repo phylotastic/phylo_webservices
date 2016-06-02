@@ -10,7 +10,12 @@ import json
 import os
 import sys
 import collections
-import subprocess
+import pymongo
+import datetime 
+
+#from bson import json_util
+#from bson.json_util import dumps
+
 from cherrypy import tools
 
 from support import taxon_to_species_service_OpenTree
@@ -22,6 +27,10 @@ from support import taxon_genome_species_service_NCBI
 #from support import usecase_text, treebase_api
 
 from __builtin__ import True
+
+logDbName = "WSLog"
+logCollectionName = "log"
+conn = None
 
 WebService_Group1 = "ts"
 WebService_Group2 = "fn"
@@ -57,17 +66,6 @@ def return_success_get(forester_object):
     cherrypy.response.status = 200
     return json.dumps(forester_object)
 
-def run_command(command):
-    try:
-        from subprocess import Popen, PIPE, STDOUT
-        p = Popen(command, stdout=PIPE, stderr=STDOUT)
-        for line in p.stdout:
-            if (str(line).strip().upper()[:25] == "FINAL_RESULT_JSON_OUTPUT:"):
-                return line[25:]
-        return None
-    except Exception,err:
-        print err
-        return None
 
 def is_json(myjson):
     try:
@@ -76,23 +74,23 @@ def is_json(myjson):
         print err
         return False
     return True
+#--------------------------------------------
+def connect_mongodb(host='localhost', port=27017):
+ 	try:
+ 		conn=pymongo.MongoClient(host, port)
+ 		print "Connected to MongoDB successfully!!!"
+ 	except pymongo.errors.ConnectionFailure, e:
+ 		print "Could not connect to MongoDB: %s" % e 
 
+ 	return conn
+#--------------------------------------------
+def insert_log(log_msg):
+    db = conn[logDbName]
+    log_collection = db[logCollectionName]
+ 	
+ 	#document = { "client_ip": log_msg['remote_ip'], "date": datetime.datetime.now(), "request": log_msg['path'], "method":  }
+    insert_status = log_collection.insert(log_msg)
 
-def runWebServiceFunction(FUNCTION_NAME,WSDL_URL,PARAMS,TYPE_RUNNING):
-    try:
-        shellCall = []
-        shellCall.append("java")
-        shellCall.append("-jar")
-        shellCall.append("%s" %(os.path.join(ROOT_FOLDER,"model/WSClient.jar")))
-        shellCall.append("%s" %(str(WSDL_URL)))
-        shellCall.append("%s" %(TYPE_RUNNING))
-        shellCall.append("%s" %(FUNCTION_NAME))
-        for param in PARAMS:
-            shellCall.append(param)
-        print shellCall
-        return run_command(shellCall)
-    except:
-        return None
 
 #--------------------------------------------------------------    
 class Taxon_Genome_Service_API(object):
@@ -107,7 +105,12 @@ class Taxon_Genome_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = taxon_genome_species_service_NCBI.get_genome_species(taxonName)   
-        
+        #-------------log request------------------
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
  	#------------------------------------------------
     #Public /index
@@ -127,7 +130,12 @@ class Taxon_to_Species_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = taxon_to_species_service_OpenTree.get_all_species(taxon)   
-        
+        #-------------log request------------------
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
     def country_species(self,**request_data):
@@ -139,7 +147,12 @@ class Taxon_to_Species_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = taxon_to_species_service_OpenTree.get_country_species(taxon, country)   
-        
+        #-------------log request------------------
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
         
@@ -162,7 +175,12 @@ class Species_Image_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = species_to_image_service_EOL.get_images_species(specieslist)   
-        
+        #-------------log request------------------
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
  	#-----------------------------------------------	
@@ -179,7 +197,11 @@ class Species_Image_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = species_to_image_service_EOL.get_images_species(species_list, True)   
-           
+        #-------------log request------------------
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'species':species_list}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+        insert_log(log)
+        #------------------------------------------   
         return service_result;
  	#------------------------------------------------
     #Public /index
@@ -200,7 +222,13 @@ class Find_ScientificNames_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = extract_names_service.extract_names_URL(url)   
-        
+        #-------------log request------------------
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------   
+
         return service_result;
     #------------------------------------------------
     def names_text(self,**request_data):
@@ -210,8 +238,13 @@ class Find_ScientificNames_Service_API(object):
         except:
             return return_response_error(400,"error","Missing parameters text","JSON")
         
-        service_result = extract_names_service.extract_names_TEXT(text)   
-        
+        service_result = extract_names_service.extract_names_TEXT(text)
+        #-------------log request------------------   
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
     #Public /index
@@ -232,7 +265,12 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = resolve_names_service.resolve_names_OT(nameslist, False, False, False)   
-        
+        #-------------log request------------------   
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
     #------------------------------------------------
     @cherrypy.tools.json_out()
@@ -246,7 +284,11 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = resolve_names_service.resolve_names_OT(nameslist, False, False, True)   
-        
+        #-------------log request------------------   
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'scientificNames': nameslist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
     #Public /index
@@ -267,7 +309,12 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = resolve_names_service.resolve_names_GNR(nameslist)   
-        
+        #-------------log request------------------   
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
     #------------------------------------------------
     @cherrypy.tools.json_out()
@@ -281,7 +328,11 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = resolve_names_service.resolve_names_GNR(nameslist, True)   
-        
+        #-------------log request------------------
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'scientificNames': nameslist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
     #Public /index
@@ -304,7 +355,12 @@ class Get_Tree_OpenTree_Service_API(object):
         nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False, True)
         nameslist = nameslist_json["resolvedNames"]
         service_result = get_tree_service.get_tree_OT(nameslist)   
-        
+        #-------------log request------------------   
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
     #------------------------------------------------
     @cherrypy.tools.json_out()
@@ -318,7 +374,11 @@ class Get_Tree_OpenTree_Service_API(object):
             return return_response_error(400,"error","Missing parameters text","JSON")
         
         service_result = get_tree_service.get_tree_OT(nameslist, True)   
-        
+        #-------------log request------------------   
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'resolvedNames': nameslist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+        insert_log(log)
+        #------------------------------------------
         return service_result;
 
     #Public /index
@@ -333,7 +393,8 @@ def CORS():
 
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    print "Thu ran CORS"
+    #print "Thu ran CORS"
+    conn = connect_mongodb() 
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
     cherrypy.config.update({'server.socket_host': '0.0.0.0',
