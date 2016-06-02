@@ -9,22 +9,23 @@ print "========================================================="
 print "Start Testing WS 1 : Find Scientific Names on web pages (GNRD)"
 result_ws_1 = True
 ws1_results = []
-files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/GNRDTestCases")
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS1_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-print input_files
-print output_files
+print "Input Files: " + input_files
+print "Output Files: " + output_files
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
-	print file_no
 	input_list = helper.create_list_file(f)
-	print input_list
 	ws1_input = input_list[0]
+	print "Case file input: " + ws1_input
 	output_file = helper.find_outputfile(output_files, file_no)
-	print output_file	
+	if output_file == None:
+		result_ws_1 = False
+ 		print "No output file found for " + f		
 	ws1_output = helper.create_list_file(output_file)
-	print ws1_output
+	print "Case file output: " + ws1_output
  	ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
 	if ws1_result:
 		print "Test succeeded for Case file: " + f 
@@ -36,7 +37,10 @@ for result in ws1_results:
 		break; 
 
 print "---------------------------------------------------------"
-if (result_ws_1):
+if len(ws1_results) == 0:
+	print "No Test Cases found"
+	result_ws_1 = False 
+elif (result_ws_1):
     print("Sucessful ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
 else:
     print("Failed ! Web Service 1 : Find Scientific Names on web pages IS NOT WORKING")
@@ -48,23 +52,44 @@ print "========================================================="
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_2 = False
-text="The lemon dove (Columba larvata) is a species of bird in the pigeon family Columbidae found in montane forests of sub-Saharan Africa."
-print "Start Test WS 2 : Find Scientific Names on free-form text"
-print "Case 1 : Paramter TEXT = %s \n" %(str(text))
-result_case_1 = False
-result_case_1 = web_services.testService_FindScientificNamesOnText_WS_2(text,["Columba larvata", "Columbidae"])
+print "Start Testing WS 2 : Find Scientific Names on free-form text"
+result_ws_2 = True
+ws2_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS2_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
+print "Input Files: " + input_files
+print "Output Files: " + output_files
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+	ws2_input = input_list[0]
+	print "Case file input: " + ws2_input
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_2 = False
+ 		print "No output file found for " + f		
+	ws2_output = helper.create_list_file(output_file)
+	print "Case file output: " + ws2_output
+ 	ws2_result = web_services.testService_FindScientificNamesOnText_WS_2(ws2_input, ws2_output)
+	if ws2_result:
+		print "Test succeeded for Case file: " + f 
+	ws2_results.append(ws2_result)
+
+for result in ws2_results:
+	result_ws_2 = (result_ws_2 and result)
+ 	if not(result_ws_2):
+		break; 
+
 print "---------------------------------------------------------"
-text="Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries."
-print "Case 2 : Paramter TEXT = %s \n" %(str(text))
-result_case_2 = False
-result_case_2 = web_services.testService_FindScientificNamesOnText_WS_2(text,["Formica polyctena", "Tetramorium caespitum", "Pseudomyrmex", "Adetomyrma venatrix", "Carebara diversa", "Formicinae"])
-print "---------------------------------------------------------"
-if (result_case_1 == True and result_case_2 == True):
-    result_ws_2 = True
+if len(ws2_results) == 0:
+	print "No Test Cases found"
+	result_ws_2 = False 
+elif (result_ws_2):
     print("Sucessful ! Web Service 2 : Find Scientific Names on free-form text IS WORKING WELL")
 else:
-    result_ws_2 = False
+    print("Failed ! Web Service 2 : Find Scientific Names on free-form text IS NOT WORKING")
 print "========================================================="
 
 ########################################################
