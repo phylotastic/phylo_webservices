@@ -31,8 +31,8 @@ def find_outputfile(file_list, file_num):
 
 #-----------------------------------------
 def get_file_num(filename):
- 	index_ext = filename.find(".")
- 	index_unds = filename.find("_")
+ 	index_ext = filename.rfind(".")
+ 	index_unds = filename.rfind("_")
 
  	return filename[index_unds+1:index_ext]
 
