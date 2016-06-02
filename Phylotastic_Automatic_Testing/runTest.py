@@ -9,10 +9,10 @@ print "========================================================="
 print "Start Testing WS 1 : Find Scientific Names on web pages (GNRD)"
 result_ws_1 = True
 ws1_results = []
-files_list = helper.get_filepaths("GNRDTestCases")
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/GNRDTestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-print output_files
+
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
