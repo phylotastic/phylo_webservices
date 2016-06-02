@@ -12,8 +12,10 @@ ws1_results = []
 files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS1_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-print "Input Files: " + input_files
-print "Output Files: " + output_files
+#print "Input Files: " 
+#print input_files
+#print "Output Files: " 
+#print output_files 
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
@@ -25,7 +27,7 @@ for f in input_files:
 		result_ws_1 = False
  		print "No output file found for " + f		
 	ws1_output = helper.create_list_file(output_file)
-	print "Case file output: " + ws1_output
+	#print "Case file output: " + ws1_output
  	ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
 	if ws1_result:
 		print "Test succeeded for Case file: " + f 
@@ -58,8 +60,8 @@ ws2_results = []
 files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS2_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-print "Input Files: " + input_files
-print "Output Files: " + output_files
+#print "Input Files: " + input_files
+#print "Output Files: " + output_files
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
@@ -71,7 +73,7 @@ for f in input_files:
 		result_ws_2 = False
  		print "No output file found for " + f		
 	ws2_output = helper.create_list_file(output_file)
-	print "Case file output: " + ws2_output
+	#print "Case file output: " + ws2_output
  	ws2_result = web_services.testService_FindScientificNamesOnText_WS_2(ws2_input, ws2_output)
 	if ws2_result:
 		print "Test succeeded for Case file: " + f 
