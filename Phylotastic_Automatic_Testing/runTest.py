@@ -12,14 +12,19 @@ ws1_results = []
 files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/GNRDTestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-
+print input_files
+print output_files
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
+	print file_no
 	input_list = helper.create_list_file(f)
+	print input_list
 	ws1_input = input_list[0]
-	output_file = helper.find_outputfile(output_files, file_no)	
+	output_file = helper.find_outputfile(output_files, file_no)
+	print output_file	
 	ws1_output = helper.create_list_file(output_file)
+	print ws1_output
  	ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
 	if ws1_result:
 		print "Test succeeded for Case file: " + f 
