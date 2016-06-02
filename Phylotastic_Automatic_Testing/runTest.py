@@ -9,16 +9,17 @@ print "========================================================="
 print "Start Testing WS 1 : Find Scientific Names on web pages (GNRD)"
 result_ws_1 = True
 ws1_results = []
-files_list = helper.get_filepaths("GNRD_TestCases")
+files_list = helper.get_filepaths("GNRDTestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-
+print output_files
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
 	input_list = helper.create_list_file(f)
 	ws1_input = input_list[0]
-	ws1_output = helper.find_outputfile(output_files, file_no)
+	output_file = helper.find_outputfile(output_files, file_no)	
+	ws1_output = helper.create_list_file(output_file)
  	ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
 	if ws1_result:
 		print "Test succeeded for Case file: " + f 
@@ -28,27 +29,12 @@ for result in ws1_results:
 	result_ws_1 = (result_ws_1 and result)
  	if not(result_ws_1):
 		break; 
-'''
-url="https://en.wikipedia.org/wiki/Plain_pigeon"
-print "Start Test WS 1 : Find Scientific Names on web pages"
-print "Case 1 : Paramter URL = %s \n" %(str(url))
-result_case_1 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url,["Patagioenas inornata wetmorei", "Animalia", "Chordata", "Columbiformes"])
+
 print "---------------------------------------------------------"
-url="http://en.wikipedia.org/wiki/Ant"
-print "Case 2 : Paramter URL = %s \n" %(str(url))
-result_case_2 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url,["Animalia", "Arthropoda", "Insecta", "Hymenoptera", "Apocrita", "Vespoidea", "Formicidae"])
-print "---------------------------------------------------------"
-url="http://www.fws.gov/westvirginiafieldoffice/PDF/beechridgehcp/Appendix_D_Table_D-1.pdf"
-print "Case 3 : Paramter URL = %s \n" %(str(url))
-#result_case_3 = web_services.testService_FindScientificNamesOnWebPages_WS_1(url)
-result_case_3 = True
-print "---------------------------------------------------------"
-if (result_case_1 == True and result_case_2 == True and result_case_3 == True):
-    result_ws_1 = True
+if (result_ws_1):
     print("Sucessful ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
 else:
-    result_ws_1 = False
-'''
+    print("Failed ! Web Service 1 : Find Scientific Names on web pages IS NOT WORKING")
 print "========================================================="
 
 
