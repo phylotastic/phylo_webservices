@@ -7,6 +7,7 @@ import helper
 ########################################################
 print "========================================================="
 result_ws_1 = True
+ws1_results = []
 files_list = helper.get_filepaths("FN_WS")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
