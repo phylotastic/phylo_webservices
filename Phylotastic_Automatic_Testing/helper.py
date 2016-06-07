@@ -1,4 +1,5 @@
 import os
+import json
 
 def get_filepaths(directory):
     file_paths = []  # List which will store all of the full filepaths.
@@ -56,4 +57,15 @@ def create_content_file(filename):
 
  	return file_content 	
 
+#-----------------------------------------
+def prepare_json_input(init_str, input_list):
+	json_input = init_str
+	count = 0	
+	for item in input_list:
+		json_input = json_input + '"' + item + '"'
+		count = count + 1 
+		if count != len(input_list):
+			json_input = json_input + ","
 
+	json_input = json_input + '}'
+	return json_input

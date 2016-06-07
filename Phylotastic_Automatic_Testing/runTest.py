@@ -116,7 +116,7 @@ for f in input_files:
 	separator = "|"
 	ws3_input_GET = separator.join(input_list)
 	print "Case file input: " + ws3_input_GET
-	ws3_input_POST = '{"scientificNames":'+ input_list +'}'
+	ws3_input_POST = prepare_json_input('{"scientificNames":[',input_list) 
 	print "Case file input: " + ws3_input_POST
 	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
