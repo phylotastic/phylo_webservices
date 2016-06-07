@@ -59,7 +59,7 @@ def create_content_file(filename):
 
 #-----------------------------------------
 def prepare_json_input(init_str, input_list):
-	json_input = init_str
+	json_input = "'" + init_str
 	count = 0	
 	for item in input_list:
 		json_input = json_input + '"' + item + '"'
@@ -67,5 +67,5 @@ def prepare_json_input(init_str, input_list):
 		if count != len(input_list):
 			json_input = json_input + ","
 
-	json_input = json_input + '}'
+	json_input = json_input + "}'"
 	return json_input

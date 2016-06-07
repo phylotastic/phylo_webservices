@@ -43,7 +43,7 @@ for result in ws1_results:
 print "---------------------------------------------------------"
 if len(ws1_results) == 0:
 	print "No Test Cases found"
-	result_ws_1 = False 
+	result_ws_1 = True 
 elif (result_ws_1):
     print("Success ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
 else:
@@ -89,7 +89,7 @@ for result in ws2_results:
 print "---------------------------------------------------------"
 if len(ws2_results) == 0:
 	print "No Test Cases found"
-	result_ws_2 = False 
+	result_ws_2 = True 
 elif (result_ws_2):
     print("Success ! Web Service 2 : Find Scientific Names on free-form text IS WORKING WELL")
 else:
@@ -147,7 +147,7 @@ for result in ws3_results:
 print "---------------------------------------------------------"
 if len(ws3_results) == 0:
 	print "No Test Cases found"
-	result_ws_3 = False 
+	result_ws_3 = True 
 elif (result_ws_3):
     print("Success ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS IS WORKING WELL")
 else:
@@ -205,7 +205,7 @@ for result in ws4_results:
 print "---------------------------------------------------------"
 if len(ws4_results) == 0:
 	print "No Test Cases found"
-	result_ws_4 = False 
+	result_ws_4 = True 
 elif (result_ws_4):
     print("Success ! Web Service 4 : Resolve Scientific Names with GNR TNRS IS WORKING WELL")
 else:
@@ -256,52 +256,91 @@ print "========================================================="
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_6 = False
-taxon='Vulpes'
-print "Start Test WS 6 : Get all Species from a Taxon"
-print "Case 1 : Paramter Taxon = %s \n" %(str(taxon))
-result_case_1 = False
-result_case_1 = web_services.testService_GetAllSpeciesFromATaxon_WS_6(taxon,["Vulpes environmental sample", "Vulpes stenognathus", "Vulpes bengalensis"])
-print "---------------------------------------------------------"
-taxon='Canidae'
-print "Case 2 : Paramter Taxon = %s \n" %(str(taxon))
-result_case_2 = False
-result_case_2 = web_services.testService_GetAllSpeciesFromATaxon_WS_6(taxon,["Aelurodon taxoides", "Aelurodon asthenostylus", "Aelurodon ferox", "Aelurodon montanensis"])
-
-if (result_case_1 == True and result_case_2 == True):
-    result_ws_6 = True
-    print("Sucessful ! Web Service 6 : Get all Species from a Taxon IS WORKING WELL")
-else:
-    result_ws_6 = False
+print "Start Testing WS 6 : Get all Species from a Taxon"
 print "========================================================="
+result_ws_6 = True
+ws6_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Taxon_All_Species_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
 
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+	ws6_input = input_list[0]
+	output_file = None
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_6 = False
+ 		print "Could not find output file for " + f
+		break		
+	else:
+		ws6_output = helper.create_list_file(output_file)
+		ws6_result = web_services.testService_GetAllSpeciesFromATaxon_WS_6(ws6_input, ws6_output)
+		if ws6_result:
+			print "Test succeeded for Case file: " + f
+	ws6_results.append(ws6_result)
+
+for result in ws6_results:
+	result_ws_6 = (result_ws_6 and result)
+ 	if not(result_ws_6):
+		break 
+
+print "---------------------------------------------------------"
+if len(ws6_results) == 0:
+	print "No Test Cases found"
+	result_ws_6 = True 
+elif (result_ws_6):
+    print("Success ! Web Service 6 : Get all Species from a Taxon IS WORKING WELL")
+else:
+    print("Failed ! Web Service 6 : Get all Species from a Taxon IS NOT WORKING")
 
 ########################################################
 #Test Web Service 7 : Get all Species from a Taxon filtered by country
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_7 = False
-taxon='Panthera'
-country='Bangladesh'
-print "Start Test WS 7 : Get all Species from a Taxon filtered by country"
-print "Case 1 : Paramter Taxon = %s ; Country = %s \n" %(str(taxon),str(country))
-result_case_1 = False
-result_case_1 = web_services.testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(taxon,country,[])
-print "---------------------------------------------------------"
-taxon='Felidae'
-country='Nepal'
-print "Case 2: Paramter Taxon = %s ; Country = %s \n" %(str(taxon),str(country))
-result_case_2= False
-result_case_2 = web_services.testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(taxon,country,[])
-
-if (result_case_1 == True and result_case_2 == True):
-    result_ws_7 = True
-    print("Sucessful ! Web Service 7 : Get all Species from a Taxon filtered by country IS WORKING WELL")
-else:
-    result_ws_7 = False
+print "Start Testing WS 7 : Get all Species from a Taxon filtered by country"
 print "========================================================="
+result_ws_7 = True
+ws7_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Taxon_Country_Species_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
 
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+	ws7_input1 = input_list[0]
+	ws7_input2 = input_list[1]
+	output_file = None
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_7 = False
+ 		print "Could not find output file for " + f
+		break		
+	else:
+		ws7_output = helper.create_list_file(output_file)
+		ws7_result = web_services.testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(ws7_input1, ws7_input2, ws7_output)
+		if ws7_result:
+			print "Test succeeded for Case file: " + f
+	ws7_results.append(ws7_result)
+
+for result in ws7_results:
+	result_ws_7 = (result_ws_7 and result)
+ 	if not(result_ws_7):
+		break 
+
+print "---------------------------------------------------------"
+if len(ws7_results) == 0:
+	print "No Test Cases found"
+	result_ws_7 = True 
+elif (result_ws_7):
+    print("Success ! Web Service 7 : Get all Species from a Taxon filtered by country IS WORKING WELL")
+else:
+    print("Failed ! Web Service 7 : Get all Species from a Taxon filtered by country IS NOT WORKING")
 
 ########################################################
 #Test Web Service 8 : Get Image URLs of a list of species - GET method
