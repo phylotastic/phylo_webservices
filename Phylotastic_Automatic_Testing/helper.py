@@ -44,5 +44,16 @@ def create_list_file(filename):
  	for line in fileObj:
  		file_content_lst.append(line.strip())
  	
+ 	fileObj.close()
+
  	return file_content_lst 	
+
+#-------------------------------------------
+def create_content_file(filename): 	
+ 	fileObj = open(filename, 'r')
+ 	file_content = fileObj.read()  
+ 	fileObj.close()
+
+ 	return file_content 	
+
 

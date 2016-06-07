@@ -7,9 +7,10 @@ import helper
 ########################################################
 print "========================================================="
 print "Start Testing WS 1 : Find Scientific Names on web pages (GNRD)"
+print "========================================================="
 result_ws_1 = True
 ws1_results = []
-files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS1_TestCases")
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Find_Sc_Names_Web_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
 
@@ -18,7 +19,7 @@ for f in input_files:
 	file_no = helper.get_file_num(f)
 	input_list = helper.create_list_file(f)
 	ws1_input = input_list[0]
-	print "Case file input: " + ws1_input
+	#print "Case file input: " + ws1_input
 	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
 	if output_file == None:
@@ -30,7 +31,8 @@ for f in input_files:
 		#print "Case file output: " + ws1_output
  		ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
 		if ws1_result:
-			print "Test succeeded for Case file: " + f 
+			print "Test succeeded for Case file: " + f
+			print "---------------------------------------------------------" 
 		ws1_results.append(ws1_result)
 
 for result in ws1_results:
@@ -46,8 +48,6 @@ elif (result_ws_1):
     print("Sucessful ! Web Service 1 : Find Scientific Names on web pages IS WORKING WELL")
 else:
     print("Failed ! Web Service 1 : Find Scientific Names on web pages IS NOT WORKING")
-print "========================================================="
-
 
 ########################################################
 #Test Web Service 2 : Find Scientific Names on free-form text
@@ -55,18 +55,18 @@ print "========================================================="
 ########################################################
 print "========================================================="
 print "Start Testing WS 2 : Find Scientific Names on free-form text"
+print "========================================================="
 result_ws_2 = True
 ws2_results = []
-files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS2_TestCases")
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Find_Sc_Names_Text_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
 
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
-	input_list = helper.create_list_file(f)
-	ws2_input = input_list[0]
-	print "Case file input: " + ws2_input
+	ws2_input = helper.create_content_file(f)
+	#print "Case file input: " + ws2_input
 	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
 	if output_file == None:
@@ -77,13 +77,14 @@ for f in input_files:
 	#print "Case file output: " + ws2_output
  	ws2_result = web_services.testService_FindScientificNamesOnText_WS_2(ws2_input, ws2_output)
 	if ws2_result:
-		print "Test succeeded for Case file: " + f 
+		print "Test succeeded for Case file: " + f
+		print "-----------------------------------------------------" 
 	ws2_results.append(ws2_result)
 
 for result in ws2_results:
 	result_ws_2 = (result_ws_2 and result)
  	if not(result_ws_2):
-		break; 
+		break 
 
 print "---------------------------------------------------------"
 if len(ws2_results) == 0:
@@ -93,54 +94,64 @@ elif (result_ws_2):
     print("Sucessful ! Web Service 2 : Find Scientific Names on free-form text IS WORKING WELL")
 else:
     print("Failed ! Web Service 2 : Find Scientific Names on free-form text IS NOT WORKING")
-print "========================================================="
 
 ########################################################
 #Test Web Service 3 : Resolve Scientific Names with Open Tree TNRS - GET method
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_3 = False
-names="Setophaga striata|Setophaga megnolia|Setophaga angilae|Setophaga plumbea|Setophaga virens"
-print "Start Test WS 3 : Resolve Scientific Names with Open Tree TNRS - GET method"
-print "Case 1 : Paramter NAMES = %s \n" %(str(names))
-result_case_1 = False
-result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Setophaga striata", "Setophaga plumbea"])
-print "---------------------------------------------------------"
-names="Formica polyctena|Formica exsectoides|Formica pecefica"
-print "Case 2 : Paramter NAMES = %s \n" %(str(names))
-result_case_2 = False
-result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(names,["Formica polyctena", "Formica exsectoides"])
-print "---------------------------------------------------------"
-if (result_case_1 == True and result_case_2 == True):
-    result_ws_3 = True
-    print("Sucessful ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS - GET method IS WORKING WELL")
-else:
-    result_ws_3 = False
+print "Start Testing WS 3 : Resolve Scientific Names with Open Tree TNRS"
 print "========================================================="
+result_ws_3 = False
+ws3_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/TNRS_OT_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
 
-########################################################
-#Test Web Service 3 : Resolve Scientific Names with Open Tree TNRS - POST method
-#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
-########################################################
-print "========================================================="
-result_ws_3 = False
-json_input='{"scientificNames": ["Setophaga striata","Setophaga megnolia","Setophaga angilae","Setophaga plumbea","Setophaga virens"]}'
-print "Start Test WS 3 : Resolve Scientific Names with Open Tree TNRS - POST method"
-print "Case 1 : Paramter = %s \n" %(str(json_input))
-result_case_1 = False
-result_case_1 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Setophaga striata", "Setophaga plumbea"])
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+ 	#prepare ws3 input
+	separator = "|"
+	ws3_input_GET = separator.join(input_list)
+	print "Case file input: " + ws3_input_GET
+	ws3_input_POST = '{"scientificNames":'+ input_list +'}'
+	print "Case file input: " + ws3_input_POST
+	output_file = None
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_3 = False
+ 		print "Could not find output file for " + f
+		break		
+	ws3_output = helper.create_list_file(output_file)
+	#print "Case file output: " + ws2_output
+ 	ws3_result_GET = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(ws3_input_GET, ws3_output)
+	ws3_result_POST = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(ws3_input_POST, ws3_output) 	
+	ws3_result = ws3_result_GET and ws3_result_POST
+
+	if ws3_result_GET and ws3_result_POST:
+		print "Test succeeded for Case file: " + f
+	elif ws3_result_GET:
+		print "GET - method Test succeeded for Case file: " + f
+	elif ws3_result_POST:
+		print "POST - method Test succeeded for Case file: " + f
+	print "-----------------------------------------------------" 
+	ws3_results.append(ws3_result)
+
+for result in ws3_results:
+	result_ws_3 = (result_ws_3 and result)
+ 	if not(result_ws_3):
+		break 
+
 print "---------------------------------------------------------"
-json_input='{"scientificNames": ["Formica exsectoides", "Formica pecefica", "Formica polyctena"]}'
-print "Case 2 : Paramter  = %s \n" %(str(json_input))
-result_case_2 = False
-result_case_2 = web_services.testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_input,["Formica polyctena", "Formica exsectoides"])
-print "---------------------------------------------------------"
-if (result_case_1 == True and result_case_2 == True):
-    result_ws_3 = True
-    print("Sucessful ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS - POST method IS WORKING WELL")
+if len(ws3_results) == 0:
+	print "No Test Cases found"
+	result_ws_3 = False 
+elif (result_ws_3):
+    print("Sucessful ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS IS WORKING WELL")
 else:
-    result_ws_3 = False
+    print("Failed ! Web Service 3 : Resolve Scientific Names with Open Tree TNRS IS NOT WORKING")
 print "========================================================="
 
 
