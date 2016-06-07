@@ -6,7 +6,8 @@ import requests
 import os
 import sys
 import subprocess
-#from newick import loads
+from newick import loads
+
 #Define Resources URI for Testing Web Service
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 WS_1_RESOURCES_URI = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/names_url";
