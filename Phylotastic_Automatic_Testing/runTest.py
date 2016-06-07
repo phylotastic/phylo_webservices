@@ -12,26 +12,26 @@ ws1_results = []
 files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS1_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-#print "Input Files: " 
-#print input_files
-#print "Output Files: " 
-#print output_files 
+
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
 	input_list = helper.create_list_file(f)
 	ws1_input = input_list[0]
 	print "Case file input: " + ws1_input
+	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
 	if output_file == None:
 		result_ws_1 = False
- 		print "No output file found for " + f		
-	ws1_output = helper.create_list_file(output_file)
-	#print "Case file output: " + ws1_output
- 	ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
-	if ws1_result:
-		print "Test succeeded for Case file: " + f 
-	ws1_results.append(ws1_result)
+ 		print "Could not find output file for " + f
+		break;
+	else:		
+		ws1_output = helper.create_list_file(output_file)
+		#print "Case file output: " + ws1_output
+ 		ws1_result = web_services.testService_FindScientificNamesOnWebPages_WS_1(ws1_input, ws1_output)
+		if ws1_result:
+			print "Test succeeded for Case file: " + f 
+		ws1_results.append(ws1_result)
 
 for result in ws1_results:
 	result_ws_1 = (result_ws_1 and result)
@@ -60,18 +60,19 @@ ws2_results = []
 files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/WS2_TestCases")
 input_files = helper.filter_files(files_list, "input")
 output_files = helper.filter_files(files_list, "output")
-#print "Input Files: " + input_files
-#print "Output Files: " + output_files
+
 for f in input_files:
 	print "Testing Case file: " + f
 	file_no = helper.get_file_num(f)
 	input_list = helper.create_list_file(f)
 	ws2_input = input_list[0]
 	print "Case file input: " + ws2_input
+	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
 	if output_file == None:
 		result_ws_2 = False
- 		print "No output file found for " + f		
+ 		print "Could not find output file for " + f
+		break		
 	ws2_output = helper.create_list_file(output_file)
 	#print "Case file output: " + ws2_output
  	ws2_result = web_services.testService_FindScientificNamesOnText_WS_2(ws2_input, ws2_output)
