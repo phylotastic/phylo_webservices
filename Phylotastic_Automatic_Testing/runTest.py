@@ -217,24 +217,55 @@ else:
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_5 = False
-taxa="Setophaga striata|Setophaga magnolia|Setophaga angelae|Setophaga plumbea|Setophaga virens"
-print "Start Test WS 5 : Get Phylogenetic Trees from Open Tree of Life - GET method"
-print "Case 1 : Paramter TAXA = %s \n" %(str(taxa))
-result_case_1 = False
-result_case_1 = web_services.testService_GetPhylogeneticTreeFrom_OpenTree_5_GET(taxa,"(((Setophaga_striata_ott60236,Setophaga_magnolia_ott3597209),Setophaga_virens_ott3597195),(Setophaga_plumbea_ott3597205,Setophaga_angelae_ott3597191))Setophaga_ott666104;")
-print "---------------------------------------------------------"
-if (result_case_1 == True):
-    result_ws_5 = True
-    print("Sucessful ! Web Service 5 : Get Phylogenetic Trees from Open Tree of Life - GET method IS WORKING WELL")
-else:
-    result_ws_5 = False
+print "Start Testing WS 5 : Get Phylogenetic Trees from Open Tree of Life - GET method"
 print "========================================================="
+result_ws_5 = True
+ws5_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Get_Tree_OT_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
+
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+	separator = "|"
+	ws5_input_GET = separator.join(input_list)
+	#print "Case file input: " + ws5_input
+	output_file = None
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_5 = False
+ 		print "Could not find output file for " + f
+		break;
+	else:		
+		ws5_output = helper.create_content_file(output_file)
+		#print "Case file output: " + ws5_output
+ 		ws5_result = web_services.testService_GetPhylogeneticTreeFrom_OpenTree_5_GET(ws5_input_GET, ws5_output)
+		if ws5_result:
+			print "Test succeeded for Case file: " + f
+			print "---------------------------------------------------------" 
+		ws5_results.append(ws5_result)
+
+for result in ws5_results:
+	result_ws_5 = (result_ws_5 and result)
+ 	if not(result_ws_5):
+		break; 
+
+print "---------------------------------------------------------"
+if len(ws5_results) == 0:
+	print "No Test Cases found"
+	result_ws_5 = True 
+elif (result_ws_5):
+    print("Success ! Web Service 5 : Get Phylogenetic Trees from Open Tree of Life IS WORKING WELL")
+else:
+    print("Failed ! Web Service 5 : Get Phylogenetic Trees from Open Tree of Life IS NOT WORKING")
 
 ########################################################
 #Test Web Service 5 : Get Phylogenetic Trees from Open Tree of Life - POST method
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
+'''
 print "========================================================="
 result_ws_5 = False
 json_input='{"resolvedNames": [{"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga striata", "search_string": "setophaga strieta", "synonyms": ["Dendroica striata", "Setophaga striata"], "taxon_id": 60236}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga magnolia", "search_string": "setophaga magnolia", "synonyms": ["Dendroica magnolia", "Setophaga magnolia"], "taxon_id": 3597209}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga angelae", "search_string": "setophaga angilae", "synonyms": ["Dendroica angelae", "Setophaga angelae"], "taxon_id": 3597191}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga plumbea", "search_string": "setophaga plambea", "synonyms": ["Dendroica plumbea", "Setophaga plumbea"], "taxon_id": 3597205}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga virens", "search_string": "setophaga virens", "synonyms": ["Dendroica virens", "Setophaga virens"], "taxon_id": 3597195}]}'
@@ -250,7 +281,7 @@ else:
     result_ws_5 = False
 print "========================================================="
 
-
+'''
 ########################################################
 #Test Web Service 6 : Get all Species from a Taxon
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -386,26 +417,46 @@ print "========================================================="
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_9 = False
-taxon="Panthera"
-print "Start Test WS 9 : Get Species (of a Taxon) that have genome sequence in NCBI"
-print "Case 1 : Paramter taxon = %s \n" %(str(taxon))
-result_case_1 = False
-result_case_1 = web_services.testService_GetSpeciesNCBI_WS_9_GET(taxon,["Panthera tigris amoyensis", "Panthera tigris altaica", "Panthera tigris"])
-print "---------------------------------------------------------"
-
-taxon="Rodentia"
-print "Case 2 : Paramter taxon = %s \n" %(str(taxon))
-result_case_2 = False
-result_case_2 = web_services.testService_GetSpeciesNCBI_WS_9_GET(taxon,["Nannospalax galili", "Fukomys damarensis", "Myodes glareolus", "Peromyscus maniculatus bairdii"])
-print "---------------------------------------------------------"
-
-if (result_case_1 == True and result_case_2 == True):
-    result_ws_9 = True
-    print("Sucessful ! Web Service 9 : Get Species (of a Taxon) that have genome sequence in NCBI IS WORKING WELL")
-else:
-    result_ws_8 = False
+print "Start Testing WS 9 : Get Species (of a Taxon) that have genome sequence in NCBI"
 print "========================================================="
+result_ws_9 = True
+ws9_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Taxon_Genome_Species_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
+
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+	ws9_input = input_list[0]
+	output_file = None
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_9 = False
+ 		print "Could not find output file for " + f
+		break		
+	else:
+		ws9_output = helper.create_list_file(output_file)
+		ws9_result = web_services.testService_GetSpeciesNCBI_WS_9_GET(ws9_input, ws9_output)
+		if ws9_result:
+			print "Test succeeded for Case file: " + f
+	ws9_results.append(ws9_result)
+
+for result in ws9_results:
+	result_ws_9 = (result_ws_9 and result)
+ 	if not(result_ws_9):
+		break 
+
+print "---------------------------------------------------------"
+if len(ws9_results) == 0:
+	print "No Test Cases found"
+	result_ws_9 = True 
+elif (result_ws_9):
+    print("Success ! Web Service 9 : Get Species (of a Taxon) having genome sequence in NCBI IS WORKING WELL")
+else:
+    print("Failed ! Web Service 9 : Get Species (of a Taxon) having genome sequence in NCBI IS NOT WORKING")
+
 
 ########################################################
 #Finally Result
