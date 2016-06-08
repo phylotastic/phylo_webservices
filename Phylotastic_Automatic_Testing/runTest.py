@@ -102,7 +102,7 @@ else:
 print "========================================================="
 print "Start Testing WS 3 : Resolve Scientific Names with Open Tree TNRS"
 print "========================================================="
-result_ws_3 = False
+result_ws_3 = True
 ws3_results = []
 files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/TNRS_OT_TestCases")
 input_files = helper.filter_files(files_list, "input")
