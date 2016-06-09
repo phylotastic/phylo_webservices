@@ -421,7 +421,6 @@ for result in ws8_results:
 	result_ws_8 = (result_ws_8 and result)
  	if not(result_ws_8):
 		break 
-
 print "---------------------------------------------------------"
 if len(ws8_results) == 0:
 	print "No Test Cases found"
