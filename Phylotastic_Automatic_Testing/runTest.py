@@ -115,9 +115,9 @@ for f in input_files:
  	#prepare ws3 input
 	separator = "|"
 	ws3_input_GET = separator.join(input_list)
-	print "Case file input: " + ws3_input_GET
+	#print "Case file input: " + ws3_input_GET
 	ws3_input_POST = helper.prepare_json_input('{"scientificNames":[',input_list) 
-	print "Case file input: " + ws3_input_POST
+	#print "Case file input: " + ws3_input_POST
 	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
 	if output_file == None:
@@ -173,9 +173,9 @@ for f in input_files:
  	#prepare ws3 input
 	separator = "|"
 	ws4_input_GET = separator.join(input_list)
-	print "Case file input: " + ws4_input_GET
+	#print "Case file input: " + ws4_input_GET
 	ws4_input_POST = helper.prepare_json_input('{"scientificNames":[',input_list) 
-	print "Case file input: " + ws4_input_POST
+	#print "Case file input: " + ws4_input_POST
 	output_file = None
 	output_file = helper.find_outputfile(output_files, file_no)
 	if output_file == None:
