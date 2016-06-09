@@ -374,42 +374,62 @@ else:
     print("Failed ! Web Service 7 : Get all Species from a Taxon filtered by country IS NOT WORKING")
 
 ########################################################
-#Test Web Service 8 : Get Image URLs of a list of species - GET method
+#Test Web Service 8 : Get Image URLs of a list of species
 #Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
 ########################################################
 print "========================================================="
-result_ws_8 = False
-species="Panthera leo|Panthera onca|Panthera pardus"
-print "Start Test WS 8 : Get Image URLs of a list of species - GET method"
-print "Case 1 : Paramter species = %s \n" %(str(species))
-result_case_1 = False
-result_case_1 = web_services.testService_GetImagesURLListOfSpecies_WS_8_GET(species,"http://media.eol.org/content/2015/11/13/05/46343_orig.jpg")
-print "---------------------------------------------------------"
-if (result_case_1 == True):
-    result_ws_8 = True
-    print("Sucessful ! Web Service 8 : Get Image URLs of a list of species - GET method IS WORKING WELL")
-else:
-    result_ws_8 = False
+print "Start Testing WS 8 : Get Image URLs of a list of species"
 print "========================================================="
+result_ws_8 = True
+ws8_results = []
+files_list = helper.get_filepaths("Phylotastic_Automatic_Testing/Species_EOL_Images_TestCases")
+input_files = helper.filter_files(files_list, "input")
+output_files = helper.filter_files(files_list, "output")
 
-########################################################
-#Test Web Service 8 : Get Image URLs of a list of species - POST method
-#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
-########################################################
-print "========================================================="
-result_ws_8 = False
-json_param_species='{"species": ["Catopuma badia","Catopuma temminckii"]}'
-print "Start Test WS 8 : Get Image URLs of a list of species - POST method"
-print "Case 1 : Paramter = %s \n" %(str(json_param_species))
-result_case_1 = False
-result_case_1 = web_services.testService_GetImagesURLListOfSpecies_WS_8_POST(json_param_species,"http://media.eol.org/content/2014/01/04/04/58116_orig.jpg")
+for f in input_files:
+	print "Testing Case file: " + f
+	file_no = helper.get_file_num(f)
+	input_list = helper.create_list_file(f)
+ 	#prepare ws8 input
+	separator = "|"
+	ws8_input_GET = separator.join(input_list)
+	print "Case file input: " + ws8_input_GET
+	ws8_input_POST = helper.prepare_json_input('{"species":[',input_list) 
+	print "Case file input: " + ws8_input_POST
+	output_file = None
+	output_file = helper.find_outputfile(output_files, file_no)
+	if output_file == None:
+		result_ws_8 = False
+ 		print "Could not find output file for " + f
+		break		
+	ws8_output = helper.create_list_file(output_file)
+	#print "Case file output: " + ws8_output
+ 	ws8_result_GET = web_services.testService_GetImagesURLListOfSpecies_WS_8_GET(ws8_input_GET, ws8_output)
+	ws8_result_POST = web_services.testService_GetImagesURLListOfSpecies_WS_8_POST(ws8_input_POST, ws8_output) 	
+	ws8_result = ws8_result_GET and ws8_result_POST
+
+	if ws8_result_GET and ws8_result_POST:
+		print "Test succeeded for Case file: " + f
+	elif ws8_result_GET:
+		print "GET - method Test succeeded for Case file: " + f
+	elif ws8_result_POST:
+		print "POST - method Test succeeded for Case file: " + f
+	print "-----------------------------------------------------" 
+	ws8_results.append(ws8_result)
+
+for result in ws8_results:
+	result_ws_8 = (result_ws_8 and result)
+ 	if not(result_ws_8):
+		break 
+
 print "---------------------------------------------------------"
-if (result_case_1 == True):
-    result_ws_8 = True
-    print("Sucessful ! Web Service 8 : Get Image URLs of a list of species - POST method IS WORKING WELL")
+if len(ws8_results) == 0:
+	print "No Test Cases found"
+	result_ws_8 = True 
+elif (result_ws_8):
+    print("Success ! Web Service 8 : Get Image URLs of a list of species IS WORKING WELL")
 else:
-    result_ws_8 = False
-print "========================================================="
+    print("Failed ! Web Service 8 : Get Image URLs of a list of speciesIS NOT WORKING")
 
 
 ########################################################
