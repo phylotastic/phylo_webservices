@@ -359,7 +359,9 @@ def testService_GetAllSpeciesFromATaxonFilteredByCountry_WS_7(param_taxon,param_
        print("Pass : Returned data contains object 'species'")
        #Check correct output data
        set_expected_ouput = set(expected_output)
+       print set_expected_ouput
        set_result = set(json_object["species"])
+       print set_result
        if (not set_expected_ouput.issubset(set_result)):
            print("Error : Web Service's result could be in-correct");
            exit(1)
@@ -391,12 +393,14 @@ def testService_GetImagesURLListOfSpecies_WS_8_GET(param_species,expected_output
        print("Pass : Returned data contains object 'species' 'images'")
        #Check correct output data
        set_expected_ouput = set(expected_output)
+       #print set_expected_ouput
        img_objs = []
        for imgs in json_object["species"]:
             for img in imgs["images"]: 
-                img_objs.append(img["eolMediaURL"])
+                img_objs.append(str(img["eolMediaURL"]))
        #set_result = set(json_object["species"][0]["images"])
        set_result = set(img_objs)
+       #print set_result
        if (not set_expected_ouput.issubset(set_result)):
             print("Error : Web Service's result could be in-correct")
             exit(1)
