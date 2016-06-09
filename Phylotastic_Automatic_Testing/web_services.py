@@ -390,14 +390,19 @@ def testService_GetImagesURLListOfSpecies_WS_8_GET(param_species,expected_output
            exit(1)
        print("Pass : Returned data contains object 'species' 'images'")
        #Check correct output data
-       #set_expected_ouput = set(expected_output)
+       set_expected_ouput = set(expected_output)
+       img_objs = []
+       for imgs in json_object["species"]:
+            for img in imgs["images"]: 
+            	img_objs.append(img["eolMediaURL"])
        #set_result = set(json_object["species"][0]["images"])
-       #if (not set_expected_ouput.issubset(set_result)):
-    #       print("Error : Web Service's result could be in-correct");
-    #       exit(1)
-       if (json_object["species"][0]["images"][0]["eolMediaURL"] != expected_output):
-           print("Error : Web Service's result could be in-correct");
-           exit(1)
+       set_result = set(img_objs)
+       if (not set_expected_ouput.issubset(set_result)):
+          	print("Error : Web Service's result could be in-correct");
+            exit(1)
+       #if (json_object["species"][0]["images"][0]["eolMediaURL"] != expected_output):
+       #    print("Error : Web Service's result could be in-correct");
+       #    exit(1)
        print("Pass : Returned data contains expected output")
        return True
     else:
