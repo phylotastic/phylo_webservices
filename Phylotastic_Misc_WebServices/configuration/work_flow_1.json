@@ -1,0 +1,44 @@
+{
+  "work_flow_id":"TREE_RECONCILIATION_1",
+  "work_flow_web_services" : [
+       {
+           "ws_function_id":0,
+           "ws_function_name":"ForesterWS_GetSpeciesList_By_GeneTree",
+           "ws_wsdl_file":"http://128.123.177.13/WSRegistry/sites/default/files/wsdl/Phylotastic_Forester_WS.wsdl",
+           "ws_type_running":"-run",
+           "ws_input" : [
+               {"input_id":1, "input_name":"gene_tree_data" , "type":"string", "format":"newick"},
+               {"input_id":2, "input_name":"format" , "type":"string", "format":""}
+           ],
+           "ws_output" : "json_object",
+           "pre_activity":"",
+           "post_activity":2
+       },
+       {
+           "ws_function_id":1,
+           "ws_function_name":"PhylotasticPrunner_GetPhylotasticSpeciesTree",
+           "ws_wsdl_file":"http://128.123.177.13/WSRegistry/sites/default/files/wsdl/Phylotastic_Prunning_WS.wsdl",
+           "ws_type_running":"-run",
+           "ws_input" : [
+               {"input_id":1, "input_name":"species_name_result" , "type":"string", "format":""},
+               {"input_id":2, "input_name":"format" , "type":"string", "format":""}
+           ],
+           "ws_output" : "json_object",
+           "pre_activity":1,
+           "post_activity":3
+       },
+       {
+           "ws_function_id":2,
+           "ws_function_name":"ForesterWS_GetReconciliationTree",
+           "ws_wsdl_file":"http://128.123.177.13/WSRegistry/sites/default/files/wsdl/Phylotastic_Forester_WS.wsdl",
+           "ws_type_running":"-run",
+           "ws_input" : [
+               {"input_id":1, "input_name":"ws_id" , "type":"string", "format":""},
+               {"input_id":2, "input_name":"species_tree_data" , "type":"string", "format":""}
+           ],
+           "ws_output" : "json_object",
+           "pre_activity":2,
+           "post_activity":""
+       }
+   ]
+}

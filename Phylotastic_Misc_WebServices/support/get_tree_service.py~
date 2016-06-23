@@ -1,0 +1,112 @@
+#get tree service: version 2
+
+import json
+import time
+import requests
+import re
+import ast
+#----------------
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+api_url = "https://api.opentreeoflife.org/v2/tree_of_life/"
+headers = {'content-type': 'application/json'}
+    
+#-----------------Induced Subtree of a set of nodes [OpenTree]---------------------
+#input: list (comma separated) of ottids (long)   
+#output: json object with inducedsubtree in newick key and status message in message key
+def get_inducedSubtree(ottIdList):
+    resource_url = api_url + "induced_subtree"    
+    
+    payload_data = {
+     	'ott_ids': ottIdList
+    }
+    jsonPayload = json.dumps(payload_data)
+    
+    response = requests.post(resource_url, data=jsonPayload, headers=headers)
+        
+    newick_tree_str = ""
+    inducedtree_info = {}
+
+    if response.status_code == requests.codes.ok:
+ 		data_json = json.loads(response.text)
+ 		newick_tree_str = data_json['newick']		
+ 		inducedtree_info['message'] = "Success"
+    else:
+        #print response.text
+        try: 
+         	error_json = json.loads(response.text)
+         	error_msg = error_json['message']
+         	if 'Not enough valid node or ott ids' in error_msg:
+ 				inducedtree_info['message'] = "Not enough valid node or ott ids provided to construct a subtree (there must be at least two)"
+         	else:
+ 				inducedtree_info['message'] = error_msg
+     	except ValueError:
+     		inducedtree_info['message'] =  "induced_subtree method: Decoding of JSON error message failed"
+ 	
+    inducedtree_info['newick'] = newick_tree_str
+ 	
+    return inducedtree_info
+
+#-------------------------------------------------------
+def subtree(ottidList):
+    result = {}
+    #single species
+    if len(ottidList) < 2:
+       result['newick'] = ""
+       result['message'] = "Not enough valid nodes provided to construct a subtree (there must be at least two)"        
+       return result
+    
+ 	#multiple species
+    induced_response = get_inducedSubtree(ottidList)
+    result = induced_response
+
+    return result 
+#-----------------------------------------------------------
+#get newick string for tree from OpenTree
+#input: list of resolved scientific names
+def get_tree_OT(resolvedNames, post=False):
+    ListSize = len(resolvedNames)
+    
+    response = {}
+    if ListSize == 0:
+ 		response['newick'] = ""
+ 		response['message'] = "List of resolved names empty"
+  		if post:
+ 			return response;
+ 		else:		
+ 		 	return json.dumps(response)
+    
+    #rsnames = resolvedNames
+    rsnames = resolvedNames['resolvedNames']
+    ottIdList = []
+    for rname in rsnames:
+        if rname['resolver_name'] == 'OT':
+    	 	ottIdList.append(rname['taxon_id'])
+        else:
+ 			response['newick'] = ""
+ 			response['message'] = "Wrong TNRS. Need to resolve with OpenTree TNRS"
+ 			if post:
+ 				return response;
+ 			else:		
+ 		 		return json.dumps(response)
+ 	     	     
+    #get induced_subtree
+    final_result = subtree(ottIdList)
+ 
+    if post: 	    
+        return final_result
+    else:
+        return json.dumps(final_result) 
+
+#-------------------------------------------
+
+#if __name__ == '__main__':
+
+    #ott_idlist = [3597195, 3597205, 3597191, 3597209, 60236]
+    #inputNames = {"resolvedNames": [{"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga striata", "search_string": "setophaga strieta", "synonyms": ["Dendroica striata", "Setophaga striata"], "taxon_id": 60236}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga magnolia", "search_string": "setophaga magnolia", "synonyms": ["Dendroica magnolia", "Setophaga magnolia"], "taxon_id": 3597209}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga angelae", "search_string": "setophaga angilae", "synonyms": ["Dendroica angelae", "Setophaga angelae"], "taxon_id": 3597191}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga plumbea", "search_string": "setophaga plambea", "synonyms": ["Dendroica plumbea", "Setophaga plumbea"], "taxon_id": 3597205}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga virens", "search_string": "setophaga virens", "synonyms": ["Dendroica virens", "Setophaga virens"], "taxon_id": 3597195}]}
+
+    #result = get_inducedSubtree(ott_idlist)
+    #result = get_tree_OT(inputNames)
+    #print result
+    
+       
