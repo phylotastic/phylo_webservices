@@ -93,8 +93,7 @@ def get_children(ottId):
         'include_children': 'true'    
     }
     response = requests.post(resource_url, data=json.dumps(payload), headers=headers)
-     
-    #print response.text 
+      
     return json.loads(response.text)
 
 #----------------------------------------    
@@ -146,8 +145,8 @@ def check_species_by_country(species, country):
     
     countryList = []
     for place in res_json:
-        countryList.append(place['name'])
-    
+        countryList.append(place['name'].lower())
+    country = country.lower()
     #commonList = list(set(countries).intersection(set(countryList)))
     
     if (country in countryList):
@@ -172,11 +171,14 @@ def get_all_species(inputTaxon):
  		return final_result 
  	else:
  		data_json = get_children(ott_id)
- 		if data_json['rank'] == 'genus':
+ 		if data_json['rank'] == 'species' or data_json['rank'] == 'subspecies':
+ 			species_list.append(data_json['ot:ottTaxonName'])		
+ 		elif data_json['rank'] == 'genus':
  			species_list = get_species_from_genus(data_json['children'])
  		else:
  			species_list = get_species_from_highrank(data_json['children'], conn)
- 	
+ 		
+ 	#print species_list
  	#species_list.sort()
  	len_splist = len(species_list)
  	
@@ -213,7 +215,7 @@ def get_country_species(inputTaxon, country):
  		status_code = all_species_json['status_code']
   		species_list = all_species_json['species']
  		message = all_species_json['message']	
- 	
+ 		#print all_species_result
  		#species_list.sort()
     	#countries = ['Bhutan', 'Nepal', 'Canada']
 
@@ -248,13 +250,16 @@ def create_json_msg(input_taxon, species_lst, msg, code):
 	#inputTaxon = 'Canidae' #family
  	#inputTaxon = 'Carnivora' #order
  	#inputTaxon = 'Tremarctos'
-	#inputTaxon = 'Mustelidae' 
- 	#inputTaxon = 'Panthera'  
+	#inputTaxon = 'Panthera onca mesembrina' 
+ 	#inputTaxon = 'Panthera onca'  
  	#country = 'Bangladesh'
- 	#country = 'Brazil'
+ 	#country = 'United States'
  	#country = 'Nepal'
+ 	#print match_taxon(inputTaxon) 
  	#start_time = time.time()    
  	#print get_all_species(inputTaxon)
+ 	#get_children(735488)
+ 	#print check_species_by_country(inputTaxon, country)	
  	#print get_country_species(inputTaxon, country)
  	#end_time = time.time()
  	#print end_time-start_time
