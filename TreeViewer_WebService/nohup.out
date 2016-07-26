@@ -1,0 +1,240 @@
+[14/Jul/2016:11:52:39] ENGINE Listening for SIGHUP.
+[14/Jul/2016:11:52:39] ENGINE Listening for SIGTERM.
+[14/Jul/2016:11:52:39] ENGINE Listening for SIGUSR1.
+[14/Jul/2016:11:52:39] ENGINE Bus STARTING
+[14/Jul/2016:11:52:39] ENGINE Started monitor thread 'Autoreloader'.
+[14/Jul/2016:11:52:39] ENGINE Started monitor thread '_TimeoutMonitor'.
+[14/Jul/2016:11:52:39] ENGINE Serving on http://0.0.0.0:8008
+[14/Jul/2016:11:52:39] ENGINE Bus STARTED
+
+      /-holA
+   /-|
+--|   \-holB
+  |
+   \-holC
+Get tree image calling...
+Getting tree image....
+<MAP NAME="img_map_1468518789.06"  class="ete_tree_img"> <AREA SHAPE="rect" COORDS="187,26,190,29" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#7091767", "", 97.0, 19.0, 121.0, 18.0);' onClick='show_context_menu("7091767", "3", "0,1");' href="javascript:void('3');"> <AREA SHAPE="rect" COORDS="187,8,190,11" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#7091767", "", 97.0, 1.0, 121.0, 18.0);' onClick='show_context_menu("7091767", "2", "0,1");' href="javascript:void('2');"> <AREA SHAPE="rect" COORDS="94,44,97,47" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#7091767", "", 4.0, 37.0, 122.0, 18.0);' onClick='show_context_menu("7091767", "4", "0,1");' href="javascript:void('4');"> <AREA SHAPE="rect" COORDS="1,31,4,34" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#7091767", "", 1.0, 1.0, 217.0, 54.0);' onClick='show_context_menu("7091767", "0", "0,1");' href="javascript:void('0');"> <AREA SHAPE="rect" COORDS="94,17,97,20" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#7091767", "", 4.0, 1.0, 214.0, 36.0);' onClick='show_context_menu("7091767", "1", "0,1");' href="javascript:void('1');"> <AREA SHAPE="rect" COORDS="190,19,218,37" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#7091767", "holB", 97.0, 19.0, 121.0, 18.0); show_face_popup("7091767", "3", "0,1", "holB");' onClick='show_context_menu("7091767", "3", "0,1", "holB");' href="javascript:void('holB');"> <AREA SHAPE="rect" COORDS="190,1,218,19" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#7091767", "holA", 97.0, 1.0, 121.0, 18.0); show_face_popup("7091767", "2", "0,1", "holA");' onClick='show_context_menu("7091767", "2", "0,1", "holA");' href="javascript:void('holA');"> <AREA SHAPE="rect" COORDS="97,37,126,55" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#7091767", "holC", 4.0, 37.0, 122.0, 18.0); show_face_popup("7091767", "4", "0,1", "holC");' onClick='show_context_menu("7091767", "4", "0,1", "holC");' href="javascript:void('holC');"></MAP><div id="ETE_tree_7091767" ><img id="7091767" class="ete_tree_img" src="http://phylo.cs.nmsu.edu:8080/TreeViewer/tmp/7091767.png" USEMAP="#img_map_1468518789.06" onLoad='javascript:bind_popup();' onclick='javascript:show_context_menu("7091767", "", "2");' ><div style="margin:0px;padding:0px;text-align:left;"><a href="http://etetoolkit.org" style="font-size:7pt;" target="_blank" >ete3</a></div></div>
+
+         /-Dre
+      /-|
+     |   \-Dme
+   /-|
+  |  |   /-Cfa
+  |   \-|
+  |      \-Hsa
+--|
+  |      /-Dre
+  |   /-|
+  |  |   \-Cfa
+   \-|
+     |   /-Hsa
+      \-|
+         \-Mms
+Get tree image calling...
+Getting tree image....
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+QObject::startTimer: QTimer can only be used with threads started with QThread
+<MAP NAME="img_map_1468519551.07"  class="ete_tree_img"> <AREA SHAPE="rect" COORDS="12,35,15,38" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 4.0, 1.0, 120.14598483, 72.0);' onClick='show_context_menu("9061908", "1", "0,1");' href="javascript:void('1');"> <AREA SHAPE="rect" COORDS="103,125,106,128" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 86.7075154048, 109.0, 61.8076055638, 36.0);' onClick='show_context_menu("9061908", "12", "0,1");' href="javascript:void('12');"> <AREA SHAPE="rect" COORDS="95,62,98,65" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 33.6034768084, 55.0, 89.6745013733, 18.0);' onClick='show_context_menu("9061908", "7", "0,1");' href="javascript:void('7');"> <AREA SHAPE="rect" COORDS="111,116,114,119" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 106.445350988, 109.0, 33.0612508177, 18.0);' onClick='show_context_menu("9061908", "13", "0,1");' href="javascript:void('13');"> <AREA SHAPE="rect" COORDS="92,26,95,29" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 67.5317808272, 19.0, 56.6142040032, 18.0);' onClick='show_context_menu("9061908", "4", "0,1");' href="javascript:void('4');"> <AREA SHAPE="rect" COORDS="164,89,167,92" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 86.7075154048, 73.0, 128.292484595, 36.0);' onClick='show_context_menu("9061908", "9", "0,1");' href="javascript:void('9');"> <AREA SHAPE="rect" COORDS="115,134,118,137" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 106.445350988, 127.0, 42.0697699808, 18.0);' onClick='show_context_menu("9061908", "14", "0,1");' href="javascript:void('14');"> <AREA SHAPE="rect" COORDS="190,80,193,83" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 167.759662072, 73.0, 47.240337928, 18.0);' onClick='show_context_menu("9061908", "10", "0,1");' href="javascript:void('10');"> <AREA SHAPE="rect" COORDS="86,44,89,47" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 33.6034768084, 37.0, 77.4734776909, 18.0);' onClick='show_context_menu("9061908", "6", "0,1");' href="javascript:void('6');"> <AREA SHAPE="rect" COORDS="171,98,174,101" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 167.759662072, 91.0, 28.769920731, 18.0);' onClick='show_context_menu("9061908", "11", "0,1");' href="javascript:void('11');"> <AREA SHAPE="rect" COORDS="1,71,4,74" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 1.0, 1.0, 214.0, 144.0);' onClick='show_context_menu("9061908", "0", "0,1");' href="javascript:void('0');"> <AREA SHAPE="rect" COORDS="64,17,67,20" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 15.6984440063, 1.0, 108.447540824, 36.0);' onClick='show_context_menu("9061908", "2", "0,1");' href="javascript:void('2');"> <AREA SHAPE="rect" COORDS="68,8,71,11" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 67.5317808272, 1.0, 25.6827976408, 18.0);' onClick='show_context_menu("9061908", "3", "0,1");' href="javascript:void('3');"> <AREA SHAPE="rect" COORDS="30,53,33,56" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 15.6984440063, 37.0, 107.579534175, 36.0);' onClick='show_context_menu("9061908", "5", "0,1");' href="javascript:void('5');"> <AREA SHAPE="rect" COORDS="83,107,86,110" onMouseOut='unhighlight_node();' onMouseOver='highlight_node("#9061908", "", 4.0, 73.0, 211.0, 72.0);' onClick='show_context_menu("9061908", "8", "0,1");' href="javascript:void('8');"> <AREA SHAPE="rect" COORDS="98,55,123,73" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Hsa", 33.6034768084, 55.0, 89.6745013733, 18.0); show_face_popup("9061908", "7", "0,1", "Hsa");' onClick='show_context_menu("9061908", "7", "0,1", "Hsa");' href="javascript:void('Hsa');"> <AREA SHAPE="rect" COORDS="114,109,139,127" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Hsa", 106.445350988, 109.0, 33.0612508177, 18.0); show_face_popup("9061908", "13", "0,1", "Hsa");' onClick='show_context_menu("9061908", "13", "0,1", "Hsa");' href="javascript:void('Hsa');"> <AREA SHAPE="rect" COORDS="95,19,124,37" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Dme", 67.5317808272, 19.0, 56.6142040032, 18.0); show_face_popup("9061908", "4", "0,1", "Dme");' onClick='show_context_menu("9061908", "4", "0,1", "Dme");' href="javascript:void('Dme');"> <AREA SHAPE="rect" COORDS="118,127,148,145" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Mms", 106.445350988, 127.0, 42.0697699808, 18.0); show_face_popup("9061908", "14", "0,1", "Mms");' onClick='show_context_menu("9061908", "14", "0,1", "Mms");' href="javascript:void('Mms');"> <AREA SHAPE="rect" COORDS="193,73,215,91" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Dre", 167.759662072, 73.0, 47.240337928, 18.0); show_face_popup("9061908", "10", "0,1", "Dre");' onClick='show_context_menu("9061908", "10", "0,1", "Dre");' href="javascript:void('Dre');"> <AREA SHAPE="rect" COORDS="89,37,111,55" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Cfa", 33.6034768084, 37.0, 77.4734776909, 18.0); show_face_popup("9061908", "6", "0,1", "Cfa");' onClick='show_context_menu("9061908", "6", "0,1", "Cfa");' href="javascript:void('Cfa');"> <AREA SHAPE="rect" COORDS="174,91,196,109" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Cfa", 167.759662072, 91.0, 28.769920731, 18.0); show_face_popup("9061908", "11", "0,1", "Cfa");' onClick='show_context_menu("9061908", "11", "0,1", "Cfa");' href="javascript:void('Cfa');"> <AREA SHAPE="rect" COORDS="71,1,93,19" onMouseOut='unhighlight_node(); hide_face_popup();' onMouseOver='highlight_node("#9061908", "Dre", 67.5317808272, 1.0, 25.6827976408, 18.0); show_face_popup("9061908", "3", "0,1", "Dre");' onClick='show_context_menu("9061908", "3", "0,1", "Dre");' href="javascript:void('Dre');"></MAP><div id="ETE_tree_9061908" ><img id="9061908" class="ete_tree_img" src="http://phylo.cs.nmsu.edu:8080/TreeViewer/tmp/9061908.png" USEMAP="#img_map_1468519551.07" onLoad='javascript:bind_popup();' onclick='javascript:show_context_menu("9061908", "", "2");' ><div style="margin:0px;padding:0px;text-align:left;"><a href="http://etetoolkit.org" style="font-size:7pt;" target="_blank" >ete3</a></div></div>
+[14/Jul/2016:12:06:50] ENGINE Caught signal SIGTERM.
+[14/Jul/2016:12:06:50] ENGINE Bus STOPPING
+[14/Jul/2016:12:06:50] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8008)) shut down
+[14/Jul/2016:12:06:50] ENGINE Stopped thread 'Autoreloader'.
+[14/Jul/2016:12:06:50] ENGINE Stopped thread '_TimeoutMonitor'.
+[14/Jul/2016:12:06:50] ENGINE Bus STOPPED
+[14/Jul/2016:12:06:50] ENGINE Bus EXITING
+[14/Jul/2016:12:06:50] ENGINE Bus EXITED
+[14/Jul/2016:12:06:50] ENGINE Waiting for child threads to terminate...
+[14/Jul/2016:12:09:25] ENGINE Listening for SIGHUP.
+[14/Jul/2016:12:09:25] ENGINE Listening for SIGTERM.
+[14/Jul/2016:12:09:25] ENGINE Listening for SIGUSR1.
+[14/Jul/2016:12:09:25] ENGINE Bus STARTING
+[14/Jul/2016:12:09:25] ENGINE Started monitor thread 'Autoreloader'.
+[14/Jul/2016:12:09:25] ENGINE Started monitor thread '_TimeoutMonitor'.
+[14/Jul/2016:12:09:25] ENGINE Serving on http://0.0.0.0:8008
+[14/Jul/2016:12:09:25] ENGINE Bus STARTED
+[14/Jul/2016:13:45:48] ENGINE Caught signal SIGTERM.
+[14/Jul/2016:13:45:48] ENGINE Bus STOPPING
+[14/Jul/2016:13:45:48] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 8008)) shut down
+[14/Jul/2016:13:45:48] ENGINE Stopped thread '_TimeoutMonitor'.
+[14/Jul/2016:13:45:48] ENGINE Stopped thread 'Autoreloader'.
+[14/Jul/2016:13:45:48] ENGINE Bus STOPPED
+[14/Jul/2016:13:45:48] ENGINE Bus EXITING
+[14/Jul/2016:13:45:48] ENGINE Bus EXITED
+[14/Jul/2016:13:45:48] ENGINE Waiting for child threads to terminate...
