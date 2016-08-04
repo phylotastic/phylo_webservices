@@ -214,14 +214,17 @@ class Find_ScientificNames_Service_API(object):
     def index(self):
         return "Find_ScientificNames_Service API (Abu Saleh) : Find Scientific names from Url, Text, Files";
     #---------------------------------------------
-    def names_url(self,**request_data):
+    def names_url(self,url=None,engine=0):
         try:
-            url = str(request_data['url']).strip();
-            
+            #url = str(request_data['url']).strip();
+            if url == None:
+               return return_response_error(400,"error","Missing parameter url","JSON")
+            else: 
+               url = url.strip()
         except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+            return return_response_error(400,"error","Missing parameters","JSON")
         
-        service_result = extract_names_service.extract_names_URL(url)   
+        service_result = extract_names_service.extract_names_URL(url, engine)   
         #-------------log request------------------
         result_json = json.loads(service_result)
         header = cherrypy.request.headers
@@ -231,14 +234,17 @@ class Find_ScientificNames_Service_API(object):
 
         return service_result;
     #------------------------------------------------
-    def names_text(self,**request_data):
+    def names_text(self,text=None,engine=0):
         try:
-            text = str(request_data['text']).strip();
-            
+            #text = str(request_data['text']).strip();
+            if text == None:
+               return return_response_error(400,"error","Missing parameter text","JSON")
+            else: 
+               text = text.strip()
         except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+            return return_response_error(400,"error","Missing parameters","JSON")
         
-        service_result = extract_names_service.extract_names_TEXT(text)
+        service_result = extract_names_service.extract_names_TEXT(text, engine)
         #-------------log request------------------   
         result_json = json.loads(service_result)
         header = cherrypy.request.headers

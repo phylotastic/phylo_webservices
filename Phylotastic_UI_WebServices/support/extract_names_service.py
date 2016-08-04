@@ -10,9 +10,10 @@ api_url = "http://gnrd.globalnames.org/name_finder.json?"
 headers = {'content-type': 'application/json'}
 
 #get scientific names from URL
-def get_sn_url(inputURL):
+def get_sn_url(inputURL, sEngine=0):
     payload = {
         'url': inputURL,
+        'engine': sEngine	
     }
     
     encoded_payload = urllib.urlencode(payload)
@@ -78,9 +79,10 @@ def get_token_result(response_json):
 
 #---------------------------------------------------
 #get scientific names from Text
-def get_sn_text(inputTEXT):
+def get_sn_text(inputTEXT, sEngine=0):
     payload = {
-        'text': inputTEXT
+        'text': inputTEXT,
+        'engine': sEngine
     }
     
     encoded_payload = urllib.urlencode(payload)
@@ -103,13 +105,13 @@ def get_sn_text(inputTEXT):
 
 #-----------------------------------------------------------
 
-def extract_names_URL(inputURL): 
-    final_result = get_sn_url(inputURL)    
+def extract_names_URL(inputURL, sEngine): 
+    final_result = get_sn_url(inputURL, sEngine)    
     
     return final_result
 
-def extract_names_TEXT(inputTEXT):
-    final_result = get_sn_text(inputTEXT)    
+def extract_names_TEXT(inputTEXT, sEngine):
+    final_result = get_sn_text(inputTEXT, sEngine)    
     
     return final_result	
 
