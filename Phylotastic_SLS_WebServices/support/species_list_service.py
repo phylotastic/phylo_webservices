@@ -7,7 +7,8 @@ import authenticate_user
 from bson import json_util
 from bson.json_util import dumps
 
-dbName = "SpeciesList"
+#dbName = "SpeciesList"
+dbName = "SpeciesListTest"
 dataCollectionName ="userSpecieslist"
 counterCollectionName = "listCounter"
 
@@ -426,7 +427,6 @@ def replace_species_in_list(input_json, conn):
  	return response
 
 #----------------------------------------------------------
-#==================NOT USING in the API=====================================
 #update list properties (metadata) of an existing list with new metadata
 def update_list_metadata(input_json, conn):
  	db = conn[dbName]
@@ -447,7 +447,6 @@ def update_list_metadata(input_json, conn):
  		response['message'] = "IndexError-%s"% str(e)
  		response['status_code'] = 500
  		return response
-
  	
  	document = data_collection.find({"user_id":user_id},{"lists" : 1});	
   	if document.count() == 0:
@@ -464,41 +463,33 @@ def update_list_metadata(input_json, conn):
  	response['status_code'] = status_code
 
  	if not(user_found):
- 	 	return response
+ 	 	return response	  	
  	
- 	date_published_str = list_info['list_date_published']
- 	if len(date_published_str) != 0 and not("NA" in date_published_str.upper()):
- 		date_validity = is_date_valid(date_published_str)
- 		if not(date_validity['date_valid']):
- 			response['message'] = "Error: %s does not match format 'mm-dd-yyyy'" %("list_date_published")
- 			response['status_code'] = 500
- 		else:	 	
- 			date_published_obj = datetime.datetime.strptime(date_published_str, "%m-%d-%Y")
- 	else:
- 		date_published_obj = date_published_str
- 	
- 	curation_date_str = list_info['list_curation_date']	
- 	if len(curation_date_str) != 0 and not("NA" in curation_date_str.upper()):
- 		date_validity = is_date_valid(curation_date_str)
- 		if not(date_validity['date_valid']):
- 			response['message'] = "Error: %s does not match format 'mm-dd-yyyy'" %("list_curation_date")
- 			response['status_code'] = 500
- 		else:	
- 			curation_date_obj = datetime.datetime.strptime(curation_date_str, "%m-%d-%Y")
- 	else:
- 		curation_date_obj = curation_date_str
-
- 	if response['status_code'] == 500:
- 		return response
-
  	document2 = data_collection.find({"user_id": user_id, "lists.list_id": list_id},{"lists" : 1});
   	if document2.count() == 0:	
  		response['message'] = "No list found with ID %s" %(list_id)
  		response['status_code'] = 204  #The server successfully processed the request and is not returning any content	
  	else:
- 		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$set": {"lists.$.title": list_info['list_title'], "lists.$.description": list_info['list_description'], "lists.$.author": list_info['list_author'], "lists.$.date_published": date_published_obj, "lists.$.curator": list_info['list_curator'], "lists.$.curation_date": curation_date_obj, "lists.$.source": list_info['list_source'], "lists.$.keywords": list_info['list_keywords'], "lists.$.focal_clade": list_info['list_focal_clade'], "lists.$.extra_info": list_info['list_extra_info'], "lists.$.is_public": list_info['is_list_public'], "lists.$.origin": list_info['list_origin']}})
-  				
+ 		upd_mgdb_lstobj = get_updatelist_mgdb_obj(list_info)
+ 		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$set": upd_mgdb_lstobj})
+ 		  				
  	return response
+
+#-------------------------------------------------------
+#create list object to update in mongodb 
+def get_updatelist_mgdb_obj(list_info):
+ 	key_list = list_info.keys()
+ 	upd_obj = {}
+	for k in key_list:
+ 		if k.find("public") > 0:
+ 			upd_obj['lists.$.is_public'] = list_info[k]
+ 		else:
+ 			st_indx = k.find("_")+1
+ 			en_indx = len(k)
+ 			new_key = "lists.$." + k[st_indx:en_indx]		   
+ 			upd_obj[new_key] = list_info[k]
+
+	return upd_obj
 
 #-------------------------------------------------------
 #create list object to store in mongodb 

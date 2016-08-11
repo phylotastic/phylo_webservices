@@ -114,6 +114,30 @@ class Species_List_Service_API(object):
         return service_result;
 
   	#-----------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def update_list(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            access_token = input_json["access_token"]
+            user_id =  input_json["user_id"]
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"NotJSON")     		 
+        except Exception, e:
+            return return_response_error(400,"Error:" + str(e), "NotJSON")
+        
+        #verify user
+        token_verification = authenticate_user.verify_access_token(access_token, user_id)
+        if not(token_verification['is_access_token_valid']):
+            return return_response_error(400,"Error:"+ token_verification['message'],"NotJSON")
+        #allow access to service for verified user
+        conn = species_list_service.connect_mongodb()
+        service_result = species_list_service.update_list_metadata(input_json, conn)   
+        conn.close()
+   
+        return service_result;
+
+    #-----------------------------------------------
     '''	
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
@@ -178,6 +202,7 @@ class Species_List_Service_API(object):
     insert_list.exposed = True
     remove_list.exposed = True
     replace_species.exposed = True
+    update_list.exposed = True
     #insert_species.exposed = True
     #remove_species.exposed = True
     
