@@ -575,7 +575,7 @@ if __name__ == '__main__':
    application.register_action("Default layout", "layout", main_layout, None, None)
    application.register_action("Clean layout", "layout", main_layout, None, None)
 
-
+   #host the wsgi application through cherrypy
    cherrypy.tree.graft(application, "/")
     
    try:
