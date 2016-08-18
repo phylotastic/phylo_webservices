@@ -4,7 +4,7 @@ import os, json
 import requests
 
 # Custom ETE Tree styles and web actions
-#image_path = "/home/tayeen/TayeenFolders/TreeViewer/webplugin_test/data/"
+image_dir = "/var/web_service/TreeViewer/img/"
 
 
 class WebTreeConfig(object):
@@ -92,7 +92,7 @@ class WebTreeConfig(object):
                   #add_face_to_node(img_face, node, column=5, position='aligned')
                   #add_face_to_node(img_face, node, column=3, aligned= True, position='branch-right')
               else:
-                  img_path = os.path.join("file:///home/tayeen/TayeenFolders/TreeViewer/WebTreeApp/newplugin_test/data/", "ina.jpg")
+                  img_path = os.path.join("file://"+image_dir, "ina.jpg")
                   img_face = ImgFace(img_path, is_url=True)  
               
               add_face_to_node(img_face, node, column=3, position='branch-right')
@@ -190,18 +190,17 @@ class WebTreeConfig(object):
     def run_action_linecolorwidth(self, tree, colorcode, linewidth):
         #nstyle["vt_line_type"] = 0 # 0 solid, 1 dashed, 2 dotted
         #nstyle["hz_line_type"] = 0 # 0 solid, 1 dashed, 2 dotted
-        print colorcode
-        print linewidth 
-        if colorcode == '':
+        if colorcode == '' and linewidth == '':
            return
-        elif linewidth == '':
-           return
+
         # Applies the same static style to all nodes in the tree. Note that,if "nstyle" is modified, changes will affect to all nodes
         for n in tree.traverse():
-            n.img_style['vt_line_width'] = int(linewidth)
-            n.img_style['hz_line_width'] = int(linewidth)
-            n.img_style['hz_line_color'] = colorcode#"#800000"
-            n.img_style["vt_line_color"] = colorcode#"#800000"
+            if linewidth != '':
+               n.img_style['vt_line_width'] = int(linewidth)
+               n.img_style['hz_line_width'] = int(linewidth)
+            if colorcode != '':
+               n.img_style['hz_line_color'] = colorcode#"#800000"
+               n.img_style["vt_line_color"] = colorcode#"#800000"
 #--------------------------------------------------------------         
     '''
     def change_linecolor(self,aindex, treeid, nodeid, node):

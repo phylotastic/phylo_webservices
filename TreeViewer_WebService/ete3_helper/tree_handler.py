@@ -57,7 +57,7 @@ class WebTreeHandler(object):
     @timeit
     def redraw(self):
         #print "Inside redraw calling tree.render()"
-        #os.environ["DISPLAY"]=":0" # Used by ete to render images
+        os.environ["DISPLAY"]=":0" # Used by ete to render images
         base64_img, img_map = self.tree.render("%%return.PNG", tree_style=self.tree.tree_style)
         #print "Inside redraw calling get_html_map()...."
         html_map = self.get_html_map(img_map)

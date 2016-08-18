@@ -175,7 +175,7 @@ def run_tree_action():
 
 
 # Server configuration
-def start_server(host="localhost", port=8989):
+def start_server(host="phylo.cs.nmsu.edu", port=8989):
     run(host=host, port=port)
 
 if __name__ == '__main__':
