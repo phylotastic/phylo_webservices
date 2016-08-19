@@ -23,6 +23,7 @@ from support import extract_names_service
 from support import resolve_names_service
 from support import get_tree_service
 from support import species_to_image_service_EOL
+from support import species_to_url_service_EOL
 from support import taxon_genome_species_service_NCBI
 #from support import usecase_text, treebase_api
 
@@ -37,6 +38,7 @@ WebService_Group2 = "fn"
 WebService_Group3 = "tnrs"
 WebService_Group4 = "gt"
 WebService_Group5 = "si"
+WebService_Group6 = "sl"
 
 WS_NAME = "phylotastic_ws"
 
@@ -50,22 +52,15 @@ ERROR_LOG_CHERRYPY_5004 = ROOT_FOLDER + "/log/%s_5004_error_log.log" %(str(datet
 
 #Prefix Filename
 
-def return_response_error(code,type,mess,format="JSON"):
-    if (format=="JSON"):
-        cherrypy.response.headers['Content-Type'] = "application/json"
-        cherrypy.response.headers['Retry-After']=60
-        cherrypy.response.status = code
-        message = {type:mess}
-        return json.dumps(message)
+def return_response_error(error_code, error_message,response_format="JSON"):
+    error_response = {'message': error_message, 'status_code':error_code}
+    if (response_format == "JSON"):
+        #cherrypy.response.headers['Content-Type'] = "application/json"
+        #cherrypy.response.headers['Retry-After']=60
+        #cherrypy.response.status = error_code    
+        return json.dumps(error_response)
     else:
-        return "Not support yet"
-    
-def return_success_get(forester_object):
-    cherrypy.response.headers['Content-Type'] = "application/json"
-    cherrypy.response.headers['Retry-After']=60
-    cherrypy.response.status = 200
-    return json.dumps(forester_object)
-
+        return error_response
 
 def is_json(myjson):
     try:
@@ -101,8 +96,8 @@ class Taxon_Genome_Service_API(object):
         try:
             taxonName = str(request_data['taxon']).strip();
             
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)), "JSON")
         
         service_result = taxon_genome_species_service_NCBI.get_genome_species(taxonName)   
         #-------------log request------------------
@@ -126,8 +121,8 @@ class Taxon_to_Species_Service_API(object):
         try:
             taxon = str(request_data['taxon']).strip();
             
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)), "JSON")
         
         service_result = taxon_to_species_service_OpenTree.get_all_species(taxon)   
         #-------------log request------------------
@@ -143,8 +138,8 @@ class Taxon_to_Species_Service_API(object):
             taxon = str(request_data['taxon']).strip();
             country = str(request_data['country']).strip();
             
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)), "JSON")
         
         service_result = taxon_to_species_service_OpenTree.get_country_species(taxon, country)   
         #-------------log request------------------
@@ -171,8 +166,8 @@ class Species_Image_Service_API(object):
         try:
             sp_lst = str(request_data['species']).strip();
             specieslist = sp_lst.split('|')
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)), "JSON")
         
         service_result = species_to_image_service_EOL.get_images_species(specieslist)   
         #-------------log request------------------
@@ -191,10 +186,9 @@ class Species_Image_Service_API(object):
             input_json = cherrypy.request.json
             #print input_json
             species_list = input_json["species"]
-            #if not (is_json(input_json)):
- 			#	return return_response_error(400,"error","content-type must be application/json","JSON") 				 
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+            
+        except Exception, e:
+            return return_response_error(400,"Error:" + str(e), "NotJSON")
         
         service_result = species_to_image_service_EOL.get_images_species(species_list, True)   
         #-------------log request------------------
@@ -209,6 +203,44 @@ class Species_Image_Service_API(object):
     get_images.exposed = True
     images.exposed = True
 
+#-------------------------------------------------------------
+class Species_Url_Service_API(object):
+    def index(self):
+        return "Species_Url_Service API (Abu Saleh) : Find EOL links of species";
+
+    #---------------------------------------------
+    def get_links(self, **request_data):
+        try:
+            sp_lst = str(request_data['species']).strip();
+            specieslist = sp_lst.split('|')
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        service_result = species_to_url_service_EOL.get_eolurls_species(specieslist)   
+        
+        return service_result;
+
+ 	#-----------------------------------------------	
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def links(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            species_list = input_json["species"]
+           				 
+        except:
+            return return_response_error(400,"error","Missing parameters text","JSON")
+        
+        service_result = species_to_url_service_EOL.get_eolurls_species(species_list, True)   
+           
+        return service_result;
+ 	#------------------------------------------------
+    #Public /index
+    index.exposed = True
+    get_links.exposed = True
+    links.exposed = True
+
+
 #--------------------------------------------------------------
 class Find_ScientificNames_Service_API(object):
     def index(self):
@@ -221,8 +253,8 @@ class Find_ScientificNames_Service_API(object):
                return return_response_error(400,"error","Missing parameter url","JSON")
             else: 
                url = url.strip()
-        except:
-            return return_response_error(400,"error","Missing parameters","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         
         service_result = extract_names_service.extract_names_URL(url, engine)   
         #-------------log request------------------
@@ -241,8 +273,8 @@ class Find_ScientificNames_Service_API(object):
                return return_response_error(400,"error","Missing parameter text","JSON")
             else: 
                text = text.strip()
-        except:
-            return return_response_error(400,"error","Missing parameters","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         
         service_result = extract_names_service.extract_names_TEXT(text, engine)
         #-------------log request------------------   
@@ -267,8 +299,8 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
         try:
             names = str(request_data['names']).strip();
             nameslist = names.split('|')
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         
         service_result = resolve_names_service.resolve_names_OT(nameslist, False, False, False)   
         #-------------log request------------------   
@@ -286,8 +318,8 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
  	    
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error:" + str(e), "NotJSON")
         
         service_result = resolve_names_service.resolve_names_OT(nameslist, False, False, True)   
         #-------------log request------------------   
@@ -311,8 +343,8 @@ class Resolve_ScientificNames_GNR_Service_API(object):
         try:
             names = str(request_data['names']).strip();
             nameslist = names.split('|')
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         
         service_result = resolve_names_service.resolve_names_GNR(nameslist)   
         #-------------log request------------------   
@@ -330,8 +362,8 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
  	    
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error:" + str(e), "NotJSON")
         
         service_result = resolve_names_service.resolve_names_GNR(nameslist, True)   
         #-------------log request------------------
@@ -355,8 +387,8 @@ class Get_Tree_OpenTree_Service_API(object):
         try:
             taxa = str(request_data['taxa']).strip();
             taxalist = taxa.split('|')
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         
         nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False, True)
         nameslist = nameslist_json["resolvedNames"]
@@ -376,8 +408,8 @@ class Get_Tree_OpenTree_Service_API(object):
             input_json = cherrypy.request.json
             nameslist = input_json["resolvedNames"]
  	    
-        except:
-            return return_response_error(400,"error","Missing parameters text","JSON")
+        except Exception, e:
+            return return_response_error(400,"Error:" + str(e), "NotJSON")
         
         service_result = get_tree_service.get_tree_OT(nameslist, True)   
         #-------------log request------------------   
@@ -430,6 +462,7 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Taxon_Genome_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "ncbi"), conf_thanhnh)
     cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_thanhnh)
     cherrypy.tree.mount(Species_Image_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group5), "eol"),conf_thanhnh)
+    cherrypy.tree.mount(Species_Url_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group6), "eol"),conf_thanhnh)
 
     cherrypy.tree.mount(Find_ScientificNames_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group2)), conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
