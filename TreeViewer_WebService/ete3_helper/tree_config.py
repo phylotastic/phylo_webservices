@@ -33,14 +33,11 @@ class WebTreeConfig(object):
         act.add_action('BoxHighlight', self.show_action_highlight, self.run_action_boxhighlight, None)
         act.add_action('IndividualHighlight', self.show_action_highlight, self.run_action_indvhighlight, None)
         #act.add_action('Change style', self.show_action_change_style, self.run_action_change_style, None)
-        #act.add_action('EOL link', self.show_eol_link, None, self.eol_link)
-        #act.add_action('Change line thickness', self.show_action_linethickness, self.run_action_linethickness, None)
-        #act.add_action('Change line color', self.show_action_linecolor, None, self.change_linecolor)
         act.add_action('Display picture', self.show_action_picture, self.run_action_picture, None)
         act.add_action('Hide picture', self.show_action_picture, self.run_clear_picture, None)
 
         return act
-
+    '''
     def get_node_data(self):
         #print self._tree_leaves 
         tip_info_csv = """
@@ -55,7 +52,7 @@ class WebTreeConfig(object):
             if line:
                name, url, mass, habit = map(str.strip, line.split(','))
                self._tip2info[name] = [url, mass, habit]
-        
+    '''    
 
 #------------------------------------------        
     def custom_layout(self,node):
@@ -95,7 +92,8 @@ class WebTreeConfig(object):
                   img_path = os.path.join("file://"+image_dir, "ina.jpg")
                   img_face = ImgFace(img_path, is_url=True)  
               
-              add_face_to_node(img_face, node, column=3, position='branch-right')
+              #add_face_to_node(img_face, node, column=3, position='branch-right')
+              add_face_to_node(img_face, node, column=4, position='aligned')
 
               #habitat_face = TextFace(self._tip2info[node.name][2], fsize=11, fgcolor='white')
               #habitat_face.background.color = 'steelblue'
@@ -106,8 +104,6 @@ class WebTreeConfig(object):
               #add_face_to_node(habitat_face, node, column=4, position='aligned')
               #add_face_to_node(habitat_face, node, column=4, aligned = True, position='branch-right')
 
-              #massbar_face = BarChartFace([self._tip2info[node.name][1]], width=50, height=25,colors=['navy'], labels=['Mass'], min_value=0.0, max_value=200.0)
-              #add_face_to_node(massbar_face, node, column=4, position='aligned')
         else:
             node.img_style['size'] = 4
             node.img_style['shape'] = 'square'
@@ -172,13 +168,15 @@ class WebTreeConfig(object):
 
 #-----------------------------------------------
     def show_action_picture(self, node):
-        return True
+        if node.is_leaf():
+           return True
+        else:
+           return False
 
     def run_action_picture(self, tree, node):
-        #print "executing run action picture....."
         tip_img_url = get_image_data(node.name)
         self._img_data_dic[node.name] = tip_img_url
-        #self._tip2info[node.name] = [url, mass, habit]
+        
         if node.name not in self._img_chk_list:
            self._img_chk_list.append(node.name)
 
@@ -202,27 +200,11 @@ class WebTreeConfig(object):
                n.img_style['hz_line_color'] = colorcode#"#800000"
                n.img_style["vt_line_color"] = colorcode#"#800000"
 #--------------------------------------------------------------         
-    '''
-    def change_linecolor(self,aindex, treeid, nodeid, node):
-        return """<li><a onClick="myFunction()">Change color</a></li>"""
-    '''
-#-----------------------------------
-    def show_eol_link(self, node):
-        return True
-
-    def eol_link(self, aindex, treeid, nodeid, node):
-        return '''<li>
-          <a target="_blank" href="http://www.eol.org/">
-          <img src="" alt=""> Search in eol: %s
-          </a>
-          </li> ''' %\
-          (node.name)
-
-#-------------------------------------------
+#=========================Non-Class methods========================    
 def get_image_data(tip_name):
     image_service_uri = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/images"
     image_service_payload = {'species': [tip_name]}
-    #print "Executing service..."
+    
     service_response = execute_webservice(image_service_uri, json.dumps(image_service_payload))
     img_lst_len = len(service_response['species'][0]['images'])
     if img_lst_len != 0:
