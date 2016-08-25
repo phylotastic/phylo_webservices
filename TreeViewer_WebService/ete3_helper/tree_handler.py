@@ -57,7 +57,7 @@ class WebTreeHandler(object):
     @timeit
     def redraw(self):
         #print "Inside redraw calling tree.render()"
-        os.environ["DISPLAY"]=":0" # Used by ete to render images
+        #os.environ["DISPLAY"]=":0" # Used by ete to render images
         base64_img, img_map = self.tree.render("%%return.PNG", tree_style=self.tree.tree_style)
         #print "Inside redraw calling get_html_map()...."
         html_map = self.get_html_map(img_map)
@@ -70,12 +70,12 @@ class WebTreeHandler(object):
         return html_map+ '<div id="%s" >'%tree_div_id + html_img + ete_link + "</div>"
 
     #------------------------------------------
-    def save_image(self):
-        img_url = os.path.join("http://localhost/wpdemo/tmp/", self.treeid+".SVG")
-        img_path = os.path.join("/var/www/html/wpdemo/tmp/", self.treeid+".SVG")        
+    def save_image(self, img_format):
+        img_url = os.path.join("http://localhost/wpdemo/tmp/", self.treeid+"."+img_format)
+        img_path = os.path.join("/var/www/html/wpdemo/tmp/", self.treeid+"."+img_format)        
         img = self.tree.render(img_path, tree_style=self.tree.tree_style)
-        print "returning from save image"
-        return '<li><a target="_blank" href="%s">Download Image</a></li>' %(img_url)
+        #print "returning from save image"
+        return '<a target="_blank" href="%s">Download Image</a>' %(img_url)
     #------------------------------------------
     def get_html_map(self, img_map):
         html_map = '<MAP NAME="%s" class="ete_tree_img">' %(self.mapid)
@@ -134,6 +134,11 @@ class WebTreeHandler(object):
     def run_tree_action(self, color_code,line_width):
         #print "run_tree_action called..."
         return self.treeconfig_obj.run_action_linecolorwidth(self.tree, color_code, line_width)
+
+    def run_tree_ladderize(self):
+        #print "run_tree_action called..."
+        return self.treeconfig_obj.run_action_ladderize(self.tree)
+
     #----------------------------------------
    
 class NodeActions(object):

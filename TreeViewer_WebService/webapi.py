@@ -1,3 +1,4 @@
+from distutils.util import strtobool
 import gzip
 import logging as log
 from StringIO import StringIO
@@ -56,27 +57,31 @@ def server_status():
 def get_tree_image():
     ''' Requires a POST param "newick" containing the tree to be loaded. '''
 	
-    print "get_tree_image called...."
+    #print "get_tree_image called...."
     if request.json:
         source_dict = request.json
     else:
         source_dict = request.POST
+    
     newick = source_dict.get('newick', '').strip()
     treeid = source_dict.get('treeid', '').strip()
-    print "Inside get_tree_image, treeid: " + str(treeid)
+    external_data = source_dict.get('extra_data')
+    
     if not newick or not treeid:
         return web_return('No tree provided', response)
 
     h = TREE_HANDLER(newick, treeid)
     tc = TREE_CONFIG(h.tree, h.treeid)
+    tc.set_extra_tipdata(external_data)
+
     h.set_actions(tc.get_node_action())
     h.set_style(tc.get_tree_style())
     h.set_tree_config(tc)
     LOADED_TREES[h.treeid] = h
-    print "redraw called....."
+    #print "redraw called....."
     # Renders initial tree
     img = h.redraw()
-    print "returning initial image from get_tree_image.."
+    
     return web_return(img, response)
 
 #------------------------------------------------
@@ -89,13 +94,17 @@ def save_tree_image():
         source_dict = request.POST
     
     treeid = source_dict.get('treeid', '').strip()
+    img_format = source_dict.get('format', '').strip()
     #print "save_tree_image called...."
     if not treeid:
         return web_return('No tree provided', response)
+    elif not img_format:
+        return web_return('No image format provided', response)
+
     h = LOADED_TREES[treeid]
     
     # Renders initial tree
-    html_part = h.save_image()
+    html_part = h.save_image(img_format)
     
     return web_return(html_part, response)
 
@@ -107,10 +116,10 @@ def get_action():
         source_dict = request.json
     else:
         source_dict = request.POST
-    print "get_actions method called...."  
+    #print "get_actions method called...."  
     treeid = source_dict.get('treeid', '').strip()
     nodeid = source_dict.get('nodeid', '').strip()
-    print "treeid: " + str(treeid) + " nodeid: " + str(nodeid)
+    #print "treeid: " + str(treeid) + " nodeid: " + str(nodeid)
     if treeid and nodeid:
         #html = "<ul class='ete_action_list'>"
         header = "Node Actions"
@@ -123,7 +132,7 @@ def get_action():
             else:
                html += """<li><a  onClick="run_action('%s', '%s', '%s', '%s');" >%s</a></li>""" %(treeid, nodeid, '', aindex, aname)
         html += "</ul>"
-    print "returning html for actions from get_actions.."
+    
     return web_return(html, response)
 
 @post('/run_action')
@@ -132,20 +141,20 @@ def run_action():
         source_dict = request.json
     else:
         source_dict = request.POST
-    print "run_action method called...."
+    #print "run_action method called...."
   
     treeid = source_dict.get('treeid', '').strip()
     nodeid = source_dict.get('nodeid', '').strip()
     faceid = source_dict.get('faceid', '').strip()
     aindex = source_dict.get('aindex', '').strip()
-    print "treeid: " + str(treeid) + " nodeid: " + str(nodeid) + " aindex: " + str(aindex)
+    #print "treeid: " + str(treeid) + " nodeid: " + str(nodeid) + " aindex: " + str(aindex)
     if treeid and nodeid and aindex:
         h = LOADED_TREES[treeid]
         print "run_action method in treehandler called...."
         h.run_action(aindex, nodeid)
         print "redraw method in treehandler called..."
         img = h.redraw()
-    print "returning image from run_action...."
+    
     return web_return(img, response)
 
 
@@ -155,23 +164,29 @@ def run_tree_action():
         source_dict = request.json
     else:
         source_dict = request.POST
-    print "run_tree_action method called...."
+    #print "run_tree_action method called...."
   
     treeid = source_dict.get('treeid', '').strip()
     colorcode = source_dict.get('colorcode', '').strip()
     linewidth = source_dict.get('linewidth', '').strip()
+    ladderized = source_dict.get('ladderize', '').strip()
+    if ladderized == '':
+        do_ladderize = False
+    else:
+    	do_ladderize = bool(strtobool(ladderized))
+
     #print "treeid: " + str(treeid) + " nodeid: " + str(nodeid) + " aindex: " + str(aindex)
     if treeid:
         h = LOADED_TREES[treeid]
-        print "run_tree_action method in treehandler called...."
+        
         h.run_tree_action(colorcode, linewidth)
-        print "redraw method in treehandler called..."
+        if do_ladderize:
+           #print "run_tree_ladderize method called...."
+           h.run_tree_ladderize()
+        #print "redraw method in treehandler called..."
         img = h.redraw()
-    print "returning image from run_action...."
+    
     return web_return(img, response)
-
-
-
 
 
 # Server configuration

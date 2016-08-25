@@ -26,8 +26,8 @@
 </div>
 
 <br>
-<div id='server_status'>
-</div>
+TreeViewerWebService status: <span id='server_status'>
+</span>
 
 
 <div style="clear:both;" >
@@ -40,18 +40,27 @@
     </div>
     <br>
     <div style="">
-    <!--<input type='submit' value='Generate SVG image' onClick='save_tree_image();'> 
-    <div id="svg_image"></div> -->
+    
     <fieldset>
     <legend>Tree Actions</legend>
     Line width:<input type="radio" name="lwidth" value="1" checked="checked">1
                <input type="radio" name="lwidth" value="2">2
                <input type="radio" name="lwidth" value="3">3
                <input type="radio" name="lwidth" value="4">4
-    Line Color:<input type="text" name="color" value="" size=20>
+     Line Color:<input type="text" name="color" value="" size=20>
+    
+    <br/>
+    Ladderize Tree: <input type="checkbox" id="ladderize">
     <input type="submit" value="Apply" onclick="run_tree_action();">
+    <br/>
     </fieldset>
+    Image format: <input type="radio" name="format" value="png" checked="checked">png
+    <input type="radio" name="format" value="svg">svg
+    <input type='submit' value='Generate image link for download' onClick='save_tree_image();'>
+    <div id="svg_image"></div>
+
     </div>
+    <p></p>
     <!-- Tree container -->
     <div class="ete_image" id="img1"></div>
 
