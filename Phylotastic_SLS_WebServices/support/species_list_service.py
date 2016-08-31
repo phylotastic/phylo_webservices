@@ -1,7 +1,7 @@
 import pymongo
 import datetime 
 import json
-
+import types
 import authenticate_user
 
 from bson import json_util
@@ -468,7 +468,10 @@ def update_list_metadata(input_json, conn):
  	document2 = data_collection.find({"user_id": user_id, "lists.list_id": list_id},{"lists" : 1});
   	if document2.count() == 0:	
  		response['message'] = "No list found with ID %s" %(list_id)
- 		response['status_code'] = 204  #The server successfully processed the request and is not returning any content	
+ 		response['status_code'] = 204  #The server successfully processed the request and is not returning any content
+  	elif 'is_list_public' in list_info and (type(list_info['is_list_public']) != types.BooleanType):
+ 		response['message'] = "is_list_public property must be of type boolean"
+ 		response['status_code'] = 500  #The server error 	
  	else:
  		upd_mgdb_lstobj = get_updatelist_mgdb_obj(list_info)
  		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$set": upd_mgdb_lstobj})
@@ -511,6 +514,9 @@ def create_list_mgdb_obj(list_info, list_id):
  	curation_date_str = list_json['list_curation_date']
  	curation_date_obj = curation_date_str
 
+ 	if 'is_list_public' in list_json and (type(list_json['is_list_public']) != types.BooleanType):
+ 		raise ValueError('is_list_public property must be of type boolean')
+
  	list_mgdb_obj = {"list_id": list_id,
          "title": list_json['list_title'],
          "description": list_json['list_description'],
@@ -532,6 +538,10 @@ def create_list_mgdb_obj(list_info, list_id):
  except KeyError, e:
  	mgdb_obj_validity['mg_obj'] = "KeyError-%s"% str(e)
  	mgdb_obj_validity['mg_obj_valid'] = False
+ except ValueError, e:
+ 	mgdb_obj_validity['mg_obj'] = "ValueError-%s"% str(e)
+ 	mgdb_obj_validity['mg_obj_valid'] = False
+ 
 
  return mgdb_obj_validity
 
