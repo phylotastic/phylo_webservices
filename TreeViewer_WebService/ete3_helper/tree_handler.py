@@ -18,21 +18,9 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 class WebTreeHandler(object):
-    def __init__(self, newick, tid, actions=None, style=None):
-        try:
-            self.tree = Tree(newick)
-        except NewickError:
-            self.tree = Tree(newick, format=1)
-
-        if actions is None:
-           self.tree.actions = NodeActions()
-        else:
-           self.tree.actions = actions
-        
-        if style is None:
-           self.tree.tree_style = TreeStyle()
-        else:
-           self.tree.tree_style = style
+    def __init__(self, newick_str, tid, actions=None, style=None):
+        self.tree = None
+        self.nw_str = newick_str
 
         self.treeid = tid
         self.mapid = "map_" + tid
@@ -40,16 +28,35 @@ class WebTreeHandler(object):
         self.boxid = 'box_' + tid
 
         self.treeconfig_obj = None
-
+        
+    def init_nodeids(self):
         # Initialze node internal IDs
         for index, n in enumerate(self.tree.traverse('preorder')):
             n._nid = index
 
-    def set_actions(self, actions):
-        self.tree.actions = actions
+    def parse_newick(self):
+        try:
+           self.tree = Tree(self.nw_str)
+        except NewickError:
+           try:
+              self.tree = Tree(self.nw_str, format=1)
+           except NewickError as e:
+              return "Newick Parsing Error: "+str(e)
 
-    def set_style(self, style):
-        self.tree.tree_style = style
+        self.init_nodeids()
+        return True
+
+    def set_actions(self, actions=None):
+        if actions is None:
+           self.tree.actions = NodeActions()
+        else:
+           self.tree.actions = actions
+
+    def set_style(self, style=None):
+        if style is None:
+           self.tree.tree_style = TreeStyle()
+        else:
+           self.tree.tree_style = style
 
     def set_tree_config(self, tcofg):
         self.treeconfig_obj = tcofg

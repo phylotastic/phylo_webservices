@@ -5,7 +5,7 @@ import requests
 import random
 
 # Custom ETE Tree styles and web actions
-image_path = "/var/web_service/TayeenFolders/TreeViewer/webplugin_test/data/"
+image_path = "/var/web_service/TreeViewer/img/"
 
 class WebTreeConfig(object):
     def __init__(self, treeobj, tid):
@@ -339,7 +339,13 @@ class WebTreeConfig(object):
         else:
            eol_link = self._eol_link_dic[node.name]
 
-        return '''<li>
+        if eol_link is None:
+           return '''<li>
+              <b>No EOL link for: <i>%s</i></b>
+              </li> ''' %\
+              (node.name)
+        else:
+           return '''<li>
               <a target="_blank" href="%s">
               <b>EOL link: <i>%s</i></b>
               </a>

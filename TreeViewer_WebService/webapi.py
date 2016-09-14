@@ -7,6 +7,8 @@ from bottle import (run, get, post, request, route, response, abort, hook,
 
 from ete3_helper.tree_handler import WebTreeHandler, NodeActions, TreeStyle
 from ete3_helper.tree_config import WebTreeConfig
+import types
+
 
 LOADED_TREES = {}
 COMPRESS_DATA = True
@@ -71,6 +73,12 @@ def get_tree_image():
         return web_return('No tree provided', response)
 
     h = TREE_HANDLER(newick, treeid)
+    newick_checker = h.parse_newick()
+
+    if type(newick_checker) != types.BooleanType:
+       del h
+       return web_return("<b>"+newick_checker+"</b>", response)
+
     tc = TREE_CONFIG(h.tree, h.treeid)
     tc.set_extra_tipdata(external_data)
 
