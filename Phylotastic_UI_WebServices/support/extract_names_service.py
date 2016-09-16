@@ -24,15 +24,16 @@ def get_sn_url(inputURL, sEngine=0):
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
     else:
-        return json.dumps({'scientificNames': scientificNamesList,'status_code': 500}) 
+        return {'scientificNames': scientificNamesList,'status_code': 500} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 204}) 
+         return {'scientificNames': scientificNamesList, 'status_code': 204} 
     else:
-         scientificNamesList = get_sn(token_result['names']) 
-         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 200}) 
+         all_scientificNamesList = get_sn(token_result['names'])
+         scientificNamesList = uniquify(all_scientificNamesList) 
+         return {'scientificNames': scientificNamesList, 'status_code': 200} 
      
 #----------------------------------------------    
 #get scientific names from final api-result
@@ -93,28 +94,46 @@ def get_sn_text(inputTEXT, sEngine=0):
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
     else:
-        return json.dumps({'scientificNames': scientificNamesList, 'status_code': 500}) 
+        return {'scientificNames': scientificNamesList, 'status_code': 500} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 204}) 
+         return {'scientificNames': scientificNamesList, 'status_code': 204} 
     else:
-         scientificNamesList = get_sn(token_result['names']) 
-         return json.dumps({'scientificNames': scientificNamesList, 'status_code': 200}) 
+         all_scientificNamesList = get_sn(token_result['names'])
+         scientificNamesList = uniquify(all_scientificNamesList) 
+         return {'scientificNames': scientificNamesList, 'status_code': 200} 
 
 #-----------------------------------------------------------
+# removes duplicates from a list
+def uniquify(lst):
+   # order preserving
+   checked = []
+   for item in lst:
+       if item not in checked:
+           checked.append(item)
+   return checked
 
-def extract_names_URL(inputURL, sEngine): 
+#--------------------------------------
+def extract_names_URL(inputURL, sEngine):
+    start_time = time.time()
     final_result = get_sn_url(inputURL, sEngine)    
-    
-    return final_result
+    end_time = time.time()
+    execution_time = end_time-start_time
+    final_result['execution_time'] = execution_time 
+ 
+    return json.dumps(final_result)
 
 def extract_names_TEXT(inputTEXT, sEngine):
+    start_time = time.time()
     final_result = get_sn_text(inputTEXT, sEngine)    
+    end_time = time.time()
+    execution_time = end_time-start_time
+    final_result['execution_time'] = execution_time
     
-    return final_result	
-
+    return json.dumps(final_result)	    
+   
 #--------------------------------------------
 
 #if __name__ == '__main__':
