@@ -191,6 +191,22 @@ class WebTreeConfig(object):
            node.img_style["bgcolor"]= node.bh_bgcolor
         if hasattr(node, "bh_size"):
            node.img_style["size"]= node.bh_size
+       
+        if hasattr(node, "lh_color"):
+           node.img_style['hz_line_color'] = node.lh_color
+           node.img_style["vt_line_color"] = node.lh_color
+        
+        if hasattr(node, "lh_width"):
+           node.img_style['hz_line_width'] = node.lh_width
+           node.img_style['vt_line_width'] = node.lh_width
+
+        if hasattr(node, "lh_width") and hasattr(node, "lh_color"):
+           for n in node.iter_descendants():
+               n.img_style['hz_line_color'] = node.lh_color
+               n.img_style["vt_line_color"] = node.lh_color
+               n.img_style['hz_line_width'] = node.lh_width
+               n.img_style['vt_line_width'] = node.lh_width
+
 #----------------------------------------------
     def show_action_collapse(self, node):
         # Only internal node can be collapsed
@@ -263,16 +279,14 @@ class WebTreeConfig(object):
         
 
     def run_action_indvhighlight(self, tree, node):
-        node.img_style['hz_line_color'] = "#800000"
-        node.img_style["vt_line_color"] = "#800000"
-        node.img_style['hz_line_width'] = 4
-        node.img_style['vt_line_width'] = 4
-        for n in node.iter_descendants():
-            n.img_style['hz_line_color'] = "#800000"
-            n.img_style["vt_line_color"] = "#800000"
-            n.img_style['hz_line_width'] = 4
-            n.img_style['vt_line_width'] = 4
-        #node.img_style['size'] = 4
+        is_highlighted = True if ( hasattr(node, "lh_color") and hasattr(node, "lh_width") ) else False
+        
+        if is_highlighted:
+           node.add_feature("lh_color", "#000000")
+           node.add_feature("lh_width", 0)
+        else:
+           node.add_feature("lh_color", "#800000")
+           node.add_feature("lh_width", 4)
 
 #-----------------------------------------------
     def show_action_change_style(self, node):
