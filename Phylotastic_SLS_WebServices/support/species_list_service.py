@@ -239,7 +239,8 @@ def get_list(conn, user_id, list_id, verbose, content, access_token):
  			return json.dumps({'status_code': 400, 'message': "Error: "+token_verification['message']})
  		get_list_result = get_user_lists(data_collection, user_id, verbose, content)
  	elif ((user_id == None) and (list_id != -1) and (access_token == None)):
- 		return json.dumps({'status_code': 400, 'message': "Need to provide valid user_id and access_token to get the list with ID %s"%(list_id)})
+ 		#return json.dumps({'status_code': 400, 'message': "Need to provide valid user_id and access_token to get the list with ID %s"%(list_id)})
+ 		get_list_result = get_list_by_id(data_collection, None, list_id, verbose, content)
  	elif ((user_id != None) and (list_id != -1) and (access_token == None)):
  		return json.dumps({'status_code': 400, 'message': "Need to provide a valid access_token to get the list with ID %s"%(list_id)})
  	elif ((user_id != None) and (list_id != -1) and (access_token != None)):
