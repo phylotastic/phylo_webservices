@@ -17,6 +17,7 @@ class WebTreeConfig(object):
         self._tip2color = {}
         self._tip2headers = None
         self._tip_max = 0.0
+        self._custom_options = {"draw_support": False, "draw_internal": False}
         self._node2label = {}
         self._img_chk_list = []
         self._img_data_dic = {}
@@ -46,6 +47,14 @@ class WebTreeConfig(object):
         act.add_action('Swap children',self.show_action_swap,self.swap_branches,None)
 
         return act
+
+
+    def set_custom_options(self, branch_len=False, internal_node=False):
+        #set whether branch lengths should be drawn or not
+        self._custom_options["draw_support"] = branch_len
+        #set whether internal nodes should be drawn or not
+        self._custom_options["draw_internal"] = internal_node
+
 
     def set_extra_tipdata(self, extra_tipdata):
         #ext_json_data = json.loads(extra_tipdata)
@@ -138,7 +147,7 @@ class WebTreeConfig(object):
             node.img_style['size'] = 4
             node.img_style['shape'] = 'square'
         
-            if node.name:
+            if node.name and self._custom_options["draw_internal"]:
               name_face = TextFace(node.name, fgcolor='grey', fsize=10)
               name_face.margin_top = 4
               name_face.margin_right = 4
@@ -154,7 +163,7 @@ class WebTreeConfig(object):
                label_face.margin_bottom = 4
                add_face_to_node(label_face, node, column=0, position="branch-top")
             
-            if node.support:
+            if node.support and self._custom_options["draw_support"]:
               support_face = TextFace(node.support, fgcolor='indianred', fsize=10)
               support_face.margin_top = 4
               support_face.margin_right = 4

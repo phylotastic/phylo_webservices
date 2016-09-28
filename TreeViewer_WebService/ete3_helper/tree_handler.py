@@ -146,6 +146,9 @@ class WebTreeHandler(object):
         #print "run_tree_action called..."
         return self.treeconfig_obj.run_action_ladderize(self.tree)
 
+    def run_tree_customize(self, branch, internal):
+        #print "run_tree_customize called..."
+        return self.treeconfig_obj.set_custom_options(branch, internal)
     #----------------------------------------
    
 class NodeActions(object):

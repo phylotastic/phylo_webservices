@@ -67,7 +67,6 @@ def get_tree_image():
     
     newick = source_dict.get('newick', '').strip()
     treeid = source_dict.get('treeid', '').strip()
-    external_data = source_dict.get('extra_data')
     
     if not newick or not treeid:
         return web_return('No tree provided', response)
@@ -80,7 +79,10 @@ def get_tree_image():
        return web_return("<b>"+newick_checker+"</b>", response)
 
     tc = TREE_CONFIG(h.tree, h.treeid)
-    tc.set_extra_tipdata(external_data)
+    #check whether external data is provided or not
+    if 'extra_data' in source_dict:
+        external_data = source_dict.get('extra_data')
+        tc.set_extra_tipdata(external_data)
 
     h.set_actions(tc.get_node_action())
     h.set_style(tc.get_tree_style())
@@ -177,12 +179,21 @@ def run_tree_action():
     treeid = source_dict.get('treeid', '').strip()
     colorcode = source_dict.get('colorcode', '').strip()
     linewidth = source_dict.get('linewidth', '').strip()
-    ladderized = source_dict.get('ladderize', '').strip()
-    if ladderized == '':
-        do_ladderize = False
-    else:
-    	do_ladderize = bool(strtobool(ladderized))
+    
+    do_ladderize = False
+    if "ladderize" in source_dict:
+        ladderized = source_dict.get('ladderize', '').strip()
+        do_ladderize = bool(strtobool(ladderized))
 
+    show_branch_info = False
+    if "show_branch" in source_dict: 
+        show_branch = source_dict.get('show_branch', '').strip()
+        show_branch_info = bool(strtobool(show_branch))
+
+    show_internal_nodes = False
+    if "show_internal" in source_dict: 
+        show_internal = source_dict.get('show_internal', '').strip()
+        show_internal_nodes = bool(strtobool(show_internal))
     #print "treeid: " + str(treeid) + " nodeid: " + str(nodeid) + " aindex: " + str(aindex)
     if treeid:
         h = LOADED_TREES[treeid]
@@ -191,6 +202,8 @@ def run_tree_action():
         if do_ladderize:
            #print "run_tree_ladderize method called...."
            h.run_tree_ladderize()
+        
+        h.run_tree_customize(show_branch_info, show_internal_nodes)
         #print "redraw method in treehandler called..."
         img = h.redraw()
     
