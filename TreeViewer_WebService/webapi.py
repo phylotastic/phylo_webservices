@@ -68,6 +68,11 @@ def get_tree_image():
     newick = source_dict.get('newick', '').strip()
     treeid = source_dict.get('treeid', '').strip()
     
+    if "top_offset" in source_dict:
+        topoffset = source_dict.get('top_offset','').strip()
+    if "left_offset" in source_dict:
+        leftoffset = source_dict.get('left_offset', '').strip()
+
     if not newick or not treeid:
         return web_return('No tree provided', response)
 
@@ -90,7 +95,7 @@ def get_tree_image():
     LOADED_TREES[h.treeid] = h
     #print "redraw called....."
     # Renders initial tree
-    img = h.redraw()
+    img = h.redraw(topoffset, leftoffset)
     
     return web_return(img, response)
 
@@ -131,10 +136,20 @@ def get_action():
     nodeid = source_dict.get('nodeid', '').strip()
     #print "treeid: " + str(treeid) + " nodeid: " + str(nodeid)
     if treeid and nodeid:
+        h = LOADED_TREES[treeid]
         #html = "<ul class='ete_action_list'>"
+        node_name = h.get_node_name(nodeid)
         header = "Node Actions"
         html = """<div id="ete_popup_header"><span id="ete_popup_header_text">%s</span><div id="ete_close_popup" onClick='hide_popup();'></div></div><ul>""" % (header)
-        h = LOADED_TREES[treeid]
+        
+        if node_name:
+           html += """
+                <li style="background:#eee; font-size:10pt;">
+                <div style="text-align:left;font-weight:bold;">
+                 Node: %s
+                </div>
+                </li>"""  %(node_name)
+
         for aindex, aname, html_generator in h.get_avail_actions(nodeid):
             node = h.get_tree_node(nodeid)
             if html_generator:
@@ -194,6 +209,12 @@ def run_tree_action():
     if "show_internal" in source_dict: 
         show_internal = source_dict.get('show_internal', '').strip()
         show_internal_nodes = bool(strtobool(show_internal))
+    
+    if "top_offset" in source_dict:
+        topoffset = source_dict.get('top_offset','').strip()
+    if "left_offset" in source_dict:
+        leftoffset = source_dict.get('left_offset', '').strip()
+
     #print "treeid: " + str(treeid) + " nodeid: " + str(nodeid) + " aindex: " + str(aindex)
     if treeid:
         h = LOADED_TREES[treeid]
@@ -205,7 +226,7 @@ def run_tree_action():
         
         h.run_tree_customize(show_branch_info, show_internal_nodes)
         #print "redraw method in treehandler called..."
-        img = h.redraw()
+        img = h.redraw(topoffset, leftoffset)
     
     return web_return(img, response)
 

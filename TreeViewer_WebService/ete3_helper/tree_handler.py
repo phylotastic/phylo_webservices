@@ -62,7 +62,7 @@ class WebTreeHandler(object):
         self.treeconfig_obj = tcofg
 
     @timeit
-    def redraw(self):
+    def redraw(self, top_offset=0,left_offset=0):
         #print "Inside redraw calling tree.render()"
         #os.environ["DISPLAY"]=":0" # Used by ete to render images
         base64_img, img_map = self.tree.render("%%return.PNG", tree_style=self.tree.tree_style)
@@ -70,7 +70,7 @@ class WebTreeHandler(object):
         html_map = self.get_html_map(img_map)
 
         ete_link = '<div style="margin:0px;padding:0px;text-align:left;"><a href="http://etetoolkit.org" style="font-size:7pt;" target="_blank" >Powered by etetoolkit</a></div>'
-        html_img = """<img id="%s" class="ete_tree_img" USEMAP="#%s" onLoad="javascript:bind_popup();" src="data:image/gif;base64,%s">""" %(self.imgid, self.mapid, base64_img)
+        html_img = """<img id="%s" class="ete_tree_img" USEMAP="#%s" onLoad="javascript:bind_popup(%s,%s);" src="data:image/gif;base64,%s">""" %(self.imgid, self.mapid, left_offset, top_offset, base64_img)
 
         tree_div_id = self.boxid
         #print "returning html from redraw method...."
@@ -123,6 +123,11 @@ class WebTreeHandler(object):
     def get_tree_node(self, nodeid):
         target_node = self.tree.search_nodes(_nid=int(nodeid))[0]
         return target_node
+
+    def get_node_name(self, nodeid):
+        target_node = self.get_tree_node(nodeid)
+        return target_node.name
+
     #--------------------------------------
     def get_avail_actions(self, nodeid):
         target = self.tree.search_nodes(_nid=int(nodeid))[0]
