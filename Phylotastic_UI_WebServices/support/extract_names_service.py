@@ -31,8 +31,8 @@ def get_sn_url(inputURL, sEngine=0):
     if token_result['total'] == 0:
          return {'scientificNames': scientificNamesList, 'status_code': 204} 
     else:
-         all_scientificNamesList = get_sn(token_result['names'])
-         scientificNamesList = uniquify(all_scientificNamesList) 
+         scientificNamesList = get_sn(token_result['names'])
+         #scientificNamesList = uniquify(all_scientificNamesList) 
          return {'scientificNames': scientificNamesList, 'status_code': 200} 
      
 #----------------------------------------------    
@@ -44,9 +44,12 @@ def get_sn(namesList):
         #scName = element['scientificName'].replace(' ', '+')
         scName = sn['scientificName']       
         if is_ascii(scName): #check if there is any string with unicode character
-            snlist.append(str(scName))    
-        else:         
-            uclist.append(scName)
+            # Remove any parenthesis
+            scName = re.sub(r'[()]', "", scName)
+            if scName not in snlist: # Check for duplicate
+               snlist.append(str(scName))    
+        #else:         
+        #    uclist.append(scName)
     
     return snlist; 
 
@@ -101,12 +104,13 @@ def get_sn_text(inputTEXT, sEngine=0):
     if token_result['total'] == 0:
          return {'scientificNames': scientificNamesList, 'status_code': 204} 
     else:
-         all_scientificNamesList = get_sn(token_result['names'])
-         scientificNamesList = uniquify(all_scientificNamesList) 
+         scientificNamesList = get_sn(token_result['names'])
+         #scientificNamesList = uniquify(all_scientificNamesList) 
          return {'scientificNames': scientificNamesList, 'status_code': 200} 
 
 #-----------------------------------------------------------
 # removes duplicates from a list
+'''
 def uniquify(lst):
    # order preserving
    checked = []
@@ -114,14 +118,14 @@ def uniquify(lst):
        if item not in checked:
            checked.append(item)
    return checked
-
+'''
 #--------------------------------------
 def extract_names_URL(inputURL, sEngine):
     start_time = time.time()
     final_result = get_sn_url(inputURL, sEngine)    
     end_time = time.time()
     execution_time = end_time-start_time
-    final_result['execution_time'] = execution_time 
+    final_result['execution_time'] = "{:4.2f}".format(execution_time) 
  
     return json.dumps(final_result)
 
@@ -130,7 +134,7 @@ def extract_names_TEXT(inputTEXT, sEngine):
     final_result = get_sn_text(inputTEXT, sEngine)    
     end_time = time.time()
     execution_time = end_time-start_time
-    final_result['execution_time'] = execution_time
+    final_result['execution_time'] = "{:4.2f}".format(execution_time)
     
     return json.dumps(final_result)	    
    
