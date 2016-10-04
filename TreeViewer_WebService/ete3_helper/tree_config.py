@@ -43,7 +43,7 @@ class WebTreeConfig(object):
         act.add_action('Display picture', self.show_action_picture, self.run_action_picture, None)
         act.add_action('Hide picture', self.show_action_picture, self.run_clear_picture, None)
         act.add_action('Collapse', self.show_action_collapse, self.collapse, None)
-        act.add_action('Expand', self.show_action_collapse, self.expand, None)
+        act.add_action('Expand', self.show_action_expand, self.expand, None)
         act.add_action('Swap children',self.show_action_swap,self.swap_branches,None)
 
         return act
@@ -219,10 +219,10 @@ class WebTreeConfig(object):
 #----------------------------------------------
     def show_action_collapse(self, node):
         # Only internal node can be collapsed
-        if node.is_leaf():
-           return False
-        else:
+        if (not node.is_leaf() and (not hasattr(node, "hide") or node.hide==False)):
            return True
+        else:
+           return False
 
 #-----------------------------------------------
     def collapse(self,tree,node):
@@ -232,6 +232,15 @@ class WebTreeConfig(object):
            node.add_feature("bsize", 25)
            node.add_feature("shape", "sphere")
            node.add_feature("fgcolor", "#000080")
+
+#-------------------------------------------------
+    def show_action_expand(self, node):
+        # Only internal node can be collapsed
+        if (not node.is_leaf() and (hasattr(node, "hide") and node.hide==True)):
+           return True
+        else:
+           return False
+
 #-------------------------------------------------
     def expand(self,tree,node):
         can_expand = lambda node: not node.is_leaf() and (hasattr(node, "hide") and node.hide==True)

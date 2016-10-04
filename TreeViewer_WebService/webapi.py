@@ -75,6 +75,9 @@ def get_tree_image():
 
     if not newick or not treeid:
         return web_return('No tree provided', response)
+  
+    if treeid in LOADED_TREES:
+       del LOADED_TREES[treeid] #"delete existing tree obj of same tree"
 
     h = TREE_HANDLER(newick, treeid)
     newick_checker = h.parse_newick()
