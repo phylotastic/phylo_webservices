@@ -42,7 +42,7 @@ def get_species_info(speciesId):
  		'key': EOL_API_Key,
  		'batch' : False,
  		'id': speciesId,
- 		'images_per_page': 3,
+ 		'images_per_page': 5,
  		'images_page': 1,
  		'videos_per_page': 0,
  		'videos_page': 0,
@@ -87,6 +87,9 @@ def get_imageObjects(dataObjectsInfo):
 def create_image_obj(dataObject):
  	#print dataObject
  	image_obj = {}
+ 	image_obj['source'] = dataObject['source']
+ 	image_obj['vettedStatus'] = dataObject['vettedStatus']
+ 	image_obj['dataRating'] = dataObject['dataRating']
  	image_obj['mediaURL'] = dataObject['mediaURL']
  	image_obj['eolMediaURL'] = dataObject['eolMediaURL']
  	image_obj['eolThumbnailURL'] = dataObject['eolThumbnailURL']
@@ -113,7 +116,8 @@ def get_images_species(inputSpeciesList, post=False):
  		else: 	
  		 	species_info_json = get_species_info(species_id)
  			if species_info_json != 'None':
- 				species_obj['matched_name'] = species_info_json['scientificName']			
+ 				species_obj['matched_name'] = species_info_json['scientificName']
+ 				species_obj['eol_id'] = species_id			
  				dataObjects_lst = species_info_json['dataObjects'] 
  				length = len(dataObjects_lst)		
  				if length != 0:
