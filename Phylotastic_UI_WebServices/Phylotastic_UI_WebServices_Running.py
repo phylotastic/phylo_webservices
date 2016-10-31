@@ -176,7 +176,21 @@ class Species_Image_Service_API(object):
         log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
         insert_log(log)
         #------------------------------------------
-        return service_result;
+        return service_result
+
+    #------------------------------------------------
+    def get_image(self, species_id=None):
+        if species_id is None:
+            return return_response_error(400,"Error: Missing parameter 'species_id'", "JSON")
+        
+        service_result = species_to_image_service_EOL.get_image_species_id(int(species_id))
+        result_json = json.loads(service_result)
+        #-------------log request------------------
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
+        return service_result
 
  	#-----------------------------------------------	
     @cherrypy.tools.json_out()
@@ -201,6 +215,7 @@ class Species_Image_Service_API(object):
     #Public /index
     index.exposed = True
     get_images.exposed = True
+    get_image.exposed = True
     images.exposed = True
 
 #-------------------------------------------------------------

@@ -134,7 +134,30 @@ def get_images_species(inputSpeciesList, post=False):
  		return response
  	else:
  	 	return json.dumps(response)
+
 #--------------------------------------------------
+def get_image_species_id(species_id, post=False):
+ 	response = {}	
+ 	species_obj = {}
+ 	species_info_json = get_species_info(species_id)
+ 	if species_info_json != 'None':
+ 		species_obj['matched_name'] = species_info_json['scientificName']
+ 		species_obj['eol_id'] = species_id			
+ 		dataObjects_lst = species_info_json['dataObjects'] 
+ 		length = len(dataObjects_lst)		
+ 		if length != 0:
+ 			images_species = get_imageObjects(dataObjects_lst)
+ 					
+ 		species_obj['images'] = images_species
+ 		
+ 	response['message'] = "Success"
+ 	response['status_code'] = 200
+ 	response['species'] = species_obj
+
+ 	if post:
+ 		return response
+ 	else:
+ 	 	return json.dumps(response)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':

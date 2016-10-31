@@ -48,7 +48,8 @@ def get_eolurls_species(inputSpeciesList, post=False):
  			species_obj['matched_name'] = ""
  		else: 	
  		 	species_info_link = match_species_json['results'][0]['link']
- 			species_obj['matched_name'] = match_species_json['results'][0]['title']			
+ 			species_obj['matched_name'] = match_species_json['results'][0]['title']
+ 			species_obj['eol_id'] = match_species_json['results'][0]['id']			
  			species_obj['species_info_link'] = species_info_link 
  				
  		outputSpeciesList.append(species_obj)	
