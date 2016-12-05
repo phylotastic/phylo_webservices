@@ -19,7 +19,9 @@ def find_genome_ids(taxonName):
  		'retmax': 5000,
  		'retmode': 'json',
  		'db': 'genome',
- 		'term': taxonName
+ 		'term': taxonName,
+ 		'tool': "phylotastic-services",
+ 		'email': "tayeen@nmsu.edu"      
     }
  	encoded_payload = urllib.urlencode(payload)
  	response = requests.get(api_url, params=encoded_payload, headers=headers) 
@@ -55,7 +57,9 @@ def find_species_ids(genomeIds):
  		'retmode': 'json',
  		'dbfrom' : 'genome',
  		'db': 'taxonomy',
- 		'id': genomeIds
+ 		'id': genomeIds,
+ 		'tool': "phylotastic-services",
+ 		'email': "tayeen@nmsu.edu"
     }
  	encoded_payload = urllib.urlencode(payload)
  	response = requests.get(api_url, params=encoded_payload, headers=headers) 
@@ -86,7 +90,9 @@ def get_species_names(speciesIds):
  		'retmax': 5000,
  		'retmode': 'json',
  		'db': 'taxonomy',
- 		'id': speciesIds
+ 		'id': speciesIds,
+ 		'tool': "phylotastic-services",
+ 		'email': "tayeen@nmsu.edu"
     }
  	encoded_payload = urllib.urlencode(payload)
  	response = requests.get(api_url, params=encoded_payload, headers=headers) 
