@@ -1,20 +1,18 @@
 from tree_handler import NodeActions
 from ete3 import TreeStyle, NodeStyle, TextFace, add_face_to_node, ImgFace, BarChartFace, faces
-
 import os, json
 import requests
 import random
 
 # Custom ETE Tree styles and web actions
-image_path = "/var/web_service"
-
+image_path = "/var/web_service/TreeViewer/img/"
 
 class WebTreeConfig(object):
     def __init__(self, treeobj, tid):
         self._treeobj = treeobj
         self._treeid = tid
         self._treestyle = None
-        #self._tree_leaves = [leaf.name for leaf in treeobj.iter_leaves()]
+        self._tree_leaves = [leaf.name for leaf in treeobj.iter_leaves()]
         self._tip2info = {}
         self._tip2color = {}
         self._tip2headers = None
@@ -31,32 +29,31 @@ class WebTreeConfig(object):
         ts.layout_fn = self.custom_layout
         ts.show_leaf_name = False
         ts.draw_guiding_lines = True
-        ts.guiding_lines_type = 0 #solid line
-        ts.guiding_lines_color = "#000000"
+        #ts.guiding_lines_type = 1
         self._treestyle = ts
         return ts
 
     def get_node_action(self):
         act = NodeActions()
         #act.add_action('Root here', self.show_action_root, self.run_action_root, None)
-        act.add_action('Box Highlight', "Add (remove) box", 3, self.show_action_highlight, self.run_action_boxhighlight, None)
-        #act.add_action('Line Highlight', "Thick (thin) branch", 4, self.show_action_highlight, self.run_action_indvhighlight, None)
+        act.add_action('Box Highlight', self.show_action_highlight, self.run_action_boxhighlight, None)
+        act.add_action('Line Highlight', self.show_action_highlight, self.run_action_indvhighlight, None)
         #act.add_action('Change style', self.show_action_change_style, self.run_action_change_style, None)
-        act.add_action('EOL Link', 'Read info page', 1, self.show_eol_link, None, self.eol_link)
-        act.add_action('Display Picture', "Add (remove) photo", 2, self.show_action_picture, self.run_action_picture, None)
-        #act.add_action('Hide Picture', self.show_action_picture, self.run_clear_picture, None)
-        act.add_action('Change Picture', "Change photo", 5, self.show_change_picture, self.run_change_picture, None)
-        act.add_action('Collapse', "Collapse subtree", 1, self.show_action_collapse, self.collapse, None)
-        act.add_action('Expand', "Expand subtree", 1, self.show_action_expand, self.expand, None)
-        act.add_action('Swap Children',"Rotate subtree", 2, self.show_action_swap,self.swap_branches,None)
+        act.add_action('EOL link', self.show_eol_link, None, self.eol_link)
+        act.add_action('Display picture', self.show_action_picture, self.run_action_picture, None)
+        act.add_action('Hide picture', self.show_action_picture, self.run_clear_picture, None)
+        act.add_action('Collapse', self.show_action_collapse, self.collapse, None)
+        act.add_action('Expand', self.show_action_collapse, self.expand, None)
+        act.add_action('Swap children',self.show_action_swap,self.swap_branches,None)
 
         return act
+
 
     def set_custom_options(self, branch_len=False, internal_node=False):
         #set whether branch lengths should be drawn or not
         self._custom_options["draw_support"] = branch_len
         #set whether internal nodes should be drawn or not
-        self._custom_options["draw_internal"] = internal_node 
+        self._custom_options["draw_internal"] = internal_node
 
 
     def set_extra_tipdata(self, extra_tipdata):
@@ -77,7 +74,7 @@ class WebTreeConfig(object):
 #------------------------------------------        
     def custom_layout(self,node):
         if node.is_leaf():
-           aligned_name_face = TextFace(node.name, fgcolor='olive', fsize=14)
+           aligned_name_face = TextFace(node.name, fgcolor='olive', fsize=12)
            aligned_name_face.margin_top = 5
            aligned_name_face.margin_right = 5
            aligned_name_face.margin_left = 5
@@ -93,7 +90,6 @@ class WebTreeConfig(object):
            node.img_style['size'] = 0
            #---------------------------------------------
            #displaying extra categorical and numeric data
-           '''
            if (node.name in self._tip2info):
               column_no = 3
               for headerIndex, dataheader in enumerate(self._tip2headers):
@@ -125,21 +121,25 @@ class WebTreeConfig(object):
               
                   add_face_to_node(extra_face, node, column=column_no, position='aligned')
                   column_no += 1
-           '''
-           image_col_no = 3#column_no
+
+           image_col_no = column_no
            #----------------------------------------------
            if (node.name in self._img_chk_list):
-              image_local_path = "file://" + image_path
-              if self._img_data_dic[node.name] is not None: 
-                  img_face = ImgFace(image_local_path + self._img_data_dic[node.name][0], is_url=True)
+              if self._img_data_dic[node.name] is not None:
+                  img_face = ImgFace(self._img_data_dic[node.name], is_url=True)
+                  #img_face = ImgFace(self._tip2info[node.name][0], is_url=True)
+                  #img_path = os.path.join("file:///home/tayeen/TayeenFolders/TreeViewer/WebTreeApp/newplugin_test/data/", "328653.jpg")
+                  #img_face = ImgFace(img_path, is_url=True)
+                  img_face.margin_top = 10
+                  img_face.margin_right = 10
+                  img_face.margin_left = 10
+                  img_face.margin_bottom = 10
                   #add_face_to_node(img_face, node, column=3, position='branch-right')
                   #add_face_to_node(img_face, node, column=3, aligned= True, position='branch-right')
               else:
-                  img_face = ImgFace(image_local_path + "/images/ina.jpg", is_url=True)  
-              img_face.margin_top = 10
-              img_face.margin_right = 10
-              img_face.margin_left = 10
-              img_face.margin_bottom = 10
+                  img_path = os.path.join("file://"+image_path, "ina.jpg")
+                  img_face = ImgFace(img_path, is_url=True)  
+              
               #add_face_to_node(img_face, node, column=5, position='branch-right')
               add_face_to_node(img_face, node, column=image_col_no, position='aligned')
                    
@@ -149,16 +149,20 @@ class WebTreeConfig(object):
         
             if node.name and self._custom_options["draw_internal"]:
               name_face = TextFace(node.name, fgcolor='grey', fsize=10)
-              #name_face.margin_top = 4
-              #name_face.margin_right = 4
-              #name_face.margin_left = 4
-              #name_face.margin_bottom = 4
+              name_face.margin_top = 4
+              name_face.margin_right = 4
+              name_face.margin_left = 4
+              name_face.margin_bottom = 4
               add_face_to_node(name_face, node, column=0, position='branch-top')
-            '''
+            
             if node.name in self._node2label: 
                label_face = TextFace(self._node2label[node.name], fgcolor='DarkGreen', fsize=10)
+               label_face.margin_top = 4
+               label_face.margin_right = 4
+               label_face.margin_left = 4
+               label_face.margin_bottom = 4
                add_face_to_node(label_face, node, column=0, position="branch-top")
-            '''
+            
             if node.support and self._custom_options["draw_support"]:
               support_face = TextFace(node.support, fgcolor='indianred', fsize=10)
               support_face.margin_top = 4
@@ -168,6 +172,7 @@ class WebTreeConfig(object):
               add_face_to_node(support_face, node, column=0, position='branch-bottom')
               
               
+
             if hasattr(node, "hide") and int(node.hide) == 1:
               node.img_style["draw_descendants"]= False
               collapsed_face = faces.TextFace(" %s collapsed leaves." %len(node), \
@@ -195,7 +200,7 @@ class WebTreeConfig(object):
            node.img_style["bgcolor"]= node.bh_bgcolor
         if hasattr(node, "bh_size"):
            node.img_style["size"]= node.bh_size
-
+       
         if hasattr(node, "lh_color"):
            node.img_style['hz_line_color'] = node.lh_color
            node.img_style["vt_line_color"] = node.lh_color
@@ -220,14 +225,14 @@ class WebTreeConfig(object):
            return False
 
 #-----------------------------------------------
-    def collapse(self,tree, node, status, a_data):
-        #can_collapse = lambda node: not node.is_leaf() and (not hasattr(node, "hide") or node.hide==False)
-        can_collapse = status
+    def collapse(self,tree,node):
+        can_collapse = lambda node: not node.is_leaf() and (not hasattr(node, "hide") or node.hide==False)
         if can_collapse:
            node.add_feature("hide", 1)
            node.add_feature("bsize", 25)
            node.add_feature("shape", "sphere")
            node.add_feature("fgcolor", "#000080")
+
 #-------------------------------------------------
     def show_action_expand(self, node):
         # Only internal node can be collapsed
@@ -236,10 +241,9 @@ class WebTreeConfig(object):
         else:
            return False
 
-#--------------------------------------------
-    def expand(self,tree, node, status, a_data):
-        #can_expand = lambda node: not node.is_leaf() and (hasattr(node, "hide") and node.hide==True)
-        can_expand = status
+#-------------------------------------------------
+    def expand(self,tree,node):
+        can_expand = lambda node: not node.is_leaf() and (hasattr(node, "hide") and node.hide==True)
         try:
            if can_expand:
               node.del_feature("hide")
@@ -249,7 +253,7 @@ class WebTreeConfig(object):
         except (KeyError, AttributeError):
            pass
 
-#--------------------------------------------
+#---------------------------------------
     def show_action_swap(self, node):
         #only nodes with children can be swaped
         if node.is_leaf():
@@ -257,12 +261,10 @@ class WebTreeConfig(object):
         else:
            return True
         
-    def swap_branches(self,tree, node, status, a_data):
+    def swap_branches(self,tree,node):
         is_not_leaf = lambda node: not node.is_leaf()
-        #print "swap status: "+ str(status) 
-        if is_not_leaf and status:
+        if is_not_leaf:
            node.children.reverse()
-
 #--------------------------------------------------
     def show_action_root(self, node):
         if node.up:
@@ -281,43 +283,36 @@ class WebTreeConfig(object):
         # Any node can be highlighted
         return True
 
-    def run_action_boxhighlight(self, tree, node, status, a_data):
-        #is_highlighted = True if ( hasattr(node, "bh_bgcolor") and hasattr(node, "bh_size") ) else False
-        box_highlight = status
+    def run_action_boxhighlight(self, tree, node):
+        is_highlighted = True if ( hasattr(node, "bh_bgcolor") and hasattr(node, "bh_size") ) else False
         
-        if box_highlight:
-           node.add_feature("bh_bgcolor", "Yellow")
-           node.add_feature("bh_size", 8)
-        else:
+        if is_highlighted:
            node.add_feature("bh_bgcolor", "White")
            node.del_feature("bh_size")
+        else:
+           node.add_feature("bh_bgcolor", "Yellow")
+           node.add_feature("bh_size", 8)
+        #node.img_style['bgcolor'] = 'Yellow'
+        #node.img_style['size'] = 8
         
-    def run_action_indvhighlight(self, tree, node, status, a_data):
-        #is_highlighted = True if ( hasattr(node, "lh_color") and hasattr(node, "lh_width") ) else False
-        line_highlight = status
 
-        if line_highlight:
+    def run_action_indvhighlight(self, tree, node):
+        is_highlighted = True if ( hasattr(node, "lh_color") and hasattr(node, "lh_width") ) else False
+        
+        if is_highlighted:
+           node.add_feature("lh_color", "#000000")
+           node.add_feature("lh_width", 0)
+        else:
            node.add_feature("lh_color", "#800000")
            node.add_feature("lh_width", 4)
-           self.run_action_change_style(tree, "#800000")
-        else:
-           node.del_feature("lh_color")#node.add_feature("lh_color", "#000000")
-           node.del_feature("lh_width")#node.add_feature("lh_width", 0)
-           #self.run_action_change_style(tree, "#000000")
-       
+
 #-----------------------------------------------
     def show_action_change_style(self, node):
         return True
 
-    def run_action_change_style(self, tree, a_data):
-        #print "action change style called.."        
+    def run_action_change_style(self, tree, node):
         if tree.tree_style == self._treestyle:
            ts2 = TreeStyle()
-           ts2.layout_fn = self.custom_layout
-           ts2.show_leaf_name = False
-           ts2.draw_guiding_lines = True
-           ts2.guiding_lines_type = 0 #solid line
-           ts2.guiding_lines_color = a_data
            tree.tree_style = ts2
            self._treestyle = ts2
         else:
@@ -330,57 +325,17 @@ class WebTreeConfig(object):
         else:
            return False
 
-    def run_action_picture(self, tree, node, status, pic_id):
-        if not(node.is_leaf()):
-           return -1
-        #remove picture"
-        if not(status) and (node.name in self._img_chk_list):
-           self._img_chk_list.remove(node.name)
-           return
- 
-        if pic_id != -1:
-           img_info = get_image_data(node.name, pic_id)
-        else:
-           img_info = get_image_data(node.name)
-        
-        if not(is_empty(img_info)) and img_info['thumb_local_path'] != "":
-           self._img_data_dic[node.name] = [img_info['thumb_local_path'],img_info['thumb_id']]
-           image_id = img_info['thumb_id']
-        else:
-           self._img_data_dic[node.name] = None
-           image_id = 0 #no image available
-
+    def run_action_picture(self, tree, node):
+        #print "executing run action picture....."
+        tip_img_url = get_image_data(node.name)
+        self._img_data_dic[node.name] = tip_img_url
         #self._tip2info[node.name] = [url, mass, habit]
-        if status and (node.name not in self._img_chk_list):
+        if node.name not in self._img_chk_list:
            self._img_chk_list.append(node.name)
-           return image_id
 
-
-    def show_change_picture(self, node):
-        #print "change picture called %s" %(node.name)
-        if node.is_leaf() and can_change_image(node.name) and (node.name in self._img_chk_list):
-           return True
-        else:
-           return False
-
-    def run_change_picture(self, tree, node, status, img_id):
-        #print "run change picture called"
-        #print "image_id" + str(img_id)
-        img_info = get_image_data(node.name, img_id, status)
-        
-        if not(is_empty(img_info)) and img_info['thumb_local_path'] != "":
-           self._img_data_dic[node.name] = [img_info['thumb_local_path'],img_info['thumb_id']]
-           image_id = img_info['thumb_id']
-        else:
-           self._img_data_dic[node.name] = None
-           image_id = 0 #no image available
-
-        return image_id
-
-
-    #def run_clear_picture(self, tree, node, status):
-    #    if status and (node.name in self._img_chk_list):
-    #       self._img_chk_list.remove(node.name)
+    def run_clear_picture(self, tree, node):
+        if node.name in self._img_chk_list:
+           self._img_chk_list.remove(node.name)
 
 #----------------TREE ACTIONS---------------------------------
     def run_action_linecolorwidth(self, tree, colorcode, linewidth):
@@ -388,8 +343,7 @@ class WebTreeConfig(object):
         #nstyle["hz_line_type"] = 0 # 0 solid, 1 dashed, 2 dotted 
         if colorcode == '' and linewidth == '':
            return
-        elif colorcode != '':
-           self.run_action_change_style(tree, colorcode)
+
         # Applies the same static style to all nodes in the tree. Note that,if "nstyle" is modified, changes will affect to all nodes
         for n in tree.traverse():
             if linewidth != '':
@@ -398,7 +352,6 @@ class WebTreeConfig(object):
             if colorcode != '':
                n.img_style['hz_line_color'] = colorcode#"#800000"
                n.img_style["vt_line_color"] = colorcode#"#800000"
-              
 #--------------------------------------------------------------         
     '''
     def change_linecolor(self,aindex, treeid, nodeid, node):
@@ -417,18 +370,19 @@ class WebTreeConfig(object):
            self._eol_link_dic[node.name] = eol_link
         else:
            eol_link = self._eol_link_dic[node.name]
-        
-        if eol_link == "":
-           return '''<li style="font-size:12pt">
-              No info page available
-              </li> '''
+
+        if eol_link is None:
+           return '''<li>
+              <b>No EOL link for: <i>%s</i></b>
+              </li> ''' %\
+              (node.name)
         else:
-           return '''<li style="font-size:12pt">
+           return '''<li>
               <a target="_blank" href="%s">
-              Read info page
+              <b>EOL link: <i>%s</i></b>
               </a>
               </li> ''' %\
-              (eol_link)
+              (eol_link, node.name)
 
 #=========================Non-Class methods========================
 
@@ -436,7 +390,6 @@ class WebTreeConfig(object):
 #    r = lambda: random.randint(0,255)
 #    return '#%02X%02X%02X' % (r(),r(),r()))
 #-----------------------------------------------------
-'''
 def get_max_value(tipdata_lst):
     data_values = []
     for tip_obj in tipdata_lst:
@@ -446,71 +399,38 @@ def get_max_value(tipdata_lst):
                data_values.append(val)
 
     return max(data_values)
-'''
-#---------------------------------------------------
-#check if any list, dictionary, set, string or tuple is empty in Python
-def is_empty(any_structure):
-    if any_structure:
-       #print('Structure is not empty.')
-       return False
-    else:
-       #print('Structure is empty.')
-       return True
-#-----------------------------------------------------
-def get_link_data(sp_name):
-    service_uri = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/get_link_info"
-    #service_uri = "http://localhost:5008/phylotastic_ws/ds/get_link_info"
-    service_payload = {'species': sp_name}
-    
-    service_response = execute_webservice(service_uri, service_payload)
-    link = ""
-    if service_response is not None:    
-        link = service_response["eol_link"]
-
-    return link
 
 #-----------------------------------------------------
-def get_image_data(sp_name, img_id=0, next_img=False):
-    service_uri = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/get_image_info"
-    #service_uri = "http://localhost:5008/phylotastic_ws/ds/get_image_info"
-    service_payload = {'species': sp_name, 'image_id': img_id, 'next_image': next_img}
-   
-    service_response = execute_webservice(service_uri, service_payload)
-    
-    if service_response is not None:
-       image = service_response
+def get_image_data(tip_name):
+    image_service_uri = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/images"
+    image_service_payload = {'species': [tip_name]}
+    #print "Executing service..."
+    service_response = execute_webservice(image_service_uri, json.dumps(image_service_payload))
+    img_lst_len = len(service_response['species'][0]['images'])
+    if img_lst_len != 0:
+       tip_img_url = service_response['species'][0]['images'][0]['eolThumbnailURL']
     else:
-       image = {}
+       tip_img_url = None
 
-    return image
+    return tip_img_url
 
-#----------------------------------------------------
-def can_change_image(sp_name):
-    service_uri = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/image_info_exists"
-    service_payload = {'species': sp_name}
-   
-    service_response = execute_webservice(service_uri, service_payload)
-      
-    if service_response is not None:
-       has_img_info = service_response['image_info_exists']
-       #print service_response['image_info']
-       if 'image_info' in service_response: 
-          img_count = len(service_response['image_info'])
-       else:
-          img_count = 0 
-          
-       if has_img_info and img_count > 1:
-          can_change_img = True
-       else:
-          can_change_img = False        
+#--------------------------------------------------------------
+def get_link_data(tip_name):
+    eol_service_uri = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/sl/eol/links"
+    eol_service_payload = {'species': [tip_name]}
+    #print "Executing service..."
+    service_response = execute_webservice(eol_service_uri, json.dumps(eol_service_payload))
+    if service_response['species'][0]['matched_name'] == '':
+       tip_eol_url = None
     else:
-       can_change_img = False
-    
-    return can_change_img
+       tip_eol_url = service_response['species'][0]['species_info_link']
+
+    return tip_eol_url
+
 
 #-----------------------------------------------------------
 def execute_webservice(service_url, service_payload):
-    response = requests.get(service_url, params=service_payload)
+    response = requests.post(service_url, data=service_payload, headers={'content-type': 'application/json'})
     
     if response.status_code == requests.codes.ok:    
         res_json = json.loads(response.text)
