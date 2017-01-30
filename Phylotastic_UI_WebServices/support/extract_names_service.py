@@ -5,9 +5,11 @@ import requests
 import re
 import ast
 import urllib
+import datetime
 
 api_url = "http://gnrd.globalnames.org/name_finder.json?"
 headers = {'content-type': 'application/json'}
+base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/"
 
 #get scientific names from URL
 def get_sn_url(inputURL, sEngine=0):
@@ -20,20 +22,31 @@ def get_sn_url(inputURL, sEngine=0):
     response = requests.get(api_url, params=encoded_payload, headers=headers) 
     
     scientificNamesList = []
+
+    if sEngine == 0:
+       service_url = base_url + "names_url?url=" + inputURL
+    else:
+       service_url = base_url + "names_url?url=" + inputURL + "&engine=" + sEngine
      
+    service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-1"
+
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
     else:
-        return {'scientificNames': scientificNamesList,'status_code': 500} 
+        return {'input_url': inputURL, 'scientificNames': scientificNamesList,'status_code': 500,
+                'service_url': service_url, "service_url_doc": service_documentation} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'scientificNames': scientificNamesList, 'status_code': 204} 
+         return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 204, 
+                 'service_url': service_url, "service_url_doc": service_documentation} 
     else:
          scientificNamesList = get_sn(token_result['names'])
+         parametersList = token_result['parameters']        
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'scientificNames': scientificNamesList, 'status_code': 200} 
+         return {'input_url': inputURL, 'parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 
+                 'service_url': service_url, "service_url_doc": service_documentation} 
      
 #----------------------------------------------    
 #get scientific names from final api-result
@@ -94,19 +107,30 @@ def get_sn_text(inputTEXT, sEngine=0):
  
     scientificNamesList = []
     
+    if sEngine == 0:
+       service_url = base_url + "names_text?text=" + inputTEXT
+    else:
+       service_url = base_url + "names_text?text=" + inputTEXT + "&engine=" + sEngine
+     
+    service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-2"    
+
     if response.status_code == requests.codes.ok:    
         data_json = json.loads(response.text)
     else:
-        return {'scientificNames': scientificNamesList, 'status_code': 500} 
+        return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 500, 
+                'service_url': service_url, "service_url_doc": service_documentation } 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'scientificNames': scientificNamesList, 'status_code': 204} 
+         return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 204, 
+                 'service_url': service_url, "service_url_doc": service_documentation } 
     else:
          scientificNamesList = get_sn(token_result['names'])
+         parametersList = token_result['parameters']
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'scientificNames': scientificNamesList, 'status_code': 200} 
+         return {'input_text': inputTEXT, 'parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 
+                 'service_url': service_url, "service_url_doc": service_documentation } 
 
 #-----------------------------------------------------------
 # removes duplicates from a list
@@ -121,12 +145,19 @@ def uniquify(lst):
 '''
 #--------------------------------------
 def extract_names_URL(inputURL, sEngine):
+    #service execution time
     start_time = time.time()
     final_result = get_sn_url(inputURL, sEngine)    
     end_time = time.time()
     execution_time = end_time-start_time
+
+    #service result creation time
+    creation_time = datetime.datetime.now().isoformat()
+
+    final_result['creation_time'] = creation_time
     final_result['execution_time'] = "{:4.2f}".format(execution_time) 
- 
+    final_result['total_names'] = len(final_result['scientificNames'])
+
     return json.dumps(final_result)
 
 def extract_names_TEXT(inputTEXT, sEngine):
@@ -134,7 +165,12 @@ def extract_names_TEXT(inputTEXT, sEngine):
     final_result = get_sn_text(inputTEXT, sEngine)    
     end_time = time.time()
     execution_time = end_time-start_time
+    
+    #service result creation time
+    creation_time = datetime.datetime.now().isoformat()
+    final_result['creation_time'] = creation_time
     final_result['execution_time'] = "{:4.2f}".format(execution_time)
+    final_result['total_names'] = len(final_result['scientificNames'])
     
     return json.dumps(final_result)	    
    
@@ -147,7 +183,7 @@ def extract_names_TEXT(inputTEXT, sEngine):
     #inputURL = 'https://en.wikipedia.org/wiki/Ant'
     #inputTEXT = 'The Crabronidae are a large paraphyletic group of wasps. Ophiocordyceps, Cordyceps are genus of fungi. The Megalyroidea are a small hymenopteran superfamily that includes a single family, Megalyridae. The Apidae is the largest family within the Apoidea, with at least 5700 species of bees. Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries.'	
     #inputTEXT = "Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries."
-    #result = extract_names_URL(inputURL)
-    #result = extract_names_TEXT(inputTEXT)    
+    #result = extract_names_URL(inputURL, 0)
+    #result = extract_names_TEXT(inputTEXT, 0)    
     #print result
     
