@@ -1,4 +1,4 @@
-#species to image service: version 1
+#species to image service: version 1.1
 import json
 import requests
 import time
@@ -103,6 +103,9 @@ def create_image_obj(dataObject):
 
 #---------------------------------------------------
 def get_images_species(inputSpeciesList, post=False):
+ 	start_time = time.time()
+ 	#service_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/get_images?species=" + inputSpeciesList
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-8"
  	response = {}	
  	outputSpeciesList = []
 
@@ -113,22 +116,35 @@ def get_images_species(inputSpeciesList, post=False):
  		species_obj['searched_name'] = inputSpecies	 	
  		if species_id == -1:		 	
  			species_obj['matched_name'] = ""
+ 			species_obj['total_images'] = 0
  		else: 	
  		 	species_info_json = get_species_info(species_id)
- 			if species_info_json != 'None':
+ 			if species_info_json is not None:
  				species_obj['matched_name'] = species_info_json['scientificName']
  				species_obj['eol_id'] = species_id			
  				dataObjects_lst = species_info_json['dataObjects'] 
  				length = len(dataObjects_lst)		
  				if length != 0:
  					images_species = get_imageObjects(dataObjects_lst)
- 					
+ 					species_obj['total_images'] = len(images_species)
+
  		species_obj['images'] = images_species
- 		outputSpeciesList.append(species_obj)	
+ 		outputSpeciesList.append(species_obj)
+	
+ 	end_time = time.time()
+ 	execution_time = end_time-start_time    
+    #service result creation time
+ 	creation_time = datetime.datetime.now().isoformat()
  	
+ 	response['creation_time'] = creation_time
+ 	response['execution_time'] = "{:4.2f}".format(execution_time)
  	response['message'] = "Success"
  	response['status_code'] = 200
  	response['species'] = outputSpeciesList
+ 	response['source_urls'] = ["http://eol.org"]
+ 	#final_result['source_version'] = "ott2.9draft12"
+ 	#response['service_url'] = service_url
+ 	response['service_documentation'] = service_documentation
 
  	if post:
  		return response
@@ -140,7 +156,7 @@ def get_image_species_id(species_id, post=False):
  	response = {}	
  	species_obj = {}
  	species_info_json = get_species_info(species_id)
- 	if species_info_json != 'None':
+ 	if species_info_json is not None:
  		species_obj['matched_name'] = species_info_json['scientificName']
  		species_obj['eol_id'] = species_id			
  		dataObjects_lst = species_info_json['dataObjects'] 
