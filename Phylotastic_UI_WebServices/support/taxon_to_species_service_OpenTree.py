@@ -10,6 +10,7 @@ dbName = "TaxonSpecies"
 dataCollectionName ="taxonSpecieslist"
 #-------------------------------------
 #Open Tree of Life API
+base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/"
 api_url = "https://api.opentreeoflife.org/v2/"
 headers = {'content-type': 'application/json'}
 #--------------------------------------
@@ -39,7 +40,7 @@ def find_taxon_cache(conn, taxonName, findAll=True, country=None):
  	else:
  		for doc in documents:
   	 		taxon_species = doc['species'] 				
- 			break;
+ 			break
  		data_collection.update({ "taxon":{"$eq":taxonName}, "is_all":{"$eq":findAll}, "country":{"$eq":country} },{ "$currentDate": {"last_accessed": True} }) #update the last accessed value		
  		response['result'] = taxon_species
   		response['cache_found'] = True
@@ -156,91 +157,128 @@ def check_species_by_country(species, country):
 
 #---------------------------------------------------
 def get_all_species(inputTaxon):
- 	
+ 	start_time = time.time()
+
+ 	service_url = base_url + "all_species?taxon=" + inputTaxon
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-6"
+
+ 	cache_exists = False
  	ott_id = match_taxon(inputTaxon)
  	if ott_id == -1:
- 		final_result = create_json_msg(inputTaxon,[], 'No Taxon matched with %s' %(inputTaxon), 204)
- 		return final_result
- 	
- 	species_list = []
- 	conn = connect_mongodb()
- 	cache_result = find_taxon_cache(conn, inputTaxon)
- 	if cache_result['cache_found']:
- 		final_result = create_json_msg(inputTaxon, cache_result['result'], 'Success', 200) 
- 		print "Cache found"
- 		return final_result 
- 	else:
- 		data_json = get_children(ott_id)
- 		if data_json['rank'] == 'species' or data_json['rank'] == 'subspecies':
- 			species_list.append(data_json['ot:ottTaxonName'])		
- 		elif data_json['rank'] == 'genus':
- 			species_list = get_species_from_genus(data_json['children'])
+ 		final_result = {'taxon': inputTaxon,'species': [], 'message': 'No Taxon matched with %s' %(inputTaxon), 'status_code': 204}
+ 		len_splist = 0	
+ 	else: #taxon name matched	
+ 		species_list = []
+ 		conn = connect_mongodb()
+ 		cache_result = find_taxon_cache(conn, inputTaxon) 		
+ 		if cache_result['cache_found']:
+ 			final_result = {'taxon': inputTaxon,'species': cache_result['result'], 'message': 'Success', 'status_code': 200}
+ 			print "Cache found"
+ 			cache_exists = True
+ 			len_splist = len(cache_result['result'])	 
  		else:
- 			species_list = get_species_from_highrank(data_json['children'], conn)
- 		
- 	#print species_list
- 	#species_list.sort()
- 	len_splist = len(species_list)
- 	
- 	if len_splist != 0:
- 	 	final_result = create_json_msg(inputTaxon, species_list, 'Success', 200)
- 	 	insert_taxon_cache(conn, inputTaxon, species_list)
- 	else:	
- 	 	final_result = create_json_msg(inputTaxon, species_list, 'No species found', 204)
+ 			data_json = get_children(ott_id)
+ 			if data_json['rank'] == 'species' or data_json['rank'] == 'subspecies':
+ 				species_list.append(data_json['ot:ottTaxonName'])		
+ 			elif data_json['rank'] == 'genus':
+ 				species_list = get_species_from_genus(data_json['children'])
+ 			else:
+ 				species_list = get_species_from_highrank(data_json['children'], conn)
+ 			len_splist = len(species_list)
+	
+ 		#print species_list
+ 		#species_list.sort()
+ 	 	
+ 	end_time = time.time()
+ 	execution_time = end_time-start_time    
+    #service result creation time
+ 	creation_time = datetime.datetime.now().isoformat()
 
- 	return final_result
+ 	if len_splist > 0 and not(cache_exists):
+ 	 	final_result = {'taxon': inputTaxon,'species': species_list, 'message': 'Success', 'status_code': 200}
+ 	 	insert_taxon_cache(conn, inputTaxon, species_list)
+ 	elif len_splist == 0 and not(cache_exists) and ott_id != -1:	
+ 	 	final_result = {'taxon': inputTaxon,'species': species_list, 'message': 'No species found', 'status_code': 204}
+
+ 	final_result['creation_time'] = creation_time
+ 	final_result['execution_time'] = "{:4.2f}".format(execution_time)
+ 	final_result['total_names'] = len_splist
+ 	final_result['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-Taxonomy"]
+ 	final_result['source_version'] = "ott2.9draft12"
+ 	final_result['service_url'] = service_url
+ 	final_result['service_documentation'] = service_documentation
+
+ 	return json.dumps(final_result)
 
 #--------------------------------------------------
 def get_country_species(inputTaxon, country):
+ 	start_time = time.time()
 
+ 	service_url = base_url + "country_species?taxon=" + inputTaxon + "&country=" + country 
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-7"
+
+ 	cache_exists = False
  	ott_id = match_taxon(inputTaxon)
  	if ott_id == -1:
- 		final_result = create_json_msg(inputTaxon, [], 'No Taxon matched with %s' %(inputTaxon), 204)
- 		return final_result
- 	
- 	conn = connect_mongodb()
- 	cache_result = find_taxon_cache(conn, inputTaxon, False, country)
- 	if cache_result['cache_found']:
- 		species_list = cache_result['result']
- 		if len(species_list) != 0:
- 			final_result = create_json_msg(inputTaxon, species_list, 'Success', 200)
+ 		final_result = {'taxon': inputTaxon,'species': [], 'message': 'No Taxon matched with %s' %(inputTaxon), 'status_code': 204}
+ 		len_splist = 0
+ 	else: #taxon name matched and ott_id found
+ 		conn = connect_mongodb()
+ 		cache_result = find_taxon_cache(conn, inputTaxon, False, country)
+ 		if cache_result['cache_found']:
+ 			species_list = cache_result['result']
+ 			len_splist = len(species_list)
+ 			if len_splist != 0:
+ 				final_result = {'taxon': inputTaxon,'species': species_list, 'message': 'Success', 'status_code': 200}
+ 			else:
+ 				final_result = {'taxon': inputTaxon,'species': species_list, 'message': 'No species found on this country', 'status_code': 204}  	
+ 			#print "Cache found"
+ 			cache_exists = True	
  		else:
- 			final_result = create_json_msg(inputTaxon, species_list, 'No species found on this country', 204) 
- 		print "Cache found"
- 		return final_result	
- 	else:
- 		conn.close()
- 		all_species_result = get_all_species(inputTaxon)  
-  		all_species_json = json.loads(all_species_result)
- 		status_code = all_species_json['status_code']
-  		species_list = all_species_json['species']
- 		message = all_species_json['message']	
- 		#print all_species_result
- 		#species_list.sort()
-    	#countries = ['Bhutan', 'Nepal', 'Canada']
+ 			conn.close()
+ 			all_species_result = get_all_species(inputTaxon)  
+  			all_species_json = json.loads(all_species_result)
+ 			status_code = all_species_json['status_code']
+  			species_list = all_species_json['species']
+ 			message = all_species_json['message']	
+ 			#print all_species_result
+ 			#species_list.sort()
+    		#countries = ['Bhutan', 'Nepal', 'Canada']
 
- 		if status_code == 204:  #no taxon found or no species found
-  			return all_species_json
- 		elif status_code == 200:
- 		 	species_lst = []
- 		 	for species in species_list:
- 				if check_species_by_country(species, country):
- 					species_lst.append(species)
+ 			if status_code == 204:  #no taxon found or no species found
+  				return all_species_json
+ 			elif status_code == 200:
+ 		 		species_lst = []
+ 		 		for species in species_list:
+ 					if check_species_by_country(species, country):
+ 						species_lst.append(species)
+ 				len_splist = len(species_lst)
   	
- 	if len(species_lst) != 0:
- 	 	final_result = create_json_msg(inputTaxon, species_lst, 'Success', 200)
-   	else:
- 		final_result = create_json_msg(inputTaxon, species_lst, 'No species found on this country', 206)
+ 	end_time = time.time()
+ 	execution_time = end_time-start_time    
+    #service result creation time
+ 	creation_time = datetime.datetime.now().isoformat()
 
- 	insert_taxon_cache(conn, inputTaxon, species_lst, False, country) 	
+ 	if  len_splist != 0 and not(cache_exists):
+ 	 	final_result = {'taxon': inputTaxon,'species': species_lst, 'message': 'Success', 'status_code': 200}
+   	elif len_splist == 0 and not(cache_exists) and ott_id != -1:
+ 		final_result = {'taxon': inputTaxon,'species': species_lst, 'message': 'No species found on this country', 'status_code': 206}
 
- 	return final_result
+ 	if not(cache_exists):
+ 		insert_taxon_cache(conn, inputTaxon, species_lst, False, country) 
+
+ 	final_result['creation_time'] = creation_time
+ 	final_result['execution_time'] = "{:4.2f}".format(execution_time)
+ 	final_result['total_names'] = len_splist
+ 	final_result['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-Taxonomy", "https://www.inaturalist.org"]
+ 	final_result['source_version'] = "ott2.9draft12"
+ 	final_result['service_url'] = service_url
+ 	final_result['service_documentation'] = service_documentation	
+ 	final_result['country'] = country
+
+ 	return json.dumps(final_result)
  	
 #--------------------------------------------
-
-def create_json_msg(input_taxon, species_lst, msg, code):
- 	
- 	return json.dumps({'taxon': input_taxon,'species': species_lst, 'message': msg, 'status_code': code})
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
@@ -256,10 +294,8 @@ def create_json_msg(input_taxon, species_lst, msg, code):
  	#country = 'United States'
  	#country = 'Nepal'
  	#print match_taxon(inputTaxon) 
- 	#start_time = time.time()    
  	#print get_all_species(inputTaxon)
  	#get_children(735488)
  	#print check_species_by_country(inputTaxon, country)	
  	#print get_country_species(inputTaxon, country)
- 	#end_time = time.time()
- 	#print end_time-start_time
+ 	
