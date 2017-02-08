@@ -131,9 +131,12 @@ def form_cs_ids(id_list):
  	return str_ids
  	
 #---------------------------------------------------
-def get_genome_species(inputTaxon):
+def get_genome_species(inputTaxon):	
+ 	start_time = time.time()
+ 	service_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/ncbi/genome_species?taxon=" + inputTaxon
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-9"
+
  	final_result = {}	
- 	
  	g_response = find_genome_ids(inputTaxon)
  	
  	if g_response['status_code'] != 200:	 	
@@ -145,26 +148,41 @@ def get_genome_species(inputTaxon):
  			final_result = s_response
  		else:
  			str_sids = form_cs_ids(s_response['species_ids'])
- 			final_result = get_species_names(str_sids)	
+ 			final_result = get_species_names(str_sids)
+	
+ 	end_time = time.time()
+ 	execution_time = end_time-start_time    
+    #service result creation time
+ 	creation_time = datetime.datetime.now().isoformat()
  	
+ 	final_result['creation_time'] = creation_time
+ 	final_result['execution_time'] = "{:4.2f}".format(execution_time)
+ 	if final_result['status_code'] == 200: 
+ 		final_result['total_names'] = len(final_result['species'])
+ 	else:
+ 		final_result['total_names'] = 0 
+ 	final_result['source_urls'] = ["https://www.ncbi.nlm.nih.gov/taxonomy", "https://www.ncbi.nlm.nih.gov/genome"]
+ 	#final_result['source_version'] = "ott2.9draft12"
+ 	final_result['service_url'] = service_url
+ 	final_result['service_documentation'] = service_documentation	
  	final_result['taxon'] = inputTaxon
 
  	return json.dumps(final_result)
 #--------------------------------------------------
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-'''
+
 if __name__ == '__main__':
 
-	inputTaxon = 'Vulpes' #'Panthera'
- 	#inputTaxon = 'Rodentia'
+	#inputTaxon = 'Vulpes' #'Panthera'
+ 	inputTaxon = 'Rodentia'
 	#inputTaxon = 'Canidae' #family
  	
- 	start_time = time.time()    
+ 	#start_time = time.time()    
  	
  	print get_genome_species(inputTaxon)
  	
- 	end_time = time.time()
+ 	#end_time = time.time()
  	
- 	print end_time-start_time
-'''
+ 	#print end_time-start_time
+
