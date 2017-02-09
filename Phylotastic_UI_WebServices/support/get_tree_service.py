@@ -5,7 +5,10 @@ import time
 import requests
 import re
 import ast
+import datetime
 #----------------
+from ete3 import Tree, TreeStyle
+from ete3.parser.newick import NewickError
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 api_url = "https://api.opentreeoflife.org/v2/tree_of_life/"
@@ -69,43 +72,131 @@ def subtree(ottidList):
 #get newick string for tree from OpenTree
 #input: list of resolved scientific names
 def get_tree_OT(resolvedNames, post=False):
-    ListSize = len(resolvedNames)
+ 	start_time = time.time()
+ 	#service_url = 
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-5"
+
+ 	ListSize = len(resolvedNames)
     
-    response = {}
-    if ListSize == 0:
+ 	response = {}
+ 	if ListSize == 0:
  		response['newick'] = ""
  		response['message'] = "List of resolved names empty"
  		response['status_code'] = 204
-  		if post:
+ 		response['service_documentation'] = service_documentation
+ 		if post:
  			return response;
  		else:		
- 		 	return json.dumps(response)
+ 			return json.dumps(response)
     
-    rsnames = resolvedNames
-    #rsnames = resolvedNames['resolvedNames']
-    ottIdList = []
-    for rname in rsnames:
-        if rname['resolver_name'] == 'OT':
-    	 	ottIdList.append(rname['taxon_id'])
-        else:
+ 	rsnames = resolvedNames
+ 	#rsnames = resolvedNames['resolvedNames']
+ 	ottIdList = []
+ 	for rname in rsnames:
+ 		if rname['resolver_name'] == 'OT':
+ 			ottIdList.append(rname['taxon_id'])
+ 		else:
  			response['newick'] = ""
  			response['message'] = "Wrong TNRS. Need to resolve with OpenTree TNRS"
  			response['status_code'] = 204
+ 			response['service_documentation'] = service_documentation
  			if post:
  				return response;
  			else:		
  		 		return json.dumps(response)
  	     	     
     #get induced_subtree
-    final_result = subtree(ottIdList)
- 
-    if post: 	    
-        return final_result
-    else:
-        return json.dumps(final_result) 
+ 	final_result = subtree(ottIdList)
+ 	newick_str = final_result['newick']
+
+ 	if final_result['newick'] != "":
+ 		num_tips = get_num_tips(newick_str)
+ 		if num_tips != -1:
+ 			final_result['num_tips'] = num_tips
+ 		study_list = get_supporting_studies(ottIdList) 	
+ 		final_result['supporting_studies'] = study_list['studies']
+ 		 
+ 	final_result['synth_tree_version'] = get_metadata()
+
+ 	end_time = time.time()
+ 	execution_time = end_time-start_time
+    #service result creation time
+ 	creation_time = datetime.datetime.now().isoformat()
+ 	final_result['creation_time'] = creation_time
+ 	final_result['execution_time'] = "{:4.2f}".format(execution_time)
+ 	final_result['service_documentation'] = service_documentation
+
+ 	if post: 	    
+ 		return final_result
+ 	else:
+ 		return json.dumps(final_result) 
 
 #-------------------------------------------
+#get supporting studies of the tree from OpenTree
+def get_supporting_studies(ottIdList):
+ 	resource_url = "http://phylo.cs.nmsu.edu:5006/phylotastic_ws/md/studies"    
+    
+ 	payload_data = {
+ 		'list': ottIdList,
+ 		'list_type': "ottids"		
+    }
+ 	jsonPayload = json.dumps(payload_data)
+    
+ 	response = requests.post(resource_url, data=jsonPayload, headers=headers)
+        
+ 	studies_info = {}
 
+ 	if response.status_code == requests.codes.ok:
+ 		data_json = json.loads(response.text)
+ 		studies_info['studies'] = data_json['studies']		
+ 		studies_info['message'] = data_json['message']
+ 		studies_info['status_code'] = data_json['status_code']
+ 	else:
+ 		studies_info['studies'] = []		
+ 		studies_info['message'] = "Error: getting study info from OpenTree"
+ 		studies_info['status_code'] = 500
+
+ 	return studies_info
+
+#--------------------------------------------
+#find the number of tips in the tree
+def get_num_tips(newick_str):
+ 	parse_error = False
+ 	try:
+ 		tree = Tree(newick_str)
+ 	except NewickError:
+ 		try:
+ 			tree = Tree(newick_str, format=1)
+ 		except NewickError as e:
+ 			parse_error = True
+
+ 	if not(parse_error):
+ 		tips_list = [leaf for leaf in tree.iter_leaves()]            
+ 		tips_num = len(tips_list)
+ 	else:
+ 		tips_num = -1
+
+ 	return tips_num
+
+#-------------------------------------------
+def get_metadata():
+ 	resource_url = "https://api.opentreeoflife.org/v2/tree_of_life/about"    
+    
+ 	payload_data = {
+ 		'study_list': False
+ 	}
+ 	jsonPayload = json.dumps(payload_data)
+    
+ 	response = requests.post(resource_url, data=jsonPayload, headers=headers)
+        
+ 	metadata = {}
+ 	if response.status_code == requests.codes.ok:
+ 		data_json = json.loads(response.text)
+ 		return data_json['tree_id']
+ 	else:
+ 		return "Error: getting synth tree version"  
+
+#---------------------------------------------
 #if __name__ == '__main__':
 
     #ott_idlist = [3597195, 3597205, 3597191, 3597209, 60236]
