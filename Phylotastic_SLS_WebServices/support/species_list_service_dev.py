@@ -7,8 +7,8 @@ import authenticate_user
 from bson import json_util
 from bson.json_util import dumps
 
-#dbName = "SpeciesList"
-dbName = "SpeciesListTest"
+dbName = "SpeciesList"
+#dbName = "SpeciesListTest"
 dataCollectionName ="userSpecieslist"
 counterCollectionName = "listCounter"
 
@@ -432,8 +432,9 @@ def replace_species_in_list(input_json, conn):
  		list_metadata = json.loads(get_list_by_id(data_collection, user_id, list_id, True, False))
  		response['list_title'] = list_metadata['list']['list_title']
  		response['date_modified'] = datetime.datetime.now().isoformat()
+ 
  		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$set": {"lists.$.species": species_info}})
-  				
+
  	return response
 
 #----------------------------------------------------------
@@ -495,7 +496,7 @@ def update_list_metadata(input_json, conn):
  		response['list_title'] = list_title
  		response['date_modified'] = date_modified
  		response['modified_content'] = list_info 
- 		  	
+ 		  				
  	return response
 
 #-------------------------------------------------------
@@ -756,6 +757,7 @@ def remove_user_list(user_id, list_id, conn):
  		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$pull": {"lists": {"list_id":list_id}}})
 
  	return json.dumps(response)
+
  	
 #----------------------------------------------------
 def is_date_valid(date_str):
