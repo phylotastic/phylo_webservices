@@ -108,16 +108,19 @@ def get_tree_OT(resolvedNames, post=False):
     #get induced_subtree
  	final_result = subtree(ottIdList)
  	newick_str = final_result['newick']
-
+ 
  	if final_result['newick'] != "":
+ 		synth_tree_version = get_tree_version()		
+ 		tree_metadata = get_metadata()
+ 		tree_metadata['inference_method'] = tree_metadata['inference_method'] + "from synthetic tree version "+ synth_tree_version
+ 		final_result['tree_metadata'] = tree_metadata
+ 		final_result['tree_metadata']['synth_tree_version'] = synth_tree_version
  		num_tips = get_num_tips(newick_str)
  		if num_tips != -1:
- 			final_result['num_tips'] = num_tips
+ 			final_result['tree_metadata']['num_tips'] = num_tips
  		study_list = get_supporting_studies(ottIdList) 	
- 		final_result['supporting_studies'] = study_list['studies']
+ 		final_result['tree_metadata']['supporting_studies'] = study_list['studies']
  		 
- 	final_result['synth_tree_version'] = get_metadata()
-
  	end_time = time.time()
  	execution_time = end_time-start_time
     #service result creation time
@@ -179,7 +182,7 @@ def get_num_tips(newick_str):
  	return tips_num
 
 #-------------------------------------------
-def get_metadata():
+def get_tree_version():
  	resource_url = "https://api.opentreeoflife.org/v2/tree_of_life/about"    
     
  	payload_data = {
@@ -196,6 +199,21 @@ def get_metadata():
  	else:
  		return "Error: getting synth tree version"  
 
+#---------------------------------------------
+def get_metadata():
+ 	tree_metadata = {}
+ 	tree_metadata['topology_id'] = "NA"
+ 	tree_metadata['gene_or_species'] = "species"
+ 	tree_metadata['rooted'] = True
+ 	tree_metadata['anastomosing'] = False
+ 	tree_metadata['consensus_type'] = "NA"
+ 	tree_metadata['branch_lengths_type'] = None
+ 	tree_metadata['branch_support_type'] = None
+ 	tree_metadata['character_matrix'] = "NA"
+ 	tree_metadata['alignment_method'] = "NA"
+ 	tree_metadata['inference_method'] = "induced_subtree"
+
+ 	return tree_metadata	
 #---------------------------------------------
 #if __name__ == '__main__':
 
