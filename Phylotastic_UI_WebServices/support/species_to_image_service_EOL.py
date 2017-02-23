@@ -87,7 +87,7 @@ def get_imageObjects(dataObjectsInfo):
 def create_image_obj(dataObject):
  	#print dataObject
  	image_obj = {}
- 	image_obj['source'] = dataObject['source']
+ 	image_obj['source'] = dataObject['source'] if 'source' in dataObject else None
  	image_obj['vettedStatus'] = dataObject['vettedStatus']
  	image_obj['dataRating'] = dataObject['dataRating']
  	image_obj['mediaURL'] = dataObject['mediaURL']
