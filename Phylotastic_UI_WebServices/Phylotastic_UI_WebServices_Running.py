@@ -25,6 +25,7 @@ from support import get_tree_service
 from support import species_to_image_service_EOL
 from support import species_to_url_service_EOL
 from support import taxon_genome_species_service_NCBI
+from support import phylomatic_tree_service
 #from support import usecase_text, treebase_api
 
 from __builtin__ import True
@@ -439,6 +440,53 @@ class Get_Tree_OpenTree_Service_API(object):
     get_tree.exposed = True
     tree.exposed = True
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+class Get_Tree_Phylomatic_Service_API(object):
+    def index(self):
+        return "Get_Tree_Phylomatic_Service_API (Abu Saleh) : Get subtree from phylomatic";
+    #---------------------------------------------
+    def get_tree(self,**request_data):
+        try:
+            taxa = str(request_data['taxa']).strip();
+            taxalist = taxa.split('|')
+        except Exception, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        
+        #nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False, True)
+        #nameslist = nameslist_json["resolvedNames"]
+        service_result = phylomatic_tree_service.tree_controller(taxalist)   
+        #-------------log request------------------   
+        result_json = json.loads(service_result)
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
+        return service_result;
+    #------------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def tree(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            nameslist = input_json["resolvedNames"]
+ 	    
+        except Exception, e:
+            return return_response_error(400,"Error:" + str(e), "NotJSON")
+        
+        service_result = phylomatic_tree_service.tree_controller(nameslist, True)   
+        #-------------log request------------------   
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'resolvedNames': nameslist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+        insert_log(log)
+        #------------------------------------------
+        return service_result;
+
+    #Public /index
+    index.exposed = True
+    get_tree.exposed = True
+    tree.exposed = True
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def CORS():
     print "Run CORS"
     cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
@@ -483,6 +531,7 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_GNR_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"gnr"), conf_thanhnh )
     cherrypy.tree.mount(Get_Tree_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"ot"),conf_thanhnh )
+    cherrypy.tree.mount(Get_Tree_Phylomatic_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pm"),conf_thanhnh )
 
     cherrypy.engine.start()
     cherrypy.engine.block()
