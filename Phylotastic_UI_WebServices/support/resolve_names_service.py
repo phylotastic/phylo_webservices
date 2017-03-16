@@ -155,9 +155,9 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match=True, multi_match=False, pos
     creation_time = datetime.datetime.now().isoformat()
 
     if post: 	    
-     	return {'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation}
+     	return {'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList }
     else: 
-        return json.dumps({'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation}) 
+        return json.dumps({'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList}) 
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, post=False): 
@@ -172,7 +172,8 @@ def resolve_names_GNR(inputNamesList, post=False):
     creation_time = datetime.datetime.now().isoformat()
     final_result['creation_time'] = creation_time
     final_result['execution_time'] = "{:4.2f}".format(execution_time)
-    final_result['total_names'] = len(final_result['resolvedNames']) 
+    final_result['total_names'] = len(final_result['resolvedNames'])
+    final_result['input_query'] = inputNamesList
 
     if post: 	    
         return final_result

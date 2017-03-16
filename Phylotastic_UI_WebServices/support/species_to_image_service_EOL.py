@@ -145,6 +145,7 @@ def get_images_species(inputSpeciesList, post=False):
  	#final_result['source_version'] = "ott2.9draft12"
  	#response['service_url'] = service_url
  	response['service_documentation'] = service_documentation
+ 	response['input_query'] = inputSpeciesList
 
  	if post:
  		return response

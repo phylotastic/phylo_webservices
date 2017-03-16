@@ -7,6 +7,7 @@ import time
 import datetime
 import os
 import random
+import re
 
 from itolapi import Itol
 from itolapi import ItolExport
@@ -159,13 +160,16 @@ def process_phyloT_result(newick_str, ncbiDict):
  		newick_str = newick_str.replace(ncbi_id, taxon)
  	
  	newick_str = newick_str.replace("\n", "")
+ 	newick_str = re.sub(r'[\:\.0-9]', "", newick_str)
+ 	newick_str = newick_str.replace(" ", "_")
 
  	return newick_str
 
 #---------------------------------------------
 def service_controller(taxaList, post=False):
  	
- 	start_time = time.time()	
+ 	start_time = time.time()
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-19"	
  	 	
  	NCBI_dict = get_ncbi_ids(taxaList)
  	input_file_id = create_file_input_ids(NCBI_dict)
@@ -186,7 +190,8 @@ def service_controller(taxaList, post=False):
  	creation_time = datetime.datetime.now().isoformat()
  	final_result['creation_time'] = creation_time
  	final_result['execution_time'] = "{:4.2f}".format(execution_time)
- 	#final_result['service_documentation'] = service_documentation
+ 	final_result['service_documentation'] = service_documentation
+ 	final_result['query_taxa'] = taxaList		
 
  	if post: 	    
  		return final_result

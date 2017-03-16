@@ -203,8 +203,8 @@ def get_all_species(inputTaxon):
  	final_result['creation_time'] = creation_time
  	final_result['execution_time'] = "{:4.2f}".format(execution_time)
  	final_result['total_names'] = len_splist
- 	final_result['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-Taxonomy"]
- 	final_result['source_version'] = "ott2.9draft12"
+ 	#final_result['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-Taxonomy"]
+ 	#final_result['source_version'] = "ott2.9draft12"
  	final_result['service_url'] = service_url
  	final_result['service_documentation'] = service_documentation
 
@@ -270,8 +270,8 @@ def get_country_species(inputTaxon, country):
  	final_result['creation_time'] = creation_time
  	final_result['execution_time'] = "{:4.2f}".format(execution_time)
  	final_result['total_names'] = len_splist
- 	final_result['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-Taxonomy", "https://www.inaturalist.org"]
- 	final_result['source_version'] = "ott2.9draft12"
+ 	#final_result['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-Taxonomy", "https://www.inaturalist.org"]
+ 	#final_result['source_version'] = "ott2.9draft12"
  	final_result['service_url'] = service_url
  	final_result['service_documentation'] = service_documentation	
  	final_result['country'] = country
