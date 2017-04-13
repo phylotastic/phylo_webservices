@@ -484,7 +484,7 @@ print "========================================================="
 print "Start Testing Tree Viewer Service : Check whether treeviewer service is alive"
 print "========================================================="
 
-result_ws_tvs = testService_TreeViewer_Alive	
+result_ws_tvs = web_services.testService_TreeViewer_Alive()	
 
 print "---------------------------------------------------------"
 if (result_ws_tvs):
