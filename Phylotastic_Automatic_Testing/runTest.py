@@ -476,11 +476,27 @@ elif (result_ws_9):
 else:
     print("Failed ! Web Service 9 : Get Species (of a Taxon) having genome sequence in NCBI IS NOT WORKING")
 
+########################################################
+#Test Tree Viewer Service : Test whether the tree viewer service is alive
+#Document : https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
+########################################################
+print "========================================================="
+print "Start Testing Tree Viewer Service : Check whether treeviewer service is alive"
+print "========================================================="
+
+result_ws_tvs = testService_TreeViewer_Alive	
+
+print "---------------------------------------------------------"
+if (result_ws_tvs):
+    print("Success ! Tree Viewer Service : Tree Viewer service IS WORKING WELL")
+else:
+    print("Failed ! Tree Viewer Service : Tree Viewer service IS NOT WORKING")
+
 
 ########################################################
 #Finally Result
 ########################################################
-if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True and result_ws_8 == True and result_ws_9 == True):
+if (result_ws_1 == True and result_ws_2 == True and result_ws_3 == True and result_ws_4 == True and result_ws_5 == True and result_ws_6 == True and result_ws_7 == True and result_ws_8 == True and result_ws_9 == True and result_ws_tvs == True):
     exit(0)
 else:
     exit(1)

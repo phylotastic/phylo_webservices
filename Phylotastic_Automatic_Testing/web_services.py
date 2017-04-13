@@ -42,6 +42,8 @@ WS_9_RESOURCES_URL_GET = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/ncbi/g
 WS_9_HEADER = {'content-type':'application/json'}
 WS_9_RESOURCES_URL_POST = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/ncbi/genome_species"
 
+TV_RESOURCES_URL = "http://phylo.cs.nmsu.edu:8989/status"
+TV_HEADER = {'content-type': "text/html"}
 #-------------------------------------------------------------------------------
 #Each function is testing tool for each Web Service in document
 #https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md
@@ -468,6 +470,23 @@ def testService_GetSpeciesNCBI_WS_9_GET(param_taxon,expected_output):
           exit(1)
 
        print("Pass : Returned data contains expected output")
+       return True
+    else:
+       print("Error : Exit 1")
+       return False
+       exit(1)
+#---------------------------------------------------------------
+def testService_TreeViewer_Alive():
+    response = requests.get(TV_RESOURCES_URL, headers=TV_HEADER)
+    if (response.status_code == requests.codes.ok):
+       tv_result = response.text
+       
+       #Check correct output data
+       if (tv_result != "alive"):
+          print("Error : the Tree viewer web Service is not alive");
+          exit(1)
+
+       print("Pass : TreeViewer webservice is alive")
        return True
     else:
        print("Error : Exit 1")
