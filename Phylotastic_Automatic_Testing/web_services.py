@@ -484,6 +484,7 @@ def testService_TreeViewer_Alive():
        #Check correct output data
        if (tv_result != "alive"):
           print("Error : the Tree viewer web Service is not alive");
+          return False
           exit(1)
 
        print("Pass : TreeViewer webservice is alive")

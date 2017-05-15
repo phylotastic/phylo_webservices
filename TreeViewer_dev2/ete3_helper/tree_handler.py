@@ -24,9 +24,9 @@ class WebTreeHandler(object):
         self.treenewick = newick_str
 
         self.treeid = tid
-        self.mapid = "map_" + tid
-        self.imgid = "img_" + tid
-        self.boxid = 'box_' + tid
+        self.mapid = "map_" + str(tid)
+        self.imgid = "img_" + str(tid)
+        self.boxid = 'box_' + str(tid)
 
         self.treeconfig_obj = None
 
