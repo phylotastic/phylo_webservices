@@ -19,7 +19,7 @@ class WebTreeConfig(object):
         self._tip2color = {}
         self._tip2headers = None
         self._tip_max = 0.0
-        self._custom_options = {"draw_support": False, "draw_internal": False}
+        self._custom_options = {"draw_dist": False, "draw_internal": False}
         self._node2label = {}
         self._img_chk_list = []
         self._img_data_dic = {}
@@ -54,7 +54,7 @@ class WebTreeConfig(object):
 
     def set_custom_options(self, branch_len=False, internal_node=False):
         #set whether branch lengths should be drawn or not
-        self._custom_options["draw_support"] = branch_len
+        self._custom_options["draw_dist"] = branch_len
         #set whether internal nodes should be drawn or not
         self._custom_options["draw_internal"] = internal_node 
 
@@ -91,6 +91,16 @@ class WebTreeConfig(object):
            #name_face.margin_bottom = 3 
            #add_face_to_node(name_face, node, column=2, position='branch-right')
            node.img_style['size'] = 0
+
+           if node.dist and self._custom_options["draw_dist"]:
+              node_dist = float("{0:.2f}".format(node.dist)) 
+              support_face = TextFace(node_dist, fgcolor='indianred', fsize=10)
+              support_face.margin_top = 4
+              support_face.margin_right = 4
+              support_face.margin_left = 4
+              support_face.margin_bottom = 4
+              add_face_to_node(support_face, node, column=0, position='branch-bottom')
+
            #---------------------------------------------
            #displaying extra categorical and numeric data
            '''
@@ -159,15 +169,15 @@ class WebTreeConfig(object):
                label_face = TextFace(self._node2label[node.name], fgcolor='DarkGreen', fsize=10)
                add_face_to_node(label_face, node, column=0, position="branch-top")
             '''
-            if node.support and self._custom_options["draw_support"]:
-              support_face = TextFace(node.support, fgcolor='indianred', fsize=10)
+            if node.dist and self._custom_options["draw_dist"]:
+              node_dist = float("{0:.2f}".format(node.dist)) 
+              support_face = TextFace(node_dist, fgcolor='indianred', fsize=10)
               support_face.margin_top = 4
               support_face.margin_right = 4
               support_face.margin_left = 4
               support_face.margin_bottom = 4
               add_face_to_node(support_face, node, column=0, position='branch-bottom')
-              
-              
+          
             if hasattr(node, "hide") and int(node.hide) == 1:
               node.img_style["draw_descendants"]= False
               collapsed_face = faces.TextFace(" %s collapsed leaves." %len(node), \
