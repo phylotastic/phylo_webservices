@@ -10,7 +10,7 @@ def scale_tree(tree_newick):
 	ro.r('estdates <- EstimateDates(input =' + tree_newick + ', output.format = "newick.median", partial = TRUE, usetnrs = FALSE, approximatematch = TRUE, method = "PATHd8")')
 	scaled_tree = ro.r['estdates']
 	
-	pandas2ri.activate()	
+	#pandas2ri.activate()	
 	# converting <class 'rpy2.robjects.vectors.StrVector'> to <type 'numpy.ndarray'>	
 	objstr = pandas2ri.ri2py(scaled_tree)
 	# get the 'numpy.string_' object
