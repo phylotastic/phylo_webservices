@@ -34,19 +34,19 @@ def get_sn_url(inputURL, sEngine=0):
         data_json = json.loads(response.text)
     else:
         return {'input_url': inputURL, 'scientificNames': scientificNamesList,'status_code': 500,
-                'service_url': service_url, "service_url_doc": service_documentation} 
+                'service_url': service_url, "service_url_doc": service_documentation, 'message': "Error extracting names using GNRD"} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
          return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 204, 
-                 'service_url': service_url, "service_url_doc": service_documentation} 
+                 'service_url': service_url, "service_url_doc": service_documentation, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']        
          #scientificNamesList = uniquify(all_scientificNamesList) 
          return {'input_url': inputURL, 'parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 
-                 'service_url': service_url, "service_url_doc": service_documentation} 
+                 'service_url': service_url, "service_url_doc": service_documentation, 'message': "Success"} 
      
 #----------------------------------------------    
 #get scientific names from final api-result
@@ -118,19 +118,19 @@ def get_sn_text(inputTEXT, sEngine=0):
         data_json = json.loads(response.text)
     else:
         return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 500, 
-                'service_url': service_url, "service_url_doc": service_documentation } 
+                'service_url': service_url, "service_url_doc": service_documentation, 'message': "Error extracting names using GNRD"} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
          return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 204, 
-                 'service_url': service_url, "service_url_doc": service_documentation } 
+                 'service_url': service_url, "service_url_doc": service_documentation, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']
          #scientificNamesList = uniquify(all_scientificNamesList) 
          return {'input_text': inputTEXT, 'parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 
-                 'service_url': service_url, "service_url_doc": service_documentation } 
+                 'service_url': service_url, "service_url_doc": service_documentation, 'message': "Success"} 
 
 #-----------------------------------------------------------
 # removes duplicates from a list
