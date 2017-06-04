@@ -30,15 +30,19 @@ def resolve_sn_gnr(scNames, post):
         rsnames_list = data_json['data']
         parameters_list = data_json['parameters']   
         for element in rsnames_list:
-            rsname = element['results'][0]['canonical_form']       
             namesList = {}
-            namesList['matched_name'] =  rsname
             namesList['search_string'] = element['supplied_name_string']
-            namesList['match_type'] = 'Exact' if element['results'][0]['match_type'] == 1 else 'Fuzzy'
-            namesList['synonyms'] = []
-            namesList['taxon_id'] = element['results'][0]['taxon_id']	
             namesList['resolver_name'] = 'GNR'
+            if 'results' in element:
+            	rsname = element['results'][0]['canonical_form']       	
+            	namesList['matched_name'] =  rsname
+            	namesList['match_type'] = 'Exact' if element['results'][0]['match_type'] == 1 else 'Fuzzy'
+            	namesList['synonyms'] = []
+            	namesList['taxon_id'] = element['results'][0]['taxon_id']		
+            else:
+                namesList['matched_name'] = ""
             resolvedNamesList.append(namesList)
+
  	    status_code = 200
         message = "Success" 
     else:
