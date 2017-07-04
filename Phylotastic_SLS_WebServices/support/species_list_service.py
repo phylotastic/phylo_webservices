@@ -207,7 +207,10 @@ def get_list_species(db_collection, list_id, include_all):
 	 			 	species_json['scientific_name_authorship'] = species_obj['scientific_name_authorship']
  			 	 	species_json['family'] = species_obj['family']
  			 	 	species_json['order'] = species_obj['order']
- 			 		species_json['class'] = species_obj['class']
+ 			 		try:
+ 			 			species_json['class'] = species_obj['class']
+ 			 		except KeyError:
+ 			 			species_json['class'] = ""
  			 	 	species_json['phylum'] = species_obj['phylum']
  			 	 	species_json['nomenclature_code'] = species_obj['nomenclature_code']
  	 		 	 	species_list_obj.append(species_json)
@@ -799,7 +802,10 @@ def is_species_obj_valid(species_obj_list):
  			scientific_name_authorship = species_json['scientific_name_authorship']
  	 		family = species_json['family']
  			order =	species_json['order']
- 			sp_class =	species_json['class']
+ 			try: 
+ 				sp_class = species_json['class']
+ 			except KeyError:
+ 				sp_class = ""
  			phylum = species_json['phylum']
  			nomenclature_code = species_json['nomenclature_code']
  	except KeyError, e:
