@@ -20,7 +20,7 @@ class DatabaseAPI(object):
 		try:
 			cnx = mysql.connector.connect(user=db_user, password=db_pass, database=db_name)
 			self.mysql_conn = cnx
-			print "Database connected"
+			#print "Database connected"
 		except mysql.connector.Error as err:
 			if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
 				print("Something is wrong with the user name or password")
@@ -52,14 +52,13 @@ class DatabaseAPI(object):
 		stmt_3 = stmt_3+ ")"
 
 		insert_stmt = stmt_1 + stmt_2 + stmt_3
-		print insert_stmt
+		#print insert_stmt
 		return insert_stmt
 
 	#---------------------------------------------
-
-	def insert_db(self, table_name, table_fields, table_rows):
+	def insert_db_multiple(self, table_name, table_fields, table_rows):
 		"""
-		Inserts info into the database
+		Inserts multile rows into the database
 		"""
 		cursor = self.mysql_conn.cursor()
 		insert_stmt = ( self.prepare_insert_statement(table_name, table_fields) )
@@ -73,6 +72,26 @@ class DatabaseAPI(object):
 		cursor.close()
 		self.mysql_conn.close()
 
+	#--------------------------------------------
+	def insert_db_single(self, table_name, table_fields, table_row):
+		"""
+		Inserts a single row into the database and returns the last inserted id
+		"""
+		cursor = self.mysql_conn.cursor()
+		insert_stmt = ( self.prepare_insert_statement(table_name, table_fields) )
+        
+		# Insert new row
+		cursor.execute(insert_stmt, table_row)
+		last_id = cursor.lastrowid
+
+	
+		# Make sure data is committed to the database
+		self.mysql_conn.commit()
+		cursor.close()
+		self.mysql_conn.close()
+
+		return last_id
+	
 	#---------------------------------------------------
 	def prepare_query_statement(self, table_name, table_fields, condition=None):
 		"""
@@ -117,4 +136,38 @@ class DatabaseAPI(object):
 		self.mysql_conn.close()
 
 		return query_result
+
+	#-----------------------------------------------
+	def prepare_update_statement(self, table_name, table_fields, condition):
+		"""
+		Prepares update statement
+		"""
+		stmt_1 = "UPDATE " + table_name + " SET "
+		stmt_2 = ""
+		stmt_3 = " WHERE " + condition
+
+		for indx, field in enumerate(table_fields):
+			stmt_2 = stmt_2 + field + " = %s"
+						
+			if indx != len(table_fields)-1:
+				stmt_2 = stmt_2 + ","
+								
+		update_stmt = stmt_1 + stmt_2 + stmt_3
+		#print update_stmt
+		return update_stmt
+
+	#---------------------------------------------
+	def update_db_single(self, table_name, table_fields, field_values, condition):
+		"""
+		Update multile rows into the database
+		"""
+		cursor = self.mysql_conn.cursor()
+		update_stmt = ( self.prepare_update_statement(table_name, table_fields, condition) )
+        
+		cursor.execute(update_stmt, field_values)
+	
+		# Make sure data is committed to the database
+		self.mysql_conn.commit()
+		cursor.close()
+		self.mysql_conn.close()
 

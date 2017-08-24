@@ -9,10 +9,10 @@ DB_NAME = 'qos'
 TABLES = {}
 TABLES['qos_session'] = (
     "CREATE TABLE `qos_session` ("
-    "  `qos_id` int(11) NOT NULL,"
-    "  `session_id` int(11) NOT NULL,"
+    "  `session_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `session_start_time` datetime NOT NULL,"
-    "  PRIMARY KEY (`qos_id`, `session_id`)"
+	"  `session_end_time` datetime NOT NULL,"
+    "  PRIMARY KEY (`session_id`)"
     ") ENGINE=InnoDB")
 
 
@@ -20,15 +20,25 @@ TABLES['qos_updown'] = (
     "CREATE TABLE `qos_updown` ("
 	"  `updown_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `ws_id` varchar(8) NOT NULL,"
-	"  `qos_id` int(11) NOT NULL,"
     "  `session_id` int(11) NOT NULL,"
     "  `state` char(1) NOT NULL,"
     "  `state_updated` datetime NOT NULL,"
     "  PRIMARY KEY (`updown_id`),"
-    "  CONSTRAINT `wsid_qsid_sessid_fk` FOREIGN KEY (`qos_id`, `session_id`) "
-    "     REFERENCES `qos_session` (`qos_id`, `session_id`) ON DELETE CASCADE"
+    "  CONSTRAINT `sessid_fk` FOREIGN KEY (`session_id`) "
+    "     REFERENCES `qos_session` (`session_id`) ON DELETE CASCADE"
     ") ENGINE=InnoDB")
 
+
+TABLES['qos_throughput'] = (
+    "CREATE TABLE `qos_throughput` ("
+	"  `thrpt_id` int(11) NOT NULL AUTO_INCREMENT,"
+    "  `ws_id` varchar(8) NOT NULL,"
+    "  `total_requests` smallint NOT NULL,"
+    "  `failed_requests` smallint NOT NULL,"
+    "  `duration` float NOT NULL,"
+    "  `result_updated` datetime NOT NULL,"
+    "  PRIMARY KEY (`thrpt_id`)"
+    ") ENGINE=InnoDB")
 
 
 db_user = credentials.mysql['user']

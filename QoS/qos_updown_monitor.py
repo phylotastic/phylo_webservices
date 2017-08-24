@@ -5,10 +5,12 @@ import requests
 import time
 import datetime
 import importlib
+import signal
+import sys
+
 from database import DatabaseAPI 
 
-SessionID = 1
-QosID = 1
+SessionID = None
 
 #-------------------------------------------------
 def service_dbstate_checker(service_id):
@@ -18,8 +20,9 @@ def service_dbstate_checker(service_id):
 	#create a database connection
 	db = DatabaseAPI("qos")
 	#query the table
-	result = db.query_db("qos_updown", ["state"], "ws_id = %s and qos_id = %s and session_id = %s", (service_id, QosID, SessionID)) 
+	result = db.query_db("qos_updown", ["state"], "ws_id = %s and session_id = %s ORDER BY state_updated DESC", (service_id, SessionID)) 
 	state = result[0][0]  #up(U) or down(D)
+	#print "DB state: %s"%state
 
 	if state == "U":
 		return True 
@@ -27,6 +30,62 @@ def service_dbstate_checker(service_id):
 		return False
 
 #--------------------------------------------------
+def services_init_status(list_services_info):
+	"""
+	Checks the initial states of the services at the start of monitoring  
+	"""
+	services_init_status_list = []
+	for indx, (service_id, service_api, service_input) in enumerate(list_services_info):
+		status = service_status_checker(service_id, service_api, service_input)
+		status = "U" if status else "D"
+		ts = time.time()
+		status_check_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+		services_init_status_list.append( (service_id, status, status_check_time) )
+
+	return services_init_status_list
+
+#-------------------------------------------------
+def service_init_state_adder(services_init_status_list):
+	"""
+	Inserts inital states (up/down) of the services in database
+	"""
+	#prepare the data rows
+	data_rows = []
+	for indx, (service_id, status, status_check_time) in enumerate(services_init_status_list):
+		data_rows.append( (service_id, SessionID, status, status_check_time) )
+	#create a database connection
+	db = DatabaseAPI("qos")
+	#insert all data rows into database
+	db.insert_db_multiple("qos_updown", ["ws_id", "session_id", "state", "state_updated"], data_rows) 
+	
+#--------------------------------------------------
+def session_start_marker():
+	"""
+	Inserts date/time of new monitoring session 
+	"""
+	#create a database connection
+	db = DatabaseAPI("qos")
+	global SessionID
+
+	ts = time.time()
+	session_start_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+	
+	SessionID = db.insert_db_single("qos_session", ["session_start_time"], (session_start_time,) )
+
+#-------------------------------------------------
+def session_end_marker():
+	"""
+	Inserts date/time of ending for current monitoring session 
+	"""
+	#create a database connection
+	db = DatabaseAPI("qos")
+
+	ts = time.time()
+	session_end_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+	
+	db.update_db_single("qos_session", ["session_end_time"], (session_end_time,), "session_id = "+str(SessionID) )
+	
+#-------------------------------------------------
 def service_dbtimestamp_adder(service_id, state):
 	"""
 	Insert timestamp to the database for service state
@@ -37,40 +96,49 @@ def service_dbtimestamp_adder(service_id, state):
 	ts = time.time()
 	update_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
-	db.insert_db("qos_updown", ["ws_id", "qos_id", "session_id", "state", "state_updated"], [(service_id, QosID, SessionID, state, update_time)])
+	db.insert_db_single("qos_updown", ["ws_id", "session_id", "state", "state_updated"], (service_id, SessionID, state, update_time) )
 
 #------------------------------------------------------
-def service_status_checker(service_id, service_api, service_input):
+def service_status_checker(service_id, service_api, service_input, status_only=True):
 	"""
 	Checks the status (up/down) of a service
 	"""
-
+	
 	status = send_request(service_api, service_input['method'], service_input['input_data'])
 	#print status
+	#If True, only checks the status of the service by sending ping request
+	if status_only:
+		return status
+
 	state = service_dbstate_checker(service_id)
 	#print state
 	if status == True and state == True:
-		print "service was not down. Running"
+		print "Service %s is running"%(service_id)
 	elif status == False and state == True:
-		print "service was running, now went down"
-		#add timestamp to the database
+		print "Service %s was running, now went down"%(service_id)
+		print "Adding timestamp to the database"
 		service_dbtimestamp_adder(service_id, "D")
 	elif status == True and state == False:
-		print "service was down, now went up"
-		#add timestamp to the database
+		print "Service %s was down, now went up"%(service_id)
+		print "Adding timestamp to the database"
 		service_dbtimestamp_adder(service_id, "U")
 	elif status == False and state == False:
-		print "service was down and still it is down"
+		print "Service %s was down and still it is down"%(service_id)
 
-	
 #--------------------------------------------
-def send_request(api_url, method, payload):
+def send_request(api_url, method, payload=None):
 	
-	if method == "GET":
-		response = requests.get(api_url, params=payload)
-	elif method == "POST":
-		jsonPayload = json.dumps(payload)
-		response = requests.post(api_url, data=jsonPayload, headers={'content-type': 'application/json'})
+	try:	
+		if method == "GET" and payload is not None:
+			response = requests.get(api_url, params=payload)
+		elif method == "GET" and payload is None:
+			response = requests.get(api_url)
+		elif method == "POST":
+			jsonPayload = json.dumps(payload)
+			response = requests.post(api_url, data=jsonPayload, headers={'content-type': 'application/json'})
+
+	except requests.exceptions.RequestException:
+		return False
 
 	if response.status_code == requests.codes.ok:    
 		return True #service is up
@@ -87,28 +155,55 @@ def get_configs():
  
 	#print module_list
 	return module_list
+
+#-----------------------------------------
+def get_service_endpoint(service_api):
+	str1 = "/"
+	indx = service_api.rfind(str1)
+	service_endpoint = service_api[0:indx+1]
+	#print service_endpoint
+	return service_endpoint
+
+#-------------------------------------------
+def signal_term_handler(signal, frame):
+	print 'Got SIGTERM. Process shutting down..'
+	session_end_marker()
+	sys.exit(0)
+
+    
 #-----------------------------------------
 
 if __name__ == "__main__":
 
-	#print request_sender()
-	#service_dbtimestamp_adder("ws1")
-	#service_dbstate_checker("ws1")
-	#service_status_checker("ws1", "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/all_species", {'method': "GET",'input_data':{'taxon': "Vulpes"}})	
 	
-	while (True):	
+	list_services_info = []
+	signal.signal(signal.SIGTERM, signal_term_handler)
+	
+	if SessionID is None:
+		session_start_marker()
 		module_list = get_configs()
 		importlib.import_module("input_configs")
-		print "Number of modules: %s" %len(module_list)
+		#print "Number of modules: %s" %len(module_list)
 		
 		for module in module_list:
 			if not module.startswith(".__"):  	
 				module_instance = importlib.import_module(module, package="input_configs")
 				service_id = module_instance.service_id
 				service_api = module_instance.service_endpoint
+				service_endpoint = get_service_endpoint(service_api)
 				input_settings = module_instance.input_settings
-				service_status_checker(service_id, service_api, input_settings[0])
-				print "Status checked for %s"%service_id
-		print "Modules imported"
-		time.sleep(10)
-	
+				input_settings[0]['input_data'] = None
+				list_services_info.append( (service_id, service_endpoint, input_settings[0]) )
+		
+		init_status_list = services_init_status(list_services_info)
+		service_init_state_adder(init_status_list)
+		try:
+			while (True):	
+				for indx, (service_id, service_api, input_settings) in enumerate(list_services_info):	
+					service_status_checker(service_id, service_api, input_settings, False)
+					print "Status checked for %s"%service_id
+			
+				time.sleep(10) #wait 600s (10 min) 
+		except KeyboardInterrupt:
+			print "Keyboard interrupted"			
+
