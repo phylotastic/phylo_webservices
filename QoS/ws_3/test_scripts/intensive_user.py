@@ -1,11 +1,13 @@
 import requests
 import time
 import json
+from os.path import dirname, abspath
 
 class Transaction(object):
     def __init__(self):
         self.custom_timers = {}
-        names_list = self.read_data("/home/tayeen/TayeenFolders/PythonFiles/qos/test_data/seaweed_plants.txt")
+        d = dirname(dirname(dirname(abspath(__file__)))) # get parent of parent of current directory
+        names_list = self.read_data(d+"/test_data/seaweed_plants.txt")
         self.post_body = {"scientificNames": names_list}
         
 
@@ -32,5 +34,4 @@ class Transaction(object):
 if __name__ == '__main__':
     trans = Transaction()
     trans.run()
-    #print trans.read_data("/home/tayeen/TayeenFolders/PythonFiles/qos/test_data/seaweed_plants.txt")
     #print trans.custom_timers

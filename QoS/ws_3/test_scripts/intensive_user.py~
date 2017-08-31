@@ -1,11 +1,13 @@
 import requests
 import time
 import json
+from os.path import dirname, abspath
 
 class Transaction(object):
     def __init__(self):
         self.custom_timers = {}
-        names_list = self.read_data("/home/tayeen/TayeenFolders/PythonFiles/qos/test_data/seaweed_plants.txt")
+        d = dirname(dirname(dirname(abspath(__file__)))) # get parent of parent of current directory
+        names_list = self.read_data(d+"/test_data/seaweed_plants.txt")
         self.post_body = {"scientificNames": names_list}
         
 
@@ -21,7 +23,7 @@ class Transaction(object):
     def run(self):
         start_timer = time.time()
         jsonPayload = json.dumps(self.post_body)
-        response = requests.post("http://127.0.0.1:5000/payload", data=jsonPayload, headers={'content-type': 'application/json'})
+        response = requests.post("http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/ot/names", data=jsonPayload, headers={'content-type': 'application/json'})
 
         latency = time.time() - start_timer
 
