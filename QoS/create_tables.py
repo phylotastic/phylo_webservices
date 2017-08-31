@@ -41,6 +41,15 @@ TABLES['qos_throughput'] = (
     ") ENGINE=InnoDB")
 
 
+TABLES['ws_info'] = (
+    "CREATE TABLE `qos_ws` ("
+    "  `ws_id` varchar(8) NOT NULL,"
+	"  `ws_title` varchar(500) NULL,"
+    "  `ws_description` varchar(2000) NULL,"
+    "  `ws_thrpt_map_id` varchar(100) NOT NULL,"
+    "  PRIMARY KEY (`ws_id`)"
+    ") ENGINE=InnoDB")
+
 db_user = credentials.mysql['user']
 db_pass = credentials.mysql['password']
 

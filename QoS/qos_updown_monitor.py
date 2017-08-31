@@ -116,11 +116,11 @@ def service_status_checker(service_id, service_api, service_input, status_only=T
 		print "Service %s is running"%(service_id)
 	elif status == False and state == True:
 		print "Service %s was running, now went down"%(service_id)
-		print "Adding timestamp to the database"
+		#print "Adding timestamp to the database"
 		service_dbtimestamp_adder(service_id, "D")
 	elif status == True and state == False:
 		print "Service %s was down, now went up"%(service_id)
-		print "Adding timestamp to the database"
+		#print "Adding timestamp to the database"
 		service_dbtimestamp_adder(service_id, "U")
 	elif status == False and state == False:
 		print "Service %s was down and still it is down"%(service_id)
@@ -165,6 +165,7 @@ def get_service_endpoint(service_api):
 	return service_endpoint
 
 #-------------------------------------------
+#when the monitoring process is killed, mark the timestamp
 def signal_term_handler(signal, frame):
 	print 'Got SIGTERM. Process shutting down..'
 	session_end_marker()
@@ -175,7 +176,6 @@ def signal_term_handler(signal, frame):
 
 if __name__ == "__main__":
 
-	
 	list_services_info = []
 	signal.signal(signal.SIGTERM, signal_term_handler)
 	
@@ -203,7 +203,7 @@ if __name__ == "__main__":
 					service_status_checker(service_id, service_api, input_settings, False)
 					print "Status checked for %s"%service_id
 			
-				time.sleep(10) #wait 600s (10 min) 
+				time.sleep(600) #wait 600s (10 min) 
 		except KeyboardInterrupt:
 			print "Keyboard interrupted"			
 
