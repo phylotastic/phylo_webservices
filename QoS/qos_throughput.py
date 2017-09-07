@@ -53,7 +53,7 @@ def insert_record_db(data_row):
 	db = DatabaseAPI("qos")
 
 	#insert all data rows into database
-	db.insert_db_single( "qos_throughput", ["ws_id", "total_requests", "failed_requests", "duration", "result_updated"], (data_row['ws_id'],data_row['total_req'], data_row['fail_req'], data_row['duration'], data_row['date']) )
+	db.insert_db_single( "qos_throughput", ["ws_id", "total_requests", "failed_requests", "duration", "thrpt_updated"], (data_row['ws_id'],data_row['total_req'], data_row['fail_req'], data_row['duration'], data_row['date']) )
 
 #-----------------------------------------
 def get_result_dir(dpath):

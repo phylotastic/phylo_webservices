@@ -25,7 +25,7 @@ class Transaction(object):
         jsonPayload = json.dumps(self.post_body)
         response = requests.post("http://phylo.cs.nmsu.edu:5004/phylotastic_ws/gt/pm/tree", data=jsonPayload, headers={'content-type': 'application/json'})
 
-
+        latency = time.time() - start_timer
         self.custom_timers['Latency'] = latency
         assert (response.status_code == 200), 'Bad Response: HTTP %s' % response.status_code
         

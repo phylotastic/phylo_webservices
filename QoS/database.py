@@ -93,7 +93,7 @@ class DatabaseAPI(object):
 		return last_id
 	
 	#---------------------------------------------------
-	def prepare_query_statement(self, table_name, table_fields, condition=None):
+	def prepare_query_statement(self, table_name, table_fields, condition=None, extra_stmt=None):
 		"""
 		Prepares query statement
 		"""
@@ -110,11 +110,15 @@ class DatabaseAPI(object):
 				stmt_1 = stmt_1 + ","
 				
 		query_stmt = stmt_1 + stmt_2 + stmt_3
+
+		if extra_stmt is not None:
+			query_stmt = query_stmt + " " + extra_stmt
+		
 		#print query_stmt
 		return query_stmt
 
 	#----------------------------------------------
-	def query_db(self, table_name, table_fields, condition, condition_values):
+	def query_db(self, table_name, table_fields, condition=None, condition_values=None, extra=None):
 		"""
 		Makes query into the database
 		:param condition_values: values related to the condition 
@@ -122,11 +126,16 @@ class DatabaseAPI(object):
 
 		"""
 		cursor = self.mysql_conn.cursor(buffered=True)
-		query_stmt = ( self.prepare_query_statement(table_name, table_fields, condition) )
+		query_stmt = ( self.prepare_query_statement(table_name, table_fields, condition, extra) )
 		
-		cursor.execute(query_stmt, condition_values)
+		if condition_values is None:
+			cursor.execute(query_stmt)
+		else:
+			cursor.execute(query_stmt, condition_values)
+
 		query_result = []
 		
+		#for field1, field2, ... in cursor 
 		for row in cursor:
 			query_result.append(row)
 		#return a list of lists(rows)

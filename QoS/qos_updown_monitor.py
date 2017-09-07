@@ -7,6 +7,7 @@ import datetime
 import importlib
 import signal
 import sys
+import json
 
 from database import DatabaseAPI 
 
@@ -136,7 +137,7 @@ def send_request(api_url, method, payload=None):
 		elif method == "POST":
 			jsonPayload = json.dumps(payload)
 			response = requests.post(api_url, data=jsonPayload, headers={'content-type': 'application/json'})
-
+		#print response.status_code
 	except requests.exceptions.RequestException:
 		return False
 
@@ -155,14 +156,6 @@ def get_configs():
  
 	#print module_list
 	return module_list
-
-#-----------------------------------------
-def get_service_endpoint(service_api):
-	str1 = "/"
-	indx = service_api.rfind(str1)
-	service_endpoint = service_api[0:indx+1]
-	#print service_endpoint
-	return service_endpoint
 
 #-------------------------------------------
 #when the monitoring process is killed, mark the timestamp
@@ -183,14 +176,13 @@ if __name__ == "__main__":
 		session_start_marker()
 		module_list = get_configs()
 		importlib.import_module("input_configs")
-		#print "Number of modules: %s" %len(module_list)
+		print "Number of modules: %s" %len(module_list)
 		
 		for module in module_list:
 			if not module.startswith(".__"):  	
 				module_instance = importlib.import_module(module, package="input_configs")
 				service_id = module_instance.service_id
-				service_api = module_instance.service_endpoint
-				service_endpoint = get_service_endpoint(service_api)
+				service_endpoint = module_instance.service_endpoint
 				input_settings = module_instance.input_settings
 				input_settings[0]['input_data'] = None
 				list_services_info.append( (service_id, service_endpoint, input_settings[0]) )
@@ -201,9 +193,10 @@ if __name__ == "__main__":
 			while (True):	
 				for indx, (service_id, service_api, input_settings) in enumerate(list_services_info):	
 					service_status_checker(service_id, service_api, input_settings, False)
-					print "Status checked for %s"%service_id
-			
+					#print "Status checked for %s"%service_id
+				print "Waiting for 10 min...."
 				time.sleep(600) #wait 600s (10 min) 
 		except KeyboardInterrupt:
 			print "Keyboard interrupted"			
-
+			session_end_marker()
+			sys.exit(0)

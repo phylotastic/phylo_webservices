@@ -11,7 +11,7 @@ TABLES['qos_session'] = (
     "CREATE TABLE `qos_session` ("
     "  `session_id` int(11) NOT NULL AUTO_INCREMENT,"
     "  `session_start_time` datetime NOT NULL,"
-	"  `session_end_time` datetime NOT NULL,"
+	"  `session_end_time` datetime NULL,"
     "  PRIMARY KEY (`session_id`)"
     ") ENGINE=InnoDB")
 
@@ -36,18 +36,29 @@ TABLES['qos_throughput'] = (
     "  `total_requests` smallint NOT NULL,"
     "  `failed_requests` smallint NOT NULL,"
     "  `duration` float NOT NULL,"
-    "  `result_updated` datetime NOT NULL,"
+    "  `thrpt_updated` datetime NOT NULL,"
     "  PRIMARY KEY (`thrpt_id`)"
     ") ENGINE=InnoDB")
 
 
-TABLES['ws_info'] = (
-    "CREATE TABLE `qos_ws` ("
+TABLES['qos_wsinfo'] = (
+    "CREATE TABLE `qos_wsinfo` ("
     "  `ws_id` varchar(8) NOT NULL,"
 	"  `ws_title` varchar(500) NULL,"
+	"  `ws_group` varchar(300) NULL,"
     "  `ws_description` varchar(2000) NULL,"
-    "  `ws_thrpt_map_id` varchar(100) NOT NULL,"
+    "  `ws_map_id` varchar(100) NULL,"
     "  PRIMARY KEY (`ws_id`)"
+    ") ENGINE=InnoDB")
+
+
+TABLES['qos_resptime'] = (
+    "CREATE TABLE `qos_resptime` ("
+	"  `resp_id` int(11) NOT NULL AUTO_INCREMENT,"
+    "  `ws_id` varchar(8) NOT NULL,"
+    "  `resp_time` float NOT NULL,"
+    "  `result_updated` datetime NOT NULL,"
+    "  PRIMARY KEY (`resp_id`)"
     ") ENGINE=InnoDB")
 
 db_user = credentials.mysql['user']
