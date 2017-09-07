@@ -77,11 +77,11 @@ __Parameters:__
   * __Category:__  	mandatory
   * __Data Type:__  integer
   * __Description:__  an integer value to specify the id of the qos metric. 
-  * __Permitted Values:__ any values from the following table
+  * __Permitted Values:__ any qos_id values from the following table.
 
 
 | qos_id        | qos_parameter | qos_param_definition  |
-| ------------- |:-------------:| :-----:|
+| ------------- |---------------| ----------------------|
 | 1             | Response time | The amount of time taken to receive respose after a request is sent       |
 | 2             | Throughput    | Average number of successful responses for a given period of time         |
 | 3             | Availability  | The probability that the service will be available at some period of time |
