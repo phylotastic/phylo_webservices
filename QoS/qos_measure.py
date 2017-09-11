@@ -4,7 +4,9 @@ from database import DatabaseAPI
 
 #-----------------------------------------
 def compute_avlty(sid):
-    
+	"""
+	Computes the availability of a web service
+	"""
 	db_result = {}
     #create a database connection
 	db = DatabaseAPI("qos")
@@ -27,12 +29,12 @@ def compute_avlty(sid):
 		total_uptime = monitoring_time - total_down_time	
 		#print "Total uptime: %d"%total_uptime
 
-		availability = (total_uptime / float(monitoring_time))*100
+		availability = total_uptime / float(monitoring_time)
 		print "Availability: %f"%(availability)
        
 		db_result['message'] = "Success"
 		db_result['status_code'] = 200
-		db_result['qos_result'] = {'qos_parameter': "availability", 'qos_value': float("{0:.2f}".format(availability)), 'qos_unit': "percentage", 'qos_date_updated': datetime.datetime.now().strftime('%m-%d-%Y')} 
+		db_result['qos_result'] = {'qos_parameter': "availability", 'qos_value': float("{0:.2f}".format(availability)), 'qos_unit': "", 'qos_date_updated': datetime.datetime.now().strftime('%m-%d-%Y')} 
 	
 	db_result['service_id'] = sid       
 	
@@ -91,6 +93,9 @@ def compute_downtime(up_times, down_times):
 
 #--------------------------------------------------------
 def compute_rspt(sid):
+	"""
+	Computes the response time of a web service
+	"""
 	table_name = "qos_resptime"
 	table_fields = ["ws_id","resp_time","result_updated"]
 	table_condition = "ws_id = %s ORDER BY result_updated DESC"
@@ -114,6 +119,9 @@ def compute_rspt(sid):
 
 #-------------------------------------------------
 def compute_thrpt(sid):
+	"""
+	Computes the thoughput of a web service
+	"""
 	table_name = "qos_throughput"
 	table_fields = ["ws_id","total_requests","failed_requests","duration","thrpt_updated"] 
 	table_condition = "ws_id = %s ORDER BY thrpt_updated DESC"
@@ -141,7 +149,35 @@ def compute_thrpt(sid):
 	return db_result
 
 #---------------------------------------------
+def compute_relbty(sid):
+	"""
+	Computes the reliability of a web service
+	"""
+	db_result = {}
+    #create a database connection
+	db = DatabaseAPI("qos")
+    #query the table
+	query_result = db.query_db("qos_session", ["session_id", "session_start_time"], extra="ORDER BY session_start_time DESC")
+	sessionID = int(query_result[0][0])
+	sessionStart_str = query_result[0][1].strftime("%Y-%m-%d %H:%M:%S")
+	sessionStart = datetime.datetime.strptime(sessionStart_str, "%Y-%m-%d %H:%M:%S")
+	monitoring_time = (datetime.datetime.now() - sessionStart).total_seconds()
 
+	down_times = get_updown_timestamps(sessionID, sid, "D")
+	total_num_downs = len(down_times)
+	if total_num_downs == 0:	
+		num_failures = 1
+	else:
+		num_failures = total_num_downs
+
+	monitoring_time_hrs = float(monitoring_time)/ 3600
+	#print monitoring_time_hrs
+	reliability = monitoring_time_hrs/num_failures
+	db_result['message'] = "Success"
+	db_result['status_code'] = 200
+	db_result['qos_result'] = {'qos_parameter': "reliability", 'qos_value': float("{0:.2f}".format(reliability)), 'qos_unit': "hours/failure", 'qos_date_updated': datetime.datetime.now().strftime('%m-%d-%Y')} 
+	 
+	return db_result
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
 	#print compute_availability("test2")

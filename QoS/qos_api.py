@@ -79,6 +79,8 @@ class QoS_Service_API(object):
                service_result = qm.compute_thrpt(sid)
             elif int(qid) == 3:
                service_result = qm.compute_avlty(sid)
+            elif int(qid) == 4:
+               service_result = qm.compute_relbty(sid)
             else:
                raise CustomException("'%d' is not a valid value for 'qos_id' parameter"%(int(qid)))			
 

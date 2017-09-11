@@ -85,6 +85,7 @@ __Parameters:__
 | 1             | Response time | The amount of time taken to receive respose after a request is sent       |
 | 2             | Throughput    | Average number of successful responses for a given period of time         |
 | 3             | Availability  | The probability that the service will be available at some period of time |
+| 4             | Reliability   | Total operational time/number of failures                                 |
 
 __Examples:__ 
 
