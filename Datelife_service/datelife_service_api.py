@@ -32,6 +32,9 @@ def return_response_error(error_code, error_message,response_format="JSON"):
     else:
         return error_response
 
+class CustomException(Exception):
+    pass
+
 #-----------------------------------------------------------
 def connect_mongodb(host='localhost', port=27017):
  	try:
@@ -60,14 +63,23 @@ class Datelife_Service_API(object):
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def scale(self,**request_data):
+        scale_method = None
         try:
             input_json = cherrypy.request.json
             tree_newick = input_json["newick"]
-           				 
-        except:
+            if 'method' in input_json: 
+               scale_method = input_json["method"] 
+               if scale_method not in ["median", "sdm"]:
+                  raise CustomException("'%s' is not a valid value for 'method' parameter"%(scale_method))          
+        except KeyError, e:
             return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"NotJSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"NotJSON")
         
-        service_result = datelife_service.scale_tree_api(tree_newick)   
+        if scale_method is None:
+           service_result = datelife_service.scale_tree_api(tree_newick)
+        else: 
+           service_result = datelife_service.scale_tree_api(tree_newick, scale_method)   
 		#-------------log request------------------   
         header = cherrypy.request.headers
         log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree_newick': tree_newick}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
@@ -75,10 +87,31 @@ class Datelife_Service_API(object):
         #------------------------------------------           
 
         return service_result
+
+    #-----------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def metadata_scale(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            tree_newick = input_json["newick"]
+        except KeyError, e:
+            return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"NotJSON")
+        
+        service_result = datelife_service.scale_metadata_api(tree_newick)   
+		#-------------log request------------------   
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree_newick': tree_newick}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+        insert_log(log)
+        #------------------------------------------           
+
+        return service_result    
+
  	#------------------------------------------------
     #Public /index
     index.exposed = True
     scale.exposed = True
+    metadata_scale.exposed = True
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
