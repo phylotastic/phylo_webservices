@@ -133,10 +133,11 @@ def get_studies_from_ids(id_list, is_ottid=True, post=False):
     execution_time = end_time-start_time
     studies_info['execution_time'] = float('{:4.2f}'.format(execution_time))
 
-    if post:
-       return studies_info
-    else:
-       return json.dumps(studies_info)
+    return studies_info
+    #if post:
+    #   return studies_info
+    #else:
+    #   return json.dumps(studies_info)
 
 #-------------------(OpenTree-TNRS)-----------------------------
 def get_ott_ids(taxa, context=None):
@@ -199,10 +200,11 @@ def get_studies_from_names(taxa_list, context=None, post=False):
     execution_time = end_time-start_time
     final_result['execution_time'] = float('{:4.2f}'.format(execution_time))
 
-    if post:
-       return final_result
-    else:
-       return json.dumps(final_result)
+    return final_result
+    #if post:
+    #   return final_result
+    #else:
+    #   return json.dumps(final_result)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':

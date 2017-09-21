@@ -68,6 +68,7 @@ class Tree_Studies_Service_API(object):
         return "Tree_Studies_Service API : Find supported studies of an induced tree from OpenTreeOfLife";
 
     #---------------------------------------------
+    @cherrypy.tools.json_out()
     def get_studies(self, **request_data):
         try:
             lst = str(request_data['list']).strip()
@@ -87,9 +88,9 @@ class Tree_Studies_Service_API(object):
             else:
                  raise ConversionException("'%s' is not a valid value for 'list_type' parameter"%(list_type))          
         except KeyError, e:
-            return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"JSON")
+            return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"NotJSON")
         except ConversionException, e:
-            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+            return return_response_error(400,"Error: %s"%(str(e)),"NotJSON")
         
         return service_result
     
