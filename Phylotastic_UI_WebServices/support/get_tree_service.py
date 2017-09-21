@@ -129,10 +129,11 @@ def get_tree_OT(resolvedNames, post=False):
  	final_result['execution_time'] = "{:4.2f}".format(execution_time)
  	final_result['service_documentation'] = service_documentation
 
- 	if post: 	    
- 		return final_result
- 	else:
- 		return json.dumps(final_result) 
+ 	return final_result
+ 	#if post: 	    
+ 	#	return final_result
+ 	#else:
+ 	#	return json.dumps(final_result) 
 
 #-------------------------------------------
 #get supporting studies of the tree from OpenTree

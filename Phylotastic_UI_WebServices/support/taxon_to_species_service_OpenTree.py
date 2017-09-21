@@ -208,7 +208,7 @@ def get_all_species(inputTaxon):
  	final_result['service_url'] = service_url
  	final_result['service_documentation'] = service_documentation
 
- 	return json.dumps(final_result)
+ 	return final_result #return json.dumps(final_result)
 
 #--------------------------------------------------
 def get_country_species(inputTaxon, country):
@@ -276,7 +276,7 @@ def get_country_species(inputTaxon, country):
  	final_result['service_documentation'] = service_documentation	
  	final_result['country'] = country
 
- 	return json.dumps(final_result)
+ 	return final_result #return json.dumps(final_result)
  	
 #--------------------------------------------
 

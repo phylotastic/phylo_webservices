@@ -36,6 +36,9 @@ def match_species(speciesName):
 
 #---------------------------------------------------
 def get_eolurls_species(inputSpeciesList, post=False):
+ 	start_time = time.time()
+ 	#service_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/get_images?species=" + inputSpeciesList
+ 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-10"
  	response = {}	
  	outputSpeciesList = []
 
@@ -54,14 +57,28 @@ def get_eolurls_species(inputSpeciesList, post=False):
  				
  		outputSpeciesList.append(species_obj)	
  	
+ 	end_time = time.time()
+ 	execution_time = end_time-start_time    
+    #service result creation time
+ 	creation_time = datetime.datetime.now().isoformat()
+ 	
+ 	response['creation_time'] = creation_time
+ 	response['execution_time'] = "{:4.2f}".format(execution_time)
  	response['message'] = "Success"
  	response['status_code'] = 200
  	response['species'] = outputSpeciesList
+ 	response['source_urls'] = ["http://eol.org"]
+ 	#final_result['source_version'] = "ott2.9draft12"
+ 	#response['service_url'] = service_url
+ 	response['service_documentation'] = service_documentation
+ 	response['input_query'] = inputSpeciesList
 
- 	if post:
- 		return response
- 	else:
- 	 	return json.dumps(response)
+
+ 	return response
+ 	#if post:
+ 	#	return response
+ 	#else:
+ 	# 	return json.dumps(response)
 #--------------------------------------------------
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

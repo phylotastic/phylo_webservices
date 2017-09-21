@@ -167,7 +167,7 @@ def get_genome_species(inputTaxon):
  	final_result['service_documentation'] = service_documentation	
  	final_result['taxon'] = inputTaxon
 
- 	return json.dumps(final_result)
+ 	return final_result #return json.dumps(final_result)
 #--------------------------------------------------
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

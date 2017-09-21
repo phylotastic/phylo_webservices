@@ -165,10 +165,12 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match=True, multi_match=False, pos
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
 
-    if post: 	    
-     	return {'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList , 'message': message}
-    else: 
-        return json.dumps({'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList, 'message': message}) 
+    return {'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList , 'message': message}
+
+    #if post: 	    
+    # 	return {'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList , 'message': message}
+    #else: 
+    #    return json.dumps({'resolvedNames': final_result, 'creation_time': creation_time, 'execution_time': execution_time, 'total_names': result_len, 'status_code': status_code, "service_url_doc": service_documentation, 'input_query': inputNamesList, 'message': message}) 
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, post=False): 
@@ -186,10 +188,11 @@ def resolve_names_GNR(inputNamesList, post=False):
     final_result['total_names'] = len(final_result['resolvedNames'])
     final_result['input_query'] = inputNamesList
 
-    if post: 	    
-        return final_result
-    else:
-        return json.dumps(final_result)  
+    return final_result
+    #if post: 	    
+    #    return final_result
+    #else:
+    #    return json.dumps(final_result)  
 
 #------------------------------------------------------
 '''

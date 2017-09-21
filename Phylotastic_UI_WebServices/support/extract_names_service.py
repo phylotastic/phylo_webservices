@@ -26,7 +26,7 @@ def get_sn_url(inputURL, sEngine=0):
     if sEngine == 0:
        service_url = base_url + "names_url?url=" + inputURL
     else:
-       service_url = base_url + "names_url?url=" + inputURL + "&engine=" + sEngine
+       service_url = base_url + "names_url?url=" + inputURL + "&engine=" + str(sEngine)
      
     service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-1"
 
@@ -110,7 +110,7 @@ def get_sn_text(inputTEXT, sEngine=0):
     if sEngine == 0:
        service_url = base_url + "names_text?text=" + inputTEXT
     else:
-       service_url = base_url + "names_text?text=" + inputTEXT + "&engine=" + sEngine
+       service_url = base_url + "names_text?text=" + inputTEXT + "&engine=" + str(sEngine)
      
     service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-2"    
 
@@ -144,7 +144,7 @@ def uniquify(lst):
    return checked
 '''
 #--------------------------------------
-def extract_names_URL(inputURL, sEngine):
+def extract_names_URL(inputURL, sEngine=0):
     #service execution time
     start_time = time.time()
     final_result = get_sn_url(inputURL, sEngine)    
@@ -158,7 +158,7 @@ def extract_names_URL(inputURL, sEngine):
     final_result['execution_time'] = "{:4.2f}".format(execution_time) 
     final_result['total_names'] = len(final_result['scientificNames'])
 
-    return json.dumps(final_result)
+    return final_result  #return json.dumps(final_result)
 
 def extract_names_TEXT(inputTEXT, sEngine):
     start_time = time.time()
@@ -172,7 +172,7 @@ def extract_names_TEXT(inputTEXT, sEngine):
     final_result['execution_time'] = "{:4.2f}".format(execution_time)
     final_result['total_names'] = len(final_result['scientificNames'])
     
-    return json.dumps(final_result)	    
+    return final_result #return json.dumps(final_result)	    
    
 #--------------------------------------------
 

@@ -193,10 +193,11 @@ def service_controller(taxaList, post=False):
  	final_result['service_documentation'] = service_documentation
  	final_result['query_taxa'] = taxaList		
 
- 	if post: 	    
- 		return final_result
- 	else:
- 		return json.dumps(final_result) 
+ 	return final_result
+ 	#if post: 	    
+ 	#	return final_result
+ 	#else:
+ 	#	return json.dumps(final_result) 
 
 #-----------------------------------------------
 #if __name__ == '__main__':

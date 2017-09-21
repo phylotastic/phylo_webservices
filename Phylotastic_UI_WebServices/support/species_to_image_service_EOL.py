@@ -147,10 +147,11 @@ def get_images_species(inputSpeciesList, post=False):
  	response['service_documentation'] = service_documentation
  	response['input_query'] = inputSpeciesList
 
- 	if post:
- 		return response
- 	else:
- 	 	return json.dumps(response)
+ 	return response
+ 	#if post:
+ 	#	return response
+ 	#else:
+ 	# 	return json.dumps(response)
 
 #--------------------------------------------------
 def get_image_species_id(species_id, post=False):
