@@ -42,20 +42,13 @@ def return_response_error(error_code, error_message,response_format="JSON"):
     else:
         return error_response
     
-def is_json(myjson):
-    try:
-        json.loads(myjson)
-    except ValueError, err:
-        print err
-        return False
-    return True
-
-
+#-------------------------------------------------------
 class Species_List_Service_API(object):
     def index(self):
-        return "Species_List_Service API (Abu Saleh) : Gives access to user's lists of species";
+        return "Species_List_Service API : Gives access to user's lists of species"
+
     #---------------------------------------------
-    #---------------------------------------------
+    @cherrypy.tools.json_out()
     def get_list(self, verbose=False, content=True, list_id="-1", user_id=None, access_token=None):
         if type(content) != types.BooleanType:
             content = strtobool(content)
@@ -66,28 +59,31 @@ class Species_List_Service_API(object):
         service_result = species_list_service.get_list(conn, user_id, int(list_id), verbose, content, access_token)   
         conn.close()
 
-        return service_result;
+        return service_result
     
     #-----------------------------------------------------
+    @cherrypy.tools.json_out()
     def remove_list(self, **request_data):
         try:
  			user_id = str(request_data['user_id']).strip()
  			list_id = str(request_data['list_id']).strip()
  			access_token = str(request_data['access_token']).strip()
 
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"NotJSON")
         except Exception, e:
-            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+            return return_response_error(400,"Error: %s"%(str(e)),"NotJSON")
 
         #verify user
         token_verification = authenticate_user.verify_access_token(access_token, user_id)
         if not(token_verification['is_access_token_valid']):
-           return return_response_error(400,"Error:"+ token_verification['message'],"JSON")
+           return return_response_error(400,"Error:"+ token_verification['message'],"NotJSON")
         #allow access to service for verified user
         conn = species_list_service.connect_mongodb()
         service_result = species_list_service.remove_user_list(user_id, int(list_id), conn)   
         conn.close()
 
-        return service_result;
+        return service_result
 
   	#---------------------------------------------
     @cherrypy.tools.json_out()
@@ -100,7 +96,7 @@ class Species_List_Service_API(object):
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"NotJSON")     		 
         except Exception, e:
-            return return_response_error(400,"Error:" + str(e), "NotJSON")
+            return return_response_error(400,"Error: " + str(e), "NotJSON")
 
         #verify user
         token_verification = authenticate_user.verify_access_token(access_token, user_id)
@@ -124,7 +120,7 @@ class Species_List_Service_API(object):
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"NotJSON")     		 
         except Exception, e:
-            return return_response_error(400,"Error:" + str(e), "NotJSON")
+            return return_response_error(400,"Error: " + str(e), "NotJSON")
         
         #verify user
         token_verification = authenticate_user.verify_access_token(access_token, user_id)

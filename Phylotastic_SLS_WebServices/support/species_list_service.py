@@ -46,7 +46,7 @@ def get_public_lists(db_collection, verbose, content):
  			if is_public_list:
  		 	 	public_lists.append(list_json)
 
- 	return json.dumps({'lists': public_lists, "message": message, "status_code": status_code})
+ 	return {'lists': public_lists, "message": message, "status_code": status_code}
 
 #----------------------------------------
 #==================NOT USING in the API=====================================
@@ -112,7 +112,7 @@ def get_user_lists(db_collection, user_id, verbose, content):
  				list_json['list_species'] = get_species_list(list_obj['species'])
  			user_lists.append(list_json)
  			
- 	return json.dumps({"user_id": user_id, 'lists': user_lists, "message": message, "status_code": status_code})
+ 	return {"user_id": user_id, 'lists': user_lists, "message": message, "status_code": status_code}
 #------------------------------------------------------------
 #get an existing list of a particular user (or public list) from the database 
 def get_list_by_id(db_collection, user_id, list_id, verbose, content):
@@ -148,11 +148,11 @@ def get_list_by_id(db_collection, user_id, list_id, verbose, content):
  					list_obj['list_species'] = get_species_list(mglist_obj['species'])
 
  	if found_list and (user_id != list_owner):	 	 	 		 	
- 		return json.dumps({"list": list_obj, "message": message, "status_code": status_code})
+ 		return {"list": list_obj, "message": message, "status_code": status_code}
  	elif found_list and (user_id == list_owner):
- 		return json.dumps({"user_id": user_id,"list": list_obj, "message": message, "status_code": status_code})
+ 		return {"user_id": user_id,"list": list_obj, "message": message, "status_code": status_code}
  	else:
- 		return json.dumps({"message": message, "status_code": status_code})
+ 		return {"message": message, "status_code": status_code}
 
 #-----------------------------------------
 def check_existance_user_list(db_collection, query_cond, query_param):
@@ -233,28 +233,28 @@ def get_list(conn, user_id, list_id, verbose, content, access_token):
  	if ((user_id == None) and (list_id == -1) and (access_token == None)):
  		get_list_result = get_public_lists(data_collection, verbose, content)
  	elif ((user_id != None) and (list_id == -1) and (access_token == None)):
- 		return json.dumps({'status_code': 400, 'message': "Need to provide a valid access_token to get private lists of user"})
+ 		return {'status_code': 400, 'message': "Need to provide a valid access_token to get private lists of user"}
  	elif ((user_id == None) and (list_id == -1) and (access_token != None)):
- 		return json.dumps({'status_code': 400, 'message': "Need to provide a valid user_id to get private lists of user"})
+ 		return {'status_code': 400, 'message': "Need to provide a valid user_id to get private lists of user"}
  	elif ((user_id != None) and (list_id == -1) and (access_token != None)): # get users private lists
  		token_verification = authenticate_user.verify_access_token(access_token, user_id)
  		if not(token_verification['is_access_token_valid']):
- 			return json.dumps({'status_code': 400, 'message': "Error: "+token_verification['message']})
+ 			return {'status_code': 400, 'message': "Error: "+token_verification['message']}
  		get_list_result = get_user_lists(data_collection, user_id, verbose, content)
  	elif ((user_id == None) and (list_id != -1) and (access_token == None)):
  		#return json.dumps({'status_code': 400, 'message': "Need to provide valid user_id and access_token to get the list with ID %s"%(list_id)})
  		get_list_result = get_list_by_id(data_collection, None, list_id, verbose, content)
  	elif ((user_id != None) and (list_id != -1) and (access_token == None)):
- 		return json.dumps({'status_code': 400, 'message': "Need to provide a valid access_token to get the list with ID %s"%(list_id)})
+ 		return {'status_code': 400, 'message': "Need to provide a valid access_token to get the list with ID %s"%(list_id)}
  	elif ((user_id != None) and (list_id != -1) and (access_token != None)):
  		token_verification = authenticate_user.verify_access_token(access_token, user_id)
  		if not(token_verification['is_access_token_valid']):
- 			return json.dumps({'status_code': 400, 'message': "Error: "+token_verification['message']})
+ 			return {'status_code': 400, 'message': "Error: "+token_verification['message']}
  		get_list_result = get_list_by_id(data_collection, user_id, list_id, verbose, content)
  	elif ((user_id == None) and (list_id != -1) and (access_token != None)):
- 		return json.dumps({'status_code': 400, 'message': "Need to provide valid user_id to get the list with ID %s"%(list_id)})
+ 		return {'status_code': 400, 'message': "Need to provide valid user_id to get the list with ID %s"%(list_id)}
  	else:
- 		return json.dumps({'status_code': 400, 'message': "Bad request with missing parameters"})
+ 		return {'status_code': 400, 'message': "Bad request with missing parameters"}
 
  	return get_list_result
 #---------------------------------------------------------------
@@ -742,7 +742,7 @@ def remove_user_list(user_id, list_id, conn):
  		response['status_code'] = 200
  
  	if not(user_found):
- 	 	return json.dumps({"user_id": user_id, "message": message, "status_code": status_code})	
+ 	 	return {"user_id": user_id, "message": message, "status_code": status_code}	
 
  	document2 = data_collection.find({"user_id": user_id, "lists.list_id": list_id},{"lists" : 1});
   	if document2.count() == 0:	
@@ -758,7 +758,7 @@ def remove_user_list(user_id, list_id, conn):
  		response['date_removed'] = date_removed
  		data_collection.update({"user_id": user_id, "lists.list_id": list_id},{"$pull": {"lists": {"list_id":list_id}}})
 
- 	return json.dumps(response)
+ 	return response #return json.dumps(response)
  	
 #----------------------------------------------------
 def is_date_valid(date_str):
