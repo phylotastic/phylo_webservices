@@ -27,6 +27,7 @@ from support import species_to_url_service_EOL
 from support import taxon_genome_species_service_NCBI
 from support import phylomatic_tree_service
 from support import phyloT_tree_service
+from support import common_name_species_service_NCBI
 #from support import usecase_text, treebase_api
 
 from __builtin__ import True
@@ -41,6 +42,7 @@ WebService_Group3 = "tnrs"
 WebService_Group4 = "gt"
 WebService_Group5 = "si"
 WebService_Group6 = "sl"
+WebService_Group7 = "cs"
 
 WS_NAME = "phylotastic_ws"
 
@@ -617,6 +619,34 @@ class Get_Tree_PhyloT_Service_API(object):
     get_tree.exposed = True
     tree.exposed = True
 
+#~~~~~~~~~~~~~~~~~~~~Common Name service~~~~~~~~~~~~~~~~~~
+class Get_CommonName_Species_Service_API(object):
+    def index(self):
+        return "CommonName_Species_Service_API : Get species name from common name";
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    def get_scientific_name(self,**request_data):
+        try:
+            common_name = str(request_data['common']).strip();
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"NotJSON")
+        except Exception, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"NotJSON")
+        
+        service_result = common_name_species_service_NCBI.get_scientific_name(common_name)   
+        #-------------log request------------------   
+        #result_json = json.loads(service_result)
+        result_json = service_result
+        header = cherrypy.request.headers
+        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+        insert_log(log)
+        #------------------------------------------
+        return service_result
+
+    index.exposed = True
+    get_scientific_name.exposed = True
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def CORS():
     print "Run CORS"
@@ -665,5 +695,7 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Get_Tree_Phylomatic_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pm"),conf_thanhnh )
     cherrypy.tree.mount(Get_Tree_PhyloT_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pt"),conf_thanhnh )
 
+    cherrypy.tree.mount(Get_CommonName_Species_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group7),"ncbi"),conf_thanhnh )
+	
     cherrypy.engine.start()
     cherrypy.engine.block()
