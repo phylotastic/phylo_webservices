@@ -27,7 +27,7 @@ def scale_tree(tree_newick, method="median"):
 #----------------------------------------------
 def scale_tree_api(tree_newick, method="median"):
 	start_time = time.time()
-	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-20"
+	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-20"
 	response = {}
 	response['message'] = "Success"
  	response['status_code'] = 200	
@@ -45,11 +45,12 @@ def scale_tree_api(tree_newick, method="median"):
  	execution_time = end_time-start_time    
     #service result creation time
  	creation_time = datetime.datetime.now().isoformat()
-	response['creation_time'] = creation_time
- 	response['execution_time'] = "{:4.2f}".format(execution_time)
+	meta_data = {'creation_time': creation_time, 'execution_time': "{:4.2f}".format(execution_time), 'source_urls':["http://datelife.org/"]}
+	response['meta_data'] = meta_data
+ 	 
 	response['input_tree'] = tree_newick
 	response['method_used'] = method
- 	response['service_documentation'] = service_documentation
+ 	#response['service_documentation'] = service_documentation
  	
 	return response
 
@@ -75,7 +76,7 @@ def metadata_scaling(tree_newick):
 #----------------------------------------------
 def scale_metadata_api(tree_newick):
 	start_time = time.time()
-	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-21"
+	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-21"
 	response = {}
 	response['message'] = "Success"
  	response['status_code'] = 200	
@@ -92,10 +93,11 @@ def scale_metadata_api(tree_newick):
  	execution_time = end_time-start_time    
     #service result creation time
  	creation_time = datetime.datetime.now().isoformat()
-	response['creation_time'] = creation_time
- 	response['execution_time'] = "{:4.2f}".format(execution_time)
+
+	meta_data = {'creation_time': creation_time, 'execution_time': "{:4.2f}".format(execution_time), 'source_urls':["http://datelife.org/"]}
+	response['meta_data'] = meta_data
 	response['input_tree'] = tree_newick
- 	response['service_documentation'] = service_documentation
+ 	#response['service_documentation'] = service_documentation
  	
 	return response 
  
