@@ -1,0 +1,404 @@
+[19/Oct/2017:07:24:58] ENGINE Bus STARTING
+[19/Oct/2017:07:24:58] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:07:24:58] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:07:24:58] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:07:24:58] ENGINE Bus STARTED
+[19/Oct/2017:07:27:18] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:07:27:18] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:07:27:18] ENGINE Bus STOPPING
+[19/Oct/2017:07:27:18] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:07:27:18] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:07:27:18] ENGINE Bus STOPPED
+[19/Oct/2017:07:27:18] ENGINE Bus EXITING
+[19/Oct/2017:07:27:18] ENGINE Bus EXITED
+[19/Oct/2017:07:27:18] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:07:27:18] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:07:27:18] ENGINE Bus STARTING
+[19/Oct/2017:07:27:18] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:07:27:18] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:07:27:18] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:07:27:18] ENGINE Bus STARTED
+[19/Oct/2017:07:28:23] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:07:28:23] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:07:28:23] ENGINE Bus STOPPING
+[19/Oct/2017:07:28:23] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:07:28:23] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:07:28:23] ENGINE Bus STOPPED
+[19/Oct/2017:07:28:23] ENGINE Bus EXITING
+[19/Oct/2017:07:28:23] ENGINE Bus EXITED
+[19/Oct/2017:07:28:23] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:07:28:23] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:07:28:25] ENGINE Bus STARTING
+[19/Oct/2017:07:28:25] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:07:28:25] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:07:28:25] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:07:28:25] ENGINE Bus STARTED
+[19/Oct/2017:08:29:10] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:08:29:10] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:08:29:10] ENGINE Bus STOPPING
+[19/Oct/2017:08:29:10] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:08:29:10] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:08:29:10] ENGINE Bus STOPPED
+[19/Oct/2017:08:29:10] ENGINE Bus EXITING
+[19/Oct/2017:08:29:10] ENGINE Bus EXITED
+[19/Oct/2017:08:29:10] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:08:29:11] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:08:58:57] ENGINE Bus STARTING
+[19/Oct/2017:08:58:57] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:08:58:57] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:08:58:57] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:08:58:57] ENGINE Bus STARTED
+[19/Oct/2017:08:59:53] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:08:59:53] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:08:59:53] ENGINE Bus STOPPING
+[19/Oct/2017:08:59:53] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:08:59:53] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:08:59:53] ENGINE Bus STOPPED
+[19/Oct/2017:08:59:53] ENGINE Bus EXITING
+[19/Oct/2017:08:59:53] ENGINE Bus EXITED
+[19/Oct/2017:08:59:53] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:08:59:53] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:08:59:53] ENGINE Bus STARTING
+[19/Oct/2017:08:59:53] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:08:59:53] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:08:59:54] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:08:59:54] ENGINE Bus STARTED
+[19/Oct/2017:09:00:29] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:00:29] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:00:29] ENGINE Bus STOPPING
+[19/Oct/2017:09:00:29] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:00:29] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:00:29] ENGINE Bus STOPPED
+[19/Oct/2017:09:00:29] ENGINE Bus EXITING
+[19/Oct/2017:09:00:29] ENGINE Bus EXITED
+[19/Oct/2017:09:00:29] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:00:29] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:00:29] ENGINE Bus STARTING
+[19/Oct/2017:09:00:29] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:00:29] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:00:29] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:00:29] ENGINE Bus STARTED
+[19/Oct/2017:09:03:44] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:03:44] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:03:44] ENGINE Bus STOPPING
+[19/Oct/2017:09:03:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:03:44] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:03:44] ENGINE Bus STOPPED
+[19/Oct/2017:09:03:44] ENGINE Bus EXITING
+[19/Oct/2017:09:03:44] ENGINE Bus EXITED
+[19/Oct/2017:09:03:44] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:03:44] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:03:44] ENGINE Bus STARTING
+[19/Oct/2017:09:03:44] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:03:44] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:03:45] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:03:45] ENGINE Bus STARTED
+[19/Oct/2017:09:04:32] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:04:32] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:04:32] ENGINE Bus STOPPING
+[19/Oct/2017:09:04:32] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:04:32] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:04:32] ENGINE Bus STOPPED
+[19/Oct/2017:09:04:32] ENGINE Bus EXITING
+[19/Oct/2017:09:04:32] ENGINE Bus EXITED
+[19/Oct/2017:09:04:32] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:04:32] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:04:32] ENGINE Bus STARTING
+[19/Oct/2017:09:04:32] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:04:32] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:04:33] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:04:33] ENGINE Bus STARTED
+[19/Oct/2017:09:10:06] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:10:06] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:10:06] ENGINE Bus STOPPING
+[19/Oct/2017:09:10:06] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:10:06] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:10:06] ENGINE Bus STOPPED
+[19/Oct/2017:09:10:06] ENGINE Bus EXITING
+[19/Oct/2017:09:10:06] ENGINE Bus EXITED
+[19/Oct/2017:09:10:06] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:10:06] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:10:06] ENGINE Bus STARTING
+[19/Oct/2017:09:10:06] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:10:06] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:10:06] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:10:06] ENGINE Bus STARTED
+[19/Oct/2017:09:10:49] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:10:49] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:10:49] ENGINE Bus STOPPING
+[19/Oct/2017:09:10:49] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:10:49] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:10:49] ENGINE Bus STOPPED
+[19/Oct/2017:09:10:49] ENGINE Bus EXITING
+[19/Oct/2017:09:10:49] ENGINE Bus EXITED
+[19/Oct/2017:09:10:49] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:10:49] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:10:50] ENGINE Bus STARTING
+[19/Oct/2017:09:10:50] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:10:50] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:10:50] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:10:50] ENGINE Bus STARTED
+[19/Oct/2017:09:11:24] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:11:24] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:11:24] ENGINE Bus STOPPING
+[19/Oct/2017:09:11:24] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:11:24] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:11:24] ENGINE Bus STOPPED
+[19/Oct/2017:09:11:24] ENGINE Bus EXITING
+[19/Oct/2017:09:11:24] ENGINE Bus EXITED
+[19/Oct/2017:09:11:24] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:11:24] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:11:25] ENGINE Bus STARTING
+[19/Oct/2017:09:11:25] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:11:25] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:11:25] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:11:25] ENGINE Bus STARTED
+[19/Oct/2017:09:12:40] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:12:40] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:12:40] ENGINE Bus STOPPING
+[19/Oct/2017:09:12:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:12:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:12:40] ENGINE Bus STOPPED
+[19/Oct/2017:09:12:40] ENGINE Bus EXITING
+[19/Oct/2017:09:12:40] ENGINE Bus EXITED
+[19/Oct/2017:09:12:40] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:12:40] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:12:40] ENGINE Bus STARTING
+[19/Oct/2017:09:12:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:12:40] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:12:40] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:12:40] ENGINE Bus STARTED
+[19/Oct/2017:09:17:20] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:17:20] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:17:20] ENGINE Bus STOPPING
+[19/Oct/2017:09:17:20] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:17:20] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:17:20] ENGINE Bus STOPPED
+[19/Oct/2017:09:17:20] ENGINE Bus EXITING
+[19/Oct/2017:09:17:20] ENGINE Bus EXITED
+[19/Oct/2017:09:17:20] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:17:20] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:17:20] ENGINE Bus STARTING
+[19/Oct/2017:09:17:20] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:17:20] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:17:20] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:17:20] ENGINE Bus STARTED
+[19/Oct/2017:09:18:03] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:18:03] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:18:03] ENGINE Bus STOPPING
+[19/Oct/2017:09:18:03] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:18:03] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:18:03] ENGINE Bus STOPPED
+[19/Oct/2017:09:18:03] ENGINE Bus EXITING
+[19/Oct/2017:09:18:03] ENGINE Bus EXITED
+[19/Oct/2017:09:18:03] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:18:03] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:18:03] ENGINE Bus STARTING
+[19/Oct/2017:09:18:03] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:18:03] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:18:03] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:18:03] ENGINE Bus STARTED
+[19/Oct/2017:09:18:10] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:18:10] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:18:10] ENGINE Bus STOPPING
+[19/Oct/2017:09:18:10] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:18:10] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:18:10] ENGINE Bus STOPPED
+[19/Oct/2017:09:18:10] ENGINE Bus EXITING
+[19/Oct/2017:09:18:10] ENGINE Bus EXITED
+[19/Oct/2017:09:18:10] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:18:10] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:18:11] ENGINE Bus STARTING
+[19/Oct/2017:09:18:11] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:18:11] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:18:11] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:18:11] ENGINE Bus STARTED
+[19/Oct/2017:09:19:09] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:19:09] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:19:09] ENGINE Bus STOPPING
+[19/Oct/2017:09:19:09] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:19:09] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:19:09] ENGINE Bus STOPPED
+[19/Oct/2017:09:19:09] ENGINE Bus EXITING
+[19/Oct/2017:09:19:09] ENGINE Bus EXITED
+[19/Oct/2017:09:19:09] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:19:09] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:19:09] ENGINE Bus STARTING
+[19/Oct/2017:09:19:09] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:19:09] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:19:09] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:19:09] ENGINE Bus STARTED
+[19/Oct/2017:09:19:54] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:19:54] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:19:54] ENGINE Bus STOPPING
+[19/Oct/2017:09:19:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:19:54] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:19:54] ENGINE Bus STOPPED
+[19/Oct/2017:09:19:54] ENGINE Bus EXITING
+[19/Oct/2017:09:19:54] ENGINE Bus EXITED
+[19/Oct/2017:09:19:54] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:19:54] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:44:13] ENGINE Bus STARTING
+[19/Oct/2017:09:44:13] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:44:13] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:44:13] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:44:13] ENGINE Bus STARTED
+[19/Oct/2017:09:45:13] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:45:13] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:45:13] ENGINE Bus STOPPING
+[19/Oct/2017:09:45:13] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:45:13] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:13] ENGINE Bus STOPPED
+[19/Oct/2017:09:45:13] ENGINE Bus EXITING
+[19/Oct/2017:09:45:13] ENGINE Bus EXITED
+[19/Oct/2017:09:45:13] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:45:13] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:45:13] ENGINE Bus STARTING
+[19/Oct/2017:09:45:13] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:13] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:45:13] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:45:13] ENGINE Bus STARTED
+[19/Oct/2017:09:45:26] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:45:26] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:45:26] ENGINE Bus STOPPING
+[19/Oct/2017:09:45:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:45:26] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:26] ENGINE Bus STOPPED
+[19/Oct/2017:09:45:26] ENGINE Bus EXITING
+[19/Oct/2017:09:45:26] ENGINE Bus EXITED
+[19/Oct/2017:09:45:26] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:45:26] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:45:27] ENGINE Bus STARTING
+[19/Oct/2017:09:45:27] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:27] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:45:27] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:45:27] ENGINE Bus STARTED
+[19/Oct/2017:09:45:31] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:45:31] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:45:31] ENGINE Bus STOPPING
+[19/Oct/2017:09:45:31] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:45:31] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:31] ENGINE Bus STOPPED
+[19/Oct/2017:09:45:31] ENGINE Bus EXITING
+[19/Oct/2017:09:45:31] ENGINE Bus EXITED
+[19/Oct/2017:09:45:31] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:45:31] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:45:31] ENGINE Bus STARTING
+[19/Oct/2017:09:45:31] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:31] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:45:32] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:45:32] ENGINE Bus STARTED
+[19/Oct/2017:09:45:45] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:45:45] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:45:45] ENGINE Bus STOPPING
+[19/Oct/2017:09:45:45] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:45:45] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:45] ENGINE Bus STOPPED
+[19/Oct/2017:09:45:45] ENGINE Bus EXITING
+[19/Oct/2017:09:45:45] ENGINE Bus EXITED
+[19/Oct/2017:09:45:45] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:45:45] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:45:45] ENGINE Bus STARTING
+[19/Oct/2017:09:45:45] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:45] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:45:45] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:45:45] ENGINE Bus STARTED
+[19/Oct/2017:09:45:58] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:45:58] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:45:58] ENGINE Bus STOPPING
+[19/Oct/2017:09:45:58] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:45:58] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:58] ENGINE Bus STOPPED
+[19/Oct/2017:09:45:58] ENGINE Bus EXITING
+[19/Oct/2017:09:45:58] ENGINE Bus EXITED
+[19/Oct/2017:09:45:58] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:45:58] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:45:59] ENGINE Bus STARTING
+[19/Oct/2017:09:45:59] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:45:59] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:45:59] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:45:59] ENGINE Bus STARTED
+[19/Oct/2017:09:47:45] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:47:45] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:47:45] ENGINE Bus STOPPING
+[19/Oct/2017:09:47:45] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:47:45] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:47:45] ENGINE Bus STOPPED
+[19/Oct/2017:09:47:45] ENGINE Bus EXITING
+[19/Oct/2017:09:47:45] ENGINE Bus EXITED
+[19/Oct/2017:09:47:45] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:47:45] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:47:46] ENGINE Bus STARTING
+[19/Oct/2017:09:47:46] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:47:46] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:47:46] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:47:46] ENGINE Bus STARTED
+[19/Oct/2017:09:51:05] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:51:05] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:51:05] ENGINE Bus STOPPING
+[19/Oct/2017:09:51:05] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:51:05] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:51:05] ENGINE Bus STOPPED
+[19/Oct/2017:09:51:05] ENGINE Bus EXITING
+[19/Oct/2017:09:51:05] ENGINE Bus EXITED
+[19/Oct/2017:09:51:05] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:51:05] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:51:06] ENGINE Bus STARTING
+[19/Oct/2017:09:51:06] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:51:06] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:51:06] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:51:06] ENGINE Bus STARTED
+[19/Oct/2017:09:51:10] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:51:10] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:51:10] ENGINE Bus STOPPING
+[19/Oct/2017:09:51:10] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:51:10] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:51:10] ENGINE Bus STOPPED
+[19/Oct/2017:09:51:10] ENGINE Bus EXITING
+[19/Oct/2017:09:51:10] ENGINE Bus EXITED
+[19/Oct/2017:09:51:10] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:51:10] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:51:10] ENGINE Bus STARTING
+[19/Oct/2017:09:51:10] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:51:10] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:51:10] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:51:10] ENGINE Bus STARTED
+[19/Oct/2017:09:53:19] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_to_species_service_OpenTree.py changed.
+[19/Oct/2017:09:53:19] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:09:53:19] ENGINE Bus STOPPING
+[19/Oct/2017:09:53:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:09:53:19] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:09:53:19] ENGINE Bus STOPPED
+[19/Oct/2017:09:53:19] ENGINE Bus EXITING
+[19/Oct/2017:09:53:19] ENGINE Bus EXITED
+[19/Oct/2017:09:53:19] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:09:53:19] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:09:53:20] ENGINE Bus STARTING
+[19/Oct/2017:09:53:20] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:09:53:20] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:09:53:20] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:09:53:20] ENGINE Bus STARTED
+[19/Oct/2017:10:06:29] ENGINE Restarting because /home/tayeen/TayeenFolders/PythonFiles/Phylotastic_UI_WebServices_New/support/taxon_genome_species_service_NCBI.py changed.
+[19/Oct/2017:10:06:29] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:10:06:29] ENGINE Bus STOPPING
+[19/Oct/2017:10:06:29] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:10:06:29] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:10:06:29] ENGINE Bus STOPPED
+[19/Oct/2017:10:06:29] ENGINE Bus EXITING
+[19/Oct/2017:10:06:29] ENGINE Bus EXITED
+[19/Oct/2017:10:06:29] ENGINE Waiting for child threads to terminate...
+[19/Oct/2017:10:06:29] ENGINE Re-spawning Phylotastic_UI_WebServices_Running.py
+[19/Oct/2017:10:06:30] ENGINE Bus STARTING
+[19/Oct/2017:10:06:30] ENGINE Started monitor thread '_TimeoutMonitor'.
+[19/Oct/2017:10:06:30] ENGINE Started monitor thread 'Autoreloader'.
+[19/Oct/2017:10:06:30] ENGINE Serving on http://127.0.0.1:5004
+[19/Oct/2017:10:06:30] ENGINE Bus STARTED
+[19/Oct/2017:11:07:28] ENGINE Keyboard Interrupt: shutting down bus
+[19/Oct/2017:11:07:28] ENGINE Bus STOPPING
+[19/Oct/2017:11:07:28] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5004)) shut down
+[19/Oct/2017:11:07:28] ENGINE Stopped thread '_TimeoutMonitor'.
+[19/Oct/2017:11:07:28] ENGINE Stopped thread 'Autoreloader'.
+[19/Oct/2017:11:07:28] ENGINE Bus STOPPED
+[19/Oct/2017:11:07:28] ENGINE Bus EXITING
+[19/Oct/2017:11:07:28] ENGINE Bus EXITED
+[19/Oct/2017:11:07:28] ENGINE Waiting for child threads to terminate...
