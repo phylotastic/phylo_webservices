@@ -15,7 +15,8 @@ from cherrypy import tools
 
 from support import species_list_service_dev as species_list_service
 from support import authenticate_user
-from distutils.util import strtobool
+#from distutils.util import strtobool
+from str2bool import str2bool
 import types
 
 from __builtin__ import True
@@ -133,6 +134,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====GetListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
     
@@ -174,6 +176,8 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====RemoveListError=====", traceback=True)
+
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
   	#----------------REPLACE Species API------------------------
@@ -212,6 +216,7 @@ class Species_List_Service_API(object):
               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====ReplaceListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -251,6 +256,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====UpdateListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -300,6 +306,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====InsertListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
  	#--------------------------------------------------------------------
     '''

@@ -142,6 +142,8 @@ class Taxon_Genome_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====TaxonGenomeError=====", traceback=True)
+
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
  	#------------------------------------------------
@@ -183,6 +185,7 @@ class Taxon_to_Species_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====TaxonAllSpeciesError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -218,6 +221,7 @@ class Taxon_to_Species_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====TaxonCountryError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
     #-------------------------------------------------------------    
     #Public /index
@@ -265,6 +269,7 @@ class Species_Image_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====SpeciesImageError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #------------------------------------------------
@@ -315,6 +320,7 @@ class Species_Image_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====SpeciesImageError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
  	#------------------------------------------------
@@ -361,6 +367,7 @@ class Species_Url_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====SpeciesLinkError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
  	#-----------------------------------------------	
@@ -395,6 +402,7 @@ class Species_Url_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====SpeciesLinkError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")   
         
  	#------------------------------------------------
@@ -441,6 +449,7 @@ class Find_ScientificNames_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====NamesURLError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #------------------------------------------------
@@ -478,6 +487,7 @@ class Find_ScientificNames_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====NamesTextError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")   
 
     #------------------------------------------------
@@ -537,6 +547,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====ResolveNamesError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #------------------------------------------------
@@ -545,10 +556,10 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
     def names(self,**request_data):
         try:
             input_json = cherrypy.request.json
-            nameslist = input_json["scientific_names"]
+            nameslist = input_json["scientificNames"]
  	    
             if len(nameslist) == 0: 
-               raise CustomException("'scientific_names' parameter must have a valid value")
+               raise CustomException("'scientificNames' parameter must have a valid value")
 
             match_type = False
             if 'fuzzy_match' in input_json:
@@ -563,7 +574,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
                   multi_match = str2bool(multi_match)
 
             if len(nameslist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 species is not supported","JSON")
+               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -585,6 +596,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====ResolveNamesError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #-----------------------------------------------
@@ -644,6 +656,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====ResolveNamesError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #------------------------------------------------
@@ -652,10 +665,10 @@ class Resolve_ScientificNames_GNR_Service_API(object):
     def names(self,**request_data):
         try:
             input_json = cherrypy.request.json
-            nameslist = input_json["scientific_names"]
+            nameslist = input_json["scientificNames"]
 
             if len(nameslist) == 0: 
-               raise CustomException("'scientific_names' parameter must have a valid value")
+               raise CustomException("'scientificNames' parameter must have a valid value")
 
             match_type = False
             if 'fuzzy_match' in input_json:
@@ -670,7 +683,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
                   multi_match = str2bool(multi_match)
                
             if len(nameslist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 species is not supported","JSON")
+               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -692,6 +705,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====ResolveNamesError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #-----------------------------------------------
@@ -726,7 +740,7 @@ class Get_Tree_OpenTree_Service_API(object):
         
         try:
             nameslist_json = resolve_names_service.resolve_names_OT(taxalist, True, False)
-            nameslist = nameslist_json["resolved_names"]
+            nameslist = nameslist_json["resolvedNames"]
             service_result = opentree_tree_service.get_tree_OT(nameslist)   
             #-------------log request------------------   
             #result_json = json.loads(service_result)
@@ -741,6 +755,7 @@ class Get_Tree_OpenTree_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====OToLTreeError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -750,15 +765,15 @@ class Get_Tree_OpenTree_Service_API(object):
         try:
             input_json = cherrypy.request.json
             
-            if 'taxa' not in input_json and 'resolved_names' not in input_json:
+            if 'taxa' not in input_json and 'resolvedNames' not in input_json:
                 raise KeyError("taxa")
-            elif 'taxa' in input_json and 'resolved_names' not in input_json:
+            elif 'taxa' in input_json and 'resolvedNames' not in input_json:
                 taxalist = input_json["taxa"]
-                if len(taxalist) == 0 and 'resolved_names' not in input_json: 
+                if len(taxalist) == 0 and 'resolvedNames' not in input_json: 
                    raise CustomException("'taxa' parameter must have a valid value")
 
                 if len(taxalist) > 1000: 
-                   return return_response_error(403,"Error: Currently more than 1000 taxa is not supported","JSON")
+                   return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -768,13 +783,13 @@ class Get_Tree_OpenTree_Service_API(object):
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
-            if 'resolved_names' not in input_json: 
+            if 'resolvedNames' not in input_json: 
                 nameslist_json = resolve_names_service.resolve_names_OT(taxalist, True, False)
-                nameslist = nameslist_json['resolved_names']
+                nameslist = nameslist_json['resolvedNames']
                 if len(nameslist) > 1000: 
                    return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
             else:
-                nameslist = input_json['resolved_names']
+                nameslist = input_json['resolvedNames']
             service_result = opentree_tree_service.get_tree_OT(nameslist)   
             #-------------log request------------------   
             header = cherrypy.request.headers
@@ -787,6 +802,7 @@ class Get_Tree_OpenTree_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====OToLTreeError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 #--------------------------------------------------------------------
@@ -810,7 +826,7 @@ class Get_Tree_Phylomatic_Service_API(object):
                raise CustomException("'taxa' parameter must have a valid value")
 
             if len(taxalist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 taxa is not supported","JSON")
+               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -835,6 +851,7 @@ class Get_Tree_Phylomatic_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====PhylomaticTreeError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -851,7 +868,7 @@ class Get_Tree_Phylomatic_Service_API(object):
                raise CustomException("'taxa' parameter must have a valid value")
 
             if len(taxalist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 taxa is not supported","JSON")
+               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -873,6 +890,7 @@ class Get_Tree_Phylomatic_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====PhylomaticTreeError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #--------------------------------------------------------------
@@ -897,8 +915,8 @@ class Get_Tree_PhyloT_Service_API(object):
             if len(taxalist) == 1 and '' in taxalist: 
                raise CustomException("'taxa' parameter must have a valid value")
 
-            if len(taxalist) > 250: 
-               return return_response_error(403,"Error: Currently more than 250 taxa is not supported","JSON")
+            if len(taxalist) > 30: 
+               return return_response_error(403,"Error: Currently more than 30 names is not supported","JSON")
 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -922,6 +940,7 @@ class Get_Tree_PhyloT_Service_API(object):
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====PhyloTTreeError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
             
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -935,8 +954,8 @@ class Get_Tree_PhyloT_Service_API(object):
             if len(taxalist) == 0: 
                raise CustomException("'taxa' parameter must have a valid value")
 
-            if len(taxalist) > 500: 
-               return return_response_error(403,"Error: Currently more than 500 taxa is not supported","JSON")
+            if len(taxalist) > 30: 
+               return return_response_error(403,"Error: Currently more than 30 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -958,6 +977,7 @@ class Get_Tree_PhyloT_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====PhyloTTreeError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #-----------------------------------------------------------------
@@ -1002,6 +1022,7 @@ class Get_CommonName_Species_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("=====NCBICommonError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 

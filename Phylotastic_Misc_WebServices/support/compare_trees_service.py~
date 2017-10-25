@@ -29,7 +29,6 @@ def compare_trees(tree1_str, tree2_str):
  		message = str(e)
  		status = 500 
 
- 	end_time = time.time()
  	execution_time = end_time-start_time
     #service result creation time
  	creation_time = datetime.datetime.now().isoformat()

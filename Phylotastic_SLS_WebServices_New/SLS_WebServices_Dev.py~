@@ -133,6 +133,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====GetListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
     
@@ -174,6 +175,8 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====RemoveListError=====", traceback=True)
+
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
   	#----------------REPLACE Species API------------------------
@@ -212,6 +215,7 @@ class Species_List_Service_API(object):
               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====ReplaceListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -251,6 +255,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====UpdateListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -300,6 +305,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====InsertListError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
  	#--------------------------------------------------------------------
     '''
@@ -351,7 +357,7 @@ if __name__ == '__main__':
     }
     #Starting Server
     
-    cherrypy.tree.mount(Species_List_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)) )
+    cherrypy.tree.mount(Species_List_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), config)
     
     cherrypy.engine.start()
     cherrypy.engine.block()

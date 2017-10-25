@@ -149,15 +149,18 @@ def get_supporting_studies(ottIdList):
         
  	studies_info = {}
 
- 	if response.status_code == requests.codes.ok:
- 		data_json = json.loads(response.text)
+ 	data_json = json.loads(response.text)  
+ 	if response.status_code == requests.codes.ok:	
  		studies_info['studies'] = data_json['studies']		
  		studies_info['message'] = data_json['message']
  		studies_info['status_code'] = data_json['status_code']
  	else:
- 		studies_info['studies'] = []		
- 		studies_info['message'] = "Error: Response error while getting study info using Phylotastic"
- 		studies_info['status_code'] = 500
+ 		studies_info['studies'] = []
+ 		if 'message' in data_json:
+ 			studies_info['message'] = data_json['message']
+ 		else:			
+ 			studies_info['message'] = "Error: Response error while getting study info using Phylotastic"
+ 		studies_info['status_code'] = response.status_code
 
  	return studies_info
 

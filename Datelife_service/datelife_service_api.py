@@ -124,6 +124,7 @@ class Datelife_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====ScaleError====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
     #-----------------------------------------------
@@ -157,6 +158,7 @@ class Datelife_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====MetaDataScaleError====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 

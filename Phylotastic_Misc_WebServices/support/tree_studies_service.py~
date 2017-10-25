@@ -206,9 +206,8 @@ def get_ott_ids(taxa, context=None):
         ott_id_result['ott_ids'] = ott_id_list	
         ott_id_result['status_code'] = response.status_code
         if 'message' in result_data_json:
-           ott_id_result['message'] = "OpenTree Error: "+result_data_json['message']
-        else:
-           ott_id_result['message'] = "Error: getting ott ids from OpenTreeofLife"
+           studyinfo_result['message'] = "OpenTree Error: "+result_data_json['message']
+        ott_id_result['message'] = "Error: getting ott ids from OpenTreeofLife"
     
     return ott_id_result
 

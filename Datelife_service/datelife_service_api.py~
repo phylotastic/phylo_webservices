@@ -18,19 +18,49 @@ WS_NAME = "phylotastic_ws"
 
 ROOT_FOLDER = os.getcwd()
 IP_ADDRESS = "127.0.0.1:5009"
-PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
+#PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
 #============================================================================
 ACCESS_LOG_CHERRYPY_5009 = ROOT_FOLDER + "/log/%s_5009_access_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 ERROR_LOG_CHERRYPY_5009 = ROOT_FOLDER + "/log/%s_5009_error_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 
 
 #-----------------------------------------------------------
-def return_response_error(error_code, error_message,response_format="JSON"):
-    error_response = {'message': error_message, 'status_code':error_code}
+#When user requests invalid resource URI
+def error_page_404(status, message, traceback, version):
+    cherrypy.response.headers['Content-Type'] = 'application/json'
+    cherrypy.response.status = status
+    return json.dumps({'message': "Error: Could not find the requested resource URI"})
+
+#When user makes bad request
+def error_page_400(status, message, traceback, version):
+    cherrypy.response.headers['Content-Type'] = 'application/json'
+    cherrypy.response.status = status
+    return json.dumps({'message': message})
+
+#When internal server error occurs
+def error_page_500(status, message, traceback, version):
+    cherrypy.response.headers['Content-Type'] = 'application/json'
+    cherrypy.response.status = status
+    return json.dumps({'message': message, 'traceback': traceback, 'status_code': 500})
+
+#--------------------------------------------
+def return_response_error(error_code, error_message, response_format="JSON"):
+    #error_response = {'message': error_message, 'status_code':error_code}
+    error_response = {'message': error_message}
     if (response_format == "JSON"):
-        return json.dumps(error_response)
-    else:
+        cherrypy.response.headers['Content-Type'] = "application/json"
+        cherrypy.response.status = error_code
+        cherrypy.response.body = error_response
         return error_response
+    else:
+        cherrypy.response.headers['Content-Type'] = 'application/json'
+        cherrypy.response.body = error_message
+        return json.dumps(error_response)
+        
+#------------------------------------------
+
+class CustomException(Exception):
+    pass
 
 #-----------------------------------------------------------
 def connect_mongodb(host='localhost', port=27017):
@@ -60,25 +90,82 @@ class Datelife_Service_API(object):
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def scale(self,**request_data):
+        scale_method = None
         try:
             input_json = cherrypy.request.json
             tree_newick = input_json["newick"]
-           				 
-        except:
-            return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"NotJSON")
-        
-        service_result = datelife_service.scale_tree_api(tree_newick)   
-		#-------------log request------------------   
-        header = cherrypy.request.headers
-        log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree_newick': tree_newick}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
-        #insert_log(log)
-        #------------------------------------------           
+            if len(tree_newick) == 0: 
+               raise CustomException("'newick' parameter must have a valid value")
 
-        return service_result
+            if 'method' in input_json: 
+               scale_method = input_json["method"] 
+               if scale_method not in ["median", "sdm"]:
+                  raise CustomException("'%s' is not a valid value for 'method' parameter"%(scale_method))          
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try:
+            if scale_method is None:
+               service_result = datelife_service.scale_tree_api(tree_newick)
+            else: 
+               service_result = datelife_service.scale_tree_api(tree_newick, scale_method)   
+		    #-------------log request------------------   
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree_newick': tree_newick}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+            #------------------------------------------           
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #-----------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def metadata_scale(self,**request_data):
+        try:
+            input_json = cherrypy.request.json
+            tree_newick = input_json["newick"]
+            if len(tree_newick) == 0: 
+               raise CustomException("'newick' parameter must have a valid value")
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try:
+           service_result = datelife_service.scale_metadata_api(tree_newick)   
+		   #-------------log request------------------   
+           header = cherrypy.request.headers
+           log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree_newick': tree_newick}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+           insert_log(log)
+           #------------------------------------------           
+
+           if service_result['status_code'] == 200:
+               return service_result
+           else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====MetaDataScaleError====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+
  	#------------------------------------------------
     #Public /index
     index.exposed = True
     scale.exposed = True
+    metadata_scale.exposed = True
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -99,14 +186,17 @@ if __name__ == '__main__':
                             'log.access_file':ACCESS_LOG_CHERRYPY_5009
                           })
     
-    conf_cors = {
+    config = {
              '/':{
-                'tools.CORS.on': True
-             }
+                'tools.CORS.on': True,
+                'error_page.404': error_page_404,
+                'error_page.400': error_page_400,
+                'request.show_tracebacks': False
+                }
     }
     
     #Starting Server
-    cherrypy.tree.mount(Datelife_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group)), conf_cors)
+    cherrypy.tree.mount(Datelife_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group)), config)
     #cherrypy.tree.mount(Taxon_Genome_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "ncbi"), conf_thanhnh)
     
     cherrypy.engine.start()

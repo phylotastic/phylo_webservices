@@ -105,6 +105,8 @@ def get_tree_OT(resolvedNames):
     #get induced_subtree
  	final_result = subtree(ottIdList)
  	newick_str = final_result['newick']
+ 	if final_result['status_code'] != 200:	
+ 		return final_result 
  
  	if final_result['newick'] != "":
  		synth_tree_version = get_tree_version()		

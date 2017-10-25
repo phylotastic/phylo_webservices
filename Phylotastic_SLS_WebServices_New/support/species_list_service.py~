@@ -9,8 +9,8 @@ from bson import json_util
 from bson.json_util import dumps
 
 #--------------------------------------------------
-dbName = "SpeciesList"
-#dbName = "SpeciesListTest"
+#dbName = "SpeciesList"
+dbName = "SpeciesListTest"
 dataCollectionName ="userSpecieslist"
 counterCollectionName = "listCounter"
 
@@ -31,7 +31,7 @@ def get_public_lists(db_collection, verbose, content):
  	
  	if documents.count() == 0:
  		message = "No public lists found"
-  		status_code = 409  #The server successfully processed the request and is not returning any content	
+  		status_code = 409  #The request could not be completed due to a conflict with the current state of the resource	
  	else:
  		message = "Success"
  		status_code = 200

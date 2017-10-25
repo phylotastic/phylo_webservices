@@ -128,6 +128,8 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====GETList=====", traceback=True)
+
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
     
@@ -169,6 +171,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====RemoveList=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
   	#----------------REPLACE Species API------------------------
@@ -207,6 +210,7 @@ class Species_List_Service_API(object):
               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====ReplaceSpecies=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -246,6 +250,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====UpdateList=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
 
@@ -295,6 +300,7 @@ class Species_List_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
+            cherrypy.log("====InsertList=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
  	#--------------------------------------------------------------------
     '''

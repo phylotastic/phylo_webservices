@@ -45,7 +45,7 @@ def scale_tree_api(tree_newick, method="median"):
  	execution_time = end_time-start_time    
     #service result creation time
  	creation_time = datetime.datetime.now().isoformat()
-	meta_data = {'creation_time': creation_time, 'execution_time': "{:4.2f}".format(execution_time), 'source_urls':["http://datelife.org/"]}
+	meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls':["http://datelife.org/"]}
 	response['meta_data'] = meta_data
  	 
 	response['input_tree'] = tree_newick

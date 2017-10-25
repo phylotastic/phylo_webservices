@@ -31,20 +31,19 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
     response = requests.post(api_url, data=payload)     
 
     resolvedNamesList = [] 
-    
-    if response.status_code == requests.codes.ok:
-            
-        data_json = json.loads(response.text)
+    data_json = json.loads(response.text)
+
+    if response.status_code == requests.codes.ok:        
         rsnames_list = data_json['data']
         parameters_list = data_json['parameters']   
         for element in rsnames_list:
             mult_matches_list = []
             input_name = element['supplied_name_string']
-            if not element['is_known_name']:
-               continue
+            
             match_list = element['results']
             for match in match_list:
                 namesList = {}
+                
                 if float(match['score']) >= 0.75:
                    rsname = match['canonical_form']
        	           namesList['search_string'] = input_name
@@ -56,7 +55,7 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
             	   namesList['taxon_id'] = match['taxon_id']		
                    mult_matches_list.append(namesList)	
                 if not(multi_match) and do_fuzzy_match: 
- 				   break
+                   break
 
             if not do_fuzzy_match and match['match_type'] !=1:
                continue
@@ -70,12 +69,12 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
         else:
            msg = "Error: Response error while resolving names with GNR"
         if 'status' in data_json:
-           statuscode = response.status_code
-        else:
-           statuscode = 500   
+           statuscode = data_json['status']
+        
+        statuscode = response.status_code   
 
-    
-    return {'resolved_names': resolvedNamesList, 'gnr_parameters': parameters_list, 'status_code': statuscode, 'message': msg}
+    print resolvedNamesList
+    return {'resolvedNames': resolvedNamesList, 'gnr_parameters': parameters_list, 'status_code': statuscode, 'message': msg}
         
 #----------------------------------------------    
 
@@ -124,11 +123,11 @@ def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
         else:
            msg = "Error: Response error while resolving names with OToL TNRS"
         if 'status' in data_json:
-           statuscode = response.status_code
-        else:
-           statuscode = 500   
+           statuscode = data_json['status']
         
-    return {'resolved_names': resolvedNamesList, 'status_code': statuscode, 'message': msg}
+        statuscode = response.status_code   
+        
+    return {'resolvedNames': resolvedNamesList, 'status_code': statuscode, 'message': msg}
  
 #-------------------------------------------
 def get_resolved_names(results, do_fuzzy_match, multi_match):
@@ -187,7 +186,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
     		final_result.extend(resolvedNameslst)  
     else:
     	resolvedResult = resolve_sn_ot(inputNamesList, do_fuzzy_match, multi_match)
-    	final_result = resolvedResult['resolved_names']
+    	final_result = resolvedResult['resolvedNames']
     	status_code = resolvedResult['status_code']
     	message = resolvedResult['message']
 
@@ -205,7 +204,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
     meta_data = {'creation_time': creation_time, 'execution_time': execution_time, 'source_urls':["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#tnrs"] }
 #"service_documentation": service_documentation}
 
-    return {'resolved_names': final_result, 'total_names': result_len, 'status_code': status_code, 'input_names': inputNamesList , 'message': message, 'meta_data': meta_data}
+    return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'input_names': inputNamesList , 'message': message, 'meta_data': meta_data}
 
 
 #-----------------------------------------------------------
@@ -217,11 +216,11 @@ def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match):
     end_time = time.time()
     execution_time = end_time-start_time
 
-    result_len = len(final_result['resolved_names'])
+    result_len = len(final_result['resolvedNames'])
     if result_len <= 0 and final_result['status_code'] == 200:
         final_result['message'] = "Could not resolve any name"
 
-    service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-4"
+    #service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-4"
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
     meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://resolver.globalnames.org/"] }

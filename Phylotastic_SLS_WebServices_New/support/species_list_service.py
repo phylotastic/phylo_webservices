@@ -31,7 +31,7 @@ def get_public_lists(db_collection, verbose, content):
  	
  	if documents.count() == 0:
  		message = "No public lists found"
-  		status_code = 409  #The server successfully processed the request and is not returning any content	
+  		status_code = 200  	
  	else:
  		message = "Success"
  		status_code = 200

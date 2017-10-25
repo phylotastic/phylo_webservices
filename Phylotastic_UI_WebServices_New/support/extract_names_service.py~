@@ -38,17 +38,17 @@ def get_sn_url(inputURL, sEngine=0):
         else:
            statuscode = 500
 
-        return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']        
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'input_url': inputURL, 'gnrd_parameters': parametersList, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "Success"} 
+         return {'input_url': inputURL, 'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "Success"} 
      
 #----------------------------------------------    
 #get scientific names from final api-result
@@ -123,17 +123,17 @@ def get_sn_text(inputTEXT, sEngine=0):
         else:
            statuscode = 500
 
-        return {'input_text': inputTEXT, 'scientific_names': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'input_text': inputTEXT, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'input_text': inputTEXT, 'gnrd_parameters': parametersList, 'scientific_names': scientificNamesList, 'status_code': 200,'message': "Success"} 
+         return {'input_text': inputTEXT, 'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200,'message': "Success"}
 
 #-----------------------------------------------------------
 # removes duplicates from a list
@@ -163,16 +163,16 @@ def extract_names_URL(inputURL, sEngine=0):
     else:
        service_url = base_url + "names_url?url=" + inputURL + "&engine=" + str(sEngine)
 
-    service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-1"
+    #service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-1"
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
 
-    meta_data = {'creation_time': creation_time, 'execution_time': "{:4.2f}".format(execution_time), 'source_urls': ["http://gnrd.globalnames.org/"] }
+    meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://gnrd.globalnames.org/"] }
 
    #'service_documentation': service_documentation} #'service_url': service_url
     final_result['meta_data'] = meta_data
  
-    final_result['total_names'] = len(final_result['scientific_names'])
+    final_result['total_names'] = len(final_result['scientificNames'])
 
     return final_result  #return json.dumps(final_result)
 
@@ -191,7 +191,7 @@ def extract_names_TEXT(inputTEXT, sEngine=0):
     else:
        service_url = base_url + "names_text?text=" + inputTEXT + "&engine=" + str(sEngine)
      
-    service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-2"
+    #service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-2"
     
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
