@@ -138,7 +138,7 @@ def testService_ResolveScientificNamesOpenTreeWS_WS_3_GET(param_names,expected_o
        set_expected_ouput = set(expected_output)
        list_result = []
        for index, item in enumerate(json_object["resolvedNames"]):
-           list_result.append(json_object["resolvedNames"][index]["matched_name"])
+           list_result.append(json_object["resolvedNames"][index]['matched_results'][0]["matched_name"])
 
        set_result = set(list_result)
        if (not set_expected_ouput.issubset(set_result)):
@@ -174,7 +174,7 @@ def testService_ResolveScientificNamesOpenTreeWS_WS_3_POST(json_param_names,expe
     set_expected_ouput = set(expected_output)
     list_result = []
     for index, item in enumerate(json_object["resolvedNames"]):
-        list_result.append(json_object["resolvedNames"][index]["matched_name"])
+        list_result.append(json_object["resolvedNames"][index]['matched_results'][0]["matched_name"])
 
     set_result = set(list_result)
     if (not set_expected_ouput.issubset(set_result)):
