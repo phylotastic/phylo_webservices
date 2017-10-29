@@ -91,16 +91,19 @@ def get_tree_OT(resolvedNames):
  	#rsnames = resolvedNames['resolvedNames']
  	ottIdList = []
  	for rname in rsnames:
- 		for match_result in rname['matched_results']:
- 			if 'Open Tree of Life' in match_result['data_source']:
- 				ottIdList.append(match_result['taxon_id'])
- 				break
+ 		if 'matched_results' in rname:
+ 			for match_result in rname['matched_results']:
+ 				if 'Open Tree of Life' in match_result['data_source']:
+ 					ottIdList.append(match_result['taxon_id'])
+ 					break 			
  		else:
- 			response['newick'] = ""
- 			response['message'] = "Error: wrong TNRS. Need to resolve with OpenTreeofLife TNRS"
- 			response['status_code'] = 500
- 			 			
- 			return response
+ 			if rname['resolver_name'] == 'OT':
+ 				ottIdList.append(rname['taxon_id'])
+ 			else:
+ 				response['newick'] = ""
+ 				response['message'] = "Error: wrong TNRS. Need to resolve with OpenTreeofLife TNRS"
+ 				response['status_code'] = 500
+ 			 	return response
  			     
     #get induced_subtree
  	final_result = subtree(ottIdList)
