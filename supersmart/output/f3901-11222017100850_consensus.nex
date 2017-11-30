@@ -1,0 +1,32 @@
+#NEXUS
+
+BEGIN TAXA;
+[! Taxa block written by Bio::Phylo::Taxa v2.0.1 on Wed Nov 22 17:39:29 2017 ]
+	
+        DIMENSIONS NTAX=7;
+        TAXLABELS
+		Cystophora_cristata
+		Erignathus_barbatus
+		Halichoerus_grypus
+		Phoca_groenlandica
+		Phoca_largha
+		Pusa_caspica
+		Pusa_hispida
+        ;
+END;
+BEGIN TREES;
+[! Trees block written by Bio::Phylo::Forest v2.0.1 on Wed Nov 22 17:39:29 2017 ]
+[! Tree(s) include FigTree node annotations ]
+	TRANSLATE
+		1 Pusa_hispida,
+		2 Phoca_largha,
+		3 Pusa_caspica,
+		4 Halichoerus_grypus,
+		5 Phoca_groenlandica,
+		6 Cystophora_cristata,
+		7 Erignathus_barbatus;
+	TREE TREE1 = [&R] (((3[&height=0.029608732686980634,length_95%_HPD={0.003539,0.007462},height_median=0.03695649999999999,length_range={0.002882,0.008639},height_95%_HPD={0.006537000000000005,0.054178000000000004},length_median=0.005395499999999999,length=0.005476613573407199,height_range={0.0015399999999999997,0.065058}]:0.005610,4[&length_95%_HPD={0.003483,0.007602},height=0.029627124653739637,length_median=0.0052910000000000006,height_95%_HPD={0.005221,0.052642999999999995},height_median=0.0365,length_range={0.002181,0.009254},length=0.005419257617728532,height_range={0.0011499999999999982,0.065978}]:0.005592)[&height_range={0.007074,0.07091},length=0.0012309816326530616,length_median=0.0011475,length_range={1.28E-4,0.003326},height_median=0.021887000000000004,height_95%_HPD={0.011356999999999996,0.056884},height=0.031050677551020405,length_95%_HPD={1.56E-4,0.002343},bootstrap=68]:0.001652,1[&length_median=0.005476,height_95%_HPD={0.008826,0.052035000000000005},length_range={0.002624,0.009683},height_median=0.03775100000000001,length_95%_HPD={0.003415,0.007751},height=0.031112506925207745,height_range={0.00392,0.065181},length=0.005535164819944607]:0.005758)[&length_95%_HPD={3.31E-4,0.003027},height=0.05203821597633141,bootstrap=47,length_median=0.0014104999999999999,height_95%_HPD={0.043904,0.060203},height_median=0.051957500000000004,length_range={1.71E-4,0.004396},length=0.0015114142011834327,height_range={0.039686,0.071663}]:0.008310,((5[&length=0.015303213296398903,height_range={0.0,0.04476000000000001},length_95%_HPD={0.011017,0.01893},height=0.02167127285318562,length_median=0.015178500000000001,height_95%_HPD={0.005825000000000004,0.035821},height_median=0.0226815,length_range={0.010771,0.024206}]:0.019000,(6[&length_range={0.015437,0.033984},height_median=0.011469000000000003,height_95%_HPD={0.001971999999999998,0.019972999999999998},length_median=0.0251595,height=0.011536631578947363,length_95%_HPD={0.019441,0.030732},height_range={0.0,0.027715999999999998},length=0.02501442382271471]:0.025014,7[&height_95%_HPD={0.0,0.0},height_median=0.0,length_range={0.026623,0.05403},length_median=0.036395,length_95%_HPD={0.029649,0.043444},height=3.252077562326869E-6,height_range={0.0,6.759999999999995E-4},length=0.036547803324099716]:0.036548)[&height=0.03655105540166203,length_95%_HPD={0.0,0.010428},bootstrap=100,length_median=0.0044185000000000006,length_range={0.0,0.012392},height_median=0.036395,height_95%_HPD={0.02924,0.042942},length=0.004120062326869809,height_range={0.026622999999999997,0.054029999999999995}]:0.004120)[&length=0.008597940860215052,height_range={0.033752000000000004,0.060995},bootstrap=52,height=0.044870717741935476,length_95%_HPD={0.005746,0.012014},height_median=0.044856,length_range={0.004853,0.013414},height_95%_HPD={0.037839000000000005,0.052315},length_median=0.0086345]:0.004430,2[&length_median=0.007264,height_median=0.037918499999999994,length_range={0.003858,0.012004},height_95%_HPD={0.0038930000000000006,0.053179},height=0.02926721745152357,length_95%_HPD={0.004254,0.010112},height_range={0.0,0.065388},length=0.007331984764542931]:0.015834)[&length=1.5475E-4,height_range={0.042135000000000006,0.072546},height=0.05346865860215052,length_95%_HPD={0.0,0.001594},bootstrap=52,length_median=0.0,length_range={0.0,0.002926},height_median=0.053473,height_95%_HPD={0.045545,0.061259}]:0.000080)[&height_median=0.045604000000000006,height_95%_HPD={0.030678,0.060393},height_range={0.02744,0.072546},length=0.0,bootstrap=100,height=0.045180814404432175];
+END;
+BEGIN NOTES;
+[! Notes block written by Bio::Phylo::Project v2.0.1 on Wed Nov 22 17:39:29 2017 ]
+END;

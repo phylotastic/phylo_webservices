@@ -1,0 +1,26 @@
+#NEXUS
+
+BEGIN TAXA;
+[! Taxa block written by Bio::Phylo::Taxa v2.0.1 on Thu Nov 16 01:17:56 2017 ]
+	
+        DIMENSIONS NTAX=4;
+        TAXLABELS
+		Crocuta_crocuta
+		Hyaena_hyaena
+		Parahyaena_brunnea
+		Proteles_cristatus
+        ;
+END;
+BEGIN TREES;
+[! Trees block written by Bio::Phylo::Forest v2.0.1 on Thu Nov 16 01:17:56 2017 ]
+[! Tree(s) include FigTree node annotations ]
+	TRANSLATE
+		1 Hyaena_hyaena,
+		2 Parahyaena_brunnea,
+		3 Crocuta_crocuta,
+		4 Proteles_cristatus;
+	TREE TREE1 = [&R] (1[&length_median=0.009044,height_range={0.0,0.031911999999999996},height=0.017318351800554008,height_95%_HPD={5.320000000000012E-4,0.02858},length=0.009113263157894737,length_range={0.005733,0.014356},height_median=0.021628,length_95%_HPD={0.00667,0.011742}]:0.012370,(2[&length_median=0.00695,height_range={0.0012820000000000019,0.035076},height=0.019454494459833778,height_95%_HPD={0.003560999999999998,0.030737},length=0.0069771204986149565,length_range={0.003752,0.011789},height_median=0.0237245,length_95%_HPD={0.004767,0.009397}]:0.010233,(3[&length_median=0.0136225,height_range={0.0016129999999999964,0.017702},height=0.009030963988919678,length=0.013669872576177283,length_range={0.00884,0.020218},height_95%_HPD={0.0042730000000000025,0.014350999999999996},height_median=0.009021999999999997,length_95%_HPD={0.010571,0.017043}]:0.013670,4[&height_95%_HPD={0.0,0.0},length=0.022699297783933536,length_range={0.016038,0.029559},length_median=0.022621000000000002,height=1.5387811634349139E-6,height_range={0.0,4.390000000000019E-4},length_95%_HPD={0.018523,0.027017},height_median=0.0]:0.022699)[&length_95%_HPD={0.0,0.01255},height_median=0.022621000000000002,height_95%_HPD={0.018522999999999998,0.027017},length_range={0.0,0.016045},length=0.006987059556786708,bootstrap=100,length_median=0.009016,height=0.022700836565096968,height_range={0.016037999999999997,0.029558999999999995}]:0.006987)[&height_median=0.032531,length=0.0,bootstrap=35,height_95%_HPD={0.028172000000000003,0.037739},height_range={0.025122,0.040596},height=0.032628562992125965]:0.000000)[&height_median=0.0308895,height_range={0.017784,0.040596},height=0.02968789612188363,length=0.0,bootstrap=100,height_95%_HPD={0.020461,0.037739}];
+END;
+BEGIN NOTES;
+[! Notes block written by Bio::Phylo::Project v2.0.1 on Thu Nov 16 01:17:56 2017 ]
+END;

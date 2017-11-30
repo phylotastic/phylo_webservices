@@ -1,0 +1,34 @@
+====start mkdir execution====
+======11-16-2017 10:07:38======
+[vagrant@127.0.0.1:2222] run: mkdir -p /home/vagrant/60e51-11162017100736
+====start cp execution====
+======11-16-2017 10:09:20======
+[vagrant@127.0.0.1:2222] run: cp /vagrant/input/60e51-11162017100736_input.txt /home/vagrant/60e51-11162017100736/60e51-11162017100736_input.txt
+====start taxize execution====
+======11-16-2017 10:17:20======
+[vagrant@127.0.0.1:2222] run: smrt taxize -i 60e51-11162017100736_input.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to read taxon names from file ./60e51-11162017100736_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 13 taxon names from ./60e51-11162017100736_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Bassariscus astutus in local database
+[vagrant@127.0.0.1:2222] out: [32mINFO: Found exact match(es) for Nasuella meridensis in local database
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Potos favus
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Procyon cancrivorus in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Procyon lotor in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Bassariscus sumichrasti in local database
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Found match 1387127 for Bassaricyon medius through TNRS
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Bassaricyon medius
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Bassaricyon alleni in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Bassaricyon gabbii in local database
+[vagrant@127.0.0.1:2222] out: [0m[1;31mERROR: http://taxosaurus.org/submit?query=Bassaricyon%20neblina - 500 Can't connect to taxosaurus.org:80 (timeout)
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Bassaricyon neblina
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Nasua nasua in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Nasua narica in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Nasuella olivacea in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created taxa table containing 10 rows
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Wrote taxa table to ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m
+====start align execution====
+======11-16-2017 10:19:36======
+[vagrant@127.0.0.1:2222] run: smrt align --infile species.tsv

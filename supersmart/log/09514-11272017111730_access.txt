@@ -1,0 +1,2435 @@
+====start mkdir execution====
+======11-27-2017 11:17:31======
+[vagrant@127.0.0.1:2222] run: mkdir -p /home/vagrant/09514-11272017111730
+====start cp execution====
+======11-27-2017 11:17:48======
+[vagrant@127.0.0.1:2222] run: cp /vagrant/input/09514-11272017111730_input.txt /home/vagrant/09514-11272017111730/09514-11272017111730_input.txt
+====start taxize execution====
+======11-27-2017 11:17:59======
+[vagrant@127.0.0.1:2222] run: smrt taxize -i 09514-11272017111730_input.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to read taxon names from file ./09514-11272017111730_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 6 taxon names from ./09514-11272017111730_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Anser brachyrhynchus in local database
+[vagrant@127.0.0.1:2222] out: [33mWARN: Couldn't resolve name Dendrocygna autumanlis
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Dendrocygna bicolor in local database
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Branta bernicula
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found match 8849 for Chen caerulescens through TNRS
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Found exact match(es) for Branta leucopsis in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created taxa table containing 4 rows
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Wrote taxa table to ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m
+====start align execution====
+======11-27-2017 11:18:15======
+[vagrant@127.0.0.1:2222] run: smrt align --infile species.tsv
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Creating output directory alignments
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created 4 nodes from taxon table
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found 4 nodes in taxa file ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 1/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 2/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 3/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 4/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to collect sequences for 523 clusters
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 294999423-8830-20-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 162423719-8830-1-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 313103443-8830-151-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 298256212-8830-154-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 254769249-8830-4-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 3088823-8830-2-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 313103447-8830-152-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 30984210-8830-188-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 313103431-8830-5-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 313103455-8830-153-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 254770257-8830-25-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 30984211-8830-189-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 313103437-8830-150-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 3 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 3 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 3 sequences
+[vagrant@127.0.0.1:2222] out: [32mINFO: Going to align 3 sequences
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Going to align 4 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to alignments.
+[vagrant@127.0.0.1:2222] out: [0m
+====start orthologize execution====
+======11-27-2017 11:19:04======
+[vagrant@127.0.0.1:2222] run: smrt orthologize --infile aligned.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Creating output directory clusters
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster 13 seed GIs, max distance : 0.1
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Making BLAST db for 13 distinct GIs
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Wrote FASTA to clusters/db-files/seeds.fa
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to run all vs all BLAST search on clusters/db-files/seeds.fa
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Number of blast results : 13
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 162423719
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 254769249
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 254770257
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 294999423
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 298256212
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 3088823
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 30984210
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 30984211
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 313103431
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 313103437
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 313103443
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 313103447
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 313103455
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing singleton clusters/cluster1.fa [alignments/162423719-8830-1-subtree.fa]
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing singleton clusters/cluster2.fa [alignments/254769249-8830-4-subtree.fa]
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing singleton clusters/cluster4.fa [alignments/294999423-8830-20-subtree.fa]
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing singleton clusters/cluster6.fa [alignments/3088823-8830-2-subtree.fa]
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing singleton clusters/cluster9.fa [alignments/313103431-8830-5-subtree.fa]
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to clusters
+[vagrant@127.0.0.1:2222] out: [0m
+====start bbmerge execution====
+======11-27-2017 11:19:24======
+[vagrant@127.0.0.1:2222] run: smrt bbmerge --alnfile merged.txt --taxafile species.tsv
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 3 genera
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Looking for exemplars in genus Branta (8852)
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Added taxon 184711 as (monotypic) exemplar
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Looking for exemplars in genus Anser (8842)
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Added taxa 8849,132585 as exemplars
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Looking for exemplars in genus Dendrocygna (8870)
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Added taxon 8874 as (monotypic) exemplar
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Identified 4 exemplars
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Checking alignment coverage for taxon 8849
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Checking alignment coverage for taxon 132585
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Checking alignment coverage for taxon 8874
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: No more alignments available for 8874, now have: 4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Checking alignment coverage for taxon 184711
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: No more alignments available for 184711, now have: 5
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Using 5 alignments for supermatrix
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Number of exemplars : 4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing marker summary table to ./markers-backbone.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Marker summary table written to ./markers-backbone.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Removed 0 gap-only columns from matrix
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./supermatrix.phy
+[vagrant@127.0.0.1:2222] out: [0m
+====start bbinfer execution====
+======11-27-2017 11:30:57======
+[vagrant@127.0.0.1:2222] run: smrt bbinfer --supermatrix supermatrix.phy --inferencetool exabayes --cleanup
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to make binary representation of ./supermatrix.phy => infer_backbone_20044-dat
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to run 'mpirun -np 4 exabayes -f ./infer_backbone_20044-dat.binary -s 1234 -n infer_backbone_20044 -c ./infer_backbone_20044.nex -w . -R 4 -C 1 -M 0'
+[vagrant@127.0.0.1:2222] out: [0m
+[vagrant@127.0.0.1:2222] out: This is the multi-threaded MPI hybrid variant of ExaBayes (version 1.4.1),
+[vagrant@127.0.0.1:2222] out: a tool for Bayesian MCMC sampling of phylogenetic trees, build with the
+[vagrant@127.0.0.1:2222] out: Phylogenetic Likelihood Library (version 1.0.0, September 2013).
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: This software has been released in 2014-09-01 by 
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: 	Andre J. Aberer, Kassian Kobert and Alexandros Stamatakis
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Please send any bug reports, feature requests and inquiries to exabayes-at-googlegroups-dot-com
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: The program was called as follows: 
+[vagrant@127.0.0.1:2222] out: exabayes -f ./infer_backbone_20044-dat.binary -s 1234 -n infer_backbone_20044 -c ./infer_backbone_20044.nex -w . -R 4 -C 1 -M 0 
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: The (binary) alignment file you provided, consists of the following
+[vagrant@127.0.0.1:2222] out: partitions:
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: number:		0
+[vagrant@127.0.0.1:2222] out: name:		NoName
+[vagrant@127.0.0.1:2222] out: #patterns:	177
+[vagrant@127.0.0.1:2222] out: type:		DNA
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Parameter names will reference the above partition numbers.
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Parameters to be integrated (initial values derived from prior): 
+[vagrant@127.0.0.1:2222] out: 0	topo{0}
+[vagrant@127.0.0.1:2222] out: 	sub-id:	0
+[vagrant@127.0.0.1:2222] out: 	prior:	Uniform(0.00,0.00)
+[vagrant@127.0.0.1:2222] out: 	init value:	parsimony
+[vagrant@127.0.0.1:2222] out: 1	v{0}
+[vagrant@127.0.0.1:2222] out: 	sub-id:	0
+[vagrant@127.0.0.1:2222] out: 	prior:	Exponential(10.00)
+[vagrant@127.0.0.1:2222] out: 	init value:	0.10
+[vagrant@127.0.0.1:2222] out: 2	pi{0}
+[vagrant@127.0.0.1:2222] out: 	sub-id:	0
+[vagrant@127.0.0.1:2222] out: 	prior:	Dirichlet(1.00,1.00,1.00,1.00)
+[vagrant@127.0.0.1:2222] out: 	init value:	0.25,0.25,0.25,0.25
+[vagrant@127.0.0.1:2222] out: 3	r{0}
+[vagrant@127.0.0.1:2222] out: 	sub-id:	0
+[vagrant@127.0.0.1:2222] out: 	prior:	Dirichlet(1.00,1.00,1.00,1.00,1.00,1.00)
+[vagrant@127.0.0.1:2222] out: 	init value:	0.17,0.17,0.17,0.17,0.17,0.17
+[vagrant@127.0.0.1:2222] out: 4	shape{0}
+[vagrant@127.0.0.1:2222] out: 	sub-id:	0
+[vagrant@127.0.0.1:2222] out: 	prior:	Uniform(0.00,200.00)
+[vagrant@127.0.0.1:2222] out: 	init value:	100.00
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Will employ the following proposal mixture (frequency,id,type,affected variables): 
+[vagrant@127.0.0.1:2222] out: 17.14%	0	stNNI( topo{0};v{0} )
+[vagrant@127.0.0.1:2222] out: 17.14%	1	eSPR( topo{0};v{0};stopProb=0.50 )
+[vagrant@127.0.0.1:2222] out: 17.14%	2	parsSpr( topo{0};v{0};radius=2,warp=0.10 )
+[vagrant@127.0.0.1:2222] out: 5.71%	3	likeSPR( topo{0};v{0};radius=2,warp=1.00 )
+[vagrant@127.0.0.1:2222] out: 2.86%	4	TL-Mult( v{0} )
+[vagrant@127.0.0.1:2222] out: 25.71%	5	blDistGamma( v{0} )
+[vagrant@127.0.0.1:2222] out: 2.86%	6	biasBLMult( v{0} )
+[vagrant@127.0.0.1:2222] out: 1.43%	7	freqSlider( pi{0};v{0} )
+[vagrant@127.0.0.1:2222] out: 1.43%	8	freqDirich( pi{0};v{0} )
+[vagrant@127.0.0.1:2222] out: 2.86%	9	revMatSlider( r{0};v{0} )
+[vagrant@127.0.0.1:2222] out: 2.86%	10	revMatDirich( r{0};v{0} )
+[vagrant@127.0.0.1:2222] out: 2.86%	11	rateHetMulti( shape{0} )
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Will execute 4 runs in parallel.
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: initialized diagnostics file ./ExaBayes_diagnostics.infer_backbone_20044
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_topologies.infer_backbone_20044.0
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_parameters.infer_backbone_20044.0
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_topologies.infer_backbone_20044.1
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_parameters.infer_backbone_20044.1
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_topologies.infer_backbone_20044.2
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_parameters.infer_backbone_20044.2
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_topologies.infer_backbone_20044.3
+[vagrant@127.0.0.1:2222] out: initialized file ./ExaBayes_parameters.infer_backbone_20044.3
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: initial state: 
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: [run=0,heat=0,gen=0]	Lnl: -10551.68	LnPr: 7.79	RNG(key={1816981733,3089555280},ctr={0,0})
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: [run=1,heat=0,gen=0]	Lnl: -10551.68	LnPr: 7.79	RNG(key={3641579041,87828563},ctr={0,0})
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: [run=2,heat=0,gen=0]	Lnl: -10551.68	LnPr: 7.79	RNG(key={105597425,3048030073},ctr={0,0})
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: [run=3,heat=0,gen=0]	Lnl: -10551.68	LnPr: 7.79	RNG(key={3414515956,2240934242},ctr={0,0})
+[vagrant@127.0.0.1:2222] out: ================================================================
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: load distribution (rank,coords,#numParts,#numPatterns,chainsPerRun):
+[vagrant@127.0.0.1:2222] out: [ 0 ] 	[0,0,0]	1	177	(0,0)
+[vagrant@127.0.0.1:2222] out: [ 1 ] 	[1,0,0]	1	177	(1,0)
+[vagrant@127.0.0.1:2222] out: [ 2 ] 	[2,0,0]	1	177	(2,0)
+[vagrant@127.0.0.1:2222] out: [ 3 ] 	[3,0,0]	1	177	(3,0)
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Starting MCMC sampling using the SSE implementation for likelihood computations.
+[vagrant@127.0.0.1:2222] out: ExaBayes will run until topological convergence is achieved
+[vagrant@127.0.0.1:2222] out: (ASDSF < 5.00%, at least 100000 generations).
+[vagrant@127.0.0.1:2222] out: ExaBayes will print log-likelihoods of all chains, grouped by
+[vagrant@127.0.0.1:2222] out: run id (separated by '=') and sorted by heat (starting with the
+[vagrant@127.0.0.1:2222] out: cold chain). First column indicates generation number (completed
+[vagrant@127.0.0.1:2222] out: by all chains) and the time elapsed for this increment.
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [0,0.09s]	 -10,551.68 === -10,551.68 === -10,551.68 === -10,551.68
+[vagrant@127.0.0.1:2222] out: [500,0.11s]	 -9,858.47 === -9,718.64 === -9,748.07 === -9,766.53
+[vagrant@127.0.0.1:2222] out: [1000,0.14s]	 -9,624.24 === -9,674.65 === -9,618.38 === -9,677.87
+[vagrant@127.0.0.1:2222] out: [1500,0.14s]	 -9,598.82 === -9,617.79 === -9,599.31 === -9,619.72
+[vagrant@127.0.0.1:2222] out: [2000,0.09s]	 -9,599.08 === -9,596.56 === -9,601.32 === -9,586.50
+[vagrant@127.0.0.1:2222] out: [2500,0.09s]	 -9,594.09 === -9,592.79 === -9,589.27 === -9,552.82
+[vagrant@127.0.0.1:2222] out: [3000,0.10s]	 -9,588.57 === -9,587.13 === -9,594.56 === -9,544.96
+[vagrant@127.0.0.1:2222] out: [3500,0.10s]	 -9,593.54 === -9,567.69 === -9,587.02 === -9,544.13
+[vagrant@127.0.0.1:2222] out: [4000,0.10s]	 -9,591.08 === -9,558.91 === -9,569.22 === -9,544.92
+[vagrant@127.0.0.1:2222] out: [4500,0.07s]	 -9,591.99 === -9,555.12 === -9,550.02 === -9,541.65
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 2-12 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [5000,0.10s]	 -9,590.12 === -9,542.61 === -9,547.64 === -9,538.98
+[vagrant@127.0.0.1:2222] out: [5500,0.10s]	 -9,596.08 === -9,545.00 === -9,546.26 === -9,543.95
+[vagrant@127.0.0.1:2222] out: [6000,0.11s]	 -9,591.33 === -9,542.75 === -9,549.91 === -9,542.89
+[vagrant@127.0.0.1:2222] out: [6500,0.08s]	 -9,587.30 === -9,543.08 === -9,543.81 === -9,540.14
+[vagrant@127.0.0.1:2222] out: [7000,0.08s]	 -9,564.36 === -9,545.67 === -9,541.83 === -9,539.93
+[vagrant@127.0.0.1:2222] out: [7500,0.10s]	 -9,563.13 === -9,541.22 === -9,542.48 === -9,543.48
+[vagrant@127.0.0.1:2222] out: [8000,0.10s]	 -9,548.33 === -9,540.84 === -9,539.38 === -9,542.82
+[vagrant@127.0.0.1:2222] out: [8500,0.09s]	 -9,542.84 === -9,542.96 === -9,541.94 === -9,541.68
+[vagrant@127.0.0.1:2222] out: [9000,0.09s]	 -9,540.40 === -9,544.23 === -9,544.85 === -9,541.19
+[vagrant@127.0.0.1:2222] out: [9500,0.08s]	 -9,538.75 === -9,538.81 === -9,543.76 === -9,542.40
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 5-21 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [10000,0.08s]	 -9,538.36 === -9,541.03 === -9,546.77 === -9,543.14
+[vagrant@127.0.0.1:2222] out: [10500,0.08s]	 -9,540.51 === -9,542.47 === -9,539.76 === -9,542.74
+[vagrant@127.0.0.1:2222] out: [11000,0.12s]	 -9,546.02 === -9,541.72 === -9,540.43 === -9,543.16
+[vagrant@127.0.0.1:2222] out: [11500,0.10s]	 -9,538.89 === -9,541.73 === -9,538.12 === -9,537.44
+[vagrant@127.0.0.1:2222] out: [12000,0.10s]	 -9,543.09 === -9,543.75 === -9,541.42 === -9,543.96
+[vagrant@127.0.0.1:2222] out: [12500,0.07s]	 -9,541.46 === -9,541.19 === -9,540.03 === -9,541.27
+[vagrant@127.0.0.1:2222] out: [13000,0.08s]	 -9,549.20 === -9,543.66 === -9,538.12 === -9,538.26
+[vagrant@127.0.0.1:2222] out: [13500,0.09s]	 -9,540.54 === -9,540.50 === -9,540.51 === -9,538.86
+[vagrant@127.0.0.1:2222] out: [14000,0.07s]	 -9,543.72 === -9,541.82 === -9,539.36 === -9,540.76
+[vagrant@127.0.0.1:2222] out: [14500,0.07s]	 -9,538.69 === -9,539.36 === -9,539.47 === -9,539.89
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 7-31 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [15000,0.10s]	 -9,536.75 === -9,540.21 === -9,542.62 === -9,539.16
+[vagrant@127.0.0.1:2222] out: [15500,0.12s]	 -9,540.24 === -9,542.40 === -9,541.00 === -9,543.06
+[vagrant@127.0.0.1:2222] out: [16000,0.08s]	 -9,541.70 === -9,544.84 === -9,542.52 === -9,537.27
+[vagrant@127.0.0.1:2222] out: [16500,0.09s]	 -9,543.47 === -9,540.17 === -9,543.18 === -9,539.34
+[vagrant@127.0.0.1:2222] out: [17000,0.08s]	 -9,540.87 === -9,539.63 === -9,542.78 === -9,539.56
+[vagrant@127.0.0.1:2222] out: [17500,0.08s]	 -9,541.53 === -9,542.70 === -9,543.62 === -9,538.90
+[vagrant@127.0.0.1:2222] out: [18000,0.09s]	 -9,539.69 === -9,540.51 === -9,545.72 === -9,540.19
+[vagrant@127.0.0.1:2222] out: [18500,0.11s]	 -9,542.20 === -9,540.81 === -9,543.80 === -9,542.91
+[vagrant@127.0.0.1:2222] out: [19000,0.10s]	 -9,536.92 === -9,540.40 === -9,540.61 === -9,538.58
+[vagrant@127.0.0.1:2222] out: [19500,0.06s]	 -9,539.31 === -9,542.62 === -9,542.79 === -9,540.85
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 10-42 (avg/max):	1.56%	1.56%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [20000,0.12s]	 -9,538.04 === -9,544.78 === -9,544.13 === -9,541.82
+[vagrant@127.0.0.1:2222] out: [20500,0.08s]	 -9,541.26 === -9,545.26 === -9,542.05 === -9,539.52
+[vagrant@127.0.0.1:2222] out: [21000,0.07s]	 -9,540.15 === -9,538.81 === -9,539.86 === -9,537.24
+[vagrant@127.0.0.1:2222] out: [21500,0.10s]	 -9,540.46 === -9,541.48 === -9,541.75 === -9,538.34
+[vagrant@127.0.0.1:2222] out: [22000,0.08s]	 -9,540.18 === -9,542.00 === -9,540.57 === -9,542.28
+[vagrant@127.0.0.1:2222] out: [22500,0.09s]	 -9,542.48 === -9,540.10 === -9,537.26 === -9,546.35
+[vagrant@127.0.0.1:2222] out: [23000,0.09s]	 -9,542.08 === -9,541.67 === -9,538.71 === -9,541.79
+[vagrant@127.0.0.1:2222] out: [23500,0.15s]	 -9,546.42 === -9,541.64 === -9,540.58 === -9,540.56
+[vagrant@127.0.0.1:2222] out: [24000,0.09s]	 -9,547.20 === -9,541.46 === -9,541.82 === -9,540.01
+[vagrant@127.0.0.1:2222] out: [24500,0.07s]	 -9,538.38 === -9,543.28 === -9,541.38 === -9,543.42
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 12-52 (avg/max):	1.25%	1.25%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [25000,0.10s]	 -9,544.04 === -9,542.46 === -9,544.28 === -9,540.87
+[vagrant@127.0.0.1:2222] out: [25500,0.07s]	 -9,541.47 === -9,539.26 === -9,539.84 === -9,541.48
+[vagrant@127.0.0.1:2222] out: [26000,0.09s]	 -9,540.54 === -9,541.14 === -9,541.44 === -9,542.25
+[vagrant@127.0.0.1:2222] out: [26500,0.08s]	 -9,543.12 === -9,552.04 === -9,540.19 === -9,541.69
+[vagrant@127.0.0.1:2222] out: [27000,0.09s]	 -9,540.26 === -9,540.34 === -9,539.76 === -9,543.82
+[vagrant@127.0.0.1:2222] out: [27500,0.11s]	 -9,538.05 === -9,540.24 === -9,539.64 === -9,540.02
+[vagrant@127.0.0.1:2222] out: [28000,0.08s]	 -9,539.03 === -9,540.10 === -9,541.63 === -9,540.77
+[vagrant@127.0.0.1:2222] out: [28500,0.08s]	 -9,542.23 === -9,540.10 === -9,538.83 === -9,541.69
+[vagrant@127.0.0.1:2222] out: [29000,0.10s]	 -9,539.12 === -9,538.54 === -9,542.37 === -9,540.06
+[vagrant@127.0.0.1:2222] out: [29500,0.08s]	 -9,540.38 === -9,537.92 === -9,539.39 === -9,541.36
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 15-62 (avg/max):	1.06%	1.06%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [30000,0.16s]	 -9,538.20 === -9,541.74 === -9,540.56 === -9,546.27
+[vagrant@127.0.0.1:2222] out: [30500,0.08s]	 -9,537.68 === -9,541.09 === -9,542.19 === -9,539.99
+[vagrant@127.0.0.1:2222] out: [31000,0.09s]	 -9,536.98 === -9,542.17 === -9,542.42 === -9,542.36
+[vagrant@127.0.0.1:2222] out: [31500,0.11s]	 -9,537.11 === -9,539.98 === -9,546.21 === -9,541.12
+[vagrant@127.0.0.1:2222] out: [32000,0.09s]	 -9,542.15 === -9,539.16 === -9,539.78 === -9,537.86
+[vagrant@127.0.0.1:2222] out: [32500,0.08s]	 -9,538.82 === -9,540.92 === -9,540.11 === -9,540.33
+[vagrant@127.0.0.1:2222] out: [33000,0.06s]	 -9,537.99 === -9,541.25 === -9,539.79 === -9,539.50
+[vagrant@127.0.0.1:2222] out: [33500,0.09s]	 -9,542.14 === -9,538.83 === -9,538.01 === -9,542.82
+[vagrant@127.0.0.1:2222] out: [34000,0.07s]	 -9,541.61 === -9,539.57 === -9,538.66 === -9,540.26
+[vagrant@127.0.0.1:2222] out: [34500,0.06s]	 -9,538.35 === -9,539.04 === -9,539.80 === -9,539.92
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 17-72 (avg/max):	0.91%	0.91%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [35000,0.15s]	 -9,542.13 === -9,539.34 === -9,543.78 === -9,539.93
+[vagrant@127.0.0.1:2222] out: [35500,0.09s]	 -9,540.14 === -9,540.83 === -9,539.25 === -9,542.08
+[vagrant@127.0.0.1:2222] out: [36000,0.08s]	 -9,540.74 === -9,537.76 === -9,538.76 === -9,538.51
+[vagrant@127.0.0.1:2222] out: [36500,0.09s]	 -9,539.33 === -9,542.96 === -9,539.50 === -9,539.52
+[vagrant@127.0.0.1:2222] out: [37000,0.07s]	 -9,538.97 === -9,537.94 === -9,540.55 === -9,540.41
+[vagrant@127.0.0.1:2222] out: [37500,0.09s]	 -9,537.11 === -9,538.94 === -9,541.87 === -9,539.21
+[vagrant@127.0.0.1:2222] out: [38000,0.08s]	 -9,538.20 === -9,543.62 === -9,543.51 === -9,539.43
+[vagrant@127.0.0.1:2222] out: [38500,0.08s]	 -9,542.12 === -9,543.02 === -9,539.45 === -9,537.31
+[vagrant@127.0.0.1:2222] out: [39000,0.08s]	 -9,541.28 === -9,545.23 === -9,542.72 === -9,537.87
+[vagrant@127.0.0.1:2222] out: [39500,0.08s]	 -9,542.78 === -9,540.65 === -9,537.28 === -9,539.84
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 20-81 (avg/max):	0.82%	0.82%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [40000,0.12s]	 -9,545.50 === -9,542.15 === -9,539.57 === -9,540.24
+[vagrant@127.0.0.1:2222] out: [40500,0.12s]	 -9,542.02 === -9,538.87 === -9,539.83 === -9,544.01
+[vagrant@127.0.0.1:2222] out: [41000,0.06s]	 -9,541.78 === -9,540.39 === -9,539.03 === -9,540.47
+[vagrant@127.0.0.1:2222] out: [41500,0.10s]	 -9,540.85 === -9,544.45 === -9,537.67 === -9,538.27
+[vagrant@127.0.0.1:2222] out: [42000,0.09s]	 -9,538.11 === -9,542.38 === -9,541.54 === -9,541.44
+[vagrant@127.0.0.1:2222] out: [42500,0.08s]	 -9,542.02 === -9,539.42 === -9,540.20 === -9,542.51
+[vagrant@127.0.0.1:2222] out: [43000,0.11s]	 -9,537.70 === -9,542.00 === -9,543.44 === -9,540.82
+[vagrant@127.0.0.1:2222] out: [43500,0.09s]	 -9,537.92 === -9,541.07 === -9,542.03 === -9,540.83
+[vagrant@127.0.0.1:2222] out: [44000,0.08s]	 -9,539.39 === -9,544.04 === -9,539.47 === -9,538.00
+[vagrant@127.0.0.1:2222] out: [44500,0.10s]	 -9,541.91 === -9,543.39 === -9,540.00 === -9,539.40
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 22-92 (avg/max):	0.71%	0.71%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [45000,0.11s]	 -9,538.47 === -9,542.83 === -9,538.95 === -9,547.01
+[vagrant@127.0.0.1:2222] out: [45500,0.10s]	 -9,539.75 === -9,541.39 === -9,543.15 === -9,539.42
+[vagrant@127.0.0.1:2222] out: [46000,0.09s]	 -9,539.63 === -9,539.61 === -9,540.14 === -9,538.72
+[vagrant@127.0.0.1:2222] out: [46500,0.10s]	 -9,537.47 === -9,544.73 === -9,543.30 === -9,539.95
+[vagrant@127.0.0.1:2222] out: [47000,0.12s]	 -9,538.96 === -9,543.90 === -9,542.39 === -9,539.49
+[vagrant@127.0.0.1:2222] out: [47500,0.06s]	 -9,538.52 === -9,543.13 === -9,539.35 === -9,540.01
+[vagrant@127.0.0.1:2222] out: [48000,0.09s]	 -9,539.42 === -9,538.80 === -9,540.61 === -9,541.99
+[vagrant@127.0.0.1:2222] out: [48500,0.08s]	 -9,544.18 === -9,541.58 === -9,543.23 === -9,541.09
+[vagrant@127.0.0.1:2222] out: [49000,0.07s]	 -9,540.89 === -9,536.93 === -9,537.35 === -9,544.01
+[vagrant@127.0.0.1:2222] out: [49500,0.07s]	 -9,544.99 === -9,543.20 === -9,537.84 === -9,538.86
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 25-102 (avg/max):	0.65%	0.65%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [50000,0.12s]	 -9,546.15 === -9,544.43 === -9,541.06 === -9,544.65
+[vagrant@127.0.0.1:2222] out: [50500,0.12s]	 -9,542.92 === -9,545.22 === -9,541.22 === -9,537.86
+[vagrant@127.0.0.1:2222] out: [51000,0.08s]	 -9,542.98 === -9,540.88 === -9,539.64 === -9,542.59
+[vagrant@127.0.0.1:2222] out: [51500,0.10s]	 -9,542.42 === -9,542.21 === -9,540.12 === -9,542.02
+[vagrant@127.0.0.1:2222] out: [52000,0.08s]	 -9,545.26 === -9,537.33 === -9,538.25 === -9,538.36
+[vagrant@127.0.0.1:2222] out: [52500,0.07s]	 -9,544.79 === -9,540.98 === -9,540.17 === -9,538.03
+[vagrant@127.0.0.1:2222] out: [53000,0.11s]	 -9,543.77 === -9,537.51 === -9,539.49 === -9,538.32
+[vagrant@127.0.0.1:2222] out: [53500,0.08s]	 -9,549.74 === -9,540.99 === -9,538.81 === -9,541.82
+[vagrant@127.0.0.1:2222] out: [54000,0.06s]	 -9,546.63 === -9,537.85 === -9,541.97 === -9,537.71
+[vagrant@127.0.0.1:2222] out: [54500,0.06s]	 -9,541.77 === -9,541.59 === -9,539.95 === -9,541.32
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 27-112 (avg/max):	0.59%	0.59%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [55000,0.10s]	 -9,541.16 === -9,541.94 === -9,540.53 === -9,545.05
+[vagrant@127.0.0.1:2222] out: [55500,0.08s]	 -9,539.97 === -9,544.19 === -9,540.27 === -9,541.14
+[vagrant@127.0.0.1:2222] out: [56000,0.15s]	 -9,540.94 === -9,543.89 === -9,542.20 === -9,540.43
+[vagrant@127.0.0.1:2222] out: [56500,0.06s]	 -9,542.24 === -9,542.70 === -9,537.71 === -9,541.13
+[vagrant@127.0.0.1:2222] out: [57000,0.10s]	 -9,542.24 === -9,545.72 === -9,540.41 === -9,542.35
+[vagrant@127.0.0.1:2222] out: [57500,0.07s]	 -9,542.66 === -9,545.17 === -9,541.57 === -9,542.04
+[vagrant@127.0.0.1:2222] out: [58000,0.09s]	 -9,542.00 === -9,539.27 === -9,539.43 === -9,542.04
+[vagrant@127.0.0.1:2222] out: [58500,0.07s]	 -9,543.22 === -9,542.78 === -9,537.84 === -9,542.31
+[vagrant@127.0.0.1:2222] out: [59000,0.10s]	 -9,539.42 === -9,540.29 === -9,544.55 === -9,538.42
+[vagrant@127.0.0.1:2222] out: [59500,0.08s]	 -9,539.35 === -9,541.34 === -9,539.01 === -9,540.82
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 30-121 (avg/max):	0.55%	0.55%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [60000,0.11s]	 -9,544.30 === -9,544.24 === -9,539.99 === -9,540.34
+[vagrant@127.0.0.1:2222] out: [60500,0.13s]	 -9,544.31 === -9,541.12 === -9,541.19 === -9,538.47
+[vagrant@127.0.0.1:2222] out: [61000,0.10s]	 -9,543.05 === -9,540.25 === -9,544.44 === -9,539.52
+[vagrant@127.0.0.1:2222] out: [61500,0.12s]	 -9,538.49 === -9,544.89 === -9,541.44 === -9,541.46
+[vagrant@127.0.0.1:2222] out: [62000,0.12s]	 -9,545.25 === -9,541.32 === -9,541.60 === -9,544.46
+[vagrant@127.0.0.1:2222] out: [62500,0.11s]	 -9,540.18 === -9,543.21 === -9,542.74 === -9,539.76
+[vagrant@127.0.0.1:2222] out: [63000,0.11s]	 -9,541.54 === -9,541.34 === -9,537.63 === -9,546.70
+[vagrant@127.0.0.1:2222] out: [63500,0.11s]	 -9,544.99 === -9,540.33 === -9,537.09 === -9,542.45
+[vagrant@127.0.0.1:2222] out: [64000,0.10s]	 -9,539.02 === -9,542.63 === -9,536.90 === -9,540.29
+[vagrant@127.0.0.1:2222] out: [64500,0.09s]	 -9,542.07 === -9,538.93 === -9,537.70 === -9,538.46
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 32-132 (avg/max):	0.50%	0.50%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [65000,0.13s]	 -9,537.06 === -9,542.15 === -9,538.59 === -9,538.38
+[vagrant@127.0.0.1:2222] out: [65500,0.08s]	 -9,543.82 === -9,541.64 === -9,539.22 === -9,539.83
+[vagrant@127.0.0.1:2222] out: [66000,0.10s]	 -9,543.91 === -9,543.56 === -9,538.36 === -9,541.54
+[vagrant@127.0.0.1:2222] out: [66500,0.13s]	 -9,543.88 === -9,540.41 === -9,540.95 === -9,539.92
+[vagrant@127.0.0.1:2222] out: [67000,0.09s]	 -9,539.87 === -9,540.99 === -9,542.88 === -9,543.67
+[vagrant@127.0.0.1:2222] out: [67500,0.07s]	 -9,538.20 === -9,538.75 === -9,541.84 === -9,540.38
+[vagrant@127.0.0.1:2222] out: [68000,0.12s]	 -9,539.12 === -9,545.19 === -9,541.02 === -9,542.74
+[vagrant@127.0.0.1:2222] out: [68500,0.07s]	 -9,538.52 === -9,541.73 === -9,542.53 === -9,539.50
+[vagrant@127.0.0.1:2222] out: [69000,0.08s]	 -9,538.26 === -9,538.79 === -9,545.28 === -9,536.93
+[vagrant@127.0.0.1:2222] out: [69500,0.10s]	 -9,539.70 === -9,538.10 === -9,542.62 === -9,539.20
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 35-142 (avg/max):	0.47%	0.47%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [70000,0.10s]	 -9,540.40 === -9,541.66 === -9,539.39 === -9,539.52
+[vagrant@127.0.0.1:2222] out: [70500,0.10s]	 -9,538.88 === -9,542.27 === -9,542.77 === -9,538.74
+[vagrant@127.0.0.1:2222] out: [71000,0.07s]	 -9,539.95 === -9,542.74 === -9,539.77 === -9,542.40
+[vagrant@127.0.0.1:2222] out: [71500,0.09s]	 -9,543.36 === -9,541.17 === -9,540.20 === -9,541.32
+[vagrant@127.0.0.1:2222] out: [72000,0.08s]	 -9,540.41 === -9,539.00 === -9,540.82 === -9,541.65
+[vagrant@127.0.0.1:2222] out: [72500,0.11s]	 -9,544.78 === -9,536.83 === -9,539.90 === -9,541.85
+[vagrant@127.0.0.1:2222] out: [73000,0.08s]	 -9,539.44 === -9,538.21 === -9,541.70 === -9,541.56
+[vagrant@127.0.0.1:2222] out: [73500,0.09s]	 -9,539.57 === -9,542.95 === -9,539.78 === -9,544.73
+[vagrant@127.0.0.1:2222] out: [74000,0.08s]	 -9,546.32 === -9,541.35 === -9,538.95 === -9,541.07
+[vagrant@127.0.0.1:2222] out: [74500,0.08s]	 -9,540.71 === -9,539.35 === -9,544.32 === -9,541.94
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 37-152 (avg/max):	0.43%	0.43%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [75000,0.15s]	 -9,539.71 === -9,539.98 === -9,547.90 === -9,542.09
+[vagrant@127.0.0.1:2222] out: [75500,0.07s]	 -9,543.95 === -9,542.09 === -9,541.13 === -9,537.11
+[vagrant@127.0.0.1:2222] out: [76000,0.10s]	 -9,544.76 === -9,538.69 === -9,540.40 === -9,539.92
+[vagrant@127.0.0.1:2222] out: [76500,0.09s]	 -9,539.82 === -9,537.18 === -9,538.17 === -9,542.43
+[vagrant@127.0.0.1:2222] out: [77000,0.07s]	 -9,541.40 === -9,537.89 === -9,540.74 === -9,539.70
+[vagrant@127.0.0.1:2222] out: [77500,0.09s]	 -9,548.36 === -9,538.99 === -9,540.15 === -9,541.05
+[vagrant@127.0.0.1:2222] out: [78000,0.12s]	 -9,544.79 === -9,538.17 === -9,537.45 === -9,540.99
+[vagrant@127.0.0.1:2222] out: [78500,0.08s]	 -9,543.41 === -9,543.71 === -9,538.80 === -9,541.79
+[vagrant@127.0.0.1:2222] out: [79000,0.05s]	 -9,543.80 === -9,542.52 === -9,538.48 === -9,539.71
+[vagrant@127.0.0.1:2222] out: [79500,0.08s]	 -9,542.72 === -9,540.87 === -9,540.89 === -9,540.20
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 40-161 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [80000,0.14s]	 -9,549.30 === -9,538.04 === -9,539.75 === -9,540.74
+[vagrant@127.0.0.1:2222] out: [80500,0.09s]	 -9,539.22 === -9,538.79 === -9,539.37 === -9,538.81
+[vagrant@127.0.0.1:2222] out: [81000,0.10s]	 -9,540.40 === -9,545.34 === -9,538.46 === -9,539.94
+[vagrant@127.0.0.1:2222] out: [81500,0.09s]	 -9,538.71 === -9,543.62 === -9,537.37 === -9,537.39
+[vagrant@127.0.0.1:2222] out: [82000,0.07s]	 -9,544.53 === -9,540.24 === -9,540.77 === -9,544.26
+[vagrant@127.0.0.1:2222] out: [82500,0.10s]	 -9,542.83 === -9,541.48 === -9,537.94 === -9,543.31
+[vagrant@127.0.0.1:2222] out: [83000,0.06s]	 -9,542.23 === -9,538.97 === -9,540.68 === -9,543.01
+[vagrant@127.0.0.1:2222] out: [83500,0.11s]	 -9,538.39 === -9,545.32 === -9,539.43 === -9,541.95
+[vagrant@127.0.0.1:2222] out: [84000,0.12s]	 -9,540.19 === -9,542.38 === -9,540.61 === -9,543.44
+[vagrant@127.0.0.1:2222] out: [84500,0.06s]	 -9,542.40 === -9,543.14 === -9,540.43 === -9,539.56
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 42-172 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [85000,0.09s]	 -9,540.71 === -9,540.39 === -9,541.22 === -9,539.68
+[vagrant@127.0.0.1:2222] out: [85500,0.11s]	 -9,536.95 === -9,536.42 === -9,541.88 === -9,539.15
+[vagrant@127.0.0.1:2222] out: [86000,0.08s]	 -9,544.87 === -9,539.60 === -9,542.09 === -9,543.55
+[vagrant@127.0.0.1:2222] out: [86500,0.09s]	 -9,544.08 === -9,537.68 === -9,540.66 === -9,542.44
+[vagrant@127.0.0.1:2222] out: [87000,0.07s]	 -9,539.74 === -9,541.66 === -9,543.87 === -9,540.92
+[vagrant@127.0.0.1:2222] out: [87500,0.09s]	 -9,541.88 === -9,543.61 === -9,539.82 === -9,542.44
+[vagrant@127.0.0.1:2222] out: [88000,0.09s]	 -9,542.23 === -9,548.21 === -9,541.97 === -9,537.92
+[vagrant@127.0.0.1:2222] out: [88500,0.09s]	 -9,542.31 === -9,545.45 === -9,542.88 === -9,539.33
+[vagrant@127.0.0.1:2222] out: [89000,0.09s]	 -9,539.98 === -9,547.92 === -9,545.45 === -9,538.49
+[vagrant@127.0.0.1:2222] out: [89500,0.09s]	 -9,542.57 === -9,544.22 === -9,543.28 === -9,543.18
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 45-181 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [90000,0.09s]	 -9,552.96 === -9,540.09 === -9,544.10 === -9,538.55
+[vagrant@127.0.0.1:2222] out: [90500,0.12s]	 -9,539.61 === -9,541.16 === -9,540.39 === -9,541.78
+[vagrant@127.0.0.1:2222] out: [91000,0.07s]	 -9,540.84 === -9,540.43 === -9,541.24 === -9,540.41
+[vagrant@127.0.0.1:2222] out: [91500,0.08s]	 -9,541.29 === -9,542.48 === -9,539.26 === -9,539.29
+[vagrant@127.0.0.1:2222] out: [92000,0.09s]	 -9,545.56 === -9,539.42 === -9,539.81 === -9,538.77
+[vagrant@127.0.0.1:2222] out: [92500,0.09s]	 -9,540.98 === -9,543.29 === -9,541.46 === -9,538.79
+[vagrant@127.0.0.1:2222] out: [93000,0.08s]	 -9,539.03 === -9,538.92 === -9,544.13 === -9,538.67
+[vagrant@127.0.0.1:2222] out: [93500,0.15s]	 -9,541.63 === -9,539.81 === -9,540.14 === -9,542.52
+[vagrant@127.0.0.1:2222] out: [94000,0.13s]	 -9,539.92 === -9,539.89 === -9,540.75 === -9,543.95
+[vagrant@127.0.0.1:2222] out: [94500,0.08s]	 -9,544.98 === -9,540.58 === -9,542.11 === -9,540.76
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 47-191 (avg/max):	0.00%	0.00%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [95000,0.15s]	 -9,543.28 === -9,542.86 === -9,539.91 === -9,540.42
+[vagrant@127.0.0.1:2222] out: [95500,0.09s]	 -9,537.99 === -9,543.55 === -9,539.95 === -9,537.65
+[vagrant@127.0.0.1:2222] out: [96000,0.11s]	 -9,538.86 === -9,542.20 === -9,541.28 === -9,541.57
+[vagrant@127.0.0.1:2222] out: [96500,0.12s]	 -9,542.93 === -9,539.99 === -9,540.40 === -9,540.60
+[vagrant@127.0.0.1:2222] out: [97000,0.08s]	 -9,538.48 === -9,540.85 === -9,538.02 === -9,540.96
+[vagrant@127.0.0.1:2222] out: [97500,0.10s]	 -9,544.83 === -9,539.16 === -9,539.31 === -9,540.77
+[vagrant@127.0.0.1:2222] out: [98000,0.08s]	 -9,539.80 === -9,546.01 === -9,540.47 === -9,538.49
+[vagrant@127.0.0.1:2222] out: [98500,0.10s]	 -9,541.41 === -9,549.02 === -9,538.49 === -9,543.18
+[vagrant@127.0.0.1:2222] out: [99000,0.10s]	 -9,541.21 === -9,545.03 === -9,542.87 === -9,544.14
+[vagrant@127.0.0.1:2222] out: [99500,0.06s]	 -9,545.27 === -9,539.15 === -9,540.75 === -9,543.56
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: standard deviation of split frequencies for trees 50-202 (avg/max):	0.33%	0.33%
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: [100000,0.08s]	 -9,540.00 === -9,543.25 === -9,544.66 === -9,540.48
+[vagrant@127.0.0.1:2222] out: best state for run 0 was: -9536.07
+[vagrant@127.0.0.1:2222] out: best state for run 1 was: -9535.37
+[vagrant@127.0.0.1:2222] out: best state for run 2 was: -9536.35
+[vagrant@127.0.0.1:2222] out: best state for run 3 was: -9535.98
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Converged/stopped after 100000 generations
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Total walltime elapsed:	18.68 seconds 	or 00:00:18.68 (hh:mm:ss).
+[vagrant@127.0.0.1:2222] out: Total CPU time elapsed:	74.71 seconds 	or 00:01:14.71 (hh:mm:ss).
+[vagrant@127.0.0.1:2222] out: [32mINFO: Going to run consense-exabayes -b 0.1 -f ./ExaBayes_topologies.infer_backbone_20044.* -n infer_backbone_20044
+[vagrant@127.0.0.1:2222] out: [0mPrinted consensus tree in nexus format to ExaBayes_ConsensusExtendedMajorityRuleNexus.infer_backbone_20044
+[vagrant@127.0.0.1:2222] out: Printed consensus tree in newick format to ExaBayes_ConsensusExtendedMajorityRuleNewick.infer_backbone_20044
+[vagrant@127.0.0.1:2222] out: [32mINFO: Appending contents of ./backbone.dnd.1 to ./backbone.dnd.trees
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./backbone.dnd
+[vagrant@127.0.0.1:2222] out: [0m
+====start bbreroot execution====
+======11-27-2017 11:31:44======
+[vagrant@127.0.0.1:2222] run: smrt bbreroot --backbone backbone.dnd --taxafile species.tsv --smooth
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched left, shrunk right, by 0.05
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched left, shrunk right, by 0.05
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.019862
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.023562
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066599
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.071767
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.074151
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.027933
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.074327
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.038520
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.040295
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.025698
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.035838
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.048192
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.020800
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.056977
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.019095
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.051736
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046228
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057017
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.025626
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.023592
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.021268
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050778
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053141
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.026231
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.035000
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.021244
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.020081
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.064777
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.027229
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047436
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.033979
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.028591
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.028382
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066167
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.041318
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.035930
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.044684
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.064422
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.045011
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.024953
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.067548
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.022061
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.025591
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050738
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.039373
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.031429
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.043082
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.068933
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.056480
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.017945
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.030305
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.063208
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053368
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.048416
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.095751
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.067533
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032232
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066147
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053775
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055014
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.015830
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.071791
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055985
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.022844
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.027026
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.061421
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.049042
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046149
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047802
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058196
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.026483
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.043486
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.069276
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.054124
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.084967
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.049140
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.040760
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.063166
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046939
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.033598
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032747
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.026177
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.086586
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046870
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.013151
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066978
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066961
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.031846
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.052727
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.051816
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.070813
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.061204
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.071561
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055976
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.037182
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.018356
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066565
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058190
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.035393
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047012
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050434
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047733
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.014737
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.056906
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032282
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.044488
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.038639
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.056063
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.043079
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.019858
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.022868
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055520
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058531
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.059123
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.065989
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.033288
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.075167
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.027230
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.051337
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.071559
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055929
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.034096
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.044723
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.041914
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.028047
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.080323
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.045488
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.021698
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058545
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055922
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.051916
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057211
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.021426
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.040033
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.037310
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.041450
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.059950
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.029688
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055296
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.039775
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.023112
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.071421
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058665
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.039019
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032851
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.079718
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.044823
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.030208
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.064438
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.022235
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.031319
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.060499
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.049270
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053697
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.049132
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.013094
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.021320
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032294
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.060884
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.042152
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.061009
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.034915
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.054657
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.022940
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058959
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.042904
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.016650
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.052968
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.025791
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057533
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058696
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.036838
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.038037
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.020211
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.056061
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.035240
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032130
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.064034
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.044638
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.055591
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.031591
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.015445
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.012673
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.036037
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.062456
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.061396
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.031589
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.003907
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.023156
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046131
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066928
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050779
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.073055
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.038699
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.051224
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.059342
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047377
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.019381
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.071957
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.031659
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053252
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053423
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.030747
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046510
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057204
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047805
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.047919
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050428
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.067275
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.038470
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.046935
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.072866
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.052644
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.032701
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053037
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.038253
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.028295
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.034436
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053074
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.060374
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.049537
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.029953
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.042476
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.072537
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.066150
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.043320
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.037183
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.048733
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.021379
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.048179
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.067949
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053833
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.083835
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.043467
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.033200
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050575
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.045283
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057738
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058435
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.045008
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.050052
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.084770
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.027387
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.053085
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057057
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.062074
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.052430
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.082431
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.057994
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.069097
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.040659
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.054565
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.051897
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.058132
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.028634
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.035249
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.008257
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Found more than one optimal rerooted tree. Returning the first one
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0.041174
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Stretched right, shrunk left, by 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Rerooted backbone tree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./backbone-rerooted.dnd
+[vagrant@127.0.0.1:2222] out: [0m
+====start consense execution====
+======11-27-2017 11:34:12======
+[vagrant@127.0.0.1:2222] run: smrt consense -i backbone-rerooted.dnd
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Computing consensus with heights 'ca'
+[vagrant@127.0.0.1:2222] out: [0mJRI not available. Using Java bivariate attributes
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out:               TreeAnnotator v1.8.0, 2002-2013
+[vagrant@127.0.0.1:2222] out:                     MCMC Output analysis
+[vagrant@127.0.0.1:2222] out:                              by
+[vagrant@127.0.0.1:2222] out:            Andrew Rambaut and Alexei J. Drummond
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out:              Institute of Evolutionary Biology
+[vagrant@127.0.0.1:2222] out:                   University of Edinburgh
+[vagrant@127.0.0.1:2222] out:                      a.rambaut@ed.ac.uk
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out:                Department of Computer Science
+[vagrant@127.0.0.1:2222] out:                    University of Auckland
+[vagrant@127.0.0.1:2222] out:                   alexei@cs.auckland.ac.nz
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Please cite: Heled and Bouckaert: Looking for trees in the forest:
+[vagrant@127.0.0.1:2222] out: summary tree from posterior samples. BMC Evolutionary Biology 2013 13:221.
+[vagrant@127.0.0.1:2222] out: Reading trees (bar assumes 10,000 trees)...
+[vagrant@127.0.0.1:2222] out: 0              25             50             75            100
+[vagrant@127.0.0.1:2222] out: |--------------|--------------|--------------|--------------|
+[vagrant@127.0.0.1:2222] out: ****
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Total trees read: 802
+[vagrant@127.0.0.1:2222] out: Ignoring first 80 trees.
+[vagrant@127.0.0.1:2222] out: Total unique clades: 5
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Finding maximum credibility tree...
+[vagrant@127.0.0.1:2222] out: Analyzing 722 trees...
+[vagrant@127.0.0.1:2222] out: 0              25             50             75            100
+[vagrant@127.0.0.1:2222] out: |--------------|--------------|--------------|--------------|
+[vagrant@127.0.0.1:2222] out: *************************************************************
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Best tree: tree81 (tree number 81)
+[vagrant@127.0.0.1:2222] out: Highest Log Clade Credibility: -0.005547853765450416
+[vagrant@127.0.0.1:2222] out: Collecting node information...
+[vagrant@127.0.0.1:2222] out: 0              25             50             75            100
+[vagrant@127.0.0.1:2222] out: |--------------|--------------|--------------|--------------|
+[vagrant@127.0.0.1:2222] out: *************************************************************
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Annotating target tree...
+[vagrant@127.0.0.1:2222] out: Setting node heights...
+[vagrant@127.0.0.1:2222] out: 0              25             50             75            100
+[vagrant@127.0.0.1:2222] out: |--------------|--------------|--------------|--------------|
+[vagrant@127.0.0.1:2222] out: *************************************************************
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: Writing annotated tree....
+[vagrant@127.0.0.1:2222] out: [32mINFO: applying node labels
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./consensus.nex
+[vagrant@127.0.0.1:2222] out: [0m
+====start chmod execution====
+======11-27-2017 11:34:30======
+[vagrant@127.0.0.1:2222] run: chmod 666 consensus.nex
+====start chmod execution====
+======11-27-2017 11:34:44======
+[vagrant@127.0.0.1:2222] run: chmod 666 backbone.dnd
+====start chmod execution====
+======11-27-2017 11:34:56======
+[vagrant@127.0.0.1:2222] run: chmod 666 backbone-rerooted.dnd
+====start cp execution====
+======11-27-2017 11:35:06======
+[vagrant@127.0.0.1:2222] run: cp /home/vagrant/09514-11272017111730/consensus.nex /vagrant/output/09514-11272017111730_consensus.nex

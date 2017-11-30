@@ -1,0 +1,21 @@
+[2017-11-20 13:27:50,126: INFO/MainProcess] Connected to amqp://supersmart:**@127.0.0.1:5672/supersmartvhost
+[2017-11-20 13:27:50,145: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-20 13:27:51,174: INFO/MainProcess] mingle: all alone
+[2017-11-20 13:27:51,192: INFO/MainProcess] w1@phylo ready.
+[2017-11-20 19:35:42,096: ERROR/MainProcess] Process 'ForkPoolWorker-2' pid:37359 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:35:46,334: ERROR/MainProcess] Process 'ForkPoolWorker-1' pid:37358 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:36:59,560: ERROR/MainProcess] Process 'ForkPoolWorker-4' pid:129703 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:37:12,471: ERROR/MainProcess] Process 'ForkPoolWorker-3' pid:129663 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:38:11,093: INFO/MainProcess] Connected to amqp://supersmart:**@127.0.0.1:5672/supersmartvhost
+[2017-11-20 19:38:11,111: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-20 19:38:12,141: INFO/MainProcess] mingle: all alone
+[2017-11-20 19:38:12,157: WARNING/MainProcess] /usr/local/lib/python2.7/dist-packages/kombu/pidbox.py:71: UserWarning: A node named w1@phylo is already using this process mailbox!
+
+Maybe you forgot to shutdown the other node or did not do so properly?
+Or if you meant to start multiple nodes on the same host please make sure
+you give each node a unique node name!
+
+  warnings.warn(W_PIDBOX_IN_USE.format(node=self))
+[2017-11-20 19:38:12,160: INFO/MainProcess] w1@phylo ready.
+[2017-11-22 10:08:50,711: INFO/MainProcess] Received task: smrt_service.tasks.get_species_tree[f3901890-e63b-4e45-a0bc-91d0f4d88d8d]  
+[2017-11-27 11:17:30,435: INFO/MainProcess] Received task: smrt_service.tasks.get_species_tree[09514430-5ede-4d49-af46-528de60465f3]  

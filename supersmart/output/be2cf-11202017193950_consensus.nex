@@ -1,0 +1,34 @@
+#NEXUS
+
+BEGIN TAXA;
+[! Taxa block written by Bio::Phylo::Taxa v2.0.1 on Tue Nov 21 02:48:13 2017 ]
+	
+        DIMENSIONS NTAX=8;
+        TAXLABELS
+		Bassaricyon_alleni
+		Bassaricyon_gabbii
+		Bassariscus_astutus
+		Bassariscus_sumichrasti
+		Nasua_narica
+		Nasua_nasua
+		Procyon_cancrivorus
+		Procyon_lotor
+        ;
+END;
+BEGIN TREES;
+[! Trees block written by Bio::Phylo::Forest v2.0.1 on Tue Nov 21 02:48:13 2017 ]
+[! Tree(s) include FigTree node annotations ]
+	TRANSLATE
+		1 Procyon_lotor,
+		2 Procyon_cancrivorus,
+		3 Bassariscus_astutus,
+		4 Bassariscus_sumichrasti,
+		5 Nasua_narica,
+		6 Nasua_nasua,
+		7 Bassaricyon_alleni,
+		8 Bassaricyon_gabbii;
+	TREE TREE1 = [&R] (((1[&length_95%_HPD={0.011625,0.020368},height=0.01938997922437673,height_95%_HPD={0.0,0.066444},length=0.016007867036011078,height_range={0.0,0.079487},length_range={0.009824,0.023604},height_median=0.0071455000000000025,length_median=0.0158315]:0.016008,2[&length=0.016949207756232675,length_range={0.011627,0.023907},height_range={0.0,0.07863600000000001},length_median=0.016857999999999998,height_median=0.006005499999999997,height_95%_HPD={0.0,0.06559000000000001},height=0.01844863850415509,length_95%_HPD={0.012938,0.020969}]:0.016949)[&length_range={0.013258,0.032215},height_range={0.014327000000000006,0.09561},length_median=0.020596999999999997,height_median=0.022638000000000005,length=0.020784175900277035,bootstrap=100,height=0.035397846260387826,height_95%_HPD={0.015084,0.0829},length_95%_HPD={0.015337,0.026562}]:0.020784,(3[&length_95%_HPD={0.02411,0.037073},height=0.016410333795013842,height_95%_HPD={0.0,0.06303800000000001},height_range={0.0,0.076291},length_range={0.022109,0.043042},length_median=0.0308635,height_median=0.003454999999999993,length=0.03096690443213297]:0.030967,4[&length_median=0.022615999999999997,height_median=0.012643999999999999,length_range={0.015004,0.038401},height_range={0.0,0.082783},length=0.02276098753462604,height=0.024616250692520804,height_95%_HPD={0.0029959999999999987,0.07219099999999998},length_95%_HPD={0.017019,0.028163}]:0.022761)[&length_95%_HPD={0.004571,0.013556},height=0.04737723822714686,height_95%_HPD={0.027006999999999996,0.095146},length=0.008804783933518008,bootstrap=100,length_median=0.0086325,height_median=0.035012999999999996,height_range={0.025262000000000007,0.104665},length_range={0.003105,0.016847}]:0.008805)[&height_95%_HPD={0.036967999999999994,0.048725},height=0.042485190036900364,length_95%_HPD={0.022414,0.054277},bootstrap=75,length=0.03302313837638375,height_median=0.0422565,length_median=0.0292535,length_range={0.021157,0.061662},height_range={0.034411,0.05347999999999999}]:0.024790,((5[&length_95%_HPD={0.022007,0.033858},height_95%_HPD={0.0,0.050255},height=0.010184116343490304,length_median=0.0275155,height_median=0.0039285000000000014,height_range={0.0,0.063537},length_range={0.020374,0.037277},length=0.027753882271468112]:0.027754,6[&height_95%_HPD={0.0,0.049806},height=0.010529792243767301,length_95%_HPD={0.021865,0.032679},length=0.02740820637119119,height_median=0.004233000000000001,length_median=0.027450000000000002,length_range={0.02024,0.037682},height_range={0.0,0.063345}]:0.027408)[&length_95%_HPD={0.011925,0.023136},height=0.03793799861495847,height_95%_HPD={0.025154999999999997,0.07843899999999998},bootstrap=100,length=0.017554821329639876,length_median=0.017584000000000002,height_median=0.0315155,height_range={0.022664999999999998,0.089894},length_range={0.01004,0.027999}]:0.017555,(7[&height_95%_HPD={0.0,0.05697599999999999},height=0.015796548476454297,length_95%_HPD={0.004674,0.010947},length_median=0.007589,height_median=0.009552499999999992,length_range={0.004016,0.01518},height_range={0.0,0.07000200000000001},length=0.007713220221606645]:0.007713,8[&length_95%_HPD={0.006031,0.012343},height_95%_HPD={0.0,0.05457000000000001},height=0.014526815789473676,height_median=0.008382000000000004,length_median=0.0088425,height_range={0.0,0.069295},length_range={0.004721,0.014843},length=0.00898295290858725]:0.008983)[&length_median=0.031634,height_median=0.017381999999999998,length_range={0.022599,0.044393},height_range={0.007351999999999997,0.077315},bootstrap=100,length=0.03198305124653746,height_95%_HPD={0.007916000000000006,0.06448800000000002},height=0.023509768698060964,length_95%_HPD={0.025029,0.039831}]:0.031983)[&length_95%_HPD={0.016044,0.054702},height_95%_HPD={0.041987,0.05547799999999999},height=0.04848906589785835,bootstrap=84,length=0.03030666392092254,length_median=0.023593,height_median=0.048463000000000006,height_range={0.038705,0.06074299999999999},length_range={0.013956,0.061356}]:0.025479)[&height_range={0.061016,0.115999},height_95%_HPD={0.064177,0.10455400000000001},height=0.08097224515235456,height_median=0.074792,length=0.0,bootstrap=100];
+END;
+BEGIN NOTES;
+[! Notes block written by Bio::Phylo::Project v2.0.1 on Tue Nov 21 02:48:13 2017 ]
+END;

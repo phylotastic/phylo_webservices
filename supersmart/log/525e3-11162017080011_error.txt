@@ -1,0 +1,19 @@
+====start mkdir execution====
+======11-16-2017 08:00:12======
+====start cp execution====
+======11-16-2017 08:00:26======
+====start taxize execution====
+======11-16-2017 08:13:20======
+====start align execution====
+======11-16-2017 08:13:36======
+====start orthologize execution====
+======11-16-2017 08:14:08======
+====start bbmerge execution====
+======11-16-2017 08:23:27======
+====start bbinfer execution====
+======11-16-2017 08:23:41======
+====start bbreroot execution====
+======11-16-2017 08:23:56======
+
+Warning: run() received nonzero return code 255 while executing 'smrt bbreroot --backbone backbone.dnd --taxafile species.tsv --smooth'!
+

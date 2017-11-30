@@ -1,0 +1,32 @@
+#NEXUS
+
+BEGIN TAXA;
+[! Taxa block written by Bio::Phylo::Taxa v2.0.1 on Thu Nov 16 04:33:32 2017 ]
+	
+        DIMENSIONS NTAX=7;
+        TAXLABELS
+		Canis_lupus
+		Canis_lupus_familiaris
+		Chrysocyon_brachyurus
+		Cuon_alpinus
+		Lycalopex_sechurae
+		Lycalopex_vetulus
+		Speothos_venaticus
+        ;
+END;
+BEGIN TREES;
+[! Trees block written by Bio::Phylo::Forest v2.0.1 on Thu Nov 16 04:33:32 2017 ]
+[! Tree(s) include FigTree node annotations ]
+	TRANSLATE
+		1 Cuon_alpinus,
+		2 Canis_lupus,
+		3 Canis_lupus_familiaris,
+		4 Lycalopex_vetulus,
+		5 Lycalopex_sechurae,
+		6 Speothos_venaticus,
+		7 Chrysocyon_brachyurus;
+	TREE TREE1 = [&R] (((2[&length_median=8.47E-4,height=0.017309696675900255,length=9.924916897506924E-4,length_95%_HPD={5.0E-6,0.002268},length_range={5.0E-6,0.003685},height_median=0.016326,height_95%_HPD={0.0033500000000000023,0.03012},height_range={0.001235,0.038549}]:0.000992,3[&length=0.0024486454293628796,length_median=0.0023805,height=0.01585354293628808,length_range={7.6E-4,0.005762},height_range={0.0,0.036331},height_95%_HPD={0.002083999999999999,0.029227000000000003},height_median=0.014776999999999998,length_95%_HPD={0.001098,0.004081}]:0.002449)[&length_range={0.00814,0.01947},height_median=0.017207,height_range={0.0013209999999999993,0.039005},height_95%_HPD={0.004629000000000001,0.031623},length_95%_HPD={0.010395,0.017768},length=0.014143443213296393,height=0.018302188365650986,length_median=0.0140395,bootstrap=100]:0.014143,1[&height=0.01691523407202218,length_median=0.015487,length=0.015530397506925227,length_95%_HPD={0.012425,0.018881},length_range={0.011436,0.022387},height_range={5.409999999999998E-4,0.035415},height_95%_HPD={0.0039019999999999992,0.031005},height_median=0.0165275]:0.015530)[&length_95%_HPD={0.004261,0.010331},length_range={0.003555,0.012124},height_95%_HPD={0.019498,0.032082},height_range={0.017018,0.038477},height_median=0.0249775,bootstrap=52,height=0.02518108870967743,length_median=0.0070895,length=0.007127962365591399]:0.003727,((4[&height=0.009575261772853184,length_median=0.0084055,length=0.008396763157894747,length_95%_HPD={0.005879,0.010871},length_range={0.004429,0.014081},height_range={0.0,0.024085999999999996},height_95%_HPD={0.001524000000000001,0.017222},height_median=0.009642999999999999]:0.008397,5[&length_range={0.002226,0.008627},height_median=0.012842499999999998,height_range={0.0023980000000000043,0.026459999999999997},height_95%_HPD={0.004766999999999997,0.020463999999999996},length_95%_HPD={0.003023,0.007284},length=0.005059375346260393,height=0.012912649584487556,length_median=0.0050030000000000005]:0.005059)[&height_median=0.018014500000000003,height_range={0.0068000000000000005,0.030009},height_95%_HPD={0.010364000000000002,0.025148999999999998},length_range={0.009189,0.01974},length_95%_HPD={0.010585,0.017634},length=0.014261552631578946,height=0.01797202493074792,length_median=0.0142555,bootstrap=100]:0.014612,(6[&length=0.02826597229916899,height=3.544529085872577E-4,length_median=0.0282775,length_range={0.018772,0.040587},height_95%_HPD={0.0,0.0023450000000000033},height_range={0.0,0.014639999999999997},height_median=0.0,length_95%_HPD={0.021859,0.033546}]:0.028341,7[&length_95%_HPD={0.019167,0.029099},height_range={0.0,0.015024},height_95%_HPD={0.0,0.009786999999999997},height_median=0.0039215,length_range={0.01757,0.033281},length_median=0.024100999999999997,height=0.004137657894736844,length=0.02423180470914128]:0.024558)[&length_95%_HPD={0.001962,0.007707},height_95%_HPD={0.023002,0.033276},height_range={0.020637,0.038313},height_median=0.028239,length_range={0.001222,0.009873},bootstrap=86,height=0.028355532905296955,length_median=0.004357,length=0.00450201926163724]:0.003888)[&bootstrap=82,length_median=0.005453,height=0.03264888964346349,length=0.004399054329371815,length_95%_HPD={0.0,0.009944},height_95%_HPD={0.026379999999999997,0.037955},height_range={0.024694,0.04369},height_median=0.032518,length_range={0.0,0.012556}]:0.003589)[&length=0.0,height_median=0.03566950000000001,height_range={0.026215,0.050079},height_95%_HPD={0.027935,0.045353000000000004},height=0.03617313157894733,bootstrap=100];
+END;
+BEGIN NOTES;
+[! Notes block written by Bio::Phylo::Project v2.0.1 on Thu Nov 16 04:33:32 2017 ]
+END;

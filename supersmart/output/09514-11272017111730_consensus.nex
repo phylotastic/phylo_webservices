@@ -1,0 +1,26 @@
+#NEXUS
+
+BEGIN TAXA;
+[! Taxa block written by Bio::Phylo::Taxa v2.0.1 on Mon Nov 27 18:34:26 2017 ]
+	
+        DIMENSIONS NTAX=4;
+        TAXLABELS
+		Anser_brachyrhynchus
+		Anser_caerulescens
+		Branta_leucopsis
+		Dendrocygna_bicolor
+        ;
+END;
+BEGIN TREES;
+[! Trees block written by Bio::Phylo::Forest v2.0.1 on Mon Nov 27 18:34:26 2017 ]
+[! Tree(s) include FigTree node annotations ]
+	TRANSLATE
+		1 Branta_leucopsis,
+		2 Dendrocygna_bicolor,
+		3 Anser_caerulescens,
+		4 Anser_brachyrhynchus;
+	TREE TREE1 = [&R] ((1[&length_median=0.043954999999999994,length_95%_HPD={0.0163,0.080978},height_95%_HPD={0.21749700000000002,0.438139},height=0.3273272548476458,length_range={9.69E-4,0.098722},length=0.0445121274238227,height_median=0.324083,height_range={0.175272,0.56518}]:0.044529,2[&height=0.0,length_median=0.3698665,length_95%_HPD={0.267047,0.481411},length=0.37185622991689754,length_range={0.228612,0.60376}]:0.371856)[&height_range={0.228612,0.60376},height=0.37190140277777783,bootstrap=100,height_95%_HPD={0.267047,0.481411},height_median=0.3698665,length=0.0]:0.000000,(3[&height=0.3181176246537397,length_median=0.00564,height_95%_HPD={0.211744,0.428234},length_95%_HPD={9.0E-5,0.012469},height_range={0.158315,0.5416209999999999},height_median=0.3124595,length=0.006020530470914127,length_range={2.3E-5,0.021153}]:0.006021,4[&length_95%_HPD={0.019276,0.040829},height_95%_HPD={0.190112,0.40636000000000005},length_median=0.0295865,height=0.29431422160664816,length_range={0.014668,0.05212},height_median=0.2907085,length=0.029807085872576144,height_range={0.14212400000000003,0.5214759999999999}]:0.029824)[&height_range={0.16653800000000002,0.547835},length=0.04785062500000003,height_median=0.31879349999999995,bootstrap=100,length_range={0.002679,0.098956},height=0.32405077777777774,height_95%_HPD={0.218528,0.43424999999999997},length_95%_HPD={0.014737,0.081188},length_median=0.047730499999999995]:0.047718)[&height_95%_HPD={0.267047,0.481411},height_median=0.3698665,length=0.0,bootstrap=100,height=0.37185622991689754,height_range={0.228612,0.60376}];
+END;
+BEGIN NOTES;
+[! Notes block written by Bio::Phylo::Project v2.0.1 on Mon Nov 27 18:34:27 2017 ]
+END;

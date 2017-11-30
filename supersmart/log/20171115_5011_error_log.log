@@ -1,0 +1,776 @@
+[15/Nov/2017:14:03:24] ENGINE Bus STARTING
+[15/Nov/2017:14:03:24] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:14:03:24] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:14:03:24] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:14:03:24] ENGINE Bus STARTED
+[15/Nov/2017:14:03:26] ENGINE Keyboard Interrupt: shutting down bus
+[15/Nov/2017:14:03:26] ENGINE Bus STOPPING
+[15/Nov/2017:14:03:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:14:03:26] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:14:03:26] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:14:03:26] ENGINE Bus STOPPED
+[15/Nov/2017:14:03:26] ENGINE Bus EXITING
+[15/Nov/2017:14:03:26] ENGINE Bus EXITED
+[15/Nov/2017:14:03:26] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:14:03:40] ENGINE Bus STARTING
+[15/Nov/2017:14:03:40] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:14:03:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:14:03:40] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:14:03:40] ENGINE Bus STARTED
+[15/Nov/2017:17:51:32] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:17:51:32] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:51:32] ENGINE Bus STOPPING
+[15/Nov/2017:17:51:32] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:51:32] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:51:32] ENGINE Bus STOPPED
+[15/Nov/2017:17:51:32] ENGINE Bus EXITING
+[15/Nov/2017:17:51:32] ENGINE Bus EXITED
+[15/Nov/2017:17:51:32] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:51:32] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:51:33] ENGINE Bus STARTING
+[15/Nov/2017:17:51:33] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:51:33] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:51:33] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:51:33] ENGINE Bus STARTED
+[15/Nov/2017:17:52:38] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:17:52:38] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:52:38] ENGINE Bus STOPPING
+[15/Nov/2017:17:52:38] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:52:38] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:52:38] ENGINE Bus STOPPED
+[15/Nov/2017:17:52:38] ENGINE Bus EXITING
+[15/Nov/2017:17:52:38] ENGINE Bus EXITED
+[15/Nov/2017:17:52:38] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:52:38] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:52:39] ENGINE Bus STARTING
+[15/Nov/2017:17:52:39] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:52:39] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:52:39] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:52:39] ENGINE Bus STARTED
+[15/Nov/2017:17:53:28] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:17:53:28] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:53:28] ENGINE Bus STOPPING
+[15/Nov/2017:17:53:28] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:53:28] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:53:28] ENGINE Bus STOPPED
+[15/Nov/2017:17:53:28] ENGINE Bus EXITING
+[15/Nov/2017:17:53:28] ENGINE Bus EXITED
+[15/Nov/2017:17:53:28] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:53:28] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:53:29] ENGINE Bus STARTING
+[15/Nov/2017:17:53:29] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:53:29] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:53:29] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:53:29] ENGINE Bus STARTED
+[15/Nov/2017:17:54:21] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:17:54:21] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:54:21] ENGINE Bus STOPPING
+[15/Nov/2017:17:54:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:54:21] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:54:21] ENGINE Bus STOPPED
+[15/Nov/2017:17:54:21] ENGINE Bus EXITING
+[15/Nov/2017:17:54:21] ENGINE Bus EXITED
+[15/Nov/2017:17:54:21] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:54:21] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:54:22] ENGINE Bus STARTING
+[15/Nov/2017:17:54:22] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:54:22] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:54:22] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:54:22] ENGINE Bus STARTED
+[15/Nov/2017:17:55:21] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:17:55:21] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:55:21] ENGINE Bus STOPPING
+[15/Nov/2017:17:55:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:55:21] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:55:21] ENGINE Bus STOPPED
+[15/Nov/2017:17:55:21] ENGINE Bus EXITING
+[15/Nov/2017:17:55:21] ENGINE Bus EXITED
+[15/Nov/2017:17:55:22] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:55:22] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:55:22] ENGINE Bus STARTING
+[15/Nov/2017:17:55:22] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:55:22] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:55:22] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:55:22] ENGINE Bus STARTED
+[15/Nov/2017:17:55:44] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:17:55:44] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:55:44] ENGINE Bus STOPPING
+[15/Nov/2017:17:55:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:55:44] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:55:44] ENGINE Bus STOPPED
+[15/Nov/2017:17:55:44] ENGINE Bus EXITING
+[15/Nov/2017:17:55:44] ENGINE Bus EXITED
+[15/Nov/2017:17:55:44] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:55:44] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:55:45] ENGINE Bus STARTING
+[15/Nov/2017:17:55:45] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:55:45] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:55:45] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:55:45] ENGINE Bus STARTED
+[15/Nov/2017:17:56:29] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:17:56:29] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:56:29] ENGINE Bus STOPPING
+[15/Nov/2017:17:56:29] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:56:29] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:56:29] ENGINE Bus STOPPED
+[15/Nov/2017:17:56:29] ENGINE Bus EXITING
+[15/Nov/2017:17:56:29] ENGINE Bus EXITED
+[15/Nov/2017:17:56:29] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:56:29] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:56:30] ENGINE Bus STARTING
+[15/Nov/2017:17:56:30] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:56:30] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:56:30] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:56:30] ENGINE Bus STARTED
+[15/Nov/2017:17:58:48] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:17:58:48] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:17:58:48] ENGINE Bus STOPPING
+[15/Nov/2017:17:58:48] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:17:58:48] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:17:58:48] ENGINE Bus STOPPED
+[15/Nov/2017:17:58:48] ENGINE Bus EXITING
+[15/Nov/2017:17:58:48] ENGINE Bus EXITED
+[15/Nov/2017:17:58:48] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:17:58:48] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:17:58:48] ENGINE Bus STARTING
+[15/Nov/2017:17:58:48] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:17:58:48] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:17:58:49] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:17:58:49] ENGINE Bus STARTED
+[15/Nov/2017:18:01:20] ENGINE Restarting because /var/web_service/supersmart/smrt_service/nexus_and_newick.py changed.
+[15/Nov/2017:18:01:20] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:18:01:20] ENGINE Bus STOPPING
+[15/Nov/2017:18:01:20] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:18:01:20] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:18:01:20] ENGINE Bus STOPPED
+[15/Nov/2017:18:01:20] ENGINE Bus EXITING
+[15/Nov/2017:18:01:20] ENGINE Bus EXITED
+[15/Nov/2017:18:01:20] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:18:01:20] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:18:01:20] ENGINE Bus STARTING
+[15/Nov/2017:18:01:20] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:18:01:20] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:18:01:20] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:18:01:20] ENGINE Bus STARTED
+[15/Nov/2017:19:47:46] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:19:47:46] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:47:46] ENGINE Bus STOPPING
+[15/Nov/2017:19:47:46] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:47:46] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:47:46] ENGINE Bus STOPPED
+[15/Nov/2017:19:47:46] ENGINE Bus EXITING
+[15/Nov/2017:19:47:46] ENGINE Bus EXITED
+[15/Nov/2017:19:47:46] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:47:46] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:47:46] ENGINE Bus STARTING
+[15/Nov/2017:19:47:46] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:47:46] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:47:46] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:47:46] ENGINE Bus STARTED
+[15/Nov/2017:19:48:40] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:19:48:40] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:48:40] ENGINE Bus STOPPING
+[15/Nov/2017:19:48:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:48:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:48:40] ENGINE Bus STOPPED
+[15/Nov/2017:19:48:40] ENGINE Bus EXITING
+[15/Nov/2017:19:48:40] ENGINE Bus EXITED
+[15/Nov/2017:19:48:40] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:48:40] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:48:40] ENGINE Bus STARTING
+[15/Nov/2017:19:48:40] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:48:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:48:40] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:48:40] ENGINE Bus STARTED
+[15/Nov/2017:19:49:01] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:19:49:01] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:49:01] ENGINE Bus STOPPING
+[15/Nov/2017:19:49:01] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:49:01] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:49:01] ENGINE Bus STOPPED
+[15/Nov/2017:19:49:01] ENGINE Bus EXITING
+[15/Nov/2017:19:49:01] ENGINE Bus EXITED
+[15/Nov/2017:19:49:01] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:49:01] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:49:02] ENGINE Bus STARTING
+[15/Nov/2017:19:49:02] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:49:02] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:49:02] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:49:02] ENGINE Bus STARTED
+[15/Nov/2017:19:50:03] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:19:50:03] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:50:03] ENGINE Bus STOPPING
+[15/Nov/2017:19:50:03] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:50:03] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:50:03] ENGINE Bus STOPPED
+[15/Nov/2017:19:50:03] ENGINE Bus EXITING
+[15/Nov/2017:19:50:03] ENGINE Bus EXITED
+[15/Nov/2017:19:50:03] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:50:03] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:51:11] ENGINE Bus STARTING
+[15/Nov/2017:19:51:11] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:51:11] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:51:11] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:51:11] ENGINE Bus STARTED
+[15/Nov/2017:19:51:19] HTTP 
+Request Headers:
+  CONNECTION: keep-alive
+  COOKIE: _ga=GA1.2.608449374.1458839025
+  HOST: phylo.cs.nmsu.edu:5011
+  UPGRADE-INSECURE-REQUESTS: 1
+  CACHE-CONTROL: max-age=0
+  Remote-Addr: 76.113.96.32
+  ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+  USER-AGENT: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+  ACCEPT-LANGUAGE: en-US,en;q=0.5
+  ACCEPT-ENCODING: gzip, deflate
+[15/Nov/2017:19:51:19] HTTP 
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 670, in respond
+    response.body = self.handler()
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 217, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/jsontools.py", line 63, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 60, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "supersmart_service_api.py", line 139, in status
+    service_result = task_status.get_task_status(task_ID)
+  File "/var/web_service/supersmart/smrt_service/task_status.py", line 36, in get_task_status
+    'current_step': task.info['current_step'],
+TypeError: 'NoneType' object has no attribute '__getitem__'
+[15/Nov/2017:19:54:03] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:19:54:03] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:54:03] ENGINE Bus STOPPING
+[15/Nov/2017:19:54:03] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:54:03] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:54:03] ENGINE Bus STOPPED
+[15/Nov/2017:19:54:03] ENGINE Bus EXITING
+[15/Nov/2017:19:54:03] ENGINE Bus EXITED
+[15/Nov/2017:19:54:03] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:54:03] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:54:03] ENGINE Bus STARTING
+[15/Nov/2017:19:54:03] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:54:03] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:54:03] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:54:03] ENGINE Bus STARTED
+[15/Nov/2017:19:54:15] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:19:54:15] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:54:15] ENGINE Bus STOPPING
+[15/Nov/2017:19:54:15] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:54:15] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:54:15] ENGINE Bus STOPPED
+[15/Nov/2017:19:54:15] ENGINE Bus EXITING
+[15/Nov/2017:19:54:15] ENGINE Bus EXITED
+[15/Nov/2017:19:54:15] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:54:15] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:54:16] ENGINE Bus STARTING
+[15/Nov/2017:19:54:16] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:54:16] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:54:16] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:54:16] ENGINE Bus STARTED
+[15/Nov/2017:19:55:23] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:19:55:23] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:55:23] ENGINE Bus STOPPING
+[15/Nov/2017:19:55:23] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:55:23] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:55:23] ENGINE Bus STOPPED
+[15/Nov/2017:19:55:23] ENGINE Bus EXITING
+[15/Nov/2017:19:55:23] ENGINE Bus EXITED
+[15/Nov/2017:19:55:23] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:55:23] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:55:24] ENGINE Bus STARTING
+[15/Nov/2017:19:55:24] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:55:24] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:55:24] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:55:24] ENGINE Bus STARTED
+[15/Nov/2017:19:56:25] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:19:56:25] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:56:25] ENGINE Bus STOPPING
+[15/Nov/2017:19:56:25] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:56:25] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:56:25] ENGINE Bus STOPPED
+[15/Nov/2017:19:56:25] ENGINE Bus EXITING
+[15/Nov/2017:19:56:25] ENGINE Bus EXITED
+[15/Nov/2017:19:56:26] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:56:26] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:56:26] ENGINE Bus STARTING
+[15/Nov/2017:19:56:26] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:56:26] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:56:26] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:56:26] ENGINE Bus STARTED
+[15/Nov/2017:19:56:50] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:19:56:50] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:56:50] ENGINE Bus STOPPING
+[15/Nov/2017:19:56:50] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:56:50] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:56:50] ENGINE Bus STOPPED
+[15/Nov/2017:19:56:50] ENGINE Bus EXITING
+[15/Nov/2017:19:56:50] ENGINE Bus EXITED
+[15/Nov/2017:19:56:50] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:56:50] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:56:51] ENGINE Bus STARTING
+[15/Nov/2017:19:56:51] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:56:51] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:56:51] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:56:51] ENGINE Bus STARTED
+[15/Nov/2017:19:56:57] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:19:56:57] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:56:57] ENGINE Bus STOPPING
+[15/Nov/2017:19:56:57] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:56:57] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:56:57] ENGINE Bus STOPPED
+[15/Nov/2017:19:56:57] ENGINE Bus EXITING
+[15/Nov/2017:19:56:57] ENGINE Bus EXITED
+[15/Nov/2017:19:56:57] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:56:57] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:56:57] ENGINE Bus STARTING
+[15/Nov/2017:19:56:57] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:56:57] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:56:58] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:56:58] ENGINE Bus STARTED
+[15/Nov/2017:19:57:31] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:19:57:31] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:57:31] ENGINE Bus STOPPING
+[15/Nov/2017:19:57:31] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:57:31] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:57:31] ENGINE Bus STOPPED
+[15/Nov/2017:19:57:31] ENGINE Bus EXITING
+[15/Nov/2017:19:57:31] ENGINE Bus EXITED
+[15/Nov/2017:19:57:31] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:57:31] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:57:31] ENGINE Bus STARTING
+[15/Nov/2017:19:57:31] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:57:31] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:57:31] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:57:31] ENGINE Bus STARTED
+[15/Nov/2017:19:57:41] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:19:57:41] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:57:41] ENGINE Bus STOPPING
+[15/Nov/2017:19:57:41] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:57:41] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:57:41] ENGINE Bus STOPPED
+[15/Nov/2017:19:57:41] ENGINE Bus EXITING
+[15/Nov/2017:19:57:41] ENGINE Bus EXITED
+[15/Nov/2017:19:57:41] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:57:41] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:57:42] ENGINE Bus STARTING
+[15/Nov/2017:19:57:42] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:57:42] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:57:42] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:57:42] ENGINE Bus STARTED
+[15/Nov/2017:19:58:41] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:19:58:41] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:58:41] ENGINE Bus STOPPING
+[15/Nov/2017:19:58:41] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:58:41] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:58:41] ENGINE Bus STOPPED
+[15/Nov/2017:19:58:41] ENGINE Bus EXITING
+[15/Nov/2017:19:58:41] ENGINE Bus EXITED
+[15/Nov/2017:19:58:41] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:58:41] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:58:42] ENGINE Bus STARTING
+[15/Nov/2017:19:58:42] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:58:42] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:58:42] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:58:42] ENGINE Bus STARTED
+[15/Nov/2017:19:58:52] HTTP 
+Request Headers:
+  CONNECTION: keep-alive
+  COOKIE: _ga=GA1.2.608449374.1458839025
+  HOST: phylo.cs.nmsu.edu:5011
+  UPGRADE-INSECURE-REQUESTS: 1
+  CACHE-CONTROL: max-age=0
+  Remote-Addr: 76.113.96.32
+  ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+  USER-AGENT: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+  ACCEPT-LANGUAGE: en-US,en;q=0.5
+  ACCEPT-ENCODING: gzip, deflate
+[15/Nov/2017:19:58:52] HTTP 
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 670, in respond
+    response.body = self.handler()
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 217, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/jsontools.py", line 63, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 60, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "supersmart_service_api.py", line 140, in status
+    service_result = task_status.get_task_status(task_ID)
+  File "/var/web_service/supersmart/smrt_service/task_status.py", line 42, in get_task_status
+    if 'tree_id' in task.info:
+TypeError: argument of type 'NoneType' is not iterable
+[15/Nov/2017:19:59:19] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:19:59:19] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:19:59:19] ENGINE Bus STOPPING
+[15/Nov/2017:19:59:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:19:59:19] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:19:59:19] ENGINE Bus STOPPED
+[15/Nov/2017:19:59:19] ENGINE Bus EXITING
+[15/Nov/2017:19:59:19] ENGINE Bus EXITED
+[15/Nov/2017:19:59:19] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:19:59:19] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:19:59:20] ENGINE Bus STARTING
+[15/Nov/2017:19:59:20] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:19:59:20] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:19:59:20] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:19:59:20] ENGINE Bus STARTED
+[15/Nov/2017:19:59:22] HTTP 
+Request Headers:
+  CONNECTION: keep-alive
+  COOKIE: _ga=GA1.2.608449374.1458839025
+  HOST: phylo.cs.nmsu.edu:5011
+  UPGRADE-INSECURE-REQUESTS: 1
+  CACHE-CONTROL: max-age=0
+  Remote-Addr: 76.113.96.32
+  ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+  USER-AGENT: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+  ACCEPT-LANGUAGE: en-US,en;q=0.5
+  ACCEPT-ENCODING: gzip, deflate
+[15/Nov/2017:19:59:22] HTTP 
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 670, in respond
+    response.body = self.handler()
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 217, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/jsontools.py", line 63, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 60, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "supersmart_service_api.py", line 142, in status
+    tree_id, job_state, ex_time = db_task.query_db(task_ID)
+  File "/var/web_service/supersmart/smrt_service/db_task.py", line 80, in query_db
+    return tree_id, job_state, ex_time
+UnboundLocalError: local variable 'tree_id' referenced before assignment
+[15/Nov/2017:20:00:07] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:20:00:07] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:20:00:07] ENGINE Bus STOPPING
+[15/Nov/2017:20:00:07] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:20:00:07] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:20:00:07] ENGINE Bus STOPPED
+[15/Nov/2017:20:00:07] ENGINE Bus EXITING
+[15/Nov/2017:20:00:07] ENGINE Bus EXITED
+[15/Nov/2017:20:00:07] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:20:00:07] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:20:00:08] ENGINE Bus STARTING
+[15/Nov/2017:20:00:08] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:20:00:08] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:20:00:08] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:20:00:08] ENGINE Bus STARTED
+[15/Nov/2017:20:32:30] HTTP 
+Request Headers:
+  CONNECTION: keep-alive
+  COOKIE: _ga=GA1.2.608449374.1458839025
+  HOST: phylo.cs.nmsu.edu:5011
+  UPGRADE-INSECURE-REQUESTS: 1
+  CACHE-CONTROL: max-age=0
+  Remote-Addr: 76.113.96.32
+  ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+  USER-AGENT: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0
+  ACCEPT-LANGUAGE: en-US,en;q=0.5
+  ACCEPT-ENCODING: gzip, deflate
+[15/Nov/2017:20:32:30] HTTP 
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cprequest.py", line 670, in respond
+    response.body = self.handler()
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/encoding.py", line 217, in __call__
+    self.body = self.oldhandler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/lib/jsontools.py", line 63, in json_handler
+    value = cherrypy.serving.request._json_inner_handler(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cpdispatch.py", line 60, in __call__
+    return self.callable(*self.args, **self.kwargs)
+  File "supersmart_service_api.py", line 140, in status
+    service_result = task_status.get_task_status(task_ID)
+  File "/var/web_service/supersmart/smrt_service/task_status.py", line 5, in get_task_status
+    if task.state == 'PENDING':
+  File "/usr/local/lib/python2.7/dist-packages/celery/result.py", line 436, in state
+    return self._get_task_meta()['status']
+  File "/usr/local/lib/python2.7/dist-packages/celery/result.py", line 375, in _get_task_meta
+    return self._maybe_set_cache(self.backend.get_task_meta(self.id))
+  File "/usr/local/lib/python2.7/dist-packages/celery/backends/amqp.py", line 177, in get_task_meta
+    latest.payload)
+  File "/usr/local/lib/python2.7/dist-packages/celery/backends/base.py", line 267, in meta_from_decoded
+    meta['result'] = self.exception_to_python(meta['result'])
+  File "/usr/local/lib/python2.7/dist-packages/celery/backends/base.py", line 247, in exception_to_python
+    from_utf8(exc['exc_type']), __name__)(exc['exc_message'])
+KeyError: u'exc_type'
+[15/Nov/2017:21:06:02] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:21:06:02] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:06:02] ENGINE Bus STOPPING
+[15/Nov/2017:21:06:02] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:06:03] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:06:03] ENGINE Bus STOPPED
+[15/Nov/2017:21:06:03] ENGINE Bus EXITING
+[15/Nov/2017:21:06:03] ENGINE Bus EXITED
+[15/Nov/2017:21:06:03] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:06:03] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:06:03] ENGINE Bus STARTING
+[15/Nov/2017:21:06:03] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:06:03] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:06:03] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:06:03] ENGINE Bus STARTED
+[15/Nov/2017:21:06:12] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:21:06:12] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:06:12] ENGINE Bus STOPPING
+[15/Nov/2017:21:06:12] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:06:12] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:06:12] ENGINE Bus STOPPED
+[15/Nov/2017:21:06:12] ENGINE Bus EXITING
+[15/Nov/2017:21:06:12] ENGINE Bus EXITED
+[15/Nov/2017:21:06:12] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:06:12] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:06:13] ENGINE Bus STARTING
+[15/Nov/2017:21:06:13] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:06:13] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:06:13] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:06:13] ENGINE Bus STARTED
+[15/Nov/2017:21:06:43] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:21:06:43] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:06:43] ENGINE Bus STOPPING
+[15/Nov/2017:21:06:43] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:06:43] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:06:43] ENGINE Bus STOPPED
+[15/Nov/2017:21:06:43] ENGINE Bus EXITING
+[15/Nov/2017:21:06:43] ENGINE Bus EXITED
+[15/Nov/2017:21:06:43] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:06:43] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:08:51] ENGINE Bus STARTING
+[15/Nov/2017:21:08:51] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:08:51] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:08:51] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:08:51] ENGINE Bus STARTED
+[15/Nov/2017:21:08:53] ENGINE Keyboard Interrupt: shutting down bus
+[15/Nov/2017:21:08:53] ENGINE Bus STOPPING
+[15/Nov/2017:21:08:53] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:08:53] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:08:53] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:08:53] ENGINE Bus STOPPED
+[15/Nov/2017:21:08:53] ENGINE Bus EXITING
+[15/Nov/2017:21:08:53] ENGINE Bus EXITED
+[15/Nov/2017:21:08:53] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:09:04] ENGINE Bus STARTING
+[15/Nov/2017:21:09:04] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:09:04] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:09:04] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:09:04] ENGINE Bus STARTED
+[15/Nov/2017:21:23:54] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:21:23:54] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:23:54] ENGINE Bus STOPPING
+[15/Nov/2017:21:23:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:23:54] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:23:54] ENGINE Bus STOPPED
+[15/Nov/2017:21:23:54] ENGINE Bus EXITING
+[15/Nov/2017:21:23:54] ENGINE Bus EXITED
+[15/Nov/2017:21:23:54] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:23:54] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:23:55] ENGINE Bus STARTING
+[15/Nov/2017:21:23:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:23:55] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:23:55] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:23:55] ENGINE Bus STARTED
+[15/Nov/2017:21:44:51] ENGINE Restarting because /var/web_service/supersmart/smrt_service/task_status.py changed.
+[15/Nov/2017:21:44:51] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:44:51] ENGINE Bus STOPPING
+[15/Nov/2017:21:44:51] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:44:51] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:44:51] ENGINE Bus STOPPED
+[15/Nov/2017:21:44:51] ENGINE Bus EXITING
+[15/Nov/2017:21:44:51] ENGINE Bus EXITED
+[15/Nov/2017:21:44:51] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:44:51] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:44:52] ENGINE Bus STARTING
+[15/Nov/2017:21:44:52] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:44:52] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:44:52] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:44:52] ENGINE Bus STARTED
+[15/Nov/2017:21:50:09] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:21:50:09] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:50:09] ENGINE Bus STOPPING
+[15/Nov/2017:21:50:09] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:50:09] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:50:09] ENGINE Bus STOPPED
+[15/Nov/2017:21:50:09] ENGINE Bus EXITING
+[15/Nov/2017:21:50:09] ENGINE Bus EXITED
+[15/Nov/2017:21:50:10] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:50:10] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:50:10] ENGINE Bus STARTING
+[15/Nov/2017:21:50:10] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:50:10] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:50:10] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:50:10] ENGINE Bus STARTED
+[15/Nov/2017:21:50:49] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:21:50:49] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:50:49] ENGINE Bus STOPPING
+[15/Nov/2017:21:50:49] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:50:49] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:50:49] ENGINE Bus STOPPED
+[15/Nov/2017:21:50:49] ENGINE Bus EXITING
+[15/Nov/2017:21:50:49] ENGINE Bus EXITED
+[15/Nov/2017:21:50:49] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:50:49] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:50:50] ENGINE Bus STARTING
+[15/Nov/2017:21:50:50] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:50:50] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:50:50] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:50:50] ENGINE Bus STARTED
+[15/Nov/2017:21:53:25] ENGINE Restarting because /var/web_service/supersmart/smrt_service/tasks.py changed.
+[15/Nov/2017:21:53:25] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:53:25] ENGINE Bus STOPPING
+[15/Nov/2017:21:53:25] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:53:25] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:53:25] ENGINE Bus STOPPED
+[15/Nov/2017:21:53:25] ENGINE Bus EXITING
+[15/Nov/2017:21:53:25] ENGINE Bus EXITED
+[15/Nov/2017:21:53:25] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:53:25] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:53:26] ENGINE Bus STARTING
+[15/Nov/2017:21:53:26] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:53:26] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:53:26] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:53:26] ENGINE Bus STARTED
+[15/Nov/2017:21:53:51] ENGINE Bus STARTING
+[15/Nov/2017:21:53:51] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:53:51] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:53:56] ENGINE Error in 'start' listener <bound method Server.start of <cherrypy._cpserver.Server object at 0x7f554fff5a90>>
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/process/wspbus.py", line 203, in publish
+    output.append(listener(*args, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/_cpserver.py", line 168, in start
+    ServerAdapter.start(self)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/process/servers.py", line 170, in start
+    wait_for_free_port(*self.bind_addr)
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/process/servers.py", line 439, in wait_for_free_port
+    raise IOError("Port %r not free on %r" % (port, host))
+IOError: Port 5011 not free on '0.0.0.0'
+
+[15/Nov/2017:21:53:56] ENGINE Shutting down due to error in start listener:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/process/wspbus.py", line 241, in start
+    self.publish('start')
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/process/wspbus.py", line 221, in publish
+    raise exc
+ChannelFailures: IOError("Port 5011 not free on '0.0.0.0'",)
+
+[15/Nov/2017:21:53:56] ENGINE Bus STOPPING
+[15/Nov/2017:21:53:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) already shut down
+[15/Nov/2017:21:53:56] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:53:56] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:53:56] ENGINE Bus STOPPED
+[15/Nov/2017:21:53:56] ENGINE Bus EXITING
+[15/Nov/2017:21:53:56] ENGINE Bus EXITED
+[15/Nov/2017:21:56:44] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:21:56:44] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:56:44] ENGINE Bus STOPPING
+[15/Nov/2017:21:56:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:56:44] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:56:44] ENGINE Bus STOPPED
+[15/Nov/2017:21:56:44] ENGINE Bus EXITING
+[15/Nov/2017:21:56:44] ENGINE Bus EXITED
+[15/Nov/2017:21:56:44] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:56:44] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:56:45] ENGINE Bus STARTING
+[15/Nov/2017:21:56:45] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:56:45] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:56:45] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:56:45] ENGINE Bus STARTED
+[15/Nov/2017:21:56:52] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:21:56:52] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:56:52] ENGINE Bus STOPPING
+[15/Nov/2017:21:56:52] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:56:52] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:56:52] ENGINE Bus STOPPED
+[15/Nov/2017:21:56:52] ENGINE Bus EXITING
+[15/Nov/2017:21:56:52] ENGINE Bus EXITED
+[15/Nov/2017:21:56:52] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:56:52] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:56:52] ENGINE Bus STARTING
+[15/Nov/2017:21:56:52] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:56:52] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:56:53] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:56:53] ENGINE Bus STARTED
+[15/Nov/2017:21:57:26] ENGINE Restarting because /var/web_service/supersmart/supersmart_service_api.py changed.
+[15/Nov/2017:21:57:26] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:57:26] ENGINE Bus STOPPING
+[15/Nov/2017:21:57:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:57:26] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:57:26] ENGINE Bus STOPPED
+[15/Nov/2017:21:57:26] ENGINE Bus EXITING
+[15/Nov/2017:21:57:26] ENGINE Bus EXITED
+[15/Nov/2017:21:57:26] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:57:26] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:57:26] ENGINE Bus STARTING
+[15/Nov/2017:21:57:26] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:57:26] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:57:26] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:57:26] ENGINE Bus STARTED
+[15/Nov/2017:21:59:55] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:21:59:55] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:21:59:55] ENGINE Bus STOPPING
+[15/Nov/2017:21:59:55] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:21:59:55] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:21:59:55] ENGINE Bus STOPPED
+[15/Nov/2017:21:59:55] ENGINE Bus EXITING
+[15/Nov/2017:21:59:55] ENGINE Bus EXITED
+[15/Nov/2017:21:59:55] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:21:59:55] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:21:59:55] ENGINE Bus STARTING
+[15/Nov/2017:21:59:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:21:59:55] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:21:59:55] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:21:59:55] ENGINE Bus STARTED
+[15/Nov/2017:22:00:10] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:22:00:10] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:22:00:10] ENGINE Bus STOPPING
+[15/Nov/2017:22:00:10] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:22:00:10] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:22:00:10] ENGINE Bus STOPPED
+[15/Nov/2017:22:00:10] ENGINE Bus EXITING
+[15/Nov/2017:22:00:10] ENGINE Bus EXITED
+[15/Nov/2017:22:00:10] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:22:00:10] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:22:00:11] ENGINE Bus STARTING
+[15/Nov/2017:22:00:11] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:22:00:11] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:22:00:11] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:22:00:11] ENGINE Bus STARTED
+[15/Nov/2017:22:00:36] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:22:00:36] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:22:00:36] ENGINE Bus STOPPING
+[15/Nov/2017:22:00:36] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:22:00:36] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:22:00:36] ENGINE Bus STOPPED
+[15/Nov/2017:22:00:36] ENGINE Bus EXITING
+[15/Nov/2017:22:00:36] ENGINE Bus EXITED
+[15/Nov/2017:22:00:36] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:22:00:36] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:22:00:37] ENGINE Bus STARTING
+[15/Nov/2017:22:00:37] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:22:00:37] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:22:00:37] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:22:00:37] ENGINE Bus STARTED
+[15/Nov/2017:22:00:46] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[15/Nov/2017:22:00:46] ENGINE Stopped thread 'Autoreloader'.
+[15/Nov/2017:22:00:46] ENGINE Bus STOPPING
+[15/Nov/2017:22:00:46] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[15/Nov/2017:22:00:46] ENGINE Stopped thread '_TimeoutMonitor'.
+[15/Nov/2017:22:00:46] ENGINE Bus STOPPED
+[15/Nov/2017:22:00:46] ENGINE Bus EXITING
+[15/Nov/2017:22:00:46] ENGINE Bus EXITED
+[15/Nov/2017:22:00:46] ENGINE Waiting for child threads to terminate...
+[15/Nov/2017:22:00:46] ENGINE Re-spawning supersmart_service_api.py
+[15/Nov/2017:22:00:46] ENGINE Bus STARTING
+[15/Nov/2017:22:00:46] ENGINE Started monitor thread '_TimeoutMonitor'.
+[15/Nov/2017:22:00:46] ENGINE Started monitor thread 'Autoreloader'.
+[15/Nov/2017:22:00:46] ENGINE Serving on http://0.0.0.0:5011
+[15/Nov/2017:22:00:46] ENGINE Bus STARTED
+[16/Nov/2017:09:50:50] ENGINE Restarting because /var/web_service/supersmart/smrt_service/db_task.py changed.
+[16/Nov/2017:09:50:50] ENGINE Stopped thread 'Autoreloader'.
+[16/Nov/2017:09:50:50] ENGINE Bus STOPPING
+[16/Nov/2017:09:50:50] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5011)) shut down
+[16/Nov/2017:09:50:50] ENGINE Stopped thread '_TimeoutMonitor'.
+[16/Nov/2017:09:50:50] ENGINE Bus STOPPED
+[16/Nov/2017:09:50:50] ENGINE Bus EXITING
+[16/Nov/2017:09:50:50] ENGINE Bus EXITED
+[16/Nov/2017:09:50:50] ENGINE Waiting for child threads to terminate...
+[16/Nov/2017:09:50:50] ENGINE Re-spawning supersmart_service_api.py

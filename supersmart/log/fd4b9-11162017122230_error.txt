@@ -1,0 +1,11 @@
+====start mkdir execution====
+======11-16-2017 12:22:31======
+====start cp execution====
+======11-16-2017 12:22:57======
+====start taxize execution====
+======11-16-2017 12:30:24======
+====start align execution====
+======11-16-2017 12:33:47======
+
+Warning: run() received nonzero return code 2 while executing 'smrt align --infile species.tsv'!
+

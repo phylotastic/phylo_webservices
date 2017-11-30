@@ -1,0 +1,34 @@
+====start mkdir execution====
+======11-20-2017 10:27:39======
+[vagrant@127.0.0.1:2222] run: mkdir -p /home/vagrant/300a5-11202017102738
+====start cp execution====
+======11-20-2017 10:30:05======
+[vagrant@127.0.0.1:2222] run: cp /vagrant/input/300a5-11202017102738_input.txt /home/vagrant/300a5-11202017102738/300a5-11202017102738_input.txt
+====start taxize execution====
+======11-20-2017 10:30:21======
+[vagrant@127.0.0.1:2222] run: smrt taxize -i 300a5-11202017102738_input.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to read taxon names from file ./300a5-11202017102738_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 14 taxon names from ./300a5-11202017102738_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Eofelis edwardsii
+[vagrant@127.0.0.1:2222] out: [33mWARN: Couldn't resolve name Sansanosmilus palmidens
+[vagrant@127.0.0.1:2222] out: [33mWARN: Couldn't resolve name Barbourofelis morrisi
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Nimravus intermedius
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Albanosmilus jourdani
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Barbourofelis fricki
+[vagrant@127.0.0.1:2222] out: [0m[0m[33mWARN: Couldn't resolve name Proailurus lemanensis
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Prosansanosmilus eggeri
+[vagrant@127.0.0.1:2222] out: [0m[0m[33mWARN: Couldn't resolve name Albanosmilus whitfordi
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Barbourofelis loveorum
+[vagrant@127.0.0.1:2222] out: [0m[1;31mERROR: http://taxosaurus.org/retrieve/8795be0c924e5d1b469d4a822a17436d - 500 read timeout
+[vagrant@127.0.0.1:2222] out: [0m[1;31mERROR: No result for Prosansanosmilus peregrinus
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Prosansanosmilus peregrinus
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Afrosmilus turkanae
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Afrosmilus africanus
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Afrosmilus hispanicus
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created taxa table containing 0 rows
+[vagrant@127.0.0.1:2222] out: [0m[31mFATAL: Taxa table does not contain any rows. Either taxon names could not be resolved or higher level taxa were not expanded. Use --expand_rank to expand higher-level taxa or --all_ranks to include higher taxa in table.
+[vagrant@127.0.0.1:2222] out: [0m
+====start align execution====
+======11-20-2017 10:35:48======
+[vagrant@127.0.0.1:2222] run: smrt align --infile species.tsv

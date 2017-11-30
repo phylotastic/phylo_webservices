@@ -1,0 +1,26 @@
+====start mkdir execution====
+======11-27-2017 11:17:31======
+====start cp execution====
+======11-27-2017 11:17:48======
+====start taxize execution====
+======11-27-2017 11:17:59======
+====start align execution====
+======11-27-2017 11:18:15======
+====start orthologize execution====
+======11-27-2017 11:19:04======
+====start bbmerge execution====
+======11-27-2017 11:19:24======
+====start bbinfer execution====
+======11-27-2017 11:30:57======
+====start bbreroot execution====
+======11-27-2017 11:31:44======
+====start consense execution====
+======11-27-2017 11:34:12======
+====start chmod execution====
+======11-27-2017 11:34:30======
+====start chmod execution====
+======11-27-2017 11:34:44======
+====start chmod execution====
+======11-27-2017 11:34:56======
+====start cp execution====
+======11-27-2017 11:35:06======

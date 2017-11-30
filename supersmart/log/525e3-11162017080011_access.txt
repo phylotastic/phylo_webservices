@@ -1,0 +1,158 @@
+====start mkdir execution====
+======11-16-2017 08:00:12======
+[vagrant@127.0.0.1:2222] run: mkdir -p /home/vagrant/525e3-11162017080011
+====start cp execution====
+======11-16-2017 08:00:26======
+[vagrant@127.0.0.1:2222] run: cp /vagrant/input/525e3-11162017080011_input.txt /home/vagrant/525e3-11162017080011/525e3-11162017080011_input.txt
+====start taxize execution====
+======11-16-2017 08:13:20======
+[vagrant@127.0.0.1:2222] run: smrt taxize -i 525e3-11162017080011_input.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to read taxon names from file ./525e3-11162017080011_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 5 taxon names from ./525e3-11162017080011_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Galidictis fasciata in local database
+[vagrant@127.0.0.1:2222] out: [32mINFO: Found exact match(es) for Cryptoprocta ferox in local database
+[vagrant@127.0.0.1:2222] out: [0m[0m[33mWARN: Couldn't resolve name Galidictis grandidieri
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found match 868860 for Salanoia durrelli through TNRS
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found exact match(es) for Salanoia concolor in local database
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created taxa table containing 4 rows
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Wrote taxa table to ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m
+====start align execution====
+======11-16-2017 08:13:36======
+[vagrant@127.0.0.1:2222] run: smrt align --infile species.tsv
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Creating output directory alignments
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created 4 nodes from taxon table
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Found 4 nodes in taxa file ./species.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 1/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 2/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 3/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Query completion: 4/4
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to collect sequences for 468 clusters
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 385268157-379589-8-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 27762133-379589-2-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 84993451-379589-5-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 84993447-379583-5-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 34732761-33554-0-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 59043007-379589-6-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Will align cluster: 84993373-379589-3-subtree
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 4 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to align 2 sequences
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to alignments.
+[vagrant@127.0.0.1:2222] out: [0m
+====start orthologize execution====
+======11-16-2017 08:14:08======
+[vagrant@127.0.0.1:2222] run: smrt orthologize --infile aligned.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Creating output directory clusters
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster 7 seed GIs, max distance : 0.1
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Making BLAST db for 7 distinct GIs
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Wrote FASTA to clusters/db-files/seeds.fa
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to run all vs all BLAST search on clusters/db-files/seeds.fa
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Number of blast results : 7
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 27762133
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 34732761
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 385268157
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 59043007
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 84993373
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 84993447
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to cluster around seed 84993451
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing singleton clusters/cluster3.fa [alignments/385268157-379589-8-subtree.fa]
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to clusters
+[vagrant@127.0.0.1:2222] out: [0m
+====start bbmerge execution====
+======11-16-2017 08:23:27======
+[vagrant@127.0.0.1:2222] run: smrt bbmerge --alnfile merged.txt --taxafile species.tsv
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[1;31mERROR: No connected species sets were constructed!
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 3 genera
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Looking for exemplars in genus Galidictis (215635)
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: No exemplars found for genus Galidictis (215635) 
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Looking for exemplars in genus Cryptoprocta (94187)
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: No exemplars found for genus Cryptoprocta (94187) 
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Looking for exemplars in genus Salanoia (219104)
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: No exemplars found for genus Salanoia (219104) 
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Identified 0 exemplars
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Using 0 alignments for supermatrix
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Number of exemplars : 0
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Writing marker summary table to ./markers-backbone.tsv
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Marker summary table written to ./markers-backbone.tsv
+[vagrant@127.0.0.1:2222] out: [0mUse of uninitialized value in hash element at /home/vagrant/supersmart/lib/Bio/SUPERSMART/Domain/MarkersAndTaxa.pm line 567.
+[vagrant@127.0.0.1:2222] out: Use of uninitialized value in hash element at /home/vagrant/supersmart/lib/Bio/SUPERSMART/Domain/MarkersAndTaxa.pm line 579.
+[vagrant@127.0.0.1:2222] out: Use of uninitialized value in subtraction (-) at /home/vagrant/supersmart/lib/Bio/SUPERSMART/Domain/MarkersAndTaxa.pm line 579.
+[vagrant@127.0.0.1:2222] out: Use of uninitialized value $nchar in subtraction (-) at /home/vagrant/supersmart/lib/Bio/SUPERSMART/Domain/MarkersAndTaxa.pm line 579.
+[vagrant@127.0.0.1:2222] out: [32mINFO: Removed 0 gap-only columns from matrix
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: DONE, results written to ./supermatrix.phy
+[vagrant@127.0.0.1:2222] out: [0m
+====start bbinfer execution====
+======11-16-2017 08:23:41======
+[vagrant@127.0.0.1:2222] run: smrt bbinfer --supermatrix supermatrix.phy --inferencetool exabayes --cleanup
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Going to make binary representation of ./supermatrix.phy => infer_backbone_30416-dat
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't execute command 'parse-exabayes -m DNA -s supermatrix.phy -n infer_backbone_30416-dat > /dev/null 2> /dev/null':  (errno: 65280)
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to run 'mpirun -np 4 exabayes -f ./infer_backbone_30416-dat.binary -s 1234 -n infer_backbone_30416 -c ./infer_backbone_30416.nex -w . -R 4 -C 1 -M 0'
+[vagrant@127.0.0.1:2222] out: [0mcould not file file ./infer_backbone_30416-dat.binary. Aborting.
+[vagrant@127.0.0.1:2222] out: could not file file could not file file ./infer_backbone_30416-dat.binary. Aborting.
+[vagrant@127.0.0.1:2222] out: ./infer_backbone_30416-dat.binary. Aborting.
+[vagrant@127.0.0.1:2222] out: could not file file ./infer_backbone_30416-dat.binary. Aborting.
+[vagrant@127.0.0.1:2222] out: --------------------------------------------------------------------------
+[vagrant@127.0.0.1:2222] out: mpirun noticed that the job aborted, but has no info as to the process
+[vagrant@127.0.0.1:2222] out: that caused that situation.
+[vagrant@127.0.0.1:2222] out: --------------------------------------------------------------------------
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: --------------------- WARNING ---------------------
+[vagrant@127.0.0.1:2222] out: MSG: Couldn't execute 'mpirun -np 4 exabayes -f ./infer_backbone_30416-dat.binary -s 1234 -n infer_backbone_30416 -c ./infer_backbone_30416.nex -w . -R 4 -C 1 -M 0': Inappropriate ioctl for device (errno: 65280)
+[vagrant@127.0.0.1:2222] out: ---------------------------------------------------
+[vagrant@127.0.0.1:2222] out: [33mWARN: cannot run consense since ExaBayes did not produce output. Did you perform a dry run?
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Appending contents of ./backbone.dnd.1 to ./backbone.dnd.trees
+[vagrant@127.0.0.1:2222] out: [0mUse of uninitialized value $ntax in numeric lt (<) at /home/vagrant/supersmart/lib/Bio/SUPERSMART/Domain/MarkersAndTaxa.pm line 1072, <$fh> line 1.
+[vagrant@127.0.0.1:2222] out: Use of uninitialized value $ntax in numeric eq (==) at /home/vagrant/supersmart/lib/Bio/SUPERSMART/Domain/MarkersAndTaxa.pm line 1076, <$fh> line 1.
+[vagrant@127.0.0.1:2222] out: [32mINFO: DONE, results written to ./backbone.dnd
+[vagrant@127.0.0.1:2222] out: [0m
+====start bbreroot execution====
+======11-16-2017 08:23:56======
+[vagrant@127.0.0.1:2222] run: smrt bbreroot --backbone backbone.dnd --taxafile species.tsv --smooth
+[vagrant@127.0.0.1:2222] out: [1;31mERROR: file ./backbone.dnd is empty
+[vagrant@127.0.0.1:2222] out: [0mUsage: smrt <command> [-?h] [long options...]
+[vagrant@127.0.0.1:2222] out: 	-? -h --help    show help
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: smrt bbreroot [-t <file>] [-b <file>] [-g <taxon,taxon,...>] [-p <file>] [-o <file>] \
+[vagrant@127.0.0.1:2222] out: 	[-s] [-u] [0;37m[-h] [0m[0;37m[-v] [0m[0;37m[-w <dir>] [0m\
+[vagrant@127.0.0.1:2222] out: 	[0;37m[-l <file>] [0m[0;37m[-y] [0m
+[vagrant@127.0.0.1:2222] out: 	-t STR --taxafile STR         tsv (tab-seperated value) taxa file as
+[vagrant@127.0.0.1:2222] out: 	                              produced by 'smrt taxize'
+[vagrant@127.0.0.1:2222] out: 	-b STR --backbone STR         a backbone tree(s) file as produced by
+[vagrant@127.0.0.1:2222] out: 	                              'smrt bbinfer'
+[vagrant@127.0.0.1:2222] out: 	-g STR --outgroup STR         one or multiple taxa (names or NCBI
+[vagrant@127.0.0.1:2222] out: 	                              identifiers, separated by commata)
+[vagrant@127.0.0.1:2222] out: 	                              representing the outgroup at which the
+[vagrant@127.0.0.1:2222] out: 	                              tree is rerooted. Outgroup must be
+[vagrant@127.0.0.1:2222] out: 	                              enclosed in quotes.
+[vagrant@127.0.0.1:2222] out: 	-p STR --outgroup_tree STR    tree in newick format to extract
+[vagrant@127.0.0.1:2222] out: 	                              outgroup from. Outgroup taxa are the
+[vagrant@127.0.0.1:2222] out: 	                              terminals of the smallest subtree below
+[vagrant@127.0.0.1:2222] out: 	                              the root  
+[vagrant@127.0.0.1:2222] out: 	-o STR --outfile STR          name of the output tree file (in newick
+[vagrant@127.0.0.1:2222] out: 	                              format), defaults to
+[vagrant@127.0.0.1:2222] out: 	                              'backbone-rerooted.dnd'
+[vagrant@127.0.0.1:2222] out: 	-s --smooth                   smooth tip heights left and right of
+[vagrant@127.0.0.1:2222] out: 	                              root (i.e. midpointify)
+[vagrant@127.0.0.1:2222] out: 	-u --ultrametricize           adjust terminal branch lengths to yield
+[vagrant@127.0.0.1:2222] out: 	                              an ultrametric tree
+[vagrant@127.0.0.1:2222] out: 	-h --help                     display help screen
+[vagrant@127.0.0.1:2222] out: 	-v --verbose                  increase verbosity level
+[vagrant@127.0.0.1:2222] out: 	-w STR --workdir STR          directory in which results and
+[vagrant@127.0.0.1:2222] out: 	                              intermediate files are stored
+[vagrant@127.0.0.1:2222] out: 	-l STR --logfile STR          write run-time information to logfile
+[vagrant@127.0.0.1:2222] out: 	-y STR --logstyle STR         toggles logging style between 'simple'
+[vagrant@127.0.0.1:2222] out: 	                              and 'detailed'
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: 
+

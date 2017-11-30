@@ -1,0 +1,53 @@
+====start mkdir execution====
+======11-20-2017 12:39:11======
+[vagrant@127.0.0.1:2222] run: mkdir -p /home/vagrant/347e9-11202017123909
+====start cp execution====
+======11-20-2017 12:45:58======
+[vagrant@127.0.0.1:2222] run: cp /vagrant/input/347e9-11202017123909_input.txt /home/vagrant/347e9-11202017123909/347e9-11202017123909_input.txt
+====start taxize execution====
+======11-20-2017 12:46:12======
+[vagrant@127.0.0.1:2222] run: smrt taxize -i 347e9-11202017123909_input.txt
+[vagrant@127.0.0.1:2222] out: [32mINFO: This is SUPERSMART release v0.1.36
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: going to read taxon names from file ./347e9-11202017123909_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Read 14 taxon names from ./347e9-11202017123909_input.txt
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Eofelis edwardsii
+[vagrant@127.0.0.1:2222] out: [32mINFO: Found match 222431 for Prosansanosmilus peregrinus through TNRS
+[vagrant@127.0.0.1:2222] out: [33mWARN: Couldn't resolve name Sansanosmilus palmidens
+[vagrant@127.0.0.1:2222] out: [33mWARN: Couldn't resolve name Barbourofelis morrisi
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Nimravus intermedius
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Afrosmilus turkanae
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Albanosmilus jourdani
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Barbourofelis fricki
+[vagrant@127.0.0.1:2222] out: [0m[0m[33mWARN: Couldn't resolve name Proailurus lemanensis
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Afrosmilus africanus
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Albanosmilus whitfordi
+[vagrant@127.0.0.1:2222] out: [0m[33mWARN: Couldn't resolve name Prosansanosmilus eggeri
+[vagrant@127.0.0.1:2222] out: [0m[0m[33mWARN: Couldn't resolve name Afrosmilus hispanicus
+[vagrant@127.0.0.1:2222] out: [0m[0m[33mWARN: Couldn't resolve name Barbourofelis loveorum
+[vagrant@127.0.0.1:2222] out: [0m[32mINFO: Created taxa table containing 0 rows
+[vagrant@127.0.0.1:2222] out: [0m[31mFATAL: Taxa table does not contain any rows. Either taxon names could not be resolved or higher level taxa were not expanded. Use --expand_rank to expand higher-level taxa or --all_ranks to include higher taxa in table.
+[vagrant@127.0.0.1:2222] out: [0m
+====start align execution====
+======11-20-2017 12:57:39======
+[vagrant@127.0.0.1:2222] run: smrt align --infile species.tsv
+[vagrant@127.0.0.1:2222] out: [1;31mERROR: file ./species.tsv does not exist
+[vagrant@127.0.0.1:2222] out: [0mUsage: smrt <command> [-?h] [long options...]
+[vagrant@127.0.0.1:2222] out: 	-? -h --help    show help
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: smrt align [-i <file>] [-o <dir>] [-z] [0;37m[-h] [0m[0;37m[-v] [0m[0;37m[-w <dir>] [0m\
+[vagrant@127.0.0.1:2222] out: 	[0;37m[-l <file>] [0m[0;37m[-y] [0m
+[vagrant@127.0.0.1:2222] out: 	-i STR --infile STR      taxa file (tab-seperated value format) as
+[vagrant@127.0.0.1:2222] out: 	                         produced by 'smrt taxize'
+[vagrant@127.0.0.1:2222] out: 	-o STR --outdir STR      write alignments to specified directory
+[vagrant@127.0.0.1:2222] out: 	                         name, defaults to alignments
+[vagrant@127.0.0.1:2222] out: 	-z --zip                 zip output alignment directory
+[vagrant@127.0.0.1:2222] out: 	-h --help                display help screen
+[vagrant@127.0.0.1:2222] out: 	-v --verbose             increase verbosity level
+[vagrant@127.0.0.1:2222] out: 	-w STR --workdir STR     directory in which results and intermediate
+[vagrant@127.0.0.1:2222] out: 	                         files are stored
+[vagrant@127.0.0.1:2222] out: 	-l STR --logfile STR     write run-time information to logfile
+[vagrant@127.0.0.1:2222] out: 	-y STR --logstyle STR    toggles logging style between 'simple' and
+[vagrant@127.0.0.1:2222] out: 	                         'detailed'
+[vagrant@127.0.0.1:2222] out: 
+[vagrant@127.0.0.1:2222] out: 
+

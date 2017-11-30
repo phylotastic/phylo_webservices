@@ -1,0 +1,48 @@
+[2017-11-20 13:27:49,822: INFO/MainProcess] Connected to amqp://supersmart:**@127.0.0.1:5672/supersmartvhost
+[2017-11-20 13:27:49,832: INFO/MainProcess] mingle: searching for neighbors
+[2017-11-20 13:27:50,857: INFO/MainProcess] mingle: all alone
+[2017-11-20 13:27:50,879: INFO/MainProcess] 1@phylo ready.
+[2017-11-20 17:47:11,158: INFO/MainProcess] Received task: smrt_service.tasks.get_species_tree[40de1693-dbec-4640-8a91-10ea94928d4d]  
+[2017-11-20 19:35:50,996: ERROR/MainProcess] Process 'ForkPoolWorker-2' pid:37353 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:35:53,097: ERROR/MainProcess] Process 'ForkPoolWorker-1' pid:37352 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:36:50,014: ERROR/MainProcess] Process 'ForkPoolWorker-4' pid:129769 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:36:54,841: ERROR/MainProcess] Process 'ForkPoolWorker-3' pid:129762 exited with 'signal 9 (SIGKILL)'
+[2017-11-20 19:37:34,352: INFO/MainProcess] missed heartbeat from w1@phylo
+[2017-11-20 19:38:11,136: INFO/MainProcess] sync with w1@phylo
+[2017-11-20 19:38:11,137: ERROR/MainProcess] Control command error: error(104, 'Connection reset by peer')
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/celery/worker/pidbox.py", line 42, in on_message
+    self.node.handle_message(body, message)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/pidbox.py", line 129, in handle_message
+    return self.dispatch(**body)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/pidbox.py", line 112, in dispatch
+    ticket=ticket)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/pidbox.py", line 135, in reply
+    serializer=self.mailbox.serializer)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/pidbox.py", line 265, in _publish_reply
+    **opts
+  File "/usr/local/lib/python2.7/dist-packages/kombu/messaging.py", line 181, in publish
+    exchange_name, declare,
+  File "/usr/local/lib/python2.7/dist-packages/kombu/messaging.py", line 194, in _publish
+    [maybe_declare(entity) for entity in declare]
+  File "/usr/local/lib/python2.7/dist-packages/kombu/messaging.py", line 102, in maybe_declare
+    return maybe_declare(entity, self.channel, retry, **retry_policy)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/common.py", line 129, in maybe_declare
+    return _maybe_declare(entity, declared, ident, channel, orig)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/common.py", line 135, in _maybe_declare
+    entity.declare(channel=channel)
+  File "/usr/local/lib/python2.7/dist-packages/kombu/entity.py", line 185, in declare
+    nowait=nowait, passive=passive,
+  File "/usr/local/lib/python2.7/dist-packages/amqp/channel.py", line 616, in exchange_declare
+    wait=None if nowait else spec.Exchange.DeclareOk,
+  File "/usr/local/lib/python2.7/dist-packages/amqp/abstract_channel.py", line 50, in send_method
+    conn.frame_writer(1, self.channel_id, sig, args, content)
+  File "/usr/local/lib/python2.7/dist-packages/amqp/method_framing.py", line 166, in write_frame
+    write(view[:offset])
+  File "/usr/local/lib/python2.7/dist-packages/amqp/transport.py", line 258, in write
+    self._write(s)
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+error: [Errno 104] Connection reset by peer
+[2017-11-20 19:39:50,500: INFO/MainProcess] Received task: smrt_service.tasks.get_species_tree[be2cf182-a4c0-485e-a173-48aa1b29b117]  
+[2017-11-22 10:47:47,500: INFO/MainProcess] Received task: smrt_service.tasks.get_species_tree[4134189d-60fd-4bd4-bcdb-b6bf7b52f752]  
