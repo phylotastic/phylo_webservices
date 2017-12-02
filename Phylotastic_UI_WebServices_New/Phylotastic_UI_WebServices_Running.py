@@ -117,6 +117,10 @@ class Taxon_Genome_Service_API(object):
     @cherrypy.tools.json_out()
     def genome_species(self, **request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             taxonName = str(request_data['taxon']).strip()
             if len(taxonName) == 0: 
                raise CustomException("'taxon' parameter must have a valid value")
@@ -160,6 +164,10 @@ class Taxon_to_Species_Service_API(object):
     @cherrypy.tools.json_out()
     def all_species(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             taxon = str(request_data['taxon']).strip();
             if len(taxon) == 0: 
                raise CustomException("'taxon' parameter must have a valid value")
@@ -192,8 +200,12 @@ class Taxon_to_Species_Service_API(object):
     @cherrypy.tools.json_out()
     def country_species(self,**request_data):
         try:
-            taxon = str(request_data['taxon']).strip();
-            country = str(request_data['country']).strip();
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
+            taxon = str(request_data['taxon']).strip()
+            country = str(request_data['country']).strip()
         
             if len(taxon) == 0: 
                raise CustomException("'taxon' parameter must have a valid value")
@@ -238,7 +250,11 @@ class Species_Image_Service_API(object):
     @cherrypy.tools.json_out()
     def get_images(self, **request_data):
         try:
-            sp_lst = str(request_data['species']).strip();
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
+            sp_lst = str(request_data['species']).strip()
             specieslist = sp_lst.split('|')
             
             if len(specieslist) == 1 and '' in specieslist: 
@@ -291,9 +307,16 @@ class Species_Image_Service_API(object):
     @cherrypy.tools.json_in()
     def images(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             
             species_list = input_json["species"]
+            if type(species_list) != types.ListType:
+               return return_response_error(400,"Error: 'species' parameter must be of list type","JSON")
+
             if len(species_list) == 0: 
                raise CustomException("'species' parameter must have a valid value")
             if len(species_list) > 30: 
@@ -339,6 +362,10 @@ class Species_Url_Service_API(object):
     @cherrypy.tools.json_out()
     def get_links(self, **request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             sp_lst = str(request_data['species']).strip();
             species_list = sp_lst.split('|')
             
@@ -375,9 +402,15 @@ class Species_Url_Service_API(object):
     @cherrypy.tools.json_in()
     def links(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             species_list = input_json["species"]
-            
+            if type(species_list) != types.ListType:
+               return return_response_error(400,"Error: 'species' parameter must be of list type","JSON")
+
             if len(species_list) == 0: 
                raise CustomException("'species' parameter must have a valid value")
             if len(species_list) > 30: 
@@ -420,11 +453,17 @@ class Find_ScientificNames_Service_API(object):
     @cherrypy.tools.json_out()
     def names_url(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             url = str(request_data['url']).strip()
             if len(url) == 0:
                raise CustomException("'url' parameter must have a valid value")
             if request_data is not None and 'engine' in request_data:
                engine = str(request_data['engine']).strip()
+               if engine not in ['0', '1', '2']:
+                  return return_response_error(400,"Error: 'engine' parameter must have a valid value","JSON") 
             else:
                engine = '0'
         except KeyError, e:
@@ -456,12 +495,18 @@ class Find_ScientificNames_Service_API(object):
     @cherrypy.tools.json_out()
     def names_text(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             text = str(request_data['text']).strip()
             
             if len(text) == 0:
                raise CustomException("'text' parameter must have a valid value")
             if request_data is not None and 'engine' in request_data:
                engine = str(request_data['engine']).strip()
+               if engine not in ['0', '1', '2']:
+                  return return_response_error(400,"Error: 'engine' parameter must have a valid value","JSON") 
             else:
                engine = '0'
 
@@ -504,6 +549,10 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
     @cherrypy.tools.json_out()
     def resolve(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             names = str(request_data['names']).strip()
             nameslist = names.split('|')
 
@@ -555,9 +604,15 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
     @cherrypy.tools.json_in()
     def names(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
- 	    
+            if type(nameslist) != types.ListType:
+               return return_response_error(400,"Error: 'scientificNames' parameter must be of list type","JSON")    
+     
             if len(nameslist) == 0: 
                raise CustomException("'scientificNames' parameter must have a valid value")
 
@@ -613,6 +668,10 @@ class Resolve_ScientificNames_GNR_Service_API(object):
     @cherrypy.tools.json_out()
     def resolve(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             names = str(request_data['names']).strip();
             nameslist = names.split('|')
 
@@ -664,8 +723,14 @@ class Resolve_ScientificNames_GNR_Service_API(object):
     @cherrypy.tools.json_in()
     def names(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
+            if type(nameslist) != types.ListType:
+               return return_response_error(400,"Error: 'scientificNames' parameter must be of list type","JSON")
 
             if len(nameslist) == 0: 
                raise CustomException("'scientificNames' parameter must have a valid value")
@@ -722,6 +787,10 @@ class Get_Tree_OpenTree_Service_API(object):
     @cherrypy.tools.json_out()
     def get_tree(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             taxa = str(request_data['taxa']).strip();
             taxalist = taxa.split('|')
 
@@ -763,12 +832,19 @@ class Get_Tree_OpenTree_Service_API(object):
     @cherrypy.tools.json_in()
     def tree(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             
             if 'taxa' not in input_json and 'resolvedNames' not in input_json:
                 raise KeyError("taxa")
             elif 'taxa' in input_json and 'resolvedNames' not in input_json:
                 taxalist = input_json["taxa"]
+                if type(taxalist) != types.ListType:
+                   return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON")
+
                 if len(taxalist) == 0 and 'resolvedNames' not in input_json: 
                    raise CustomException("'taxa' parameter must have a valid value")
 
@@ -790,6 +866,8 @@ class Get_Tree_OpenTree_Service_API(object):
                    return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
             else:
                 nameslist = input_json['resolvedNames']
+                taxalist = nameslist
+
             service_result = opentree_tree_service.get_tree_OT(nameslist)   
             #-------------log request------------------   
             header = cherrypy.request.headers
@@ -819,6 +897,10 @@ class Get_Tree_Phylomatic_Service_API(object):
     @cherrypy.tools.json_out()
     def get_tree(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             taxa = str(request_data['taxa']).strip();
             taxalist = taxa.split('|')
 
@@ -860,10 +942,16 @@ class Get_Tree_Phylomatic_Service_API(object):
     @cherrypy.tools.json_in()
     def tree(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             #nameslist = input_json["resolvedNames"]
             taxalist = input_json["taxa"]
- 	    
+            if type(taxalist) != types.ListType:
+               return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON") 	    
+
             if len(taxalist) == 0: 
                raise CustomException("'taxa' parameter must have a valid value")
 
@@ -909,6 +997,10 @@ class Get_Tree_PhyloT_Service_API(object):
     @cherrypy.tools.json_out()
     def get_tree(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             taxa = str(request_data['taxa']).strip();
             taxalist = taxa.split('|')
 
@@ -948,8 +1040,14 @@ class Get_Tree_PhyloT_Service_API(object):
     @cherrypy.tools.json_in()
     def tree(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             taxalist = input_json["taxa"]
+            if type(taxalist) != types.ListType:
+               return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON")
  	    
             if len(taxalist) == 0: 
                raise CustomException("'taxa' parameter must have a valid value")
@@ -995,6 +1093,10 @@ class Get_CommonName_Species_Service_API(object):
     @cherrypy.tools.json_out()
     def get_scientific_name(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
             common_name = str(request_data['common_name']).strip();
 
             if len(common_name) == 0: 
@@ -1039,7 +1141,7 @@ def CORS():
 
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    #print "Thu ran CORS"
+    
     conn = connect_mongodb() 
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
