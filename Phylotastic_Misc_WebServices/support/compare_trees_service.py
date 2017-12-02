@@ -5,7 +5,7 @@ from dendropy.calculate import treecompare
 
 
 def compare_trees(tree1_str, tree2_str):
-
+ 	response = {}
  	start_time = time.time()
  	try:	
  		tns = dendropy.TaxonNamespace() 	
@@ -24,10 +24,27 @@ def compare_trees(tree1_str, tree2_str):
  		areSame = True if treecompare.symmetric_difference(tree1, tree2) == 0 else False
  		status = 200
  		message = "Success"
+ 		response['are_same_tree'] = areSame
  
- 	except Error as e:
- 		message = str(e)
- 		status = 500 
+ 	except Exception, e:
+ 		if "Incomplete or improperly-terminated tree statement" in str(e): #invalid: "((A,B),C,D));"  valid: ((A,B),(C,D)); 
+ 			message = "NewickReaderIncompleteTreeStatementError: " + str(e)
+ 	 		status = 400
+ 		elif "Unbalanced parentheses at tree statement" in str(e):  #invalid: "((A,B),(C,D);"  valid: ((A,B),(C,D)); 
+ 			message = "NewickReaderMalformedStatementError: "+str(e) 
+ 	 		status = 400
+ 		elif "Multiple occurrences of the same taxa" in str(e): #invalid: "((A,B),(C,C));"  valid: ((A,B),(C,D));
+ 			message = "NewickReaderDuplicateTaxonError: "+str(e)
+ 	 		status = 400
+ 		elif "Unexpected end of stream" in str(e): # invalid: "((A,B),(C,D))"  valid: ((A,B),(C,D));
+ 			message = "UnexpectedEndOfStreamError: "+str(e)
+ 	 		status = 400
+ 		else:
+ 			message = "Error: Failed to compare trees."
+ 	 		status = 500
+ 	 	
+ 	response['status_code'] = status
+ 	response['message'] = message
 
  	end_time = time.time()
  	execution_time = end_time-start_time
@@ -35,7 +52,7 @@ def compare_trees(tree1_str, tree2_str):
  	creation_time = datetime.datetime.now().isoformat()
  	meta_data = {'creation_time': creation_time, 'execution_time': float('{:4.2f}'.format(execution_time)), 'source_urls':["http://dendropy.org/library/treecompare.html#module-dendropy.calculate.treecompare"] }
 
- 	response = {'status_code': status, 'message': message, 'are_same_tree': areSame, 'meta_data': meta_data}
+ 	response['meta_data'] = meta_data
  	
  	return response
 
