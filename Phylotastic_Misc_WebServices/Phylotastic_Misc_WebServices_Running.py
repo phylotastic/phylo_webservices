@@ -102,6 +102,10 @@ class Compare_Trees_Service_API(object):
     @cherrypy.tools.json_in()
     def compare_trees(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             tree1_str = input_json["tree1_nwk"]
             tree2_str = input_json["tree2_nwk"]
@@ -147,6 +151,10 @@ class Tree_Studies_Service_API(object):
     @cherrypy.tools.json_out()
     def get_studies(self, **request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET','POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET and POST are not allowed","JSON")
+
             lst = str(request_data['list']).strip()
             list_type = str(request_data['list_type']).strip()
             lst = lst.split('|')
@@ -204,6 +212,10 @@ class Tree_Studies_Service_API(object):
     @cherrypy.tools.json_in()
     def studies(self,**request_data):
         try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
             input_json = cherrypy.request.json
             lst = input_json["list"]
             list_type = input_json["list_type"]

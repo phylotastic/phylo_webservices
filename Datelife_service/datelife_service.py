@@ -1,5 +1,6 @@
 import time
 import datetime
+import dendropy
 from rpy2.robjects.packages import importr
 import rpy2.robjects as ro
 #import pandas.rpy.common as com
@@ -33,6 +34,10 @@ def scale_tree_api(tree_newick, method="median"):
  	response['status_code'] = 200	
 	formatted_newick = '\"' + tree_newick + '\"'
 	
+	newick_validity_status, newick_validity_msg = check_newick_validity(tree_newick)
+	if newick_validity_status != 200:
+		return {'message': newick_validity_msg, 'status_code': newick_validity_status} 
+
 	try:	
 		sc_tree = scale_tree(formatted_newick, method)
 		sc_tree = sc_tree.replace("_"," ")
@@ -53,6 +58,23 @@ def scale_tree_api(tree_newick, method="median"):
  	#response['service_documentation'] = service_documentation
  	
 	return response
+
+#-----------------------------------------------
+def check_newick_validity(tree_nwk):
+	try:
+		tree = dendropy.Tree.get(data=tree_nwk, schema="newick")
+
+	except Exception, e:
+ 		if "Incomplete or improperly-terminated tree statement" in str(e): #invalid: "((A,B),C,D));"  valid: ((A,B),(C,D)); 
+ 			return 400, "NewickReaderIncompleteTreeStatementError: " + str(e)
+ 		elif "Unbalanced parentheses at tree statement" in str(e):  #invalid: "((A,B),(C,D);"  valid: ((A,B),(C,D)); 
+ 			return 400, "NewickReaderMalformedStatementError: "+str(e)
+ 		elif "Multiple occurrences of the same taxa" in str(e): #invalid: "((A,B),(C,C));"  valid: ((A,B),(C,D));
+ 			return 400, "NewickReaderDuplicateTaxonError: "+str(e)
+ 		elif "Unexpected end of stream" in str(e): # invalid: "((A,B),(C,D))"  valid: ((A,B),(C,D));
+ 			return 400, "UnexpectedEndOfStreamError: "+str(e)
+ 	 	
+	return 200, "Success"
 
 #-----------------------------------------------
 def metadata_scaling(tree_newick):
@@ -82,6 +104,10 @@ def scale_metadata_api(tree_newick):
  	response['status_code'] = 200	
 	formatted_newick = '\"' + tree_newick + '\"'
 	
+	newick_validity_status, newick_validity_msg = check_newick_validity(tree_newick)
+	if newick_validity_status != 200:
+		return {"message": newick_validity_msg, "status_code": newick_validity_status} 
+
 	try:	
 		meta_data = metadata_scaling(formatted_newick)
 		response['metadata_tree_scaling'] = meta_data	
@@ -102,14 +128,14 @@ def scale_metadata_api(tree_newick):
 	return response 
  
 #-----------------------------------------------
-'''
-if __name__ == "__main__":
 
-	tree_newick = "((Zea mays,Oryza sativa),((Arabidopsis thaliana,(Glycine max,Medicago sativa)),Solanum lycopersicum)Pentapetalae);" 
+#if __name__ == "__main__":
+
+#	tree_newick = "((Zea mays,Oryza sativa),((Arabidopsis thaliana,(Glycine max,Medicago sativa)),Solanum lycopersicum)Pentapetalae);" 
 	
-	sc_tree = scale_tree_api(tree_newick)
-	print "Result: %s" %sc_tree
-'''
+#	sc_tree = scale_tree_api(tree_newick)
+#	print "Result: %s" %sc_tree
+
 
 
 

@@ -90,6 +90,10 @@ class Datelife_Service_API(object):
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
     def scale(self,**request_data):
+        http_method = cherrypy.request.method
+        if http_method not in ['POST']:
+           return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
         scale_method = None
         try:
             input_json = cherrypy.request.json
