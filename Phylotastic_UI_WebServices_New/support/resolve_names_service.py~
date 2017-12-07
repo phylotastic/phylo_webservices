@@ -31,20 +31,19 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
     response = requests.post(api_url, data=payload)     
 
     resolvedNamesList = [] 
-    
-    if response.status_code == requests.codes.ok:
-            
-        data_json = json.loads(response.text)
+    data_json = json.loads(response.text)
+
+    if response.status_code == requests.codes.ok:        
         rsnames_list = data_json['data']
         parameters_list = data_json['parameters']   
         for element in rsnames_list:
             mult_matches_list = []
             input_name = element['supplied_name_string']
-            if not element['is_known_name']:
-               continue
+            
             match_list = element['results']
             for match in match_list:
                 namesList = {}
+                
                 if float(match['score']) >= 0.75:
                    rsname = match['canonical_form']
        	           namesList['search_string'] = input_name
@@ -56,7 +55,7 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
             	   namesList['taxon_id'] = match['taxon_id']		
                    mult_matches_list.append(namesList)	
                 if not(multi_match) and do_fuzzy_match: 
- 				   break
+                   break
 
             if not do_fuzzy_match and match['match_type'] !=1:
                continue
@@ -74,7 +73,7 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
         
         statuscode = response.status_code   
 
-    
+    print resolvedNamesList
     return {'resolvedNames': resolvedNamesList, 'gnr_parameters': parameters_list, 'status_code': statuscode, 'message': msg}
         
 #----------------------------------------------    
@@ -181,7 +180,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
     	sublists = create_sublists(inputNamesList, list_size)
     	for sublst in sublists:
     		resolvedResult = resolve_sn_ot(sublst, do_fuzzy_match, multi_match)
-    		resolvedNameslst = resolvedResult['results']
+    		resolvedNameslst = resolvedResult['resolvedNames']
     		if resolvedResult['status_code'] != 200:
     			return {'status_code': resolvedResult['status_code'], 'message': resolvedResult['message']}
     		final_result.extend(resolvedNameslst)  
@@ -205,8 +204,8 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
     meta_data = {'creation_time': creation_time, 'execution_time': execution_time, 'source_urls':["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#tnrs"] }
 #"service_documentation": service_documentation}
 
-    return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'input_names': inputNamesList , 'message': message, 'meta_data': meta_data}
-
+    #return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'input_names': inputNamesList , 'message': message, 'meta_data': meta_data}
+    return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'message': message, 'meta_data': meta_data}
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match): 

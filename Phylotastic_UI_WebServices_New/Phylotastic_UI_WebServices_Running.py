@@ -544,10 +544,63 @@ class Find_ScientificNames_Service_API(object):
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")   
 
     #------------------------------------------------
+    @cherrypy.tools.json_out()
+    def names_file(self, inputFile=None, engine='0'):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+            
+            file_size = 0
+            allData = ''
+            while True:
+                data = inputFile.file.read(8192)
+                allData += data
+                if not data:
+                   break
+                file_size += len(data)
+            if file_size == 0:
+               raise CustomException("Input file cannot be empty")
+
+            saved_dir_loc = "/var/www/html/upload/"
+            file_loc = saved_dir_loc+inputFile.filename
+            savedFile=open(file_loc, 'wb')
+            savedFile.write(allData)
+            savedFile.close()
+            file_url = "http://phylo.cs.nmsu.edu:8080/upload/"+inputFile.filename
+            content_type = inputFile.content_type
+            #print content_type
+            new_filename = inputFile.filename
+            contype = cherrypy.request.headers.get("Content-Encoding")
+            
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)),"JSON")
+        
+        try:
+            service_result = extract_names_service.extract_names_URL(file_url, int(engine))   
+            #-------------log request------------------
+            result_json = service_result
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'engine': engine, 'file_name': new_filename}, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+            insert_log(log)
+            #------------------------------------------   
+            if result_json['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(result_json['status_code'], result_json['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("=====NamesFileError=====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+    #------------------------------------------------
     #Public /index
     index.exposed = True
     names_url.exposed = True
     names_text.exposed = True
+    names_file.exposed = True
+
 
 #=======================Resolve_ScientificNames_OpenTree_Service===========================
 class Resolve_ScientificNames_OpenTree_Service_API(object):
