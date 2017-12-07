@@ -122,8 +122,12 @@ class Taxon_Genome_Service_API(object):
                return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
 
             taxonName = str(request_data['taxon']).strip()
+            if len(request_data) > 1:
+               raise CustomException("extra unknown parameter is not supported")
+
             if len(taxonName) == 0: 
                raise CustomException("'taxon' parameter must have a valid value")
+            
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         except CustomException, e:
@@ -168,7 +172,9 @@ class Taxon_to_Species_Service_API(object):
             if http_method not in ['GET', 'POST']:
                return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
 
-            taxon = str(request_data['taxon']).strip();
+            taxon = str(request_data['taxon']).strip()
+            if len(request_data) > 1:
+               raise CustomException("extra unknown parameter is not supported")
             if len(taxon) == 0: 
                raise CustomException("'taxon' parameter must have a valid value")
         except KeyError, e:
@@ -206,7 +212,9 @@ class Taxon_to_Species_Service_API(object):
 
             taxon = str(request_data['taxon']).strip()
             country = str(request_data['country']).strip()
-        
+            if len(request_data) > 2:
+               raise CustomException("extra unknown parameter is not supported")
+
             if len(taxon) == 0: 
                raise CustomException("'taxon' parameter must have a valid value")
             if len(country) == 0: 
