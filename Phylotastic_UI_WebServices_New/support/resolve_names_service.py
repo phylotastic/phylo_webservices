@@ -180,7 +180,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
     	sublists = create_sublists(inputNamesList, list_size)
     	for sublst in sublists:
     		resolvedResult = resolve_sn_ot(sublst, do_fuzzy_match, multi_match)
-    		resolvedNameslst = resolvedResult['results']
+    		resolvedNameslst = resolvedResult['resolvedNames']
     		if resolvedResult['status_code'] != 200:
     			return {'status_code': resolvedResult['status_code'], 'message': resolvedResult['message']}
     		final_result.extend(resolvedNameslst)  
@@ -204,8 +204,8 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
     meta_data = {'creation_time': creation_time, 'execution_time': execution_time, 'source_urls':["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#tnrs"] }
 #"service_documentation": service_documentation}
 
-    return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'input_names': inputNamesList , 'message': message, 'meta_data': meta_data}
-
+    #return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'input_names': inputNamesList , 'message': message, 'meta_data': meta_data}
+    return {'resolvedNames': final_result, 'total_names': result_len, 'status_code': status_code, 'message': message, 'meta_data': meta_data}
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match): 
@@ -227,9 +227,8 @@ def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match):
 #"service_documentation": service_documentation}
     final_result['meta_data'] = meta_data
     final_result['total_names'] = result_len
-    final_result['input_names'] = inputNamesList
+    #final_result['input_names'] = inputNamesList
     
- 
     return final_result
     
 #-------------------------------------------------
