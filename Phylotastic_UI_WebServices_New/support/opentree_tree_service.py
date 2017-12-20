@@ -25,7 +25,18 @@ def get_inducedSubtree(ottIdList):
     }
     jsonPayload = json.dumps(payload_data)
     
-    response = requests.post(resource_url, data=jsonPayload, headers=headers)
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+    max_tries = 20
+    remaining_tries = max_tries
+    while remaining_tries > 0:
+        try:
+            response = requests.post(resource_url, data=jsonPayload, headers=headers)
+            break
+        except requests.exceptions.ConnectionError:
+            time.sleep(20)
+        remaining_tries = remaining_tries - 1
+
+    #response = requests.post(resource_url, data=jsonPayload, headers=headers)
         
     newick_tree_str = ""
     inducedtree_info = {}
@@ -148,7 +159,18 @@ def get_supporting_studies(ottIdList):
     }
  	jsonPayload = json.dumps(payload_data)
     
- 	response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+ 	max_tries = 20
+ 	remaining_tries = max_tries
+ 	while remaining_tries > 0:
+ 		try:
+ 			response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 			break
+ 		except requests.exceptions.ConnectionError:
+ 			time.sleep(20)
+ 		remaining_tries = remaining_tries - 1
+     
+ 	#response = requests.post(resource_url, data=jsonPayload, headers=headers)
         
  	studies_info = {}
 
@@ -196,7 +218,18 @@ def get_tree_version():
  	}
  	jsonPayload = json.dumps(payload_data)
     
- 	response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+ 	max_tries = 20
+ 	remaining_tries = max_tries
+ 	while remaining_tries > 0:
+ 		try:
+ 			response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 			break
+ 		except requests.exceptions.ConnectionError:
+ 			time.sleep(20)
+ 		remaining_tries = remaining_tries - 1
+ 
+ 	#response = requests.post(resource_url, data=jsonPayload, headers=headers)
         
  	metadata = {}
  	if response.status_code == requests.codes.ok:

@@ -105,8 +105,19 @@ def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
  		'do_approximate_matching': do_fuzzy_match
     }
     jsonPayload = json.dumps(payload)
-   
-    response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
+
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+    max_tries = 20
+    remaining_tries = max_tries
+    while remaining_tries > 0:
+        try:
+            response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
+            break
+        except requests.exceptions.ConnectionError:
+            time.sleep(20)
+        remaining_tries = remaining_tries - 1   
+    
+    #response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
     
     data_json = json.loads(response.text)
 
