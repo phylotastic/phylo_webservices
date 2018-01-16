@@ -453,10 +453,10 @@ class Species_Url_Service_API(object):
     links.exposed = True
 
 
-#===========================Find_ScientificNames_Service=============================
+#===========================Find_ScientificNames_Service_GNRD=============================
 class Find_ScientificNames_Service_API(object):
     def index(self):
-        return "Find_ScientificNames_Service API: Find Scientific names from Url, Text, Files";
+        return "Find_ScientificNames_GNRD_Service API: Find Scientific names from Url, Text, Files using GNRD";
     #---------------------------------------------
     @cherrypy.tools.json_out()
     def names_url(self,**request_data):
@@ -600,6 +600,92 @@ class Find_ScientificNames_Service_API(object):
     names_url.exposed = True
     names_text.exposed = True
     names_file.exposed = True
+
+
+#===========================Find_ScientificNames_Service_TaxonFinder=============================
+class Find_ScientificNames_TaxonFinder_Service_API(object):
+    def index(self):
+        return "Find_ScientificNames_TaxonFinder_Service API: Find Scientific names from Url, Text using TaxonFinder";
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    def names_url(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
+            url = str(request_data['url']).strip()
+            if len(url) == 0:
+               raise CustomException("'url' parameter must have a valid value")
+            
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)),"JSON")
+        
+        try:
+            service_result = extract_names_service.extract_names_taxonfinder(url, 'url')   
+            #-------------log request------------------
+            #result_json = json.loads(service_result)
+            result_json = service_result
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+            insert_log(log)
+            #------------------------------------------   
+            if result_json['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(result_json['status_code'], result_json['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("=====TaxonFinderNamesURLError=====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #------------------------------------------------
+    @cherrypy.tools.json_out()
+    def names_text(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
+            text = str(request_data['text']).strip()
+            
+            if len(text) == 0:
+               raise CustomException("'text' parameter must have a valid value")
+            
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)),"JSON")
+        
+        try:
+            service_result = extract_names_service.extract_names_taxonfinder(text, 'text')
+            #-------------log request------------------   
+            #result_json = json.loads(service_result)
+            result_json = service_result
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+            insert_log(log)
+            #------------------------------------------
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("=====TaxonFinderNamesTextError=====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")   
+       
+    #------------------------------------------------------
+    #Public /index
+    index.exposed = True
+    names_url.exposed = True
+    names_text.exposed = True
 
 
 #=======================Resolve_ScientificNames_OpenTree_Service===========================
@@ -1243,6 +1329,8 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Species_Url_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group6), "eol"),conf_thanhnh)
 
     cherrypy.tree.mount(Find_ScientificNames_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group2)), conf_thanhnh )
+    cherrypy.tree.mount(Find_ScientificNames_TaxonFinder_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group2), "tf"), conf_thanhnh )
+
     cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_GNR_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"gnr"), conf_thanhnh )
     cherrypy.tree.mount(Get_Tree_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"ot"),conf_thanhnh )
