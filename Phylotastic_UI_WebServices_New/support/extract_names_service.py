@@ -38,17 +38,17 @@ def get_sn_url(inputURL, sEngine=0):
         else:
            statuscode = 500
 
-        return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']        
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'input_url': inputURL, 'gnrd_parameters': parametersList, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "Success"} 
+         return {'input_url': inputURL, 'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "Success"} 
      
 #----------------------------------------------    
 #get scientific names from final api-result
@@ -123,17 +123,17 @@ def get_sn_text(inputTEXT, sEngine=0):
         else:
            statuscode = 500
 
-        return {'input_text': inputTEXT, 'scientific_names': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'input_text': inputTEXT, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'input_text': inputTEXT, 'gnrd_parameters': parametersList, 'scientific_names': scientificNamesList, 'status_code': 200,'message': "Success"} 
+         return {'input_text': inputTEXT, 'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200,'message': "Success"} 
 
 #-----------------------------------------------------------
 # removes duplicates from a list
@@ -172,7 +172,7 @@ def extract_names_URL(inputURL, sEngine=0):
    #'service_documentation': service_documentation} #'service_url': service_url
     final_result['meta_data'] = meta_data
  
-    final_result['total_names'] = len(final_result['scientific_names'])
+    final_result['total_names'] = len(final_result['scientificNames'])
 
     return final_result  #return json.dumps(final_result)
 
@@ -199,7 +199,7 @@ def extract_names_TEXT(inputTEXT, sEngine=0):
 #'service_documentation': service_documentation} #'service_url': service_url
     final_result['meta_data'] = meta_data
 
-    final_result['total_names'] = len(final_result['scientific_names'])
+    final_result['total_names'] = len(final_result['scientificNames'])
     
     return final_result #return json.dumps(final_result)	    
    
@@ -229,14 +229,14 @@ def get_tf_sn_url(inputURL):
         else:
            statuscode = 500
 
-        return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     scientificNamesList = get_tf_names(data_json)
     
     if len(scientificNamesList) == 0:
-         return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
-         return {'input_url': inputURL, 'scientific_names': scientificNamesList, 'status_code': 200, 'message': "Success"} 
+         return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "Success"} 
 
 #-------------------------------------------
 #get scientific names from TEXT using TaxonFinder
@@ -262,14 +262,14 @@ def get_tf_sn_text(inputTEXT):
         else:
            statuscode = 500
 
-        return {'scientific_names': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     scientificNamesList = get_tf_names(data_json)
     
     if len(scientificNamesList) == 0:
-         return {'scientific_names': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
-         return {'scientific_names': scientificNamesList, 'status_code': 200, 'message': "Success"} 
+         return {'scientificNames': scientificNamesList, 'status_code': 200, 'message': "Success"} 
      
 #--------------------------------------------
 def get_tf_names(data_json):
@@ -308,7 +308,7 @@ def extract_names_taxonfinder(tf_input, input_type=None):
     #'service_documentation': service_documentation} #'service_url': service_url
     final_result['meta_data'] = meta_data
 
-    final_result['total_names'] = len(final_result['scientific_names'])
+    final_result['total_names'] = len(final_result['scientificNames'])
     
     return final_result	    
       
