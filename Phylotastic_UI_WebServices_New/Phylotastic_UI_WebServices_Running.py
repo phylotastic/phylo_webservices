@@ -926,6 +926,125 @@ class Resolve_ScientificNames_GNR_Service_API(object):
     resolve.exposed = True
     names.exposed = True
 
+#==============================Resolve_ScientificNames_iPlant_Collaborative_Service======================
+class Resolve_ScientificNames_iPLant_Service_API(object):
+    def index(self):
+        return "Resolve_ScientificNames_iPlant_Service API: Resolve plant Scientific names from iPlant Collaborative";
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    def resolve(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET', 'POST']:
+               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
+
+            names = str(request_data['names']).strip();
+            nameslist = names.split('|')
+
+            if len(nameslist) == 1 and '' in nameslist: 
+               raise CustomException("'names' parameter must have a valid value")
+
+            match_type = False
+            if request_data is not None and 'fuzzy_match' in request_data:
+               match_type = str(request_data['fuzzy_match']).strip()
+               if type(match_type) != types.BooleanType:
+                  match_type = str2bool(match_type)
+
+            multi_match = False
+            if request_data is not None and 'multiple_match' in request_data:
+               multi_match = str(request_data['multiple_match']).strip()
+               if type(multi_match) != types.BooleanType:
+                  multi_match = str2bool(multi_match)   
+            
+            if len(nameslist) > 500: 
+               return return_response_error(403,"Error: Currently more than 500 names is not supported","JSON")
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)),"JSON")
+        
+        try:
+            service_result = resolve_names_service.resolve_names_iPlant(nameslist, match_type, multi_match)   
+            #-------------log request------------------   
+            result_json = service_result
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
+            insert_log(log)
+            #------------------------------------------
+            if result_json['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(result_json['status_code'], result_json['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("=====ResolveNamesError=====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #------------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def names(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+            input_json = cherrypy.request.json
+            nameslist = input_json["scientificNames"]
+            if type(nameslist) != types.ListType:
+               return return_response_error(400,"Error: 'scientificNames' parameter must be of list type","JSON")
+
+            if len(nameslist) == 0: 
+               raise CustomException("'scientificNames' parameter must have a valid value")
+
+            match_type = False
+            if 'fuzzy_match' in input_json:
+               match_type = input_json['fuzzy_match']
+               if type(match_type) != types.BooleanType:
+                  match_type = str2bool(match_type)
+
+            multi_match = False      
+            if 'multiple_match' in input_json:
+               multi_match = input_json['multiple_match']
+               if type(multi_match) != types.BooleanType:
+                  multi_match = str2bool(multi_match)
+               
+            if len(nameslist) > 1000: 
+               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+   				 
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try:
+            service_result = resolve_names_service.resolve_names_iPlant(nameslist, match_type, multi_match)   
+            #-------------log request------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'scientific_names': nameslist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+            #------------------------------------------
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("=====ResolveNamesError=====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #-----------------------------------------------
+    #Public /index
+    index.exposed = True
+    resolve.exposed = True
+    names.exposed = True
+
+
 #===============================Get_Tree_OpenTree_Service==========================
 class Get_Tree_OpenTree_Service_API(object):
     def index(self):
@@ -1333,6 +1452,8 @@ if __name__ == '__main__':
 
     cherrypy.tree.mount(Resolve_ScientificNames_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ot"),conf_thanhnh )
     cherrypy.tree.mount(Resolve_ScientificNames_GNR_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"gnr"), conf_thanhnh )
+    cherrypy.tree.mount(Resolve_ScientificNames_iPLant_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group3),"ip"), conf_thanhnh )
+
     cherrypy.tree.mount(Get_Tree_OpenTree_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"ot"),conf_thanhnh )
     cherrypy.tree.mount(Get_Tree_Phylomatic_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pm"),conf_thanhnh )
     cherrypy.tree.mount(Get_Tree_PhyloT_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pt"),conf_thanhnh )

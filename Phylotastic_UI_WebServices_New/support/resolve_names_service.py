@@ -39,7 +39,8 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
         for element in rsnames_list:
             mult_matches_list = []
             input_name = element['supplied_name_string']
-            
+            if 'results' not in element:
+               continue
             match_list = element['results']
             for match in match_list:
                 namesList = {}
@@ -78,7 +79,7 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
         
 #----------------------------------------------    
 
-#~~~~~~~~~~~~~~~~~~~~ Process Scientific Names List ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Process Scientific Names List for GNR
 def make_api_friendly_list(scNamesList):
     #process list    
     ListSize = len(scNamesList)    
@@ -95,6 +96,107 @@ def make_api_friendly_list(scNamesList):
     #print "List size:"+ str(ListSize)    
     return TobeResolvedNames
                 
+#-----------------------------------------------------
+#Process Scientific Names List for iPlant
+def make_iplant_api_friendly_list(scNamesList):
+    #process list for iPlant api    
+    ListSize = len(scNamesList)    
+    
+    count = 0;
+    TobeResolvedNames = ''
+    
+    for str_element in scNamesList:
+        count += 1
+        if(count != ListSize):
+            str_element += ',' 
+        TobeResolvedNames += str_element
+    
+    #print "List size:"+ str(ListSize)    
+    return TobeResolvedNames
+
+
+#~~~~~~~~~~~~~~~~~~~~ (iplantcollaborative-TNRS)~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#resolve scientific names using iplantcollaborative
+def resolve_sn_iplant(scNames, do_fuzzy_match, multi_match):
+    """
+    Source: http://tnrs.iplantcollaborative.org/api.html
+    """
+    iplant_api_url = "http://tnrs.iplantc.org/tnrsm-svc/matchNames"
+
+    if do_fuzzy_match:
+       match_type = 'all'  #'all' retrieves all matches
+    else:
+       match_type = 'best' #'best' retrieves only the single best match for each name submitted
+
+    payload = {
+        'names': scNames,
+        'retrieve': match_type
+    }
+    
+    encoded_payload = urllib.urlencode(payload)
+    response = requests.get(iplant_api_url, params=encoded_payload) 
+    #print response.text
+    
+    resolvedNamesList = [] 
+    data_json = json.loads(response.text)
+
+    if response.status_code == requests.codes.ok:  
+        rsnames_list = data_json['items']
+        
+        #get the group numbers
+        group_list = []
+        for element in rsnames_list:
+            if int(element['group']) not in group_list: 
+               group_list.append(int(element['group']))
+
+        #find the multiple matches of the same item 
+        for group in group_list:
+            match_list = []
+            for rsn in rsnames_list:
+                if int(rsn['group']) == group:
+                   match_list.append(rsn)
+                
+            mult_matches_list = []
+            for matched_element in match_list:
+                namesList = {} 
+                input_name = matched_element['nameSubmitted']
+                match_score = float(matched_element['scientificScore'])
+                taxon_url = matched_element['url']
+                if match_score >= 0.5:
+                   rs_name = matched_element['nameScientific']
+       	           namesList['search_string'] = input_name
+                   namesList['matched_name'] =  rs_name
+                   namesList['match_type'] = 'Exact' if match_score == 1 else 'Fuzzy'
+                   namesList['data_source'] = "Tropicos - Missouri Botanical Garden"      
+                   namesList['synonyms'] = []
+                   namesList['match_score'] = match_score  
+                   namesList['taxon_id'] = taxon_url[taxon_url.rfind("/")+1:len(taxon_url)]		
+                   mult_matches_list.append(namesList)	
+               
+                if not(multi_match) and do_fuzzy_match:
+                   break
+               
+            if not(do_fuzzy_match) and match_score != 1:
+               continue
+ 
+            resolvedNamesList.append({'input_name': input_name, 'matched_results': mult_matches_list})		
+
+        statuscode = 200
+        msg = "Success" 
+    else:
+        if 'message' in data_json:
+           msg = "iPlantcollaborative Error: "+data_json['message']
+
+        else:
+           msg = "Error: Response error while resolving names with iPlantcollaborative"
+        if 'status' in data_json:
+           statuscode = data_json['status']
+        
+        statuscode = response.status_code   
+
+    return {'resolvedNames': resolvedNamesList, 'status_code': statuscode, 'message': msg}
+        
+#----------------------------------------------    
 
 #~~~~~~~~~~~~~~~~~~~~ (OpenTreeofLife-TNRS)~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
@@ -235,6 +337,30 @@ def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match):
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
     meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://resolver.globalnames.org/"] }
+#"service_documentation": service_documentation}
+    final_result['meta_data'] = meta_data
+    final_result['total_names'] = result_len
+    #final_result['input_names'] = inputNamesList
+    
+    return final_result
+
+#-------------------------------------------------
+def resolve_names_iPlant(inputNamesList, do_fuzzy_match, multi_match): 
+    
+    start_time = time.time()
+    api_friendly_list = make_iplant_api_friendly_list(inputNamesList)	
+    final_result = resolve_sn_iplant(api_friendly_list, do_fuzzy_match, multi_match)    
+    end_time = time.time()
+    execution_time = end_time-start_time
+
+    result_len = len(final_result['resolvedNames'])
+    if result_len <= 0 and final_result['status_code'] == 200:
+        final_result['message'] = "Could not resolve any name"
+
+    #service_documentation = ""
+    #service result creation time
+    creation_time = datetime.datetime.now().isoformat()
+    meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://tnrs.iplantcollaborative.org"] }
 #"service_documentation": service_documentation}
     final_result['meta_data'] = meta_data
     final_result['total_names'] = result_len
