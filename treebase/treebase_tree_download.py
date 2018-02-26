@@ -42,12 +42,15 @@ def create_payload(species_list):
 #----------------------------------------
 # Downloads the source trees and return the tree ids
 def get_trees(species_list):
-    
-	payload = create_payload(species_list)
-	page = requests.get(url, params=payload, headers=headers)
-    #print page.url
-
 	tree_ids = []
+
+	payload = create_payload(species_list)
+	try:
+		page = requests.get(url, params=payload, headers=headers)
+    	#print page.url
+	except requests.exceptions.ConnectionError:
+		print "Connection error from Treebase API"
+		return tree_ids
 
 	NSMap = {
          'dcterms': 'http://purl.org/rss/1.0/',
@@ -59,7 +62,8 @@ def get_trees(species_list):
 	tree_root = ET.fromstring(page.content)
 
 	if tree_root.find('ns:item', NSMap) is None:
-		print "No Tree found"
+		#print "No Tree found"
+		return tree_ids
 	else:    
 		for child in tree_root.findall('ns:item', NSMap):
 			item_link = child.get('{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about', NSMap)
@@ -77,29 +81,24 @@ def get_trees(species_list):
 				tree.write(path=data_path+tree_id+".nex", schema="nexus")
 			tree_ids.append(tree_id)			
 			
-	print tree_ids
+	#print tree_ids
 	return tree_ids
 
 #------------------------------------------
 #check if nexus file exists
 def isFileExist(path):
 	if os.path.isfile(path+".nex"):
-		print "Nexus tree file exists"
+		#print "Nexus tree file exists"
 		return True
 	else:
 		return False
 
 #-------------------------------------------
-if __name__ == '__main__':
+#if __name__ == '__main__':
        
-	#taxa = ["Angelica archangelica", "Anthriscus cerefolium", "Foeniculum vulgare", "Apium graveolens", "Cicuta virosa","Coriandrum sativum"]
-	#taxa = ["Proteles cristatus", "Crocuta crocuta", "Parahyaena brunnea", "Hyaena hyaena", "Crocuta sivalensis", "Crocuta dietrichi", "Palinhyaena reperta", "Chasmaporthetes ossifragus", "Chasmaporthetes lunensis", "Chasmaporthetes exitelus", "Hyaenictis graeca", "Hyaenictis almerai", "Lycyaena crusafonti", "Lycyaena macrostoma", "Lycyaena chaeretis", "Hyaenictitherium hyaenoides", "Ictitherium pannonicum", "Ictitherium intuberculatum", "Ictitherium ibericum", "Proteles amplidentus", "Palinhyaena reperta", "Belbus beaumonti"]	
-	#taxa = ["Bos taurus", "Cervidae", "Hippopotamus amphibius", "Sus scrofa", "Tayassuidae", "Camelus", "Orcinus orca"]
 	#taxa = ["Solanum lycopersicum", "Carica papaya", "Prunus persica", "Vitis amurensis", "Musa sapientum", "Glycine max", "Theobroma cacao", "Oryza sativa"]
-	taxa = ["Panthera pardus", "Taxidea taxus", "Enhydra lutris", "Lutra lutra", "Canis latrans", "Canis lupus", "Mustela altaica", "Mustela eversmanni", "Martes americana", "Ictonyx striatus", "Canis anthus", "Lycalopex vetulus", "Lycalopex culpaeus", "Puma concolor", "Felis catus",
-"Leopardus jacobita"]
+	#taxa = ["Panthera pardus", "Taxidea taxus", "Enhydra lutris", "Lutra lutra", "Canis latrans", "Canis lupus", "Mustela altaica", "Mustela eversmanni", "Martes americana", "Ictonyx striatus", "Canis anthus", "Lycalopex vetulus", "Lycalopex culpaeus", "Puma concolor", "Felis catus","Leopardus jacobita"]
 
-	treebase_result = get_trees(taxa)    
-    #print "Final Result:"    
-	print "Number of trees matched: %d"%len(treebase_result)
+	#treebase_result = get_trees(taxa)    
+    #print "Number of trees matched: %d"%len(treebase_result)
 
