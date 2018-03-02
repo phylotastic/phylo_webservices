@@ -25,6 +25,7 @@ def match_species(speciesName):
  	encoded_payload = urllib.urlencode(payload)
  	response = requests.get(search_url, params=encoded_payload, headers=headers) 
     
+ 	numResults = 0
  	eol_response = {}
  	if response.status_code == requests.codes.ok:    
  		data_json = json.loads(response.text)
@@ -79,7 +80,7 @@ def get_species_info(speciesId):
  		species_info_json = json.loads(response.text)
  		return species_info_json
  	else:
- 		return {'message': "Error: Response error from EOL while obtaining species info", 'status_code': response.status_code}
+ 		return None
  		
 #--------------------------------------------
 def get_imageObjects(dataObjectsInfo):
@@ -172,9 +173,13 @@ def get_image_species_id(species_id, post=False):
  		length = len(dataObjects_lst)		
  		if length != 0:
  			images_species = get_imageObjects(dataObjects_lst)
- 					
+ 		else:
+			images_species = []
+
  		species_obj['images'] = images_species
- 		
+ 	else:
+ 		return {'message': "Error: Response error from EOL while obtaining species info", 'status_code': 500}	
+
  	response['message'] = "Success"
  	response['status_code'] = 200
  	response['species'] = species_obj

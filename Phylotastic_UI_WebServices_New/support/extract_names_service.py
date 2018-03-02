@@ -24,22 +24,25 @@ def get_sn_url(inputURL, sEngine=0):
     response = requests.get(api_url, params=encoded_payload, headers=headers) 
     
     scientificNamesList = []
-     
-    if response.status_code == requests.codes.ok:    
-        data_json = json.loads(response.text)
-    else:
-        data_json = json.loads(response.text)
-        if 'message' in data_json:
-           msg = "GNRD Error: "+data_json['message']
-        else:
-           msg = "Error: Response error while extracting names using GNRD"
-        if 'status' in data_json:
-           statuscode = data_json['status']
-        else:
-           statuscode = 500
+    try: 
+       if response.status_code == requests.codes.ok:    
+          data_json = json.loads(response.text)
+       else:
+          data_json = json.loads(response.text)
+          if 'message' in data_json:
+             msg = "GNRD Error: "+data_json['message']
+          else:
+             msg = "Error: Response error while extracting names using GNRD"
+          if 'status' in data_json:
+             statuscode = data_json['status']
+          else:
+             statuscode = 500
 
-        return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+          return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
+    except ValueError:
+          return {'input_url': inputURL, 'scientificNames': [], 'status_code': 500, 'message': "No JSON object could be decoded from GNRD response"}      
+
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
