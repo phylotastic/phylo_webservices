@@ -6,6 +6,11 @@ import requests
 import re
 import ast
 import datetime
+
+import google_dns
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+#Suppress warning for using a version of Requests which vendors urllib3 inside
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 #------------------------
 from ete3 import Tree, TreeStyle
 from ete3.parser.newick import NewickError
@@ -25,19 +30,27 @@ def get_inducedSubtree(ottIdList):
     }
     jsonPayload = json.dumps(payload_data)
     
-    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
-    max_tries = 20
-    remaining_tries = max_tries
-    while remaining_tries > 0:
-        try:
-            response = requests.post(resource_url, data=jsonPayload, headers=headers)
-            break
-        except requests.exceptions.ConnectionError:
-            time.sleep(20)
-        remaining_tries = remaining_tries - 1
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool due to DNS resolver problem--------
+    #+++++++++++Solution 1++++++++++++++++
+    #max_tries = 20
+    #remaining_tries = max_tries
+    #while remaining_tries > 0:
+    #    try:
+    #        response = requests.post(resource_url, data=jsonPayload, headers=headers)
+    #        break
+    #    except requests.exceptions.ConnectionError:
+    #        time.sleep(20)
+    #    remaining_tries = remaining_tries - 1
+    #+++++++++++++++++++++++++++++++++++++++
+    
+    #+++++++++++Solution 2++++++++++++++++
+    try: 
+       response = requests.post(resource_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(resource_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------
 
-    #response = requests.post(resource_url, data=jsonPayload, headers=headers)
-        
     newick_tree_str = ""
     inducedtree_info = {}
 
@@ -84,9 +97,8 @@ def subtree(ottidList):
 #get newick string for tree from OpenTree
 #input: list of resolved scientific names
 def get_tree_OT(resolvedNames):
- 	start_time = time.time()
- 	#service_url = 
- 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-5"
+ 	start_time = time.time() 
+ 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-5"
 
  	ListSize = len(resolvedNames)
     
@@ -159,19 +171,14 @@ def get_supporting_studies(ottIdList):
     }
  	jsonPayload = json.dumps(payload_data)
     
- 	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
- 	max_tries = 20
- 	remaining_tries = max_tries
- 	while remaining_tries > 0:
- 		try:
- 			response = requests.post(resource_url, data=jsonPayload, headers=headers)
- 			break
- 		except requests.exceptions.ConnectionError:
- 			time.sleep(20)
- 		remaining_tries = remaining_tries - 1
-     
- 	#response = requests.post(resource_url, data=jsonPayload, headers=headers)
-        
+    #+++++++++++Solution 2++++++++++++++++
+ 	try: 
+ 		response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError:
+ 		alt_url = google_dns.alt_service_url(resource_url)      
+ 		response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------    
+    
  	studies_info = {}
 
  	data_json = json.loads(response.text)  
@@ -219,17 +226,25 @@ def get_tree_version():
  	jsonPayload = json.dumps(payload_data)
     
  	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
- 	max_tries = 20
- 	remaining_tries = max_tries
- 	while remaining_tries > 0:
- 		try:
- 			response = requests.post(resource_url, data=jsonPayload, headers=headers)
- 			break
- 		except requests.exceptions.ConnectionError:
- 			time.sleep(20)
- 		remaining_tries = remaining_tries - 1
- 
- 	#response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	#+++++++++++Solution 1++++++++++++++++
+    #max_tries = 20
+    #remaining_tries = max_tries
+    #while remaining_tries > 0:
+    #    try:
+    #        response = requests.post(resource_url, data=jsonPayload, headers=headers)
+    #        break
+    #    except requests.exceptions.ConnectionError:
+    #        time.sleep(20)
+    #    remaining_tries = remaining_tries - 1
+    #+++++++++++++++++++++++++++++++++++++++
+    
+    #+++++++++++Solution 2++++++++++++++++
+ 	try: 
+ 		response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError:
+ 		alt_url = google_dns.alt_service_url(resource_url)
+ 		response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------
         
  	metadata = {}
  	if response.status_code == requests.codes.ok:
