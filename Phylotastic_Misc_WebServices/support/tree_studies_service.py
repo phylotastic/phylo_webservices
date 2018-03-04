@@ -4,7 +4,9 @@ import time
 import requests
 import datetime
 #import urllib
+import google_dns
 
+#===================================
 headers = {'content-type': 'application/json'}
 opentree_base_url = "https://api.opentreeoflife.org/v3/"
 
@@ -18,7 +20,14 @@ def get_study_ids(ottid_list):
     
     jsonPayload = json.dumps(payload)
     
-    response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+    try: 
+       response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(opentree_method_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #---------------------------------------------- 
+    #response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
     
     studyid_result = {}
 
@@ -53,7 +62,14 @@ def get_study_info(studyid):
     
     jsonPayload = json.dumps(payload)
     
-    response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+    try: 
+       response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(opentree_method_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    
+    #response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
     
     studyinfo_result = {}
     result_data_json = json.loads(response.text)
@@ -183,8 +199,14 @@ def get_ott_ids(taxa, context=None):
        payload['context_name'] = context
 
     jsonPayload = json.dumps(payload)
-   
-    response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
+    
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
+    try: 
+       response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(opentree_method_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #response = requests.post(opentree_method_url, data=jsonPayload, headers=headers)
     
     ott_id_list = []
     ott_id_result = {}
@@ -247,7 +269,7 @@ def get_studies_from_names(taxa_list, context=None):
     return final_result
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if __name__ == '__main__':
-	idlist = [3597191,3597209,3597205,60236,3597195]
+#if __name__ == '__main__':
+	#idlist = [3597191,3597209,3597205,60236,3597195]
 	#idlist = [532117,42322,42324,563151,42314]
-	print get_studies_from_ids(idlist)
+	#print get_studies_from_ids(idlist)
