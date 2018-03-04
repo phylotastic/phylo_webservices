@@ -1,5 +1,5 @@
 import requests
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+#from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import json
 import re
 
@@ -42,7 +42,7 @@ def get_ip_address(service_root):
 #-----------------------------------------------
 def alt_service_url(service_url):
 	#Suppress warning for using a version of Requests which vendors urllib3 inside
-	requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+	#requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 	#+++++++++++++++
 	slash_pos = [pos for pos, char in enumerate(service_url) if char == '/']
 	#curl -X POST https://api.opentreeoflife.org/v2/tnrsmatch_names -H "content-type:application/json" -d '{"names": ["Aster"]}'

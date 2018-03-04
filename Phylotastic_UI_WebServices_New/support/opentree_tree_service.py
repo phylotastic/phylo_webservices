@@ -8,9 +8,9 @@ import ast
 import datetime
 
 import google_dns
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+#from requests.packages.urllib3.exceptions import InsecureRequestWarning
 #Suppress warning for using a version of Requests which vendors urllib3 inside
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+#requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 #------------------------
 from ete3 import Tree, TreeStyle
 from ete3.parser.newick import NewickError

@@ -8,6 +8,8 @@ import urllib
 import datetime
 import types
 
+import google_dns
+
 #-------------------------------------------------------------------
 api_url = "http://resolver.globalnames.org/name_resolvers.json?"
 headers = {'content-type': 'application/json'}
@@ -208,17 +210,25 @@ def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
     }
     jsonPayload = json.dumps(payload)
 
-    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
-    max_tries = 20
-    remaining_tries = max_tries
-    while remaining_tries > 0:
-        try:
-            response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
-            break
-        except requests.exceptions.ConnectionError:
-            time.sleep(20)
-        remaining_tries = remaining_tries - 1   
-    
+    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool due to DNS resolver problem--------------
+    #+++++++++++Solution 1++++++++++++++++
+    #max_tries = 20
+    #remaining_tries = max_tries
+    #while remaining_tries > 0:
+    #    try:
+    #        response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
+    #        break
+    #    except requests.exceptions.ConnectionError:
+    #        time.sleep(20)
+    #    remaining_tries = remaining_tries - 1   
+    #++++++++++++++++++++++++++++++++++++++
+    #+++++++++++Solution 2++++++++++++++++
+    try: 
+       response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(opentree_api_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------
     #response = requests.post(opentree_api_url, data=jsonPayload, headers=headers)
     
     data_json = json.loads(response.text)

@@ -5,6 +5,8 @@ import time
 import pymongo
 import datetime 
 
+import google_dns
+
 #------------------------------------
 dbName = "TaxonSpecies"
 dataCollectionName ="taxonSpecieslist"
@@ -76,7 +78,15 @@ def match_taxon(taxonName):
         'names': [taxonName], 
         'do_approximate_matching': 'false'
     }
-    response = requests.post(resource_url, data=json.dumps(payload), headers=headers)
+    jsonPayload = json.dumps(payload)
+    #response = requests.post(resource_url, data=json.dumps(payload), headers=headers)
+    #+++++++++++Solution 2++++++++++++++++
+    try: 
+       response = requests.post(resource_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(resource_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------
     
     if response.status_code == requests.codes.ok: 
        data_json = json.loads(response.text)
@@ -108,8 +118,17 @@ def get_children(ottId):
         'ott_id': ottId,
         'include_children': 'true'    
     }
-    response = requests.post(resource_url, data=json.dumps(payload), headers=headers)
-     
+
+    jsonPayload = json.dumps(payload)
+    #response = requests.post(resource_url, data=json.dumps(payload), headers=headers)
+    #+++++++++++Solution 2++++++++++++++++
+    try: 
+       response = requests.post(resource_url, data=jsonPayload, headers=headers)
+    except requests.exceptions.ConnectionError:
+       alt_url = google_dns.alt_service_url(resource_url)
+       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------
+         
     data_json = json.loads(response.text)
     if response.status_code == requests.codes.ok:    
        message = "Success"
@@ -207,8 +226,8 @@ def check_species_by_country(species, country):
 def get_all_species(inputTaxon, ottid=None):
  	start_time = time.time()
 
- 	service_url = base_url + "all_species?taxon=" + inputTaxon
- 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-6"
+ 	#service_url = base_url + "all_species?taxon=" + inputTaxon
+ 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-6"
 
  	large_result = False
  	high_rank = None
@@ -282,8 +301,8 @@ def get_all_species(inputTaxon, ottid=None):
 def get_country_species(inputTaxon, country):
  	start_time = time.time()
 
- 	service_url = base_url + "country_species?taxon=" + inputTaxon + "&country=" + country 
- 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-7"
+ 	#service_url = base_url + "country_species?taxon=" + inputTaxon + "&country=" + country 
+ 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-7"
 
  	no_species_found = False
  	cache_exists = False
