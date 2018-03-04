@@ -4,10 +4,13 @@ import json
 import time
 import datetime
 
+import google_dns
+
 #----------------------------------------
 megatree_plants = ["R20120829", "smith2011", "zanne2014"]
 megatree_mammals = ["binindaemonds2007"]
 
+headers={'content-type': 'application/json'}
 #------------------------------------------
 #get a tree using phylomatic
 def get_phylomatic_tree(megatree_id, taxa):
@@ -49,10 +52,16 @@ def get_taxa_context(taxaList):
     }
 
  	jsonPayload = json.dumps(payload_data)
-    
- 	response = requests.post(resource_url, data=jsonPayload, headers={'content-type': 'application/json'})
-        
- 	
+ 
+ 	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool due to DNS resolver problem--------------
+ 	try: 
+ 		response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError:
+ 		alt_url = google_dns.alt_service_url(resource_url)
+ 		response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+   
+ 	#response = requests.post(resource_url, data=jsonPayload, headers={'content-type': 'application/json'})
+        	
  	if response.status_code == requests.codes.ok:
  		json_response = json.loads(response.text)
  		context = json_response['context_name']
@@ -66,7 +75,14 @@ def get_taxa_context(taxaList):
 def get_contexts():
  	resource_url = "https://api.opentreeoflife.org/v2/tnrs/contexts"    
     
- 	response = requests.post(resource_url, headers={'content-type': 'application/json'})
+ 	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool due to DNS resolver problem--------------
+ 	try: 
+ 		response = requests.post(resource_url, headers=headers)
+ 	except requests.exceptions.ConnectionError:
+ 		alt_url = google_dns.alt_service_url(resource_url)
+ 		response = requests.post(alt_url, headers=headers, verify=False)        
+   
+ 	#response = requests.post(resource_url, headers={'content-type': 'application/json'})
  	
  	if response.status_code == requests.codes.ok:
  		return response.text
@@ -148,7 +164,7 @@ def tree_controller(taxaList):
  	execution_time = end_time-start_time
     #service result creation time
  	creation_time = datetime.datetime.now().isoformat()
- 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-18"
+ 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-18"
  	source_urls = ["http://phylodiversity.net/phylomatic/"]
  	
 	meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': source_urls} #'service_documentation': service_documentation
