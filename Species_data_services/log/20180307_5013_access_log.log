@@ -1,0 +1,7 @@
+127.0.0.1 - - [07/Mar/2018:21:00:31] "GET /phylotastic_ws/sd/ HTTP/1.1" 200 85 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [07/Mar/2018:21:01:06] "GET /phylotastic_ws/sd/get_habitat_conservation?species=Vulpes%20vulpes|%20Panthera%20tigris HTTP/1.1" 500 81 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [07/Mar/2018:21:02:09] "GET /phylotastic_ws/sd/get_habitat_conservation?species=Vulpes%20vulpes|%20Panthera%20tigris HTTP/1.1" 500 39 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [07/Mar/2018:21:04:16] "GET /phylotastic_ws/sd/get_habitat_conservation?species=Vulpes%20vulpes|%20Panthera%20tigris HTTP/1.1" 500 39 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [07/Mar/2018:21:05:18] "GET /phylotastic_ws/sd/get_habitat_conservation?species=Vulpes%20vulpes|%20Panthera%20tigris HTTP/1.1" 500 39 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [07/Mar/2018:21:09:45] "GET /phylotastic_ws/sd/get_habitat_conservation?species=Vulpes%20vulpes|%20Panthera%20tigris HTTP/1.1" 200 997 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [07/Mar/2018:21:20:01] "GET /phylotastic_ws/sd/get_habitat_conservation?species=Felis%20catis HTTP/1.1" 200 240 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"

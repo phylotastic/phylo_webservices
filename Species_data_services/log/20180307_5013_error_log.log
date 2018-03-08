@@ -1,0 +1,207 @@
+[07/Mar/2018:21:00:07] ENGINE Bus STARTING
+[07/Mar/2018:21:00:07] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:00:07] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:00:07] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:00:07] ENGINE Bus STARTED
+[07/Mar/2018:21:01:06]  ====HabitatConservationError====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 119, in get_habitat_conservation
+    service_result = habitat_conservation_service_EOL.get_habitat_conservation(sp_lst)
+AttributeError: 'module' object has no attribute 'get_habitat_conservation'
+[07/Mar/2018:21:02:00] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:02:00] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:02:00] ENGINE Bus STOPPING
+[07/Mar/2018:21:02:00] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:02:00] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:02:00] ENGINE Bus STOPPED
+[07/Mar/2018:21:02:00] ENGINE Bus EXITING
+[07/Mar/2018:21:02:00] ENGINE Bus EXITED
+[07/Mar/2018:21:02:00] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:02:00] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:02:01] ENGINE Bus STARTING
+[07/Mar/2018:21:02:01] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:02:01] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:02:01] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:02:01] ENGINE Bus STARTED
+[07/Mar/2018:21:02:09]  ====HabitatConservationError====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 119, in get_habitat_conservation
+    service_result = habitat_conservation_service_EOL.get_habitat_conservation(sp_lst)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 91, in get_habitat_conservation
+    match_species_result = match_species(inputSpecies)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 22, in match_species
+    EOL_API_Key = get_api_key()
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 16, in get_api_key
+    eol_api_key = config.get('EOL', 'api_key')
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'EOL'
+[07/Mar/2018:21:03:54] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/__init__.py changed.
+[07/Mar/2018:21:03:54] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:03:54] ENGINE Bus STOPPING
+[07/Mar/2018:21:03:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:03:54] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:03:54] ENGINE Bus STOPPED
+[07/Mar/2018:21:03:54] ENGINE Bus EXITING
+[07/Mar/2018:21:03:54] ENGINE Bus EXITED
+[07/Mar/2018:21:03:54] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:03:54] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:04:13] ENGINE Bus STARTING
+[07/Mar/2018:21:04:13] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:04:13] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:04:13] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:04:13] ENGINE Bus STARTED
+[07/Mar/2018:21:04:16]  ====HabitatConservationError====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 119, in get_habitat_conservation
+    service_result = habitat_conservation_service_EOL.get_habitat_conservation(sp_lst)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 91, in get_habitat_conservation
+    match_species_result = match_species(inputSpecies)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 22, in match_species
+    EOL_API_Key = get_api_key()
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 16, in get_api_key
+    eol_api_key = config.get('EOL', 'api_key')
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'EOL'
+[07/Mar/2018:21:05:14] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:05:14] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:05:14] ENGINE Bus STOPPING
+[07/Mar/2018:21:05:14] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:05:14] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:05:14] ENGINE Bus STOPPED
+[07/Mar/2018:21:05:14] ENGINE Bus EXITING
+[07/Mar/2018:21:05:14] ENGINE Bus EXITED
+[07/Mar/2018:21:05:14] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:05:14] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:05:14] ENGINE Bus STARTING
+[07/Mar/2018:21:05:14] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:05:14] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:05:14] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:05:14] ENGINE Bus STARTED
+[07/Mar/2018:21:05:18]  ====HabitatConservationError====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 119, in get_habitat_conservation
+    service_result = habitat_conservation_service_EOL.get_habitat_conservation(sp_lst)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 91, in get_habitat_conservation
+    match_species_result = match_species(inputSpecies)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 22, in match_species
+    EOL_API_Key = get_api_key()
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py", line 16, in get_api_key
+    eol_api_key = config.get('EOL', 'api_key')
+  File "/usr/lib/python2.7/ConfigParser.py", line 607, in get
+    raise NoSectionError(section)
+NoSectionError: No section: 'EOL'
+[07/Mar/2018:21:09:31] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:09:31] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:09:31] ENGINE Bus STOPPING
+[07/Mar/2018:21:09:31] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:09:31] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:09:31] ENGINE Bus STOPPED
+[07/Mar/2018:21:09:31] ENGINE Bus EXITING
+[07/Mar/2018:21:09:31] ENGINE Bus EXITED
+[07/Mar/2018:21:09:31] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:09:31] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:09:32] ENGINE Bus STARTING
+[07/Mar/2018:21:09:32] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:09:32] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:09:32] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:09:32] ENGINE Bus STARTED
+[07/Mar/2018:21:12:09] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:12:09] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:12:09] ENGINE Bus STOPPING
+[07/Mar/2018:21:12:09] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:12:09] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:12:09] ENGINE Bus STOPPED
+[07/Mar/2018:21:12:09] ENGINE Bus EXITING
+[07/Mar/2018:21:12:09] ENGINE Bus EXITED
+[07/Mar/2018:21:12:09] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:12:09] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:12:09] ENGINE Bus STARTING
+[07/Mar/2018:21:12:09] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:12:09] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:12:09] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:12:10] ENGINE Bus STARTED
+[07/Mar/2018:21:14:35] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:14:35] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:14:35] ENGINE Bus STOPPING
+[07/Mar/2018:21:14:35] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:14:35] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:14:35] ENGINE Bus STOPPED
+[07/Mar/2018:21:14:35] ENGINE Bus EXITING
+[07/Mar/2018:21:14:35] ENGINE Bus EXITED
+[07/Mar/2018:21:14:35] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:14:35] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:14:36] ENGINE Bus STARTING
+[07/Mar/2018:21:14:36] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:14:36] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:14:36] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:14:36] ENGINE Bus STARTED
+[07/Mar/2018:21:14:48] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:14:48] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:14:48] ENGINE Bus STOPPING
+[07/Mar/2018:21:14:48] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:14:48] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:14:48] ENGINE Bus STOPPED
+[07/Mar/2018:21:14:48] ENGINE Bus EXITING
+[07/Mar/2018:21:14:48] ENGINE Bus EXITED
+[07/Mar/2018:21:14:48] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:14:48] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:14:49] ENGINE Bus STARTING
+[07/Mar/2018:21:14:49] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:14:49] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:14:49] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:14:49] ENGINE Bus STARTED
+[07/Mar/2018:21:16:44] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:16:44] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:16:44] ENGINE Bus STOPPING
+[07/Mar/2018:21:16:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:16:44] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:16:44] ENGINE Bus STOPPED
+[07/Mar/2018:21:16:44] ENGINE Bus EXITING
+[07/Mar/2018:21:16:44] ENGINE Bus EXITED
+[07/Mar/2018:21:16:44] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:16:44] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:16:45] ENGINE Bus STARTING
+[07/Mar/2018:21:16:45] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:16:45] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:16:45] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:16:45] ENGINE Bus STARTED
+[07/Mar/2018:21:18:09] ENGINE Keyboard Interrupt: shutting down bus
+[07/Mar/2018:21:18:09] ENGINE Bus STOPPING
+[07/Mar/2018:21:18:09] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:18:09] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:18:09] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:18:09] ENGINE Bus STOPPED
+[07/Mar/2018:21:18:09] ENGINE Bus EXITING
+[07/Mar/2018:21:18:09] ENGINE Bus EXITED
+[07/Mar/2018:21:18:09] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:19:30] ENGINE Bus STARTING
+[07/Mar/2018:21:19:30] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:19:30] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:19:31] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:19:31] ENGINE Bus STARTED
+[07/Mar/2018:21:20:18] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/habitat_conservation_service_EOL.py changed.
+[07/Mar/2018:21:20:18] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:20:18] ENGINE Bus STOPPING
+[07/Mar/2018:21:20:18] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:20:18] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:20:18] ENGINE Bus STOPPED
+[07/Mar/2018:21:20:18] ENGINE Bus EXITING
+[07/Mar/2018:21:20:18] ENGINE Bus EXITED
+[07/Mar/2018:21:20:18] ENGINE Waiting for child threads to terminate...
+[07/Mar/2018:21:20:18] ENGINE Re-spawning Species_data_services_Running.py
+[07/Mar/2018:21:20:18] ENGINE Bus STARTING
+[07/Mar/2018:21:20:18] ENGINE Started monitor thread '_TimeoutMonitor'.
+[07/Mar/2018:21:20:18] ENGINE Started monitor thread 'Autoreloader'.
+[07/Mar/2018:21:20:19] ENGINE Serving on http://0.0.0.0:5013
+[07/Mar/2018:21:20:19] ENGINE Bus STARTED
+[07/Mar/2018:21:21:49] ENGINE Keyboard Interrupt: shutting down bus
+[07/Mar/2018:21:21:49] ENGINE Bus STOPPING
+[07/Mar/2018:21:21:49] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[07/Mar/2018:21:21:49] ENGINE Stopped thread 'Autoreloader'.
+[07/Mar/2018:21:21:49] ENGINE Stopped thread '_TimeoutMonitor'.
+[07/Mar/2018:21:21:49] ENGINE Bus STOPPED
+[07/Mar/2018:21:21:49] ENGINE Bus EXITING
+[07/Mar/2018:21:21:49] ENGINE Bus EXITED
+[07/Mar/2018:21:21:49] ENGINE Waiting for child threads to terminate...
