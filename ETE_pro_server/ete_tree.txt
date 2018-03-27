@@ -1,0 +1,52 @@
+   ((((((Hydropuntia edulis,Chondrus crispus,Gracilaria edulis,Gelidiella acerosa)Rhodymeniophycidae,Palmaria palmata)Florideophycidae,(((Rosa rugosa,Helianthus annuus)Pentapetalae,Magnolia laevifolia)Mesangiospermae,(Ulva lactuca,Chlorella vulgaris))Chloroplastida),((Laminaria digitata,Saccharina latissima)Laminariaceae,Sargassum echinocarpum,(Undaria pinnatifida,Alaria esculenta)Alariaceae,Eisenia bicyclis,Cladosiphon okamuranus)),(Homo sapiens,(Canis lupus,Equus caballus))Boreoeutheria)Eukaryota,Nostoc commune)cellular organisms;
+   
+   
+http://phylo.cs.nmsu.edu:8080/TreeViewer/demo/production_test.html
+   
+
+#=============Start uwsgi process==================
+Command:
+---------
+
+uwsgi --http :8989 --wsgi-file webapi_pro.py --master --processes 4 --stats 127.0.0.1:9191
+
+
+ete_pro.ini file:
+-----------------
+[uwsgi]
+http = :3031
+wsgi-file = webapi_pro.py
+master = true
+processes = 4
+stats = 127.0.0.1:9191
+pidfile=/tmp/ete_pro.pid
+daemonize=/var/log/ete_pro.log
+
+----------------------------
+Start the server
+----------------
+$ uwsgi ete_pro.ini
+
+Stop the server
+----------------
+$ uwsgi --stop /tmp/ete_pro.pid
+
+
+#==============KILL uwsgi process===================
+
+Option-1:
+----------
+
+killall -SIGKILL uwsgi
+
+Option-2:
+----------
+for pid in `ps -ef | grep uwsgi | grep -v grep | awk '{print $2}'`
+do
+	echo killing $pid
+	sudo kill -s 9 $pid
+done	 	
+
+Option-3
+---------
+sudo service uwsgi start|stop|restart|reload

@@ -1,0 +1,27 @@
+https://docs.ovh.com/fr/development/how-to-run-bottle-uwsgi-nginx/
+http://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html#the-first-wsgi-application
+http://uwsgi-docs.readthedocs.io/en/latest/Upstart.html
+https://www.digitalocean.com/community/tutorials/the-upstart-event-system-what-it-is-and-how-to-use-it
+http://smekalov.me/start-test-python-using-uwsgi/
+https://chriswarrick.com/blog/2016/02/10/deploying-python-web-apps-with-nginx-and-uwsgi-emperor/
+https://www.digitalocean.com/community/tutorials/how-to-set-up-uwsgi-and-nginx-to-serve-python-apps-on-ubuntu-14-04
+https://linode.com/docs/web-servers/nginx/how-to-configure-nginx/
+
+https://docs.djangoproject.com/en/2.0/howto/deployment/wsgi/uwsgi/
+http://zarnovican.github.io/2016/02/15/uwsgi-graceful-reload/
+
+======================================================================
+*** uWSGI is ready, launch it with /usr/local/bin/uwsgi ***
+sudo uwsgi --ini /etc/uwsgi/apps-available/hello-runabove.ini
+
+uwsgi --http 127.0.0.1:3031 --wsgi-file /usr/share/nginx/html/hello-runabove/app.py --callable app --processes 1 --stats 127.0.0.1:9191
+
+
+======================================================================
+uwsgi --http 127.0.0.1:3032 --wsgi-file webapi_pro.py --processes 1 --stats 127.0.0.1:9191
+
+
+
+==================================
+Update ETE:
+pip install --upgrade git+https://github.com/etetoolkit/ete/
