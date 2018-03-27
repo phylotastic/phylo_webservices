@@ -27,8 +27,6 @@ from support import species_to_image_service_EOL
 from support import species_to_url_service_EOL
 from support import taxon_genome_species_service_NCBI
 
-from support import common_name_species_service_NCBI
-
 from __builtin__ import True
 
 #==============================================================
@@ -1351,54 +1349,6 @@ class Get_Tree_PhyloT_Service_API(object):
     tree.exposed = True
 
 
-#=======================CommonName_Species_Service============================
-class Get_CommonName_Species_Service_API(object):
-    def index(self):
-        return "CommonName_Species_Service_API : Get species name from common name";
-    #---------------------------------------------
-    @cherrypy.tools.json_out()
-    def get_scientific_name(self,**request_data):
-        try:
-            http_method = cherrypy.request.method
-            if http_method not in ['GET', 'POST']:
-               return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
-
-            common_name = str(request_data['common_name']).strip();
-
-            if len(common_name) == 0: 
-               raise CustomException("'common_name' parameter must have a valid value")
-
-        except KeyError, e:
-            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
-            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
-        except Exception, e:
-            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
-        
-        try:
-            service_result = common_name_species_service_NCBI.get_scientific_name(common_name)   
-            #-------------log request------------------   
-            #result_json = json.loads(service_result)
-            result_json = service_result
-            header = cherrypy.request.headers
-            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': result_json['status_code']}
-            insert_log(log)
-            #------------------------------------------
-            if service_result['status_code'] == 200:
-               return service_result
-            else:
-               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
-
-        except Exception, e:
-            cherrypy.log("=====NCBICommonError=====", traceback=True)
-            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
-
-
-    #---------------------------------------------
-    index.exposed = True
-    get_scientific_name.exposed = True
-
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def CORS():
     #print "Run CORS"
@@ -1458,7 +1408,7 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Get_Tree_Phylomatic_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pm"),conf_thanhnh )
     cherrypy.tree.mount(Get_Tree_PhyloT_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group4),"pt"),conf_thanhnh )
 
-    cherrypy.tree.mount(Get_CommonName_Species_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group7),"ncbi"),conf_thanhnh )
+    #cherrypy.tree.mount(Get_CommonName_Species_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group7),"ncbi"),conf_thanhnh )
 	
     cherrypy.engine.start()
     cherrypy.engine.block()
