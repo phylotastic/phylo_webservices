@@ -126,17 +126,18 @@ def get_sn_text(inputTEXT, sEngine=0):
         else:
            statuscode = 500
 
-        return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        #return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
+        return {'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
     token_result = get_token_result(data_json)
     
     if token_result['total'] == 0:
-         return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
+         return {'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
          scientificNamesList = get_sn(token_result['names'])
          parametersList = token_result['parameters']
          #scientificNamesList = uniquify(all_scientificNamesList) 
-         return {'input_text': inputTEXT, 'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200,'message': "Success"} 
+         return {'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200,'message': "Success"} 
 
 #-----------------------------------------------------------
 # removes duplicates from a list

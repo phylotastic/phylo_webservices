@@ -26,6 +26,7 @@ from support import phyloT_tree_service
 from support import species_to_image_service_EOL
 from support import species_to_url_service_EOL
 from support import taxon_genome_species_service_NCBI
+from support import services_helper
 
 from __builtin__ import True
 
@@ -472,6 +473,11 @@ class Find_ScientificNames_Service_API(object):
                   return return_response_error(400,"Error: 'engine' parameter must have a valid value","JSON") 
             else:
                engine = '0'
+            if not services_helper.is_http_url(url):
+               raise CustomException("'url' parameter must have a valid value")
+            if not services_helper.does_url_exist(url):
+               raise CustomException("'url' parameter must have a valid value")
+
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         except CustomException, e:
@@ -615,6 +621,12 @@ class Find_ScientificNames_TaxonFinder_Service_API(object):
             url = str(request_data['url']).strip()
             if len(url) == 0:
                raise CustomException("'url' parameter must have a valid value")
+
+            if not services_helper.is_http_url(url):
+               raise CustomException("'url' parameter must have a valid value")
+            if not services_helper.does_url_exist(url):
+               raise CustomException("'url' parameter must have a valid value")
+
             
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
