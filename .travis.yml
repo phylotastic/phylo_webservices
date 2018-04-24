@@ -6,5 +6,11 @@ install:
   - pip install -r requirements.txt
   - pip install requests
   - pip install newick
+notifications:
+  email:
+    recipients:
+      - abusalehmdtayeen@gmail.com
+    on_success: change
+    on_failure: always
 script:
-  - python Phylotastic_Automatic_Testing/runTest.py
+- python -m unittest discover -s tests -p 'test_*.py' --verbose
