@@ -81,11 +81,10 @@ class TestMdGetStudies(MdStudiesTester):
         self.assertTrue(u'http://dx.doi.org/10.1126/science.1122277' in x.json()[u'studies'][0]['PublicationDOI'])
 
 
-    @unittest.skip("temporarily to fix later")
+    #@unittest.skip("temporarily to fix later")
     def test_example_2(self):
         x = self.start_request_tests(example_2)
         mess = x.json().get(u'message')
-        print mess
         self.assert_success(x, mess)
         # Check whether the number of studies in the result is more than the minimum expected
         self.assertTrue(len(x.json()[u'studies']) >= 2)

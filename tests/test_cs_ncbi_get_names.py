@@ -1,14 +1,14 @@
 # cs/ncbi/get_scientific_names
-# Get supported studies of an induced tree from OpenTreeOfLife.
+# get scientific names of a list of species from its common names
 
 import sys, unittest, json
 sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5013, "OToL_supported_studies", 'cs/ncbi/get_scientific_names')
+service = webapp.get_service(5013, "NCBI_common_name", 'cs/ncbi/get_scientific_names')
 
-class MdStudiesTester(webapp.WebappTestCase):
+class NCBICommonNameTester(webapp.WebappTestCase):
 
     def test_no_parameter(self):
         """Test no parameters"""
@@ -18,7 +18,7 @@ class MdStudiesTester(webapp.WebappTestCase):
         x = service.get_request(m, {}).exchange()
         mess = x.json().get(u'message')
         self.assert_response_status(x, 400)
-        self.assertTrue('Missing parameter "list" in "%s"' % x.json()[u'message'])
+        self.assertTrue('Missing parameter "commonnames" in "%s"' % x.json()[u'message'])
         
 
     def test_bad_parameter(self):
@@ -26,7 +26,7 @@ class MdStudiesTester(webapp.WebappTestCase):
 
         m = self.__class__.http_method()
         service = self.__class__.get_service()
-        x = service.get_request(m, {'bad_param': "532117|42322"}).exchange()
+        x = service.get_request(m, {'common_name': "fish|dog"}).exchange()
 
         self.assert_response_status(x, 400)
         # Check for informativeness
@@ -35,25 +35,21 @@ class MdStudiesTester(webapp.WebappTestCase):
                         'no "parameter" in "%s"' % mess)
 
   
-    def test_invalid_parameter_value(self):
-        """Test invalid parameter value
-        """
+    def test_bad_common_name(self):
+        """Test nonexistant common name"""
 
-        m = self.__class__.http_method()
         service = self.__class__.get_service()
-        print m
-        request = self.__class__.studies_request(m, {'list': [532117,42322,42324,563151,42314], 'list_type': 'invalidtype'})
+        request = self.__class__.com_name_request(['Nosuchtaxon', 'nonexistant'])
         x = request.exchange()
-
-        mess = x.json().get(u'message')
-        self.assertEqual(x.status_code, 400, mess)
-        #self.assertTrue(u'valid value' in mess, '"list_type" parameter in "%s"' % mess)
-        self.assertTrue(u'parameter' in mess,
-                        'no "parameter" in "%s"' % mess)
-
+        #x = service.get_request(m, {u'species': u'Nosuchtaxonia notatall'}).exchange()
+        # json.dump(x.to_dict(), sys.stdout, indent=2)
+        self.assert_success(x)
+        self.assertEqual(x.json()[u'result'][0][u'matched_names'], [])
+        self.assertEqual(x.json()[u'result'][1][u'matched_names'], [])
 
 
-class TestMdGetStudies(MdStudiesTester):
+
+class TestCsGetNCBI(NCBICommonNameTester):
     @classmethod
     def get_service(self):
         return service
@@ -64,11 +60,8 @@ class TestMdGetStudies(MdStudiesTester):
     
     
     @classmethod
-    def studies_request(cls, m, params):
-        if m == 'POST':
-           return service.get_request('POST', {'list': params['list'], 'list_type': params['list_type']})
-        else:
-           return service.get_request('GET', {'list': '|'.join(str(lstid) for lstid in params['list']), 'list_type': params['list_type']})
+    def com_name_request(cls, cnlist):
+        return service.get_request('GET', {'commonnames': '|'.join(cnlist)})
 
 
     def test_example_1(self):
@@ -76,29 +69,25 @@ class TestMdGetStudies(MdStudiesTester):
         mess = x.json().get(u'message')
         self.assert_success(x, mess)
         # Check whether the number of studies in the result is more than the minimum expected
-        self.assertTrue(len(x.json()[u'studies']) >= 1)
+        self.assertTrue(len(x.json()[u'result'][0][u'matched_names']) >= 1)
         # Check whether result is what it should be according to docs
-        self.assertTrue(u'http://dx.doi.org/10.1126/science.1122277' in x.json()[u'studies'][0]['PublicationDOI'])
+        self.assertEqual(x.json()[u'result'][0][u'matched_names'][0]['scientific_name'], 'Balaenoptera musculus')
 
-
-    @unittest.skip("temporarily to fix later")
-    def test_example_2(self):
-        x = self.start_request_tests(example_2)
-        mess = x.json().get(u'message')
-        print mess
-        self.assert_success(x, mess)
-        # Check whether the number of studies in the result is more than the minimum expected
-        self.assertTrue(len(x.json()[u'studies']) >= 2)
+        self.assertTrue(len(x.json()[u'result'][1][u'matched_names']) >= 1)
         # Check whether result is what it should be according to docs
-        self.assertTrue(u'http://dx.doi.org/10.1642/auk-14-110.1' in x.json()[u'studies'][1]['PublicationDOI'])
+        self.assertEqual(x.json()[u'result'][1][u'matched_names'][0]['scientific_name'], 'Xiphias gladius')
 
+        self.assertTrue(len(x.json()[u'result'][2][u'matched_names']) >= 1)
+        # Check whether result is what it should be according to docs
+        self.assertEqual(x.json()[u'result'][2][u'matched_names'][0]['scientific_name'], 'Orcinus orca')
 
+    
 
 null=None; false=False; true=True
 
-example_1 = service.get_request('GET', {u'list': u'532117|42322|42324|563151|42314', u'list_type': u'ottids'})
-example_2 = service.get_request('GET', {u'list': u'Setophaga striata|Setophaga magnolia|Setophaga angelae|Setophaga plumbea|Setophaga virens', u'list_type': u'taxa'})
+example_1 = service.get_request('GET', {u'commonnames': 'blue whale|swordfish|killer whale'})
+
 
 if __name__ == '__main__':
-    print >>sys.stdout, '\n=================OToL_supported_studies(GET)=========================' 
+    print >>sys.stdout, '\n=================NCBI_common_name(GET)=========================' 
     webapp.main()
