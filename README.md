@@ -24,4 +24,4 @@ __Phylotastic Web Services__ are grouped into the following categories:
 
 **[Miscellaneous services](https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription#miscellaneous)** :  services for different use cases.
 
-
+**[Species data services](https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription#species-data-services)** : services for retrieving traits of species.
