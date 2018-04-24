@@ -1,0 +1,203 @@
+#gt/ot/get_tree
+
+"""
+Here's how I made the some-names.txt file (list of sample names):
+
+    egrep "genus|species" ~/a/ot/repo/reference-taxonomy/r/gbif-20160729/resource/taxonomy.tsv \
+    | gcut -f 5 \
+    | tail -50000 \
+    > some-names.txt
+
+I chose the number 50000 (names) in order to end up with a file of about a million bytes.
+
+The file is in the git repository, so there should be no call to regenerate it.
+"""
+
+import sys, unittest, json, codecs
+sys.path.append('./')
+sys.path.append('../')
+import webapp
+
+service = webapp.get_service(5004, "OToL_wrapper_Tree", 'gt/ot/get_tree')
+
+the_names = None
+
+discard_unicode = True
+
+def get_names():
+    """Get a long list of names, for testing purposes.
+    The list is stored in a file.  All the names in this file happen to 
+    come from the GBIF backbone taxonomy dump."""
+
+    global the_names
+    if the_names == None:
+        names_path = webapp.find_resource('some-names.txt')
+        with codecs.open(names_path, 'r', 'utf-8') as infile:
+            the_names = []
+            for line in infile:
+                if discard_unicode:
+                    try:
+                        line.encode('ascii')
+                    except:
+                        continue
+                the_names.append(line.strip())
+            print len(the_names), 'names'
+    return the_names
+
+class GtTreeTester(webapp.WebappTestCase):
+
+    def test_no_parameter(self):
+        """Test no parameters.
+        """
+
+        request = service.get_request(self.__class__.http_method(), {})
+        x = self.start_request_tests(request)
+        self.assert_response_status(x, 400)
+
+        # Test for informativeness
+        self.assertTrue('Missing parameter "taxa" in "%s"' % x.json()[u'message'])
+        #self.assertTrue(u'taxa' in x.json()[u'message'], 'no "taxa" in "%s"' % x.json()[u'message'])
+
+
+    def test_no_names(self):
+        """Test edge case: parameter name 'taxa' is supplied, but there is no value.
+        """
+
+        request = service.get_request(self.__class__.http_method(), {'taxa': ''})
+        x = self.start_request_tests(request)
+        self.assertTrue(x.status_code >= 400)
+        # Error: 'taxa' parameter must have a valid value
+        self.assertTrue(u'taxa' in x.json()[u'message'], 'no "taxa" in "%s"' % x.json()[u'message'])
+
+
+    def test_some_bad(self):
+        """Two good names, one bad.
+        Call should succeed even if some names are unrecognized, yes?"""
+
+        #params = {'taxa': '|'.join(['Pseudacris crucifer', 'Plethodon cinereus', 'Nosuch taxon'])}
+        #request = service.get_request(self.__class__.http_method(), params)
+        #m = self.__class__.http_method()
+        #x = service.get_request(m, {}).exchange()
+        #Above three lines were causing a unexpected error in the original framework. 
+  
+        service = self.__class__.get_service()
+        
+        request = self.__class__.tree_request(['Pseudacris crucifer', 'Plethodon cinereus', 'Nosuch taxon'])        
+        x = request.exchange()
+
+        #x = self.start_request_tests(request)
+        
+        mess = x.json().get(u'message')
+        # json.dump(x.to_dict(), sys.stdout, indent=2)
+        self.assert_success(x, mess)
+ 
+
+    def test_bad_names(self):
+        """Try a set of names none of which will be seen as a taxon name.  
+        Expect error since we need at least three good names to make a tree."""
+
+        #params = {'taxa': '|'.join(['Unicornx', 'Dragonx', 'Pegasusx'])}
+        #request = service.get_request(self.__class__.http_method(), params)
+        #x = self.start_request_tests(request)
+        #Above three lines were causing a unexpected error in the original framework. 
+
+        service = self.__class__.get_service()
+        request = self.__class__.tree_request(['Unicornx', 'Dragonx', 'Pegasusx'])        
+        x = request.exchange()
+
+        self.assertTrue(x.status_code >= 400)
+        # Expecting "Not enough valid nodes provided to construct a subtree 
+        #   (there must be at least two)"
+        mess = x.json().get(u'message')
+        self.assertTrue(u'least' in mess, 'no "least" in message: "%s"' % mess)
+
+
+    # Names containing non-ASCII Unicode all fail with:
+    # "message": "Error: 'ascii' codec can't encode character u'\\xe1' in position 5529: ordinal not in range(128)"
+    # TBD: issue - all methods should deal in Unicode, not ASCII.
+
+    # After filtering out unicode, we get, at 512 names:
+    # "message": "Error: 'results'"
+    # No 'informative message' in the response.  TBD: Issue.
+    # (It's probably because an Open Tree name lookup failed.)
+
+    # 256 names works (for gt/ot/get_tree).  512 doesn't.
+
+    @unittest.skip("temporarily to save time")
+    def test_bigger_and_bigger(self):
+        """Try the service with increasingly long name lists."""
+
+        names = get_names()
+        for i in range(6, 19):
+            if i > len(names): break
+            n = 2**i
+            param = '|'.join(names[0:n]) # Asssume GET
+            print 'Trying %s names' % n
+            request = service.get_request(self.__class__.http_method(), {'taxa': param})
+            x = self.start_request_tests(request)
+            print x.time
+            if x.status_code != 200:
+                  with open('tmp.tmp', 'w') as outfile:
+                    json.dump(x.to_dict(), outfile, indent=2)
+                    outfile.write('\n')
+            self.assert_success(x)
+            self.assertTrue(u'newick' in x.json())
+            newick = x.json()[u'newick']
+            self.assertTrue(len(newick) > len(param),
+                            '%s %s' % (len(newick), len(param)))
+
+    
+    def test_example_1(self):
+        """Test example_1 from documentation"""
+
+        x = self.start_request_tests(example_1)
+        self.assert_success(x)
+        
+        self.assertTrue(u'newick' in x.json())
+        self.assertTrue(u'ott754612' in x.json()[u'newick'])
+        self.assertTrue(u'tree_metadata' in x.json())
+        m = x.json()[u'tree_metadata']
+        self.assertTrue(u'supporting_studies' in m)
+        self.assertTrue(len(m[u'supporting_studies']) > 2)
+
+   
+    def test_example_2(self):
+        """Test example_2 from documentation"""
+
+        x = self.start_request_tests(example_2)
+        self.assert_success(x)
+        # Insert: whether result is what it should be according to docs
+        # MRCA = Setophaga = OTT 285198
+        self.assertTrue(u'newick' in x.json())
+        self.assertTrue(u'ott285198' in x.json()[u'newick'])
+        self.assertTrue(u'tree_metadata' in x.json())
+        m = x.json()[u'tree_metadata']
+        self.assertTrue(u'supporting_studies' in m)
+        self.assertTrue(len(m[u'supporting_studies']) > 1)
+
+
+class TestGtOtGetTree(GtTreeTester):
+    @classmethod
+    def http_method(cls):
+        return 'GET'
+
+    @classmethod
+    def get_service(cls):
+        return service
+
+    @classmethod
+    def tree_request(cls, names):
+        return service.get_request('GET', {'taxa': u'|'.join(names)})
+
+
+    
+null=None; false=False; true=True
+
+example_1 = service.get_request('GET', {u'taxa': u'Panthera pardus|Taxidea taxus|Lutra lutra|Canis lupus|Mustela altaica'})
+
+
+example_2 = service.get_request('GET', {u'taxa': u'Setophaga striata|Setophaga magnolia|Setophaga angelae|Setophaga plumbea|Setophaga virens'})
+
+if __name__ == '__main__':
+    print >>sys.stdout, '\n=================OToL_wrapper_Tree(GET)=========================' 
+    webapp.main()
