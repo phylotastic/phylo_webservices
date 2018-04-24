@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/phylotastic/phylo_webservices.svg?branch=master)
+![Build Status](https://travis-ci.org/phylotastic/phylo_webservices.svg?branch=master)
 
 # Phylotastic_WebServices
-##This repository contains all Web Services that the NMSU team has created :
+## This repository contains all Web Services that the NMSU team has created :
 
 
 __Phylotastic Web Services__ are grouped into the following categories:
