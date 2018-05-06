@@ -1,4 +1,5 @@
-#import smtplib
+#Monitor and notify the status of phylotastic services 
+
 import os
 import re
 import requests
@@ -9,7 +10,8 @@ import signal
 import sys
 import json
 
-from database import DatabaseAPI 
+from database import DatabaseAPI
+from notify import send_notifications 
 
 SessionID = None
 
@@ -71,8 +73,9 @@ def session_start_marker():
 	ts = time.time()
 	session_start_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 	
+	print "Mark the start timestamp of the monitoring session"
 	SessionID = db.insert_db_single("qos_session", ["session_start_time"], (session_start_time,) )
-
+	
 #-------------------------------------------------
 def session_end_marker():
 	"""
@@ -84,6 +87,7 @@ def session_end_marker():
 	ts = time.time()
 	session_end_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 	
+	print "Mark the end timestamp of the monitoring session"
 	db.update_db_single("qos_session", ["session_end_time"], (session_end_time,), "session_id = "+str(SessionID) )
 	
 #-------------------------------------------------
@@ -98,6 +102,8 @@ def service_dbtimestamp_adder(service_id, state):
 	update_time = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
 	db.insert_db_single("qos_updown", ["ws_id", "session_id", "state", "state_updated"], (service_id, SessionID, state, update_time) )
+
+	return update_time
 
 #------------------------------------------------------
 def service_status_checker(service_id, service_api, service_input, status_only=True):
@@ -118,13 +124,40 @@ def service_status_checker(service_id, service_api, service_input, status_only=T
 	elif status == False and state == True:
 		print "Service %s was running, now went down"%(service_id)
 		#print "Adding timestamp to the database"
-		service_dbtimestamp_adder(service_id, "D")
+		status_time = service_dbtimestamp_adder(service_id, "D")
+		#notify developer of the state
+		notify_service_status(service_id, status_time, "D")
 	elif status == True and state == False:
 		print "Service %s was down, now went up"%(service_id)
 		#print "Adding timestamp to the database"
-		service_dbtimestamp_adder(service_id, "U")
+		status_time = service_dbtimestamp_adder(service_id, "U")
+		#notify developer of the state
+		notify_service_status(service_id, status_time, "U")
 	elif status == False and state == False:
 		print "Service %s was down and still it is down"%(service_id)
+
+#-----------------------------------------
+def notify_service_status(service_id, status_time, state):
+	recipients = ["abusalehmdtayeen@gmail.com"]
+	subject = "Phylotastic service(s) status"
+
+	#create a database connection
+	db = DatabaseAPI("qos")
+	#query the table to get the service name
+	result = db.query_db("qos_wsinfo", ["ws_title"], "ws_map_id = %s", (service_id, )) 
+	service_name = result[0][0]
+	#print service_name
+
+	if state == "D":
+		messg = "Phylotastic service %s was running, now went down at %s"%(service_name, status_time)
+	elif state == "U":	
+		messg = "Phylotastic service %s was down, now went up at %s"%(service_name, status_time)
+	else:
+		messg = "Unknown state!!"
+
+	#print messg
+	#send email notifications 	
+	send_notifications( subject, messg, recipients)
 
 #--------------------------------------------
 def send_request(api_url, method, payload=None):
@@ -168,7 +201,6 @@ def signal_term_handler(signal, frame):
 #-----------------------------------------
 
 if __name__ == "__main__":
-
 	list_services_info = []
 	signal.signal(signal.SIGTERM, signal_term_handler)
 	
