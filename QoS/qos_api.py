@@ -23,12 +23,38 @@ ACCESS_LOG_CHERRYPY_5010 = ROOT_FOLDER + "/log/%s_5010_access_log.log" %(str(dat
 ERROR_LOG_CHERRYPY_5010 = ROOT_FOLDER + "/log/%s_5010_error_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 
 #-----------------------------------------------------------------
-def return_response_error(error_code, error_message,response_format="JSON"):
-    error_response = {'message': error_message, 'status_code':error_code}
+#When user requests invalid resource URI
+def error_page_404(status, message, traceback, version):
+    cherrypy.response.headers['Content-Type'] = 'application/json'
+    cherrypy.response.status = status
+    return json.dumps({'message': "Error: Could not find the requested resource URI"})
+
+#When user makes bad request
+def error_page_400(status, message, traceback, version):
+    cherrypy.response.headers['Content-Type'] = 'application/json'
+    cherrypy.response.status = status
+    return json.dumps({'message': message})
+
+#When internal server error occurs
+def error_page_500(status, message, traceback, version):
+    cherrypy.response.headers['Content-Type'] = 'application/json'
+    cherrypy.response.status = status
+    return json.dumps({'message': message, 'traceback': traceback, 'status_code': 500})
+
+#--------------------------------------------
+def return_response_error(error_code, error_message, response_format="JSON"):
+    #error_response = {'message': error_message, 'status_code':error_code}
+    error_response = {'message': error_message}
     if (response_format == "JSON"):
-        return json.dumps(error_response)
-    else:
+        cherrypy.response.headers['Content-Type'] = "application/json"
+        cherrypy.response.status = error_code
+        cherrypy.response.body = error_response
         return error_response
+    else:
+        cherrypy.response.headers['Content-Type'] = 'application/json'
+        cherrypy.response.body = error_message
+        return json.dumps(error_response)
+
 #--------------------------------------------------------------
 class CustomException(Exception):
     pass
@@ -39,6 +65,7 @@ class QoS_Service_API(object):
         return "QoS_Service API : Get QoS info of phylotastic services";
 
     #---------------------------------------------
+    @cherrypy.tools.json_out()
     def get_serviceids(self, **request_data):
         service_result = {} 
         try:
@@ -49,8 +76,7 @@ class QoS_Service_API(object):
 			#query the table
             query_result = db.query_db("qos_wsinfo", ["ws_map_id","ws_title"], "ws_group like %s", (group, ))
             if len(query_result) == 0:
-               service_result['status_code'] = 204
-               service_result['message'] = "No web services found on group %s"%group 
+               return return_response_error(400,"No web services found on group %s"%group, "JSON")
             else:
                service_result['status_code'] = 200
                service_result['message'] = "Success"
@@ -63,10 +89,13 @@ class QoS_Service_API(object):
             return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"JSON")
         except CustomException, e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
-        
-        return json.dumps(service_result)
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+        return service_result
 
     #-------------------------------------------
+    @cherrypy.tools.json_out()
     def get_qosvalue(self, **request_data):
         service_result = {} 
         try:
@@ -88,8 +117,10 @@ class QoS_Service_API(object):
             return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"JSON")
         except CustomException, e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
-        return json.dumps(service_result)
+        return service_result
 
 	#------------------------------------------------
     #Public /index
@@ -116,7 +147,11 @@ if __name__ == '__main__':
     
     conf_CORS = {
              '/':{
-                'tools.CORS.on': True
+                'tools.CORS.on': True,
+                'request.show_tracebacks': True,
+                'error_page.404': error_page_404,
+                'error_page.400': error_page_400,
+                'error_page.500': error_page_500
              }
     }
     #cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
