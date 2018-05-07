@@ -22,7 +22,7 @@ data_rows = [('ph_1', 'GNRD_wrapper_URL', 'Scientific Name Extraction', 'A servi
 	('ph_6', 'Taxon_all_species', 'Taxon to Species', 'A service to get all Species that belong to a particular Taxon', 'ws_6'),
 	('ph_7', 'Taxon_country_species', 'Taxon to Species', 'A service to get a set of Species that belong to a particular Taxon and established in a particular country using INaturalist services', 'ws_7'),
 	('ph_8', 'Image_url_species', 'Image-Information URL Retrieval', 'A service to get image urls and corresponding license information of a list of species from EOL.', 'ws_8'),	
-	('ph_9', ' Taxon_genome_species', 'Taxon to Species', 'A service to get a set of Species that belong to a particular Taxon and have genome sequence in NCBI database', 'ws_9'),
+	('ph_9', 'Taxon_genome_species', 'Taxon to Species', 'A service to get a set of Species that belong to a particular Taxon and have genome sequence in NCBI database', 'ws_9'),
 	('ph_10', 'Info_url_species', 'Image-Information URL Retrieval', 'A service to get information urls of a list of species using EOL services', 'ws_10'),
 	('ph_17', 'OToL_supported_studies', 'Miscellaneous', 'A service to get supported studies of an induced tree from OpenTreeOfLife', 'ws_17'),
 	('ph_18', 'Phylomatic_wrapper_Tree', 'Phylogenetic Tree Retrieval', 'A  service to get Phylogenetic Trees from a list of taxa using Phylomatic service', 'ws_18'),
@@ -35,7 +35,10 @@ data_rows = [('ph_1', 'GNRD_wrapper_URL', 'Scientific Name Extraction', 'A servi
 	('ph_25', 'ITIS_common_name', 'Common Name to Scientific Name', 'A service to get scientific name of a species from its common name(vernacular name) using ITIS API', 'ws_25'),
 	('ph_26', 'TROPICOS_common_name', 'Common Name to Scientific Name', 'A service to get scientific name of a species from its common name(vernacular name) using TROPICOS API', 'ws_26'),
 	('ph_27', 'Compare_trees', 'Miscellaneous', 'A service to compare two Phylogenetic Trees symmetrically', 'ws_27'),
-	('ph_28', 'EOL_Habitat_Conservation', 'Species data services', 'A service to get habitat and conservation status of a list of species from EOL traitsbank', 'ws_28')
+	('ph_28', 'EOL_Habitat_Conservation', 'Species data services', 'A service to get habitat and conservation status of a list of species from EOL traitsbank', 'ws_28'),
+	('ph_29', 'Treebase_Tree', 'Phylogenetic Tree Retrieval', 'A service to get Phylogenetic Trees from a list of taxa by constructung super-trees using source trees of TreeBase', 'ws_29'),
+	('ph_30', 'Species_List', 'Species List Manipulation', 'Services to publish/remove/update/access lists of species owned by a phylotastic web application/services user', 'ws_30'),
+	('ph_31', 'ETE_Tree_Viewer', 'Tree Viewer', 'A service to draw image of a Phylogenetic Tree', 'ws_31')
 ]
 
 # Insert web services info

@@ -22,13 +22,14 @@ def get_smtp_params():
 
 	email = config.get('gmail', 'email')
 	password = config.get('gmail', 'password')
+	recipients = config.get('gmail', 'recipients')
 
-	return email, password
+	return email, password, recipients
 
 
 #----------------Multiple Emails-----------------------------
 #https://stackoverflow.com/questions/8856117/how-to-send-email-to-multiple-recipients-using-python-smtplib
-def send_notifications(subj, messg, recipients):
+def send_notifications(subj, messg, recipients=None):
 	"""
 	Send an email to multiple recipients
 	"""
@@ -36,12 +37,14 @@ def send_notifications(subj, messg, recipients):
 	msg = MIMEMultipart()
 	message = messg
  
-	from_email, password = get_smtp_params()
+	from_email, password, recipients_str = get_smtp_params()
 	
 	# setup the parameters of the message
 	msg['From'] = from_email
-	msg['To'] = ", ".join(recipients)
+	msg['To'] =  recipients_str #", ".join(recipients)
 	msg['Subject'] = subj
+ 
+	recipients_list = recipients_str.split(", ")
  
 	# add in the message body
 	msg.attach(MIMEText(message, 'plain'))
@@ -55,16 +58,16 @@ def send_notifications(subj, messg, recipients):
 	server.login(msg['From'], password)
  
 	# send the message via the server.
-	server.sendmail(msg['From'], recipients, msg.as_string())
+	server.sendmail(msg['From'], recipients_list, msg.as_string())
  
 	server.quit()
  
-	for email in recipients:
+	for email in recipients_list:
 		print "successfully sent email to %s" % (email)
 
 
 #----------------------------------------------
 
 if __name__ == '__main__':
-	send_notifications("Service Status", "OToL_Tree service is down", ["abusalehmdtayeen@gmail.com", "mdtayeen@yahoo.com"])	
+	send_notifications("Service Status", "OToL_Tree service is down")	
 

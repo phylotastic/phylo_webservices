@@ -138,7 +138,6 @@ def service_status_checker(service_id, service_api, service_input, status_only=T
 
 #-----------------------------------------
 def notify_service_status(service_id, status_time, state):
-	recipients = ["abusalehmdtayeen@gmail.com"]
 	subject = "Phylotastic service(s) status"
 
 	#create a database connection
@@ -157,7 +156,7 @@ def notify_service_status(service_id, status_time, state):
 
 	#print messg
 	#send email notifications 	
-	send_notifications( subject, messg, recipients)
+	send_notifications( subject, messg )
 
 #--------------------------------------------
 def send_request(api_url, method, payload=None):
