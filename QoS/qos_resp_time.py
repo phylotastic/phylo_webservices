@@ -24,8 +24,9 @@ def request_sender(api_url, method, payload):
 	end_time = time.time()	
 	#print "End time %f: "%end_time
 	
-	if response.status_code == requests.codes.ok:    
-		result_json = json.loads(response.text)
+	if response.status_code == requests.codes.ok:
+		if payload is not None:    
+			result_json = json.loads(response.text)
 		response_time = end_time-start_time
 		status = 200
 		#print result_json
@@ -34,12 +35,14 @@ def request_sender(api_url, method, payload):
 		response_time = 0.0
 		status = 500
     
+	print status
 	return response_time, status
 
 #-------------------------------------------------    
 def compute_resp_time(service_id, service_endpoint, input_settings):
 	weighted_resp_time = 0.0
 
+	print "%s, %s"%(service_id, service_endpoint)
 	for in_setting in input_settings:
 		service_api = service_endpoint+in_setting['path']
 		resp_time, status = request_sender(service_api, in_setting['method'], in_setting['input_data'])
