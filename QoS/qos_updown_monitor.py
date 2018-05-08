@@ -160,7 +160,6 @@ def notify_service_status(service_id, status_time, state):
 
 #--------------------------------------------
 def send_request(api_url, method, payload=None):
-	
 	try:	
 		if method == "GET" and payload is not None:
 			response = requests.get(api_url, params=payload)
@@ -215,6 +214,10 @@ if __name__ == "__main__":
 				service_id = module_instance.service_id
 				service_endpoint = module_instance.service_endpoint
 				input_settings = module_instance.input_settings
+				if service_id == "ws_31": #exception for ETE_Tree_Viewer
+					service_endpoint = service_endpoint + "/status"
+					input_settings[0]['method'] = "GET"
+	
 				input_settings[0]['input_data'] = None
 				list_services_info.append( (service_id, service_endpoint, input_settings[0]) )
 		

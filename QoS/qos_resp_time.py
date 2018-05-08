@@ -49,6 +49,7 @@ def compute_resp_time(service_id, service_endpoint, input_settings):
 		#print resp_time 
 		weighted_resp_time = weighted_resp_time + in_setting['weight'] * resp_time
 	
+	print weighted_resp_time
 	record = {}
 	record['ws_id'] = service_id
 	record['resp_time'] = weighted_resp_time
