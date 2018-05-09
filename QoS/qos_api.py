@@ -62,7 +62,36 @@ class CustomException(Exception):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 class QoS_Service_API(object):
     def index(self):
-        return "QoS_Service API : Get QoS info of phylotastic services";
+        return "QoS_Service API : Get QoS info of phylotastic services"
+
+    #-------------------------------------------
+    @cherrypy.tools.json_out()
+    def get_service_groups(self, **request_data):
+        service_result = {} 
+        try:
+            
+            #create a database connection
+            db = DatabaseAPI("qos")
+			#query the table
+            query_result = db.query_db("qos_wsinfo", ["distinct(ws_group)"])
+            if len(query_result) == 0:
+               return return_response_error(400,"No groups info found in the database", "JSON")
+            else:
+               service_result['status_code'] = 200
+               service_result['message'] = "Success"
+               group_list = [] 
+               for result in query_result:
+			       group_list.append(result[0])
+               service_result['service_groups'] = group_list
+ 
+        except KeyError, e:
+            return return_response_error(400,"KeyError: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+        return service_result
 
     #---------------------------------------------
     @cherrypy.tools.json_out()
@@ -125,6 +154,7 @@ class QoS_Service_API(object):
 	#------------------------------------------------
     #Public /index
     index.exposed = True
+    get_service_groups.exposed = True
     get_serviceids.exposed = True
     get_qosvalue.exposed = True
 
