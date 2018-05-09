@@ -4,6 +4,55 @@ The API to access the QoS framework for phylotastic webservices are described be
 
 #### QoS API 1
 
+__Service Name:__  	 	<a name="servicegroups">Get group names of web services</a>
+
+__Service Description:__  A service	to get group names of phylotastic web services for which qos metrics are available.
+
+__Resource URI:__  		<http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_service_groups>
+
+__HTTP Method:__ 		GET
+
+__Input Format:__ 		application/x-www-form-urlencoded
+
+__Output Format:__ 		application/json 
+ 				
+__Parameters:__			None
+
+ 				
+__Examples:__ 
+
+1. To get the web service ids of service group "Tree Extraction"
+```
+http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_service_groups
+```
+__Example Results:__
+
+1. 
+``` 
+{
+    "status_code":200,
+    "message":"Success",
+    "service_groups":[
+        "Scientific Name Extraction",
+        "Image-Information URL Retrieval",
+        "Miscellaneous",
+        "Phylogenetic Tree Retrieval",
+        "Tree Scaling",
+        "Taxonomic Name Resolution",
+        "Common Name to Scientific Name",
+        "Species data services",
+        "Species List Manipulation",
+        "Tree Viewer",
+        "Taxon to Species"
+    ]
+}
+```
+
+---
+
+
+#### QoS API 2
+
 __Service Name:__  	 	<a name="serviceids">Get web service ids based on web service group</a>
 
 __Service Description:__  A service	to get ids of phylotastic web services for which qos metrics are available.
@@ -23,33 +72,71 @@ __Parameters:__
   * __Category:__  	mandatory
   * __Data Type:__  string
   * __Description:__  a string value to specify the group of web services. 
-  * __Permitted Values:__ {"Name Recognition", "Name Resolver", "Tree Extraction", "Species Retrieval", "SpeciesInfo Retrieval", "TreeMetadata Retrieval", "BranchLength Estimation"}
+  * __Permitted Values:__ any value retrieved using [group service](#servicegroups)
  				
 
 __Examples:__ 
 
-1. To get the web service ids of service group "Tree Extraction"
+1. To get the web service ids of service group "Scientific Name Extraction"
 ```
-http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_serviceids?group=Tree%20Extraction
+http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_serviceids?group=Scientific%20Name%20Extraction
 ```
-2. To get the web service ids of service group "Species Retrieval"
+2. To get the web service ids of service group "Taxon to Species"
 ```
-http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_serviceids?group=Species%20Retrieval
+http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_serviceids?group=Taxon%20to%20Species
 ```
 __Example Results:__
 
 1. 
 ``` 
-{"status_code": 200,"message": "Success","matched_services": [{"service_id": "ws_18","service_title": "Get Phylogenetic Trees from Phylomatic"},{"service_id": "ws_19","service_title": "Get Phylogenetic Trees from PhyloT"},{"service_id": "ws_5","service_title": "Get Phylogenetic Trees from OToL"}]}
+{
+    "status_code":200,
+    "message":"Success",
+    "matched_services":[
+        {
+            "service_id":"ws_1",
+            "service_title":"GNRD_wrapper_URL"
+        },
+        {
+            "service_id":"ws_2",
+            "service_title":"GNRD_wrapper_text"
+        },
+        {
+            "service_id":"ws_21",
+            "service_title":"TaxonFinder_wrapper_URL"
+        },
+        {
+            "service_id":"ws_22",
+            "service_title":"TaxonFinder_wrapper_text"
+        }
+    ]
+}
 ```
 2. 
 ```
-{"status_code": 200,"message": "Success","matched_services": [{"service_id": "ws_6","service_title": "Get All Species from a Taxon"},{"service_id": "ws_7","service_title": "Get All Species from a Taxon Filtered by Country"},{"service_id": "ws_9","service_title": "Get Species (of a Taxon) having genome sequence in NCBI"}]}
+{
+    "status_code":200,
+    "message":"Success",
+    "matched_services":[
+        {
+            "service_id":"ws_6",
+            "service_title":"Taxon_all_species"
+        },
+        {
+            "service_id":"ws_7",
+            "service_title":"Taxon_country_species"
+        },
+        {
+            "service_id":"ws_9",
+            "service_title":"Taxon_genome_species"
+        }
+    ]
+}
 ``` 
 
 ---
 
-#### QoS API 2
+#### QoS API 3
 
 __Service Name:__  	 	Get qos metric value for a particular web service
 
