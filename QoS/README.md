@@ -21,7 +21,7 @@ __Parameters:__			None
  				
 __Examples:__ 
 
-1. To get the web service ids of service group "Tree Extraction"
+1. To get the group names of the web services
 ```
 http://phylo.cs.nmsu.edu:5010/phylotastic_ws/qs/get_service_groups
 ```
