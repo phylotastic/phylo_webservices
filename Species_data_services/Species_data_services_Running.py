@@ -112,6 +112,10 @@ class Habitat_Conservation_EOL_Service_API(object):
 
             if len(sp_lst) == 1 and '' in sp_lst: 
                raise CustomException("'species' parameter must have a valid value")
+
+            if len(sp_lst) > 30: 
+               return return_response_error(403, "Error: Currently more than 30 names is not supported","JSON")            
+
             
             
         except KeyError, e:
@@ -151,6 +155,9 @@ class Habitat_Conservation_EOL_Service_API(object):
             taxalist = input_json["species"]
             if type(taxalist) != types.ListType:
                return return_response_error(400,"Error: 'species' parameter must be of list type","JSON")
+            if len(taxalist) > 30: 
+               return return_response_error(403, "Error: Currently more than 30 names is not supported","JSON")            
+
     
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -200,7 +207,9 @@ class Conservation_ECOS_Service_API(object):
             if len(sp_lst) == 1 and '' in sp_lst: 
                raise CustomException("'species' parameter must have a valid value")
             
-            
+            if len(sp_lst) > 30: 
+               return return_response_error(403, "Error: Currently more than 30 names is not supported","JSON")            
+
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         except CustomException, e:
@@ -238,6 +247,9 @@ class Conservation_ECOS_Service_API(object):
             taxalist = input_json["species"]
             if type(taxalist) != types.ListType:
                return return_response_error(400,"Error: 'species' parameter must be of list type","JSON")
+
+            if len(taxalist) > 30: 
+               return return_response_error(403,"Error: Currently more than 30 names is not supported","JSON")
     
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
