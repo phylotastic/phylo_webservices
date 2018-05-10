@@ -38,7 +38,8 @@ data_rows = [('ph_1', 'GNRD_wrapper_URL', 'Scientific Name Extraction', 'A servi
 	('ph_28', 'EOL_Habitat_Conservation', 'Species data services', 'A service to get habitat and conservation status of a list of species from EOL traitsbank', 'ws_28'),
 	('ph_29', 'Treebase_Tree', 'Phylogenetic Tree Retrieval', 'A service to get Phylogenetic Trees from a list of taxa by constructung super-trees using source trees of TreeBase', 'ws_29'),
 	('ph_30', 'Species_List', 'Species List Manipulation', 'Services to publish/remove/update/access lists of species owned by a phylotastic web application/services user', 'ws_30'),
-	('ph_31', 'ETE_Tree_Viewer', 'Tree Viewer', 'A service to draw image of a Phylogenetic Tree', 'ws_31')
+	('ph_31', 'ETE_Tree_Viewer', 'Tree Viewer', 'A service to draw image of a Phylogenetic Tree', 'ws_31'),
+	('ph_32', 'ECOS_Conservation', 'Species data services', 'A service to get conservation status of a list of species using ECOS services', 'ws_32') 
 ]
 
 # Insert web services info
