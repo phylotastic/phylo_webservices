@@ -1,0 +1,26 @@
+import requests
+import random
+import time
+
+
+class Transaction(object):
+    def __init__(self):
+        self.custom_timers = {}
+        self.post_body = {"species": ["Catopuma badia","Catopuma temminckii"]}
+
+
+    def run(self):
+        
+        jsonPayload = json.dumps(self.post_body)
+        response = requests.post("http://127.0.0.1:5000/payload", data=jsonPayload, headers={'content-type': 'application/json'})
+        
+        r = random.uniform(1, 2)
+        time.sleep(r)
+        self.custom_timers['Example_Timer'] = r
+        assert (response.status_code == 200), 'Bad Response: HTTP %s' % response.status_code
+        
+
+if __name__ == '__main__':
+    trans = Transaction()
+    trans.run()
+    print trans.custom_timers
