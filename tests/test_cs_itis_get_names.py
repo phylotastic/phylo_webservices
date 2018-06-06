@@ -75,7 +75,8 @@ class TestCsGetITIS(ITISCommonNameTester):
 
         self.assertTrue(len(x.json()[u'result'][1][u'matched_names']) >= 1)
         # Check whether result is what it should be according to docs
-        self.assertEqual(x.json()[u'result'][1][u'matched_names'][0]['scientific_name'], 'Canis lupus')
+        if x.json()[u'result'][1][u'matched_names'][0]['common_name'] == "Gray Wolf":
+        	self.assertEqual(x.json()[u'result'][1][u'matched_names'][0]['scientific_name'], 'Canis lupus')
 
     
 
