@@ -11,7 +11,7 @@ import types
 import google_dns
 
 #-------------------------------------------------------------------
-api_url = "http://resolver.globalnames.org/name_resolvers.json?"
+api_url = "https://resolver.globalnames.org/name_resolvers.json?"
 headers = {'content-type': 'application/json'}
 base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/"
 
@@ -346,7 +346,7 @@ def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match):
     #service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-4"
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
-    meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://resolver.globalnames.org/"] }
+    meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["https://resolver.globalnames.org/"] }
 #"service_documentation": service_documentation}
     final_result['meta_data'] = meta_data
     final_result['total_names'] = result_len

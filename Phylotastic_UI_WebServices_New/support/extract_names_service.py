@@ -8,7 +8,7 @@ import urllib
 import datetime
 
 #------------------------------------------------
-api_url = "http://gnrd.globalnames.org/name_finder.json?"
+api_url = "https://gnrd.globalnames.org/name_finder.json?"
 headers = {'content-type': 'application/json'}
 base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/"
 
@@ -171,7 +171,7 @@ def extract_names_URL(inputURL, sEngine=0):
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
 
-    meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://gnrd.globalnames.org/"] }
+    meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["https://gnrd.globalnames.org/"] }
 
    #'service_documentation': service_documentation} #'service_url': service_url
     final_result['meta_data'] = meta_data
