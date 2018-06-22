@@ -4,6 +4,8 @@ import cherrypy
 import time
 import datetime
 import datelife_service
+import otol_scaling_service
+
 import pymongo
 from cherrypy import tools
 #----------------------------------------------------------
@@ -172,6 +174,54 @@ class Datelife_Service_API(object):
     scale.exposed = True
     metadata_scale.exposed = True
 
+#----------------------------------------------------------
+class OToL_Scaling_Service_API(object):
+    def index(self):
+        return "OToL Scaling API : Scales a species tree using Open Tree of Life API";
+
+    #-----------------------------------------------	
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def scale(self,**request_data):
+        http_method = cherrypy.request.method
+        if http_method not in ['POST']:
+           return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+        try:
+            input_json = cherrypy.request.json
+            tree_newick = input_json["newick"]
+            if len(tree_newick) == 0: 
+               raise CustomException("'newick' parameter must have a valid value")
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try:
+            
+            service_result = otol_scaling_service.scale_tree_api(tree_newick)
+		    #-------------log request------------------   
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree_newick': tree_newick}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+            #------------------------------------------           
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====OToLScaleError====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #Public /index
+    index.exposed = True
+    scale.exposed = True
+    
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def CORS():
@@ -202,7 +252,7 @@ if __name__ == '__main__':
     
     #Starting Server
     cherrypy.tree.mount(Datelife_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group)), config)
-    #cherrypy.tree.mount(Taxon_Genome_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "ncbi"), conf_thanhnh)
+    cherrypy.tree.mount(OToL_Scaling_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group), "ot"), config)
     
     cherrypy.engine.start()
     cherrypy.engine.block()

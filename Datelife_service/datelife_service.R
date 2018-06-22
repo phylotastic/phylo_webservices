@@ -13,7 +13,9 @@ function(tree_newick, method="median"){
     }
      
     normal_op <- function(){
-           datelife_result_obj <- get_datelife_result(input=tree_newick, partial = TRUE, use_tnrs = FALSE, approximate_match = TRUE, update_cache = FALSE, dating_method = "PATHd8", get_spp_from_taxon = FALSE, verbose = FALSE)
+           cleaned_input <-make_datelife_query(input=tree_newick, use_tnrs = FALSE, approximate_match = TRUE,get_spp_from_taxon = FALSE, verbose = FALSE)
+           datelife_result_obj <- get_datelife_result(input=cleaned_input, partial = TRUE, use_tnrs = FALSE, approximate_match = TRUE, update_cache = FALSE, dating_method = "PATHd8", get_spp_from_taxon = FALSE, verbose = FALSE)
+
            return ( list(scaled_tree=summarize_datelife_result(datelife_query = NULL, datelife_result= datelife_result_obj, summary_format = out_method, partial = TRUE, update_cache = FALSE, summary_print = c("taxa"), verbose = FALSE), message="Success", status_code=200) ) 
     }
 
