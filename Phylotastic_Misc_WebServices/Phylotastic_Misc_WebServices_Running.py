@@ -1,5 +1,4 @@
 '''
-Created on June 23, 2016
 @author: Abu Saleh
 '''
 
@@ -15,6 +14,7 @@ from cherrypy import tools
 
 from support import compare_trees_service
 from support import tree_studies_service
+from support import popularity_service
 
 #--------------------------------------------------
 logDbName = "WSLog"
@@ -24,6 +24,7 @@ conn = None
 
 WS_NAME = "phylotastic_ws"
 WS_GROUP1 = "md" #metadata service
+WS_GROUP2 = "ts" #taxon_to_species service
 
 ROOT_FOLDER = os.getcwd()
 IP_ADDRESS = "127.0.0.1:5006"
@@ -260,6 +261,62 @@ class Tree_Studies_Service_API(object):
     get_studies.exposed = True
     studies.exposed = True
 
+#==========================================================
+class Popularity_Service_API(object):
+
+    def index(self):
+        return "Popularity_Service API: Get popular species of a particular taxon using OneZoom API"
+    #------------------------------------------------------
+    @cherrypy.tools.json_out()
+    def popular_species(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET']:
+               return return_response_error(405,"Error: HTTP Methods other than GET are not allowed","JSON")
+
+            if request_data is not None and 'taxon' in request_data:
+               taxon = str(request_data['taxon']).strip()
+               if len(taxon) == 0: 
+                  raise CustomException("'taxon' parameter must have a valid value")
+            else:
+               taxon = None
+
+            if request_data is not None and 'num_species' in request_data:
+                num_species = int(request_data['num_species'].strip())
+                #print num_species
+            else: 
+                num_species = 20
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try:
+            if taxon is None:
+               service_result = popularity_service.get_popular_species()
+            else:
+               service_result = popularity_service.get_popular_species(taxon, num_species)
+            #---------------log-------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+            #------------------------------------------
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====PopularityServiceError====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+ 	
+ 	#------------------------------------------------
+    index.exposed = True	
+    popular_species.exposed = True
+
 #-----------------------------------------------------------
 def CORS():
     #print "Run CORS"
@@ -293,6 +350,6 @@ if __name__ == '__main__':
     #Starting Server
     cherrypy.tree.mount(Tree_Studies_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP1)), conf_CORS )
     cherrypy.tree.mount(Compare_Trees_Service_API(), '/%s' %(str(WS_NAME)), conf_CORS )
-    
+    cherrypy.tree.mount(Popularity_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP2)), conf_CORS )
     cherrypy.engine.start()
     cherrypy.engine.block()
