@@ -283,6 +283,8 @@ class Popularity_Service_API(object):
 
             if request_data is not None and 'num_species' in request_data:
                 num_species = int(request_data['num_species'].strip())
+                if num_species > 100:
+                   raise CustomException("Maximum value allowed for 'num_species' parameter is 100")
                 #print num_species
             else: 
                 num_species = 20
