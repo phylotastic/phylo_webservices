@@ -122,8 +122,8 @@ def get_popular_species(taxon="biota", num_taxa=20):
              ott_id = match['ott_id']
              onezoom_result = onezoom_single_taxon_api(ott_id, num_taxa)
              if onezoom_result['status_code'] == 200:
-                if len(onezoom_result['popular_species']) != 0:    
-                   results.append({'matched_taxon': match['unique_name'], 'ott_id': ott_id, 'popular_species': onezoom_result['popular_species']}) 
+                #if len(onezoom_result['popular_species']) != 0:    
+                results.append({'matched_taxon': match['unique_name'], 'ott_id': ott_id, 'popular_species': onezoom_result['popular_species']}) 
              else:
                 return onezoom_result          
 
