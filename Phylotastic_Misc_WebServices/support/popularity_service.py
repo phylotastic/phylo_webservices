@@ -12,7 +12,8 @@ def get_ott_id(taxon):
     opentree_url = "https://api.opentreeoflife.org/v2/tnrs/match_names"
     
     payload = {
-        'names': [taxon]	
+        'names': [taxon],
+        'do_approximate_matching': False	
     }
     
     jsonPayload = json.dumps(payload)
@@ -27,6 +28,7 @@ def get_ott_id(taxon):
     #----------------------------------------------     
 
     taxon_match_result = {}
+    match_results = []
 
     msg =  "Success"
     statuscode = 200
@@ -35,8 +37,13 @@ def get_ott_id(taxon):
 
     if response.status_code == requests.codes.ok:
         if len(result_data_json['results'])!= 0:    
-            ott_id = result_data_json['results'][0]['matches'][0]['ot:ottId']
-            taxon_match_result['ott_id'] = ott_id
+            matches = result_data_json['results'][0]['matches']
+            for match in matches:
+               taxon_match = {}
+               taxon_match['unique_name'] = match['unique_name']
+               taxon_match['ott_id'] = match['ot:ottId']
+               match_results.append(taxon_match)
+            taxon_match_result['match_result'] = match_results
         else:
             statuscode = 400
             msg = "No taxon matched with name '%s'"%taxon   
@@ -99,26 +106,30 @@ def extract_species(result_data):
 #----------------------------------------------------------
 def get_popular_species(taxon="biota", num_taxa=20):
     start_time = time.time()
-   
+    final_result = {}
+    results = []
     if taxon == "biota":
        ott_id = 93302  	#"all life"
+       onezoom_result = onezoom_single_taxon_api(ott_id, num_taxa)
+       results.append({'matched_taxon': "cellular organisms", 'ott_id': ott_id, 'popular_species': onezoom_result['popular_species']})
     else:
        match_taxon_result = get_ott_id(taxon)
        if match_taxon_result['status_code'] != 200:
           return match_taxon_result
        else:
-          ott_id = match_taxon_result['ott_id']
-          #print ott_id
+          taxon_matches = match_taxon_result['match_result']
+          for match in taxon_matches:
+             ott_id = match['ott_id']
+             onezoom_result = onezoom_single_taxon_api(ott_id, num_taxa)
+             if onezoom_result['status_code'] == 200:
+                if len(onezoom_result['popular_species']) != 0:    
+                   results.append({'matched_taxon': match['unique_name'], 'ott_id': ott_id, 'popular_species': onezoom_result['popular_species']}) 
+             else:
+                return onezoom_result          
 
-    onezoom_result = onezoom_single_taxon_api(ott_id, num_taxa)
-    
-    final_result = {}
-    if onezoom_result['status_code'] != 200:    
-        final_result = onezoom_result   
-    else:
-        final_result['popular_species'] = onezoom_result['popular_species']
-        final_result['message'] = "Success"     
-        final_result['status_code'] = 200
+    final_result['result'] = results
+    final_result['message'] = "Success"     
+    final_result['status_code'] = 200
 
     end_time = time.time()
     execution_time = end_time-start_time
@@ -131,5 +142,5 @@ def get_popular_species(taxon="biota", num_taxa=20):
     return final_result
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#if __name__ == '__main__':
-	#print get_popular_species("no taxon",10)
+if __name__ == '__main__':
+	print get_popular_species("Anura",10)
