@@ -33,6 +33,12 @@ class WebTreeConfig(object):
         ts.draw_guiding_lines = True
         ts.guiding_lines_type = 0 #solid line
         ts.guiding_lines_color = "#000000"
+        if not(self.is_scaled_tree()):
+           #print "set scale to false"
+           ts.show_scale = False
+        else:
+           ts.show_scale = True
+
         self._treestyle = ts
         return ts
 
@@ -57,6 +63,16 @@ class WebTreeConfig(object):
         self._custom_options["draw_support"] = branch_len
         #set whether internal nodes should be drawn or not
         self._custom_options["draw_internal"] = internal_node 
+
+    #Checks whether the tree is scaled or not
+    def is_scaled_tree(self):
+        is_scaled = False
+        for node in self._treeobj.iter_descendants("postorder"):
+            if node.dist != 1.0:
+               is_scaled = True
+               break
+
+        return is_scaled
 
 
     def set_extra_tipdata(self, extra_tipdata):
@@ -318,6 +334,11 @@ class WebTreeConfig(object):
            ts2.draw_guiding_lines = True
            ts2.guiding_lines_type = 0 #solid line
            ts2.guiding_lines_color = a_data
+           if not(self.is_scaled_tree()):
+           #print "set scale to false"
+              ts2.show_scale = False
+           else:
+              ts2.show_scale = True
            tree.tree_style = ts2
            self._treestyle = ts2
         else:
