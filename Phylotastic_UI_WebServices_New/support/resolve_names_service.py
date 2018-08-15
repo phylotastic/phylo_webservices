@@ -291,7 +291,7 @@ def create_sublists(lst, size=200):
 
 #--------------------------------------------
 def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match): 
-    list_size = 250
+    list_size = 1000
     final_result = []
 
     start_time = time.time()

@@ -567,7 +567,6 @@ class Find_ScientificNames_Service_API(object):
                raise CustomException("Input file cannot be empty")
 
             saved_dir_loc = "/var/www/upload/html/"
-            #file_name = inputFile.filename.replace(" ", "_")
             file_loc = saved_dir_loc+inputFile.filename
             savedFile=open(file_loc, 'wb')
             savedFile.write(allData)

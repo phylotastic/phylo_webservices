@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 #Open Tree of Life tree service: version 1.1
-
 import json
 import time
 import requests
@@ -140,6 +140,8 @@ def get_tree_OT(resolvedNames):
  		tree_metadata['inference_method'] = tree_metadata['inference_method'] + " from synthetic tree with ID "+ synth_tree_version
  		final_result['tree_metadata'] = tree_metadata
  		final_result['tree_metadata']['synthetic_tree_id'] = synth_tree_version
+ 		#https://wiki.python.org/moin/UnicodeDecodeError
+ 		newick_str = newick_str.encode('utf-8', 'ignore')
  		num_tips = get_num_tips(newick_str)
  		if num_tips != -1:
  			final_result['tree_metadata']['num_tips'] = num_tips
@@ -206,7 +208,11 @@ def get_num_tips(newick_str):
  		try:
  			tree = Tree(newick_str, format=1)
  		except NewickError as e:
- 			parse_error = True
+ 			#print str(e) 
+ 			if 'quoted_node_names' in str(e):
+ 				tree = Tree(newick_str, format=1, quoted_node_names=True)
+ 			else:
+ 				parse_error = True
 
  	if not(parse_error):
  		tips_list = [leaf for leaf in tree.iter_leaves()]            
