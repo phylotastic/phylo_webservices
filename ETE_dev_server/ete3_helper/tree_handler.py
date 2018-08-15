@@ -52,7 +52,10 @@ class WebTreeHandler(object):
            try:
               self.tree = Tree(self.treenewick, format=1)
            except NewickError as e:
-              return "Newick Parsing Error: "+str(e)
+              if 'quoted_node_names' in str(e):
+		          self.tree = Tree(self.treenewick, format=1, quoted_node_names=True)
+              else:
+                  return "Newick Parsing Error: "+str(e)
 
         self.init_nodeids()
         return True
@@ -74,7 +77,7 @@ class WebTreeHandler(object):
 
     @timeit
     def redraw(self, top_offset=0,left_offset=0):
-        print "in redraw topoffset:"+str(top_offset)+" leftoffset:"+str(left_offset)
+        #print "in redraw topoffset:"+str(top_offset)+" leftoffset:"+str(left_offset)
         #print "Inside redraw calling tree.render()"
         #os.environ["DISPLAY"]=":0" # Used by ete to render images
         with Xvfb() as xvfb:
@@ -92,8 +95,8 @@ class WebTreeHandler(object):
 
     #------------------------------------------
     def save_image(self, img_format):
-        img_url = os.path.join("http://phylo.cs.nmsu.edu:8080/TreeViewer/demo/tmp_dev/", self.treeid+"."+img_format)
-        img_path = os.path.join("/var/www/html/TreeViewer/demo/tmp_dev/", self.treeid+"."+img_format)
+        img_url = os.path.join("http://phylo.cs.nmsu.edu:8080/TreeViewer/tmp_dev/", self.treeid+"."+img_format)
+        img_path = os.path.join("/var/www/TreeViewer/html/tmp_dev/", self.treeid+"."+img_format)
         with Xvfb() as xvfb:        
              img = self.tree.render(img_path, tree_style=self.tree.tree_style)
         #print "returning from save image"

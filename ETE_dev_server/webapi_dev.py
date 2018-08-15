@@ -80,7 +80,7 @@ def get_tree_image():
     tree_newick = source_dict["tree_newick"]
     tree_id = source_dict["tree_id"]
     actions = source_dict["actions"]
-    print tree_newick #print source_dict
+    #print tree_newick #print source_dict
     #source_json = json.loads(source_dict)
     
     if "top_offset" in source_dict:
@@ -144,7 +144,7 @@ def save_tree_image():
 #------------------------------------------------
 @post('/get_actions')
 def get_action():
-    print "get_actions method called...."
+    #print "get_actions method called...."
     if request.json:
         source_dict = request.json
     else:
