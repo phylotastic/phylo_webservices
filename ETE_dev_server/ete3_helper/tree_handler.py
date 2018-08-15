@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #-----------DEV version-------------------
 import time
 import string
@@ -46,6 +47,11 @@ class WebTreeHandler(object):
             n._nid = index
 
     def parse_newick(self):
+        #if isinstance(self.treenewick, unicode):
+        #   self.treenewick = self.treenewick.encode('utf-8', 'ignore')
+        #   print self.treenewick
+        if isinstance(self.treenewick, str):
+           print "string"
         try:
            self.tree = Tree(self.treenewick)
         except NewickError:
@@ -95,7 +101,7 @@ class WebTreeHandler(object):
 
     #------------------------------------------
     def save_image(self, img_format):
-        img_url = os.path.join("http://phylo.cs.nmsu.edu:8080/TreeViewer/tmp_dev/", self.treeid+"."+img_format)
+        img_url = os.path.join("http://phylo.cs.nmsu.edu:8080/tmp_dev/", self.treeid+"."+img_format)
         img_path = os.path.join("/var/www/TreeViewer/html/tmp_dev/", self.treeid+"."+img_format)
         with Xvfb() as xvfb:        
              img = self.tree.render(img_path, tree_style=self.tree.tree_style)

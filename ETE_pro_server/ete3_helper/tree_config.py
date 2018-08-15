@@ -64,16 +64,18 @@ class WebTreeConfig(object):
         #set whether internal nodes should be drawn or not
         self._custom_options["draw_internal"] = internal_node 
 
+
     #Checks whether the tree is scaled or not
     def is_scaled_tree(self):
         is_scaled = False
         for node in self._treeobj.iter_descendants("postorder"):
+            #print node.dist
             if node.dist != 1.0:
                is_scaled = True
                break
-
+            
+        #print is_scaled
         return is_scaled
-
 
     def set_extra_tipdata(self, extra_tipdata):
         #ext_json_data = json.loads(extra_tipdata)
@@ -335,7 +337,7 @@ class WebTreeConfig(object):
            ts2.guiding_lines_type = 0 #solid line
            ts2.guiding_lines_color = a_data
            if not(self.is_scaled_tree()):
-           #print "set scale to false"
+              #print "inside run action set scale to false"
               ts2.show_scale = False
            else:
               ts2.show_scale = True
