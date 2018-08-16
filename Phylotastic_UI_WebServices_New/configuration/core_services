@@ -1,0 +1,27 @@
+upstream core_apps {
+   server 127.0.0.1:5051;
+   server 127.0.0.1:5052;
+   server 127.0.0.1:5053;
+}
+
+
+server {
+   listen 5004;
+   server_name  phylo.cs.nmsu.edu;
+
+   access_log  /var/web_service/Phylotastic_UI_WebServices_New/log/access.log combined;
+   error_log  /var/web_service/Phylotastic_UI_WebServices_New/log/error.log;
+
+   location ^~ /static/  {
+      root /var/www/apps/static/;
+   }
+
+   location / {
+      proxy_pass         http://core_apps;
+      proxy_redirect     off;
+      proxy_set_header   Host $host;
+      proxy_set_header   X-Real-IP $remote_addr;
+      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header   X-Forwarded-Host $server_name;
+   }
+}
