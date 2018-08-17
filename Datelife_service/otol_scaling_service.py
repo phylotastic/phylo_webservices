@@ -61,8 +61,11 @@ def get_names_tree(newick_str):
  		try:
  			tree = Tree(newick_str, format=1)
  		except NewickError as e:
- 			parse_error = True
-
+ 			if 'quoted_node_names' in str(e):
+ 				tree = Tree(newick_str, format=1, quoted_node_names=True)
+ 			else:	 
+ 				parse_error = True
+ 	#print parse_error 
  	names_list = []
  	if not(parse_error):
  		names_list = []
@@ -180,7 +183,7 @@ def scale_tree_api(tree_newick):
  					#prune the tree to remove internal nodes
  					scaled_tree = prune_tree(otol_scaled_tree, taxon_names).replace("_", " ")
  				except:
- 					scaled_tree = otol_scaled_tree
+ 					scaled_tree = otol_scaled_tree.replace("_", " ")
  
  	response = {}	
  	if scaled_tree is not None:
