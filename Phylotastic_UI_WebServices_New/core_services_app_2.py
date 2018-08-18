@@ -1230,15 +1230,18 @@ class Get_Tree_Phylomatic_Service_API(object):
 
             input_json = cherrypy.request.json
             #nameslist = input_json["resolvedNames"]
-            taxalist = input_json["taxa"]
-            if type(taxalist) != types.ListType:
-               return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON") 	    
+            if 'taxa' not in input_json and 'resolvedNames' not in input_json:
+                raise KeyError("taxa")
+            elif 'taxa' in input_json and 'resolvedNames' not in input_json:
+                taxalist = input_json["taxa"]
+                if type(taxalist) != types.ListType:
+                   return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON")
 
-            if len(taxalist) == 0: 
-               raise CustomException("'taxa' parameter must have a valid value")
+                if len(taxalist) == 0 and 'resolvedNames' not in input_json: 
+                   raise CustomException("'taxa' parameter must have a valid value")
 
-            if len(taxalist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+                if len(taxalist) > 1000: 
+                   return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON") 
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -1248,6 +1251,15 @@ class Get_Tree_Phylomatic_Service_API(object):
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
+            if 'resolvedNames' not in input_json: 
+                nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False)
+                nameslist = nameslist_json['resolvedNames']
+                if len(nameslist) > 1000: 
+                   return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+            else:
+                nameslist = input_json['resolvedNames']
+                taxalist = phylomatic_tree_service.retrieve_taxa(nameslist)
+
             service_result = phylomatic_tree_service.tree_controller(taxalist)   
             #-------------log request------------------   
             header = cherrypy.request.headers

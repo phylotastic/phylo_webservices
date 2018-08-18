@@ -65,12 +65,12 @@ def get_inducedSubtree(ottIdList):
          	error_json = json.loads(response.text)
          	error_msg = error_json['message']
          	if 'Not enough valid node or ott ids' in error_msg:
- 				inducedtree_info['message'] = error_msg#"Error: Response error from OpenTreeofLife- 'Not enough valid node or ott ids provided to construct a subtree (there must be at least two)'"
+ 				inducedtree_info['message'] = "OpenTreeofLife API Error: " + error_msg #"Error: Response error from OpenTreeofLife- 'Not enough valid node or ott ids provided to construct a subtree (there must be at least two)'"
          	else:
- 		 		inducedtree_info['message'] = error_msg
+ 		 		inducedtree_info['message'] = "OpenTreeofLife API Error: " + error_msg
          	
      	except ValueError:
-     		inducedtree_info['message'] =  "Error: Decoding of JSON error message from induced_subtree method failed"
+     		inducedtree_info['message'] =  "OpenTreeofLife API Error: Decoding of JSON error message from induced_subtree method failed"
      		 	
         inducedtree_info['status_code'] = response.status_code
 
@@ -84,7 +84,7 @@ def subtree(ottidList):
     #single species
     if len(ottidList) < 2:
        result['newick'] = ""
-       result['message'] = "Not enough valid nodes provided to construct a subtree (there must be at least two)"
+       result['message'] = "OpenTreeofLife API Error: Not enough valid nodes provided to construct a subtree (there must be at least two)"
        result['status_code'] = 500 
        return result
     

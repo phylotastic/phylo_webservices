@@ -7,7 +7,7 @@ import datetime
 import google_dns
 
 #----------------------------------------
-megatree_plants = ["R20120829", "smith2011", "zanne2014"]
+megatree_plants = ["R20120829", "smith2011", "zanne2014", "silk2015"]
 megatree_mammals = ["binindaemonds2007"]
 
 headers={'content-type': 'application/json'}
@@ -38,7 +38,7 @@ def get_phylomatic_tree(megatree_id, taxa):
  	else:
  		phylomatic_response['response'] = None
  		phylomatic_response['status_code'] = response.status_code
- 		phylomatic_response['message'] = "Error: Response error while getting tree from phylomatic"
+ 		phylomatic_response['message'] = "Phylomatic API Error: Response error while getting tree from phylomatic"
 
  	return phylomatic_response
 
@@ -114,6 +114,21 @@ def process_phylomatic_result(result):
 
  	return {"newick": newick_str, "note": extra_note}
 
+#-------------------------------------------
+def retrieve_taxa(resolvedNames):
+ 	#rsnames = resolvedNames['resolvedNames']
+ 	rsnames = resolvedNames
+ 	taxa_List = []
+ 	for rname in rsnames:
+ 		if 'matched_results' in rname:
+ 			for match_result in rname['matched_results']:
+ 				taxon = match_result['matched_name']
+ 				taxa_List.append(taxon)
+ 				break 			
+ 		
+ 	#print taxa_List
+ 	return taxa_List
+
 #---------------------------------------------
 def tree_controller(taxaList):
  	start_time = time.time()	
@@ -147,7 +162,7 @@ def tree_controller(taxaList):
  	for megatree_id in megatree_list:
  		phylomatic_result = get_phylomatic_tree(megatree_id, taxa)
  		if phylomatic_result['response'] is None:
- 			final_result = {"newick": "", "status_code": phylomatic_result['status_code'], "message": phylomatic_result['message']}
+ 			final_result = {"newick": "", "status_code": phylomatic_result['status_code'], "message": "Phylomatic API Error: " +phylomatic_result['message']}
  			break
  		else:
  			if "No taxa in common" in phylomatic_result['response']:
@@ -158,7 +173,7 @@ def tree_controller(taxaList):
  				break
 
  	if not(final_result):
- 		final_result = {"newick": "", "status_code": 200, "message": "No tree found using phylomatic web service"}
+ 		final_result = {"newick": "", "status_code": 400, "message": "No tree found using phylomatic web service"}
 
  	end_time = time.time()
  	execution_time = end_time-start_time
