@@ -109,7 +109,7 @@ class GtTreeTester(webapp.WebappTestCase):
         # Expecting "Not enough valid nodes provided to construct a subtree 
         #   (there must be at least two)"
         mess = x.json().get(u'message')
-        self.assertTrue(u'least' in mess, 'no "least" in message: "%s"' % mess)
+        self.assertTrue(u'empty' in mess, 'no "empty" in message: "%s"' % mess)
 
 
     # Names containing non-ASCII Unicode all fail with:
