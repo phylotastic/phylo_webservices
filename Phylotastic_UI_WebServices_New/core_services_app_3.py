@@ -734,8 +734,8 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
                if type(multi_match) != types.BooleanType:
                   multi_match = str2bool(multi_match)
             
-            if len(nameslist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+            if len(nameslist) > 3000: 
+               return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -791,8 +791,8 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
                if type(multi_match) != types.BooleanType:
                   multi_match = str2bool(multi_match)
 
-            if len(nameslist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+            if len(nameslist) > 3000: 
+               return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -853,8 +853,8 @@ class Resolve_ScientificNames_GNR_Service_API(object):
                if type(multi_match) != types.BooleanType:
                   multi_match = str2bool(multi_match)   
             
-            if len(nameslist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+            if len(nameslist) > 3000: 
+               return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -910,8 +910,8 @@ class Resolve_ScientificNames_GNR_Service_API(object):
                if type(multi_match) != types.BooleanType:
                   multi_match = str2bool(multi_match)
                
-            if len(nameslist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+            if len(nameslist) > 3000: 
+               return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -1079,8 +1079,8 @@ class Get_Tree_OpenTree_Service_API(object):
             if len(taxalist) == 1 and '' in taxalist: 
                raise CustomException("'taxa' parameter must have a valid value")
 
-            if len(taxalist) > 1000: 
-               return return_response_error(403,"Error: Currently more than 1000 taxa is not supported","JSON")
+            if len(taxalist) > 2000: 
+               return return_response_error(403,"Error: Currently more than 2000 taxa is not supported","JSON")
 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -1130,8 +1130,8 @@ class Get_Tree_OpenTree_Service_API(object):
                 if len(taxalist) == 0 and 'resolvedNames' not in input_json: 
                    raise CustomException("'taxa' parameter must have a valid value")
 
-                if len(taxalist) > 1000: 
-                   return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+                if len(taxalist) > 2000: 
+                   return return_response_error(403,"Error: Currently more than 2000 names is not supported","JSON")
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -1144,8 +1144,8 @@ class Get_Tree_OpenTree_Service_API(object):
             if 'resolvedNames' not in input_json: 
                 nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False)
                 nameslist = nameslist_json['resolvedNames']
-                if len(nameslist) > 1000: 
-                   return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
+                if len(nameslist) > 2000: 
+                   return return_response_error(403,"Error: Currently more than 2000 names is not supported","JSON")
             else:
                 nameslist = input_json['resolvedNames']
                 taxalist = nameslist
