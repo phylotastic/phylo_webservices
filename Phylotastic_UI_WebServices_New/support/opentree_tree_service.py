@@ -131,7 +131,7 @@ def get_tree_OT(resolvedNames):
     #get induced_subtree
  	final_result = subtree(ottIdList)
  	newick_str = final_result['newick']
- 	final_result['newick'] = newick_str.encode('ascii', 'ignore').decode('ascii')
+ 	final_result['newick'] = newick_str#newick_str.encode('ascii', 'ignore').decode('ascii')
  	if final_result['status_code'] != 200:	
  		return final_result 
  

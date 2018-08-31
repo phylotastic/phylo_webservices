@@ -50,8 +50,11 @@ class WebTreeHandler(object):
         #if isinstance(self.treenewick, unicode):
         #   self.treenewick = self.treenewick.encode('utf-8', 'ignore')
         #   print self.treenewick
-        if isinstance(self.treenewick, str):
-           print "string"
+        newick_str = self.treenewick.encode('ascii', 'ignore').decode('ascii') #to remove unicode errors
+        tmp_nwk =  newick_str.replace("&#39;", "'") #to remove the html code of apostrophe 
+        self.treenewick = tmp_nwk  
+        #if isinstance(self.treenewick, str):
+           #print "string"
         try:
            self.tree = Tree(self.treenewick)
         except NewickError:

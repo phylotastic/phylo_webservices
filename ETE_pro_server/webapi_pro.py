@@ -35,7 +35,7 @@ def web_return(html, response):
     return html
 
 def json_return(data, response): 
-    print data
+    #print data
     response.content_type = 'application/json'
     
     return json.dumps(data)
@@ -106,7 +106,7 @@ def get_tree_image():
        # Renders initial tree image without any actions applied   
        html_img_data = tree_handler.redraw(topoffset, leftoffset)
 
-    print "returning initial image from get_tree_image.."
+    #print "returning initial image from get_tree_image.."
     return json_return({'tree_newick':tree_handler.treenewick, 'tree_id':tree_handler.treeid, 'html_data': html_img_data, 'actions':{'tree_actions':{}, 'node_actions':[]}}, response)
 
 #------------------------------------------------
