@@ -106,7 +106,13 @@ def get_dated_induced_tree_ottids(ott_id_list):
 
  	jsonPayload = json.dumps(payload)
 
- 	response = requests.post(api_url, data=jsonPayload, headers=headers)
+ 	try:
+ 		response = requests.post(api_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError as e:
+ 		if 'BadStatusLine' in str(e):
+ 			#print "Error from OToL service API: Server retured nothing" 	
+ 			return None
+
  	#print response.text
  	#print response.status_code
  	dated_induced_tree_ottids = None
@@ -127,7 +133,13 @@ def get_dated_induced_tree(dated_tree_ottids):
 
  	jsonPayload = json.dumps(payload)
 
- 	response = requests.post(api_url, data=jsonPayload, headers=headers)
+ 	try:
+ 		response = requests.post(api_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError as e:
+ 		if 'BadStatusLine' in str(e):
+ 			#print "Error from OToL service API: Server retured nothing" 	
+ 			return None
+
  	#print response.text 	
  	dated_induced_tree = None
 
@@ -174,9 +186,11 @@ def scale_tree_api(tree_newick):
  			sc_tree_ids = get_dated_induced_tree_ottids(ott_ids)
  			#print sc_tree_ids
  			if sc_tree_ids is None:
- 				return {'status_code': 400, "message": "No induced tree found from OToL API"}
+ 				return {'status_code': 400, "message": "No dated induced tree found from OToL API"}
  			else:
  				otol_scaled_tree = get_dated_induced_tree(sc_tree_ids)
+ 				if otol_scaled_tree is None:
+ 					return {'status_code': 500, "message": "Could not rename dated induced tree from OToL API"}
  				#print scaled_tree
  				taxon_names = [name.replace(" ", "_") for name in taxon_names]
  				try:
