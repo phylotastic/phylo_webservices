@@ -98,6 +98,7 @@ def get_num_tips(newick_str):
 '''
 #-----------------------------------------------
 def get_dated_induced_tree_ottids(ott_id_list):	
+ 	#Ref: http://evoblackrim.com/opentree/2018/03/10/dating-open-tree.html
  	api_url = 'http://141.211.236.35:10999/induced_subtree'
    
  	payload = {
