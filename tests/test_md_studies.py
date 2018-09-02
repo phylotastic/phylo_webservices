@@ -22,15 +22,23 @@ class TestMdStudies(TestMdGetStudies):
         x = self.start_request_tests(example_1)
         mess = x.json().get(u'message')
         self.assert_success(x, mess)
-        # Insert: whether result is what it should be according to docs
+        # Check whether the number of studies in the result is more than the minimum expected
+        self.assertTrue(len(x.json()[u'studies']) >= 1)
+        # Check whether result is what it should be according to docs
+        self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in x.json()[u'studies'][0]['PublicationDOI'])
 
-
-    @unittest.skip("temporarily to fix later")
+        
+    #@unittest.skip("temporarily to fix later")
     def test_example_2(self):
         x = self.start_request_tests(example_2)
         mess = x.json().get(u'message')
         self.assert_success(x, mess)
-        # Insert: whether result is what it should be according to docs
+        
+        # Check whether the number of studies in the result is more than the minimum expected
+        self.assertTrue(len(x.json()[u'studies']) >= 1)
+        # Check whether result is what it should be according to docs
+        self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in x.json()[u'studies'][0]['PublicationDOI'])
+
 
 null=None; false=False; true=True
 
