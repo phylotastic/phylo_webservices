@@ -221,7 +221,9 @@ class Tree_Studies_Service_API(object):
             lst = input_json["list"]
             list_type = input_json["list_type"]
             if list_type.lower() == "ottids":
-               ottid_lst = lst
+               ott_id_lst = lst
+            elif list_type.lower() == "studyids":
+               study_id_lst = lst
             elif list_type.lower() == "taxa":
                taxa_lst = lst 
             else:
@@ -238,7 +240,9 @@ class Tree_Studies_Service_API(object):
         
         try: 
             if list_type.lower() == "ottids":
-               service_result = tree_studies_service.get_studies_from_ids(ottid_lst)
+               service_result = tree_studies_service.get_studies_from_ids(ott_id_lst)
+            elif list_type.lower() == "studyids":
+               service_result = tree_studies_service.get_studies_from_ids(study_id_lst, False)  
             elif list_type.lower() == "taxa":
                service_result = tree_studies_service.get_studies_from_names(taxa_lst) 
             #--------------------------------------------

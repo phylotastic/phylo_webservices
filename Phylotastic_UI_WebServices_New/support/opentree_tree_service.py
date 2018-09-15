@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-#Open Tree of Life tree service: version 1.1
+#Open Tree of Life tree service: version 1.2
 import json
 import time
 import requests
+import types
 import re
 import ast
 import datetime
@@ -16,7 +17,7 @@ from ete3 import Tree, TreeStyle
 from ete3.parser.newick import NewickError
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-api_url = "https://api.opentreeoflife.org/v2/tree_of_life/"
+api_url = "https://api.opentreeoflife.org/v3/tree_of_life/"
 headers = {'content-type': 'application/json'}
     
 #-----------------Induced Subtree of a set of nodes [OpenTree]---------------------
@@ -52,54 +53,52 @@ def get_inducedSubtree(ottIdList):
     #----------------------------------------------
 
     newick_tree_str = ""
+    studies = ""
     inducedtree_info = {}
 
     if response.status_code == requests.codes.ok:
  		data_json = json.loads(response.text)
- 		newick_tree_str = data_json['newick']		
+ 		newick_tree_str = data_json['newick']
+ 		studies = data_json['supporting_studies']		
  		inducedtree_info['message'] = "Success"
  		inducedtree_info['status_code'] = 200
     else:
-        #print response.text
-        try: 
-         	error_json = json.loads(response.text)
-         	error_msg = error_json['message']
-         	if 'Not enough valid node or ott ids' in error_msg:
- 				inducedtree_info['message'] = "OpenTreeofLife API Error: " + error_msg #"Error: Response error from OpenTreeofLife- 'Not enough valid node or ott ids provided to construct a subtree (there must be at least two)'"
-         	else:
+ 		try: 
+ 			error_msg = str(response.text)
+ 			if 'node_id' in error_msg:
+ 				st_indx = error_msg.find("node_id")  #"[/v3/tree_of_life/induced_subtree] Error: node_id 'ott4284156' was not found!"
+ 				en_indx = error_msg.find("was")
+ 				missing_node_id_str = error_msg[st_indx+9: en_indx-2]
+ 				missing_ott_id = int(missing_node_id_str.replace("ott", ""))
+ 				ottIdList.remove(missing_ott_id)
+ 				return ottIdList
+ 			else:
+ 				error_json = json.loads(error_msg)
+ 				error_msg = error_json['message']
  		 		inducedtree_info['message'] = "OpenTreeofLife API Error: " + error_msg
          	
-     	except ValueError:
-     		inducedtree_info['message'] =  "OpenTreeofLife API Error: Decoding of JSON error message from induced_subtree method failed"
+ 		except Exception as e:
+ 			inducedtree_info['message'] =  "OpenTreeofLife API Error: " + str(e)
      		 	
-        inducedtree_info['status_code'] = response.status_code
+ 		inducedtree_info['status_code'] = response.status_code
 
     inducedtree_info['newick'] = newick_tree_str
+    inducedtree_info['studies'] = studies
  	
     return inducedtree_info
 
 #-------------------------------------------------------
-def subtree(ottidList):
-    result = {}
-    #single species
-    if len(ottidList) < 2:
-       result['newick'] = ""
-       result['message'] = "OpenTreeofLife API Error: Not enough valid nodes provided to construct a subtree (there must be at least two)"
-       result['status_code'] = 500 
-       return result
-    
- 	#multiple species
-    induced_response = get_inducedSubtree(ottidList)
-    result = induced_response
-
-    return result 
+def subtree(ottidList):   
+ 	induced_response = get_inducedSubtree(ottidList)
+ 	while type(induced_response) == types.ListType: 
+ 		induced_response = get_inducedSubtree(induced_response)    
+ 
+ 	return induced_response 
 #-----------------------------------------------------------
 #get newick string for tree from OpenTree
 #input: list of resolved scientific names
 def get_tree_OT(resolvedNames):
  	start_time = time.time() 
- 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-5"
-
  	ListSize = len(resolvedNames)
     
  	response = {}
@@ -110,8 +109,8 @@ def get_tree_OT(resolvedNames):
  		
  		return response
  		
- 	rsnames = resolvedNames
- 	#rsnames = resolvedNames['resolvedNames']
+ 	#rsnames = resolvedNames
+ 	rsnames = resolvedNames['resolvedNames']
  	ottIdList = []
  	for rname in rsnames:
  		if 'matched_results' in rname:
@@ -129,13 +128,14 @@ def get_tree_OT(resolvedNames):
  			 	return response
  			     
     #get induced_subtree
- 	final_result = subtree(ottIdList)
- 	newick_str = final_result['newick']
+ 	final_result = {} 
+ 	opentree_result = subtree(ottIdList)
+ 	newick_str = opentree_result['newick']
  	final_result['newick'] = newick_str#newick_str.encode('ascii', 'ignore').decode('ascii')
- 	if final_result['status_code'] != 200:	
- 		return final_result 
+ 	if opentree_result['status_code'] != 200:	
+ 		return opentree_result 
  
- 	if final_result['newick'] != "":
+ 	if opentree_result['newick'] != "":
  		synth_tree_version = get_tree_version()		
  		tree_metadata = get_metadata()
  		tree_metadata['inference_method'] = tree_metadata['inference_method'] + " from synthetic tree with ID "+ synth_tree_version
@@ -146,7 +146,9 @@ def get_tree_OT(resolvedNames):
  		num_tips = get_num_tips(newick_str)
  		if num_tips != -1:
  			final_result['tree_metadata']['num_tips'] = num_tips
- 		study_list = get_supporting_studies(ottIdList) 	
+
+ 		study_ids = opentree_result['studies']
+ 		study_list = get_supporting_studies(study_ids) 	
  		final_result['tree_metadata']['supporting_studies'] = study_list['studies']
  		 
  	end_time = time.time()
@@ -165,12 +167,12 @@ def get_tree_OT(resolvedNames):
  	
 #-------------------------------------------
 #get supporting studies of the tree from OpenTree
-def get_supporting_studies(ottIdList):
+def get_supporting_studies(studyIdList):
  	resource_url = "http://phylo.cs.nmsu.edu:5006/phylotastic_ws/md/studies"    
     
  	payload_data = {
- 		'list': ottIdList,
- 		'list_type': "ottids"		
+ 		'list': studyIdList,
+ 		'list_type': "studyids"		
     }
  	jsonPayload = json.dumps(payload_data)
     
@@ -211,7 +213,13 @@ def get_num_tips(newick_str):
  		except NewickError as e:
  			#print str(e) 
  			if 'quoted_node_names' in str(e):
- 				tree = Tree(newick_str, format=1, quoted_node_names=True)
+ 				try:
+ 					tree = Tree(newick_str, format=1, quoted_node_names=True)
+ 				except NewickError as e:
+ 					try:
+ 						tree = Tree(newick_str+";", format=1, quoted_node_names=True)
+ 					except NewickError as e:
+ 						parse_error = True	
  			else:
  				parse_error = True
 
@@ -225,40 +233,23 @@ def get_num_tips(newick_str):
 
 #-------------------------------------------
 def get_tree_version():
- 	resource_url = "https://api.opentreeoflife.org/v2/tree_of_life/about"    
-    
- 	payload_data = {
- 		'study_list': False
- 	}
- 	jsonPayload = json.dumps(payload_data)
+ 	resource_url = api_url + "about"    
     
  	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
- 	#+++++++++++Solution 1++++++++++++++++
-    #max_tries = 20
-    #remaining_tries = max_tries
-    #while remaining_tries > 0:
-    #    try:
-    #        response = requests.post(resource_url, data=jsonPayload, headers=headers)
-    #        break
-    #    except requests.exceptions.ConnectionError:
-    #        time.sleep(20)
-    #    remaining_tries = remaining_tries - 1
-    #+++++++++++++++++++++++++++++++++++++++
-    
     #+++++++++++Solution 2++++++++++++++++
  	try: 
- 		response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 		response = requests.post(resource_url)
  	except requests.exceptions.ConnectionError:
  		alt_url = google_dns.alt_service_url(resource_url)
- 		response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+ 		response = requests.post(alt_url, verify=False)                
     #----------------------------------------------
         
  	metadata = {}
  	if response.status_code == requests.codes.ok:
  		data_json = json.loads(response.text)
- 		return data_json['tree_id']
+ 		return data_json['synth_id']
  	else:
- 		return "Error: getting synth tree version"  
+ 		return "" #Error: getting synth tree version"  
 
 #---------------------------------------------
 def get_metadata():
@@ -277,12 +268,14 @@ def get_metadata():
  	return tree_metadata	
 #---------------------------------------------
 #if __name__ == '__main__':
-
-    #ott_idlist = [3597195, 3597205, 3597191, 3597209, 60236]
-    #inputNames = {"resolvedNames": [{"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga striata", "search_string": "setophaga strieta", "synonyms": ["Dendroica striata", "Setophaga striata"], "taxon_id": 60236}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga magnolia", "search_string": "setophaga magnolia", "synonyms": ["Dendroica magnolia", "Setophaga magnolia"], "taxon_id": 3597209}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga angelae", "search_string": "setophaga angilae", "synonyms": ["Dendroica angelae", "Setophaga angelae"], "taxon_id": 3597191}, {"match_type": "Exact", "resolver_name": "OT", "matched_name": "Setophaga plumbea", "search_string": "setophaga plambea", "synonyms": ["Dendroica plumbea", "Setophaga plumbea"], "taxon_id": 3597205}, {"match_type": "Fuzzy", "resolver_name": "OT", "matched_name": "Setophaga virens", "search_string": "setophaga virens", "synonyms": ["Dendroica virens", "Setophaga virens"], "taxon_id": 3597195}]}
-
-    #result = get_inducedSubtree(ott_idlist)
-    #result = get_tree_OT(inputNames)
-    #print result
+	
+	#ott_idlist = [3597195, 3597205, 3597191, 3597209, 60236]
     
-       
+	#ott_idlist = [433666, 18021, 3802384, 912655, 3746533, 918710, 5121548, 3832795, 952533, 6052258, 3998503, 3509575, 779104, 5000538, 3996806, 3978191, 510792, 532917, 3708728, 197595, 3508673, 737276, 3560838, 4032, 3210188, 3977800, 540895, 377156, 4977863, 3712394, 3681318, 3802710, 4505629, 4006407, 3194147, 2815857, 4107072, 215326, 4595643, 3746391, 4604046, 4378715, 6378722, 454977, 3662585, 4676639, 3915948, 3033580, 695582, 834877, 3203503, 4455150, 690589, 806444, 2985147, 4194163, 6277191, 3369819, 5097835, 919822, 3396588, 953128, 3608996, 3149259, 5105169, 3876440, 3258775, 82316, 723405, 943939, 1059988, 189648, 3903564, 2888162, 3941789, 3052287, 6051794, 6243490, 378262, 743867, 6163921, 439510, 5227132, 4018146, 286185, 3293755, 2995398, 469974, 3023470, 4027260, 3503119, 6071397, 559015, 40332, 3218789, 6112538, 3253119, 3197128, 952687, 4041393, 3091861, 4427421, 3671409, 6244654, 707486, 474175, 3209192, 4768619, 5801096, 309141, 3352412, 17645, 123343, 5146923, 3413028, 3074766, 3310513, 6128184, 3684868, 253039, 4977373, 3183138, 3012947, 6309210, 3466023, 934930, 5975656, 3044514, 2917937, 3748550, 4555170, 4360269, 3757278, 680503, 841628, 475283, 3933266, 5257885, 5155212, 658833, 1022990, 4508624, 918223, 3623431, 3188289, 6119837, 6306013, 616360, 5449983, 6080379, 185290, 37217, 682827, 3390075, 6182283, 2890595, 445886, 6278337, 4585063, 908798, 4703000, 134974, 3565697, 408171, 910430, 784877, 3922738, 2911806, 3630938, 3468181, 4353996, 3877008, 4361402, 785192, 4630284, 485925, 42306, 3986342, 4383501, 3089422, 432031, 3314623, 3591400, 3776487, 10192, 3090364, 75715, 3512710, 2957120, 530789, 67174, 3539273, 5073036, 6274531, 3162559, 4121165, 1016007, 2884772, 2965411, 3276825, 4346374, 2902817, 3920477, 973582, 10732, 6178755, 854212, 283627, 889471, 6099780, 4049235, 1089215, 4510133, 679823, 3303172, 3530185, 824583, 3232630, 3901755, 5400857, 4369781, 306890, 3365436, 4204580, 3702460, 4993266, 4459274, 4158260, 4479740, 5462853, 3490415, 947030, 3795317, 4495330, 3141118, 3266145, 6275540, 6165613, 3392792, 4121880, 373777, 2874479, 695282, 4434715, 4378346, 2941719, 3907816, 3960904, 376782, 3405311, 899169, 3219744, 502615, 35890, 124716, 6046666, 765141, 168215, 134968, 6304101, 68622, 320728, 2952334, 129927, 179844, 3010120, 2912929, 18935, 3530039, 6129056, 6080749, 798674, 3821331, 6049284, 4006484, 3482429, 3224760, 935894, 709107, 1063726, 4006284, 3481406, 4422815, 748946, 1093221, 3748906, 6070096, 2898881, 61760, 3652785, 3867076, 3321502, 3523833, 3917014, 4377787, 5049699, 3352907, 4994682, 4198470, 318763, 6069161, 2864402, 145176, 3414157, 1065584, 6225559, 3504465, 4742977, 3085412, 1054907, 3585909, 4191643, 321812, 4380241, 3048158, 3696230, 3568351, 4050316, 5061282, 4009245, 3328571, 404824, 3028369, 3885240, 3927317, 916304, 3875298, 4724297, 4206775, 3703218, 3476660, 3482304, 161789, 4492740, 3306560, 574802, 534105, 5381675, 3385865, 5262773, 3909665, 4977841, 3193831, 4470996, 3122742, 3111455, 3572428, 3316029, 103249, 3406123, 6086775, 6157204, 5077042, 752644, 252415, 4370491, 676992, 273898, 3441108, 3196679, 553629, 5107001, 790513, 6167067, 3989812, 5450912, 3466729, 3160066, 298091, 5378935, 4355021, 3636743, 2997400, 961176, 270778, 396547, 198230, 785102, 3512451, 4345176, 3589886, 4802995, 510153, 104052, 3640593, 1063158, 454322, 6090760, 195448, 4405746, 3276454, 981621, 6043569, 3292079, 4649559, 3930641, 3944742, 6218059, 5471420, 549422, 4508471, 3777070, 3176039, 6357315, 528727, 5000865, 5338593, 6092514, 3690650, 3689238, 3027073, 201561, 5201077, 4482520, 6094047, 4237344, 5068964, 5783661, 393337, 4697520, 4472986, 586667, 3755374, 3468299, 3118420, 3935680, 5122021, 871618, 6131513, 4341715, 4069977, 4616537, 4373719, 4379798, 6118723, 4431557, 720362, 208871, 4640218, 220141, 977579, 4741117, 4991059, 71357, 3383871, 623625, 2874348, 538350, 3799622, 3054671, 5122047, 6076187, 1001606, 3698765, 603566, 5019074, 844023, 5522559, 3302141]
+	#inputNames = ["Dionaea muscipula", "Sarracenia", "Darlingtonia californica", "Drosera", "Pinguicula", "Utricularia", "Roridulaceae"]
+	#inputNames = '{"status_code": 200, "message": "Success", "meta_data": {"execution_time": 0.39, "creation_time": "2018-09-15T11:35:29.996768", "source_urls": ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#tnrs"]}, "total_names": 7, "resolvedNames": [{"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Drosera", "search_string": "drosera", "synonyms": ["Drosera"], "taxon_id": 14968}], "input_name": "Drosera"}, {"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Sarracenia", "search_string": "sarracenia", "synonyms": ["Sarracenia"], "taxon_id": 639943}], "input_name": "Sarracenia"}, {"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Darlingtonia californica", "search_string": "darlingtonia californica", "synonyms": ["Chrysamphora californica", "Darlingtonia californica"], "taxon_id": 639950}], "input_name": "Darlingtonia californica"}, {"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Roridulaceae", "search_string": "roridulaceae", "synonyms": ["Roridulaceae"], "taxon_id": 538887}], "input_name": "Roridulaceae"}, {"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Utricularia", "search_string": "utricularia", "synonyms": ["Lentibularia", "Lecticula", "Meionula", "Lepiactis", "Pelidnia", "Meloneura", "Nelipus", "Personula", "Akentra", "Orchyllium", "Trixapias", "Askofake", "Biovularia", "Avesicaria", "Bucranion", "Pleiochasia", "Plectoma", "Aranella", "Hamulia", "Vesiculina", "Setiscapella", "Polypompholyx", "Plesisa", "Saccolaria", "Calpidisca", "Sacculina", "Cosmiza", "Enetophyton", "Diurospermum", "Stomoisia", "Enskide", "Trilobulina", "Tetralobus", "Megozipa", "Xananthes", "Utricularia"], "taxon_id": 512422}], "input_name": "Utricularia"}, {"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Pinguicula", "search_string": "pinguicula", "synonyms": ["Pinguicula"], "taxon_id": 659715}, {"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Pinguicula", "search_string": "pinguicula", "synonyms": ["Plicatra", "Ringactaeon", "Ringicula", "Ringiculadda", "Ringiculina", "Ringicula (Ringicula)", "Ringicula (Ringiculina)", "Pinguicula", "Ringiculus", "Ringuicula"], "taxon_id": 2915359}], "input_name": "Pinguicula"}, {"matched_results": [{"data_source": "Open Tree of Life Reference Taxonomy", "match_type": "Exact", "match_score": 1.0, "matched_name": "Dionaea muscipula", "search_string": "dionaea muscipula", "synonyms": ["Dionaea sessiliflora", "Dionaea muscipula", "Drosera corymbosa", "Dionaea corymbosa", "Dionaea sensitiva", "Dionaea uniflora"], "taxon_id": 14971}], "input_name": "Dionaea muscipula"}]}'
+	#result = get_inducedSubtree(ott_idlist)
+	#result = get_tree_OT(json.loads(inputNames))
+	#print result
+    
+

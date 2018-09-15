@@ -31,19 +31,23 @@ def get_study_ids(ottid_list):
     
     studyid_result = {}
 
-    result_data_json = json.loads(response.text)
+    try:
+       result_data_json = json.loads(response.text)
 
-    if response.status_code == requests.codes.ok:    
-        studyid_result['study_ids'] = result_data_json['supporting_studies']
-        msg =  "Success"
-        statuscode = 200
-    else:
-        if 'message' in result_data_json:
-           msg = "OpenTree Error: "+result_data_json['message']
-        else:
-           msg = "Error: Response error while getting study ids from OpenTreeofLife"
+       if response.status_code == requests.codes.ok:    
+          studyid_result['study_ids'] = result_data_json['supporting_studies']
+          msg =  "Success"
+          statuscode = 200
+       else:
+          if 'message' in result_data_json:
+             msg = "OpenTree Error: "+result_data_json['message']
+          else:
+             msg = "OpenTreeofLife API Error: Response error while getting study ids"
         
-        statuscode = response.status_code
+    except ValueError:
+         msg = "OpenTreeofLife API Error: Could not decode json response"
+
+    statuscode = response.status_code
         
     studyid_result['message'] =  msg
     studyid_result['status_code'] = statuscode
@@ -129,7 +133,8 @@ def get_study_info(studyid):
 #----------------------------------------------------
 def get_studies(studyid_list):
     studies_list = []
-    for studyid in studyid_list:
+    study_ids = [study[:study.find("@")] for study in studyid_list]
+    for studyid in study_ids:
         study_info = get_study_info(studyid)
         if study_info['status_code'] == 200:
            msg = study_info['message']
@@ -270,6 +275,7 @@ def get_studies_from_names(taxa_list, context=None):
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
-	#idlist = [3597191,3597209,3597205,60236,3597195]
-	#idlist = [532117,42322,42324,563151,42314]
+ 	#idlist = [433666, 18021, 3802384, 912655, 3746533, 918710]
+	#idlist = ["ot_519", "ot_930", "ot_490", "pg_793", "pg_1631"]
+ 	#idlist = ["ot_519@tree2","ot_930@tree3", "ot_490@Tr70734","pg_793@tree5659","pg_1631@tree3297"]
 	#print get_studies_from_ids(idlist)

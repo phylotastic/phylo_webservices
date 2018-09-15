@@ -205,7 +205,7 @@ def resolve_sn_iplant(scNames, do_fuzzy_match, multi_match):
 
 #~~~~~~~~~~~~~~~~~~~~ (OpenTreeofLife-TNRS)~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
-    opentree_api_url = 'https://api.opentreeoflife.org/v2/tnrs/match_names'
+    opentree_api_url = 'https://api.opentreeoflife.org/v3/tnrs/match_names'
   
     payload = {
         'names': scNames,
@@ -245,9 +245,9 @@ def resolve_sn_ot(scNames, do_fuzzy_match, multi_match):
         msg = "Success"
     else:
         if 'message' in data_json:
-           msg = "OToL TNRS Error: "+data_json['message']
+           msg = "OToL TNRS API Error: "+data_json['message']
         else:
-           msg = "Error: Response error while resolving names with OToL TNRS"
+           msg = "OToL API Error: Response error while resolving names with OToL TNRS"
         if 'status' in data_json:
            statuscode = data_json['status']
         
@@ -260,7 +260,7 @@ def get_resolved_names(results, do_fuzzy_match, multi_match):
  	resolvedNameslist = []
  	
  	for element in results:
- 		input_name = element['id']
+ 		input_name = element['name']
  		match_list = element['matches']
  		mult_matches_list = []
  		for match_result in match_list:
@@ -269,8 +269,8 @@ def get_resolved_names(results, do_fuzzy_match, multi_match):
  			match_str = match_result['matched_name']
  			match_type = match_result['is_approximate_match']
  			match_score = match_result['score']
- 			ott_id = match_result['ot:ottId']
- 			synonyms = match_result['synonyms']
+ 			ott_id = match_result['taxon']['ott_id']
+ 			synonyms = match_result['taxon']['synonyms']
  			if float(match_score) >= 0.75:	     	
  				namesList['matched_name'] = match_str
  				namesList['search_string'] = search_str	 
@@ -336,7 +336,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match): 
-    list_size = 1000
+    list_size = 3000
     resolver_result = []
 
     status_code = 200
@@ -346,7 +346,7 @@ def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match):
 
     if len(inputNamesList) > list_size:
  		sublists = create_sublists(inputNamesList, list_size)
- 		print "Number of sublists: %d"%len(sublists)
+ 		#print "Number of sublists: %d"%len(sublists)
  		for sublst in sublists:
  			api_friendly_list = make_api_friendly_list(inputNamesList)
  			resolvedResult = resolve_sn_gnr(api_friendly_list, do_fuzzy_match, multi_match)
@@ -406,15 +406,16 @@ def resolve_names_iPlant(inputNamesList, do_fuzzy_match, multi_match):
     return final_result
     
 #-------------------------------------------------
-#if __name__ == '__main__':
+if __name__ == '__main__':
 
     #inputList = ["Formica polyctena", "Tetramorium caespitum","Carebara diversa", "Formicinae"]
     #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"]
+    inputList = ["Dionaea muscipula", "Sarracenia", "Darlingtonia californica", "Drosera", "Pinguicula", "Utricularia", "Roridulaceae"]
     #inputList = ["Ran Temporaria"]
     #result = resolve_names_GNR(inputList, True, True)    
     #print result
     
-    #result = resolve_names_OT(inputList, True, True)
-    #print result
+    result = resolve_names_OT(inputList, True, True)
+    print result
     
        
