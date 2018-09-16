@@ -45,7 +45,7 @@ def get_phylomatic_tree(megatree_id, taxa):
 #--------------------------------------------------------
 #infer the taxonomic context from a list of taxonomic names 
 def get_taxa_context(taxaList):
- 	resource_url = "https://api.opentreeoflife.org/v2/tnrs/infer_context"    
+ 	resource_url = "https://api.opentreeoflife.org/v3/tnrs/infer_context"    
     
  	payload_data = {
      	'names': taxaList
@@ -73,7 +73,7 @@ def get_taxa_context(taxaList):
 #-----------------------------------------------
 #get a list of pre-defined taxonomic contexts from OpenTree
 def get_contexts():
- 	resource_url = "https://api.opentreeoflife.org/v2/tnrs/contexts"    
+ 	resource_url = "https://api.opentreeoflife.org/v3/tnrs/contexts"    
     
  	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool due to DNS resolver problem--------------
  	try: 
@@ -179,7 +179,6 @@ def tree_controller(taxaList):
  	execution_time = end_time-start_time
     #service result creation time
  	creation_time = datetime.datetime.now().isoformat()
- 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-18"
  	source_urls = ["http://phylodiversity.net/phylomatic/"]
  	
 	meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': source_urls} #'service_documentation': service_documentation
