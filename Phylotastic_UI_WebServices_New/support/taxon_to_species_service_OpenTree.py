@@ -13,7 +13,7 @@ dataCollectionName ="taxonSpecieslist"
 #-------------------------------------
 #Open Tree of Life API
 base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/"
-api_url = "https://api.opentreeoflife.org/v2/"
+api_url = "https://api.opentreeoflife.org/v3/"
 headers = {'content-type': 'application/json'}
 #--------------------------------------
 
@@ -107,13 +107,13 @@ def match_taxon(taxonName):
     if length == 0 and status_code == 200:
         ott_id = -1 
     else: 
-        ott_id = data_json['results'][0]['matches'][0]['ot:ottId']
+        ott_id = data_json['results'][0]['matches'][0]['taxon']['ott_id']
 
     return {'message': message, 'status_code': status_code, 'ott_id': ott_id}
 
 #-------------------------------------------
 def get_children(ottId):
-    resource_url = api_url + "taxonomy/taxon"    
+    resource_url = api_url + "taxonomy/taxon_info"    
     payload = {
         'ott_id': ottId,
         'include_children': 'true'    
@@ -150,13 +150,13 @@ def get_species_from_highrank(highrankChildren, conn):
  	
     #get all children of each higherankedChildren    
  	for child in highrankChildren:
- 		cache_result = find_taxon_cache(conn, child['ot:ottTaxonName'])
+ 		cache_result = find_taxon_cache(conn, child['name'])
  		if cache_result['cache_found']:
  			species_list.extend(cache_result['result'])
  			#print "cache found for child" 
  			continue       
  		species_lst = []  #temp species list
- 		result = get_children(child['ot:ottId'])
+ 		result = get_children(child['ott_id'])
  		if result['status_code'] != 200:
  			return result
  		res_json = json.loads(result['response'])
@@ -180,7 +180,7 @@ def get_species_from_genus(genusChildren):
     #get all species of a genus 
 	for child in genusChildren:
 		if child['rank'] == 'species':
-			species_list.append(child['ot:ottTaxonName'])            
+			species_list.append(child['name'])            
         
 	return species_list
 
@@ -384,6 +384,7 @@ def get_country_species(inputTaxon, country):
 	#To remove the warning: "the InsecurePlatformWarning: A true SSLContext object is not available"
  	#requests.packages.urllib3.disable_warnings()
 
+ 	#inputTaxon = "Hydropotes"
 	#inputTaxon = 'Vulpes' #genus
  	#inputTaxon = 'Felidae'
 	#inputTaxon = 'Canidae' #family
