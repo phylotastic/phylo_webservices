@@ -260,7 +260,7 @@ def get_all_species(inputTaxon, ottid=None):
  			data_json = json.loads(data_result['response'])
  			#print data_json
  			if data_json['rank'] == 'species' or data_json['rank'] == 'subspecies':
- 				species_list.append(data_json['ot:ottTaxonName'])		
+ 				species_list.append(data_json['name'])		
  			elif data_json['rank'] == 'genus':
  				species_list = get_species_from_genus(data_json['children'])
  			elif data_json['rank'] in['superorder','order','suborder','infraorder','parvorder','class','superclass','subclass','infraclass','parvclass','phylum','kingdom','domain', 'no rank']:
