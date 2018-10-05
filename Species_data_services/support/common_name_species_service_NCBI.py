@@ -61,8 +61,8 @@ def extract_sc_names_info(SoupObj, multiple=False):
 
 			extra_info = extract_more_info(divSuppTag)
 			sc_name_info['scientific_name'] = sc_name
-			sc_name_info['rank'] = extra_info['rank']
-			sc_name_info['common_name'] = extra_info['commonName']
+			sc_name_info['rank'] = extra_info['rank'] if extra_info is not None else ""
+			sc_name_info['common_name'] = extra_info['commonName'] if extra_info is not None else ""
 			sc_name_info['identifier'] = ncbi_id 
 			sc_name_info['source_info_url'] = sc_info_link
 			sc_names_list.append(sc_name_info)
@@ -140,6 +140,7 @@ def get_scientific_names(inputNameList, best_match=True):
 	#commonNameList = ["american crow", "rock dove", "american robin", "barn owl", "bald eagle"]
 
 	#commonNameList = ["Christmas fern", "cutleaf coneflower", "Castor bean", "Indian sandalwood", "African marigold"]
+	#commonNameList = ["cucumber","tomato","lettuce","pea"]
 	
 	#print get_scientific_names(commonNameList, False)
  	
