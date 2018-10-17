@@ -6,12 +6,13 @@ from tree_handler import WebTreeHandler, NodeActions, TreeStyle
 from tree_config import WebTreeConfig
 import types
 import json
-from IPython import embed
+import ast
+#from IPython import embed
 
 TREE_HANDLER = WebTreeHandler
 TREE_CONFIG = WebTreeConfig
 
-def create_tree_obj(tree_newick, tree_id):
+def create_tree_obj(tree_newick, tree_id, node_data=None):
 
     tree_handler_obj = TREE_HANDLER(tree_newick, tree_id)
     newick_checker = tree_handler_obj.parse_newick()
@@ -20,7 +21,17 @@ def create_tree_obj(tree_newick, tree_id):
        return {"message:":newick_checker, "status_code": 500}
     
     tree_config_obj = TREE_CONFIG(tree_handler_obj.tree, tree_id)
-    
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #add node data to tree
+    if node_data is not None:
+       #print "node data is not none"
+       data_dict =  ast.literal_eval(node_data.strip())
+       #print data_dict
+       #data_json = json.loads(node_data)
+       #print data_json
+       tree_config_obj.set_extra_tipdata(data_dict)
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     #set default actions and styles
     tree_handler_obj.set_actions(tree_config_obj.get_node_action())
     tree_handler_obj.set_style(tree_config_obj.get_tree_style())
@@ -87,12 +98,21 @@ def apply_tree_actions(tree_handler, tree_actions_dic):
     show_internal_node = False
     if 'show_internal_node' in tree_actions_dic: 
         show_internal_node = tree_actions_dic['show_internal_node']
+
+    #~~~~~~~~~~~~~~common name~~~~~~~~~~~~~~~~
+    show_common_name = False
+    if 'show_common_names' in tree_actions_dic: 
+        show_common_name = tree_actions_dic['show_common_names']
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           
-    tree_handler.run_tree_customize(show_branch_length, show_internal_node, ladderize)
+    tree_handler.run_tree_customize(show_branch_length, show_internal_node, ladderize, show_common_name)
     #update tree_actions dictionary
     new_tree_actions_dic['show_branch_length'] = show_branch_length
     new_tree_actions_dic['show_internal_node'] = show_internal_node
-    new_tree_actions_dic['ladderize'] = ladderize    
+    new_tree_actions_dic['ladderize'] = ladderize
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    new_tree_actions_dic['show_common_names'] = show_common_name
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
    
     return new_tree_actions_dic
 

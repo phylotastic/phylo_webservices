@@ -177,9 +177,9 @@ class WebTreeHandler(object):
         #print "run_tree_action called..."
         return self.treeconfig_obj.run_action_linecolorwidth(self.tree, color_code, line_width)
 
-    def run_tree_customize(self, branch, internal, ladderize):
+    def run_tree_customize(self, branch, internal, ladderize, show_common):
         #print "run_tree_customize called..."
-        self.treeconfig_obj.set_custom_options(branch, internal)
+        self.treeconfig_obj.set_custom_options(branch, internal, show_common)
         if ladderize:
            self.treeconfig_obj.run_action_ladderize(self.tree)
 

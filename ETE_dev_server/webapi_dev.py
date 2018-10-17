@@ -82,16 +82,30 @@ def get_tree_image():
     actions = source_dict["actions"]
     #print tree_newick #print source_dict
     #source_json = json.loads(source_dict)
+    #~~~~~~~~~~~~~~~~~common name~~~~~~~~~~~~~~~~~~~~~~
+    if 'node_data' in source_dict and source_dict['node_data'] != "": 
+       data = source_dict['node_data']
+    else:
+       data = None
+    #print data
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     if "top_offset" in source_dict:
        topoffset = source_dict["top_offset"]
+    else:
+       topoffset = 0
+
     if "left_offset" in source_dict:
        leftoffset = source_dict["left_offset"]
+    else:
+       leftoffset = 0
+
 
     if not tree_newick or not tree_id:
         return json_return({'status_code': "400",'message':"Missing Parameter Error: No newick tree or tree id provided"}, response)
 
-    tree_handler = ctrl.create_tree_obj(tree_newick, tree_id)
+    tree_handler = ctrl.create_tree_obj(tree_newick, tree_id, data)
+
     #check for errors related to parsing newick
     if type(tree_handler) == types.DictType:
        return json_return(tree_handler, response)

@@ -16,11 +16,14 @@ class WebTreeConfig(object):
         self._treestyle = None
         #self._tree_leaves = [leaf.name for leaf in treeobj.iter_leaves()]
         self._tip2info = {}
-        self._tip2color = {}
-        self._tip2headers = None
-        self._tip_max = 0.0
-        self._custom_options = {"draw_dist": False, "draw_internal": False}
-        self._node2label = {}
+        #self._tip2color = {}
+        #self._tip2headers = None
+        #self._tip_max = 0.0
+        #self._node2label = {}
+        #self._custom_options = {"draw_dist": False, "draw_internal": False}
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~add custom options~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        self._custom_options = {"draw_dist": False, "draw_internal": False, "show_common": False}
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         self._img_chk_list = []
         self._img_data_dic = {}
         self._eol_link_dic = {}
@@ -58,11 +61,16 @@ class WebTreeConfig(object):
 
         return act
 
-    def set_custom_options(self, branch_len=False, internal_node=False):
+    def set_custom_options(self, branch_len=False, internal_node=False, show_common=False):
         #set whether branch lengths should be drawn or not
         self._custom_options["draw_dist"] = branch_len
         #set whether internal nodes should be drawn or not
         self._custom_options["draw_internal"] = internal_node 
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        #set whether common names should be shown or not
+        self._custom_options["show_common"] = show_common  
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
     #Checks whether the tree is scaled or not
     def is_scaled_tree(self):
@@ -74,7 +82,7 @@ class WebTreeConfig(object):
 
         return is_scaled
 
-
+    '''
     def set_extra_tipdata(self, extra_tipdata):
         #ext_json_data = json.loads(extra_tipdata)
         ext_json_data = extra_tipdata 
@@ -89,7 +97,15 @@ class WebTreeConfig(object):
         node_label_list = ext_json_data['node_label_list']
         for node_obj in node_label_list:
             self._node2label[node_obj['node_name']] = node_obj['node_label']
-         
+    '''
+    #add extra data to tree~~~~~~NEW FORMAT~~~~~~~~~~
+    def set_extra_tipdata(self, extra_tipdata): 
+        tips_list = extra_tipdata['tip_list']
+        for tip_obj in tips_list:
+            for sc_name in tip_obj['scientific_names']:
+                self._tip2info[sc_name] = tip_obj['common_name'][0] #make a list of common names
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+     
 #------------------------------------------        
     def custom_layout(self,node):
         if node.is_leaf():
@@ -118,41 +134,38 @@ class WebTreeConfig(object):
               add_face_to_node(support_face, node, column=0, position='branch-bottom')
 
            #---------------------------------------------
-           #displaying extra categorical and numeric data
-           '''
-           if (node.name in self._tip2info):
-              column_no = 3
-              for headerIndex, dataheader in enumerate(self._tip2headers):
-                  extra_data = self._tip2info[node.name][headerIndex]
-                  if isinstance( extra_data, ( int, float ) ):
-                     extra_face = BarChartFace([extra_data], width=100,height=25,colors=[self._tip2color[node.name][headerIndex]],labels=[dataheader],min_value=0.0,max_value=self._tip_max)
-                  else:
-                     extra_face = TextFace(extra_data, fsize=11, fgcolor='black')
-                     extra_face.background.color = self._tip2color[node.name][headerIndex]
+           #---------------------------------------------
+           #displaying extra common name information
+           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           column_no = 3
+           if (node.name in self._tip2info) and self._custom_options["show_common"]:   
+              extra_data = self._tip2info[node.name]
+              extra_face = TextFace(extra_data, fsize=11, fgcolor='black')
+              #extra_face.background.color = self._tip2color[node.name]
 
-                  extra_face.margin_left = 5
-                  extra_face.margin_top = 5
-                  extra_face.margin_right = 5
-                  extra_face.margin_bottom = 5
+              extra_face.margin_left = 5
+              extra_face.margin_top = 5
+              extra_face.margin_right = 5
+              extra_face.margin_bottom = 5
                    
-                  add_face_to_node(extra_face, node, column=column_no, position='aligned')
-                  #add_face_to_node(extra_face, node, column=column_no, aligned = True, position='branch-right')
-                  column_no += 1
-           else:
+              add_face_to_node(extra_face, node, column=column_no, position='aligned')
+              #add_face_to_node(extra_face, node, column=column_no, aligned = True, position='branch-right')
+              column_no += 1
+           elif (node.name not in self._tip2info) and self._custom_options["show_common"]:
               #print "No data available"
-              column_no = 3
-              for headerIndex, dataheader in enumerate(self._tip2headers):     
-                  extra_face = TextFace("No data available", fsize=10, fgcolor='black')
+              extra_face = TextFace("No common name found", fsize=10, fgcolor='red')
          
-                  extra_face.margin_left = 5
-                  extra_face.margin_top = 5
-                  extra_face.margin_right = 5
-                  extra_face.margin_bottom = 5
+              extra_face.margin_left = 5
+              extra_face.margin_top = 5
+              extra_face.margin_right = 5
+              extra_face.margin_bottom = 5
               
-                  add_face_to_node(extra_face, node, column=column_no, position='aligned')
-                  column_no += 1
-           '''
-           image_col_no = 3#column_no
+              add_face_to_node(extra_face, node, column=column_no, position='aligned')
+              column_no += 1
+
+           image_col_no = column_no
+           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           #image_col_no = 3#column_no
            #----------------------------------------------
            if (node.name in self._img_chk_list):
               image_local_path = "file://" + image_path

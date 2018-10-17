@@ -17,6 +17,10 @@ from support import common_name_species_service_NCBI
 from support import common_name_species_service_ITIS
 from support import common_name_species_service_TROPICOS
 
+from support import scientific_to_common_name_NCBI
+from support import scientific_to_common_name_EOL
+from support import tree_common_names
+
 #--------------------------------------------------
 logDbName = "WSLog"
 logCollectionName = "log"
@@ -26,6 +30,8 @@ conn = None
 WS_NAME = "phylotastic_ws"
 WS_GROUP1 = "sd" #species data service
 WS_GROUP2 = "cs" #common name service
+WS_GROUP3 = "sc"  #scientific name service
+WS_GROUP4 = "tc"  #tree to scientific name service
 
 ROOT_FOLDER = os.getcwd()
 IP_ADDRESS = "127.0.0.1:5013"
@@ -594,6 +600,271 @@ class Common_Name_Species_Service_TROPICOS_API(object):
     get_scientific_names.exposed = True
     scientific_names.exposed = True
 
+#===================================Scientific Name Service: NCBI====================================
+class Scientific_Name_Service_NCBI_API(object):
+    def index(self):
+        return "Scientific_Name_Service_NCBI_API : Get common names from scientific names using NCBI source";
+
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    def get_common_names(self, **request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET']:
+               return return_response_error(405,"Error: HTTP Methods other than GET are not allowed","JSON")
+
+            name_lst = str(request_data['scientific_names']).strip()
+            name_lst = name_lst.split('|')
+
+            if len(name_lst) == 1 and '' in name_lst: 
+               raise CustomException("'scientific_names' parameter must have a valid value")
+            
+            multi_match = False
+            if request_data is not None and 'multiple_match' in request_data:
+               multi_match = str(request_data['multiple_match']).strip()
+               if type(multi_match) != types.BooleanType:
+                  multi_match = str2bool(multi_match)
+            
+            if len(name_lst) > 50: 
+               return return_response_error(403,"Error: Currently more than 50 names is not supported","JSON")
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+           service_result = scientific_to_common_name_NCBI.get_sci_to_comm_names(name_lst, not multi_match)
+           #-------------------------------------------
+           header = cherrypy.request.headers
+           log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+           insert_log(log)
+           #---------------------------------------------
+           if service_result['status_code'] == 200:
+               return service_result
+           else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====ScientificName_NCBI_GET_Error====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    
+ 	#-----------------------------------------------	
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def common_names(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+            input_json = cherrypy.request.json
+            namelist = input_json["scientific_names"]
+            if type(namelist) != types.ListType:
+               return return_response_error(400,"Error: 'scientific_names' parameter must be of list type","JSON")
+
+            multi_match = False
+            if 'multiple_match' in input_json:
+               multi_match = input_json['multiple_match']
+               if type(multi_match) != types.BooleanType:
+                  multi_match = str2bool(multi_match)
+    
+            if len(namelist) > 50: 
+               return return_response_error(403,"Error: Currently more than 50 names is not supported","JSON")
+ 
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+            service_result = scientific_to_common_name_NCBI.get_sci_to_comm_names(namelist, not multi_match) 
+            #--------------------------------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'scientific_names': namelist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+ 
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====ScientificName_NCBI_POST_Error====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #-----------------------------------------------------
+    #Public /index
+    index.exposed = True
+    get_common_names.exposed = True
+    common_names.exposed = True
+
+#===================================Scientific Name Service: EOL====================================
+class Scientific_Name_Service_EOL_API(object):
+    def index(self):
+        return "Scientific_Name_Service_EOL_API : Get common names from scientific names using EOL source";
+
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    def get_common_names(self, **request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET']:
+               return return_response_error(405,"Error: HTTP Methods other than GET are not allowed","JSON")
+
+            name_lst = str(request_data['scientific_names']).strip()
+            name_lst = name_lst.split('|')
+
+            if len(name_lst) == 1 and '' in name_lst: 
+               raise CustomException("'scientific_names' parameter must have a valid value")
+            
+            multi_match = False
+            if request_data is not None and 'multiple_match' in request_data:
+               multi_match = str(request_data['multiple_match']).strip()
+               if type(multi_match) != types.BooleanType:
+                  multi_match = str2bool(multi_match)
+            
+            if len(name_lst) > 50: 
+               return return_response_error(403,"Error: Currently more than 50 names is not supported","JSON")
+
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+           #service_result = scientific_to_common_name_EOL.get_sci_to_comm_names(name_lst, not multi_match)
+           service_result = scientific_to_common_name_EOL.get_sci_to_comm_names(name_lst)
+           #-------------------------------------------
+           header = cherrypy.request.headers
+           log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+           insert_log(log)
+           #---------------------------------------------
+           if service_result['status_code'] == 200:
+               return service_result
+           else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====ScientificName_EOL_GET_Error====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    
+ 	#-----------------------------------------------	
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def common_names(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+            input_json = cherrypy.request.json
+            namelist = input_json["scientific_names"]
+            if type(namelist) != types.ListType:
+               return return_response_error(400,"Error: 'scientific_names' parameter must be of list type","JSON")
+
+            multi_match = False
+            if 'multiple_match' in input_json:
+               multi_match = input_json['multiple_match']
+               if type(multi_match) != types.BooleanType:
+                  multi_match = str2bool(multi_match)
+    
+            if len(namelist) > 50: 
+               return return_response_error(403,"Error: Currently more than 50 names is not supported","JSON")
+ 
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+            #service_result = scientific_to_common_name_EOL.get_sci_to_comm_names(namelist, not multi_match) 
+            service_result = scientific_to_common_name_EOL.get_sci_to_comm_names(namelist) 
+ 
+            #--------------------------------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'scientific_names': namelist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+ 
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====ScientificName_EOL_POST_Error====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #-----------------------------------------------------
+    #Public /index
+    index.exposed = True
+    get_common_names.exposed = True
+    common_names.exposed = True
+
+
+#===================================Tree to Common Name Service====================================
+class Tree_Common_Name_Service_API(object):
+    def index(self):
+        return "Tree_Common_Name_Service_API : Get common names from tips (species) of input tree";
+
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def common_names(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+            input_json = cherrypy.request.json
+            newick_str = input_json["newick_tree"]
+            
+            source = "NCBI"
+            if 'source' in input_json:
+               source = input_json['source']
+               if source not in ["NCBI", "EOL"]:
+                  return return_response_error(403,"Error: Invalid source parameter value","JSON")
+ 
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+            service_result = tree_common_names.get_common_names_mapping(newick_str, source) 
+ 
+            #--------------------------------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'newick': newick_str}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+ 
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====TreeCommonName_POST_Error====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #-----------------------------------------------------
+    #Public /index
+    index.exposed = True
+    common_names.exposed = True
+
+
 #-----------------------------------------------------------
 def CORS():
     #print "Run CORS"
@@ -629,7 +900,11 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Conservation_ECOS_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP1), "ecos"), conf_CORS)
     cherrypy.tree.mount(Common_Name_Species_Service_NCBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"ncbi"),conf_CORS )
     cherrypy.tree.mount(Common_Name_Species_Service_ITIS_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"itis"),conf_CORS )
-    cherrypy.tree.mount(Common_Name_Species_Service_TROPICOS_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"tpcs"),conf_CORS )	    
+    cherrypy.tree.mount(Common_Name_Species_Service_TROPICOS_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"tpcs"),conf_CORS )	
+
+    cherrypy.tree.mount(Scientific_Name_Service_NCBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3),"ncbi"),conf_CORS )
+    cherrypy.tree.mount(Scientific_Name_Service_EOL_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3),"eol"),conf_CORS )	   	
+    cherrypy.tree.mount(Tree_Common_Name_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP4)),conf_CORS )	       
 
     cherrypy.engine.start()
     cherrypy.engine.block()
