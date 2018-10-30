@@ -38,7 +38,7 @@ function save_tree_image(){
     }
   }
   //parameters for POST request 
-  var params = JSON.stringify({"tree_newick": current_tree_newick,"tree_id":current_tree_id, "actions":{"tree_actions": tree_actions, "node_actions": node_actions_list, "latest_action_node_id":latest_action_node_id},"format": format});
+  var params = JSON.stringify({"tree_newick": current_tree_newick,"tree_id":current_tree_id, "actions":{"tree_actions": tree_actions, "node_actions": node_actions_list, "latest_action_node_id":latest_action_node_id},"format": format, "node_data": node_data});
   xhr.send(params); 
 }
 

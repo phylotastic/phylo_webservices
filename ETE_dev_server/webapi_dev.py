@@ -136,13 +136,23 @@ def save_tree_image():
     actions = source_dict.get('actions', '')
     img_format = source_dict.get('format', '').strip()
 
+    #~~~~~~~~~~~~~~~~~common name~~~~~~~~~~~~~~~~~~~~~~
+    if 'node_data' in source_dict and source_dict['node_data'] != "": 
+       data = source_dict['node_data']
+    else:
+       data = None
+    #print data
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     if not tree_newick or not tree_id:
         return json_return({'status_code': "400",'message':"Missing Parameter Error: No newick tree or tree id provided"}, response)
     
     if not img_format:
         return json_return({'status_code': "400",'message':"Missing Parameter Error: No image format provided"}, response)
     
-    tree_handler = ctrl.create_tree_obj(tree_newick, tree_id)
+    #tree_handler = ctrl.create_tree_obj(tree_newick, tree_id)
+    tree_handler = ctrl.create_tree_obj(tree_newick, tree_id, data)
+
     #check for errors related to parsing newick
     if type(tree_handler) == types.DictType:
        return json_return(tree_handler, response)

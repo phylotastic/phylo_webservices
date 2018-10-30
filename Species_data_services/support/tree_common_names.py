@@ -50,8 +50,8 @@ def get_common_names(tips, source):
 		common_names_result = scientific_to_common_name_NCBI.get_sci_to_comm_names(tips)
 	
 	for result in common_names_result['result']:
-		if len(result['common_names']) != 0:
-			tip_mapping = {"scientific_name": result['searched_name'], "common_names": result['common_names']}
+		#if len(result['common_names']) != 0:
+		tip_mapping = {"scientific_name": result['searched_name'], "common_names": result['common_names']}
 		tip_list.append(tip_mapping)
 
 	#print common_names_result
@@ -89,5 +89,6 @@ def get_common_names_mapping(newick_str, source="NCBI"):
 #if __name__ == '__main__':
 
 	#input_tree = "(((Rangifer tarandus, Cervus elaphus)Cervidae, (Bos taurus, Ovis orientalis)Bovidae), (Suricata suricatta, (Cistophora cristata,Mephitis mephitis))Carnivora);"
+	#input_tree = "((((((Tipularia discolor)Tipularia)Calypsoinae)Epidendreae)mrcaott334ott908,(((((Spiranthes infernalis)Spiranthes)Spiranthinae,((Ponthieva racemosa)Ponthieva)Cranichidinae)Cranichideae,(((Platanthera praeclara)Platanthera)Orchidinae)Orchideae)Orchidoideae)mrcaott335ott27841)mrcaott334ott335,(((Vanilla inodora)Vanilla)Vanilleae)Vanilloideae)Orchidaceae;"
 	#tips = get_tips_list(input_tree)
-	#print get_common_names(tips)
+	#print get_common_names(tips, "NCBI")
