@@ -1,6 +1,6 @@
 /*  it requires jquery loaded */
 var ete_webplugin_URL = "http://phylo.cs.nmsu.edu:8989";
-var loading_img = '<img border=0 src="http://phylo.cs.nmsu.edu:8080/TreeViewer/demo/loader.gif">';
+var loading_img = '<img border=0 src="http://phylo.cs.nmsu.edu:8080/loader.gif">';
 
 var current_tree_id = "";
 var current_tree_newick = "";
@@ -71,7 +71,9 @@ function get_tree_image(treeid, newick, recipient, topOffset, leftOffset){
     if (xhr.readyState == 4 && xhr.status == 200) {
         var hres = JSON.parse(xhr.responseText);
         //update the global tree actions
-        var ta = hres.actions["tree_actions"];
+		console.log(hres)
+		       
+		var ta = hres.actions["tree_actions"];
         if (typeof(ta) != "undefined"){ 
            tree_actions = ta;
            //console.log("ta:"+JSON.stringify(tree_actions));
@@ -88,6 +90,7 @@ function get_tree_image(treeid, newick, recipient, topOffset, leftOffset){
         //console.log("na: "+typeof(na)); 
         $('#'+treeid).html(hres.html_data);
         $('#'+treeid).fadeTo(100, 0.9);
+		
     }
   }
   //parameters for POST request 
@@ -212,7 +215,7 @@ function load_tip_images(){
     if (xhr.readyState == 4 && xhr.status == 200) {
         var hres = JSON.parse(xhr.responseText);
         if (hres.number_species != 0){
-           $('#tree_image_message').html("Approximate time for Downloading all images is "+hres.download_time+"s. Please wait until notified of completion of download");
+           $('#tree_image_message').html("Wait "+hres.download_time+" seconds for image retrieval, then re-click.");
            //console.log("download started");
            var pm = {"newick":current_tree_newick}
            $('#tree_image_message').load(service_url+"/download_all_images", pm);
