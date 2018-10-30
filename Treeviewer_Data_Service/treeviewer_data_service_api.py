@@ -71,7 +71,8 @@ class TreeViewer_Data_Service_API(object):
         
         service_result = data_handler.load_all_images(newick)
         if service_result['download_complete']:
-           return "<b>Download of images completed. Please click the load images button again</b>" 
+           return "<b>Done. Click again to display images on tree</b>"
+           #return "<b>Download of images completed. Please click the load images button again</b>" 
        
  	#------------------------------------------------
     #Public /index
