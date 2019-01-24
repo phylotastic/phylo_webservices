@@ -1,4 +1,5 @@
-#species to image service: version 1.0
+#species to image service: version 2.0 (based on new EOL API)
+#https://eol.org/docs/what-is-eol/data-services/classic-apis
 import json
 import requests
 import time
@@ -29,7 +30,6 @@ def match_species(speciesName):
  	eol_response = {}
  	if response.status_code == requests.codes.ok:    
  		data_json = json.loads(response.text)
- 		#length = len(data_json['results']) 
  		numResults = data_json['totalResults']
  		eol_response['status_code'] = 200
  		eol_response['message'] = "Success"    
@@ -46,7 +46,7 @@ def match_species(speciesName):
 
 #--------------------------------------------   
 def get_species_info(speciesId):
- 	page_url = "http://eol.org/api/pages/1.0.json"    
+ 	page_url = "http://eol.org/api/pages/1.0/" + str(speciesId) +".json"    
  	payload = {
  		'key': EOL_API_Key,
  		'batch' : False,
@@ -113,8 +113,7 @@ def create_image_obj(dataObject):
 #---------------------------------------------------
 def get_images_species(inputSpeciesList, post=False):
  	start_time = time.time()
- 	#service_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/get_images?species=" + inputSpeciesList
- 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-8"
+ 	
  	response = {}	
  	outputSpeciesList = []
 
@@ -131,17 +130,17 @@ def get_images_species(inputSpeciesList, post=False):
  			species_obj['total_images'] = 0
  		else: 	
  		 	species_info_json = get_species_info(species_id)
- 			if 'status_code' in species_info_json and species_info_json['status_code'] != 200:
- 				return species_info_json
+ 			if species_info_json is None:
+ 				return { 'status_code': 500, 'message': "Error: Response error from EOL while retrieving data objects"}
  			else:
- 				species_obj['matched_name'] = species_info_json['scientificName']
+ 				species_obj['matched_name'] = species_info_json[str(species_id)]['scientificName']
  				species_obj['eol_id'] = species_id			
- 				dataObjects_lst = species_info_json['dataObjects'] 
+ 				dataObjects_lst = species_info_json[str(species_id)]['dataObjects']
  				length = len(dataObjects_lst)		
  				if length != 0:
  					images_species = get_imageObjects(dataObjects_lst)
- 					species_obj['total_images'] = len(images_species)
-
+ 					
+ 		species_obj['total_images'] = len(images_species)
  		species_obj['images'] = images_species
  		outputSpeciesList.append(species_obj)
 	
@@ -151,7 +150,7 @@ def get_images_species(inputSpeciesList, post=False):
  	creation_time = datetime.datetime.now().isoformat()
  	
  	meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://eol.org"]}
- #, 'service_documentation': service_documentation }
+
  	response['meta_data'] = meta_data
  	
  	response['message'] = "Success"
@@ -190,15 +189,15 @@ def get_image_species_id(species_id, post=False):
  	 	return json.dumps(response)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#if __name__ == '__main__':
+if __name__ == '__main__':
 
-	#inputSpecies = ["Panthera leo", "Panthera onca", "Panthera pardus"]
- 	#inputTaxon = 'Felidae'
+	inputSpecies = ["Panthera leo"]#, "Panthera onca", "Panthera pardus"]
+ 	#inputTaxon = 'Panthera leo'
 	#inputTaxon = 'Canidae' #family
  	
  	#start_time = time.time()    
  	
- 	#print get_images_species(inputSpecies)
+ 	print get_images_species(inputSpecies)
  	
  	#end_time = time.time()
  	
