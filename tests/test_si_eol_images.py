@@ -30,7 +30,7 @@ def all_images(x):
     return [image for source in x.json()[u'species'] for image in source[u'images']]
 
 
-example_2 = service.get_request('POST', {u'species': [u'Catopuma badia', u'Catopuma temminckii']})
+example_2 = service.get_request('POST', {u'species': [u'Catopuma temminckii']})
 
 
 if __name__ == '__main__':

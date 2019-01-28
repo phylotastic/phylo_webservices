@@ -71,14 +71,14 @@ class TestSlEolGetLinks(SlEolGetLinksTester):
     def test_example_1(self):
         x = self.start_request_tests(example_1)
         self.assert_success(x)
-        self.assertEqual(x.json()[u'species'][0][u'matched_name'], u'Dendrocygna bicolor (Vieillot, 1816)')
-        self.assertEqual(x.json()[u'species'][0][u'eol_id'], 914528) 
+        self.assertEqual(x.json()[u'species'][0][u'matched_name'], u'Dendrocygna bicolor')
+        self.assertEqual(x.json()[u'species'][0][u'eol_id'], 45510523) 
 
-        self.assertEqual(x.json()[u'species'][1][u'matched_name'], u'Anser albifrons (Scopoli, 1769)')
-        self.assertEqual(x.json()[u'species'][1][u'eol_id'], 1048438)
+        self.assertEqual(x.json()[u'species'][1][u'matched_name'], u'Anser albifrons')
+        self.assertEqual(x.json()[u'species'][1][u'eol_id'], 45510529)
 
-        self.assertEqual(x.json()[u'species'][2][u'species_info_link'], u'http://eol.org/913233?action=overview&controller=taxa')
-        self.assertEqual(x.json()[u'species'][2][u'eol_id'], 913233)
+        self.assertEqual(x.json()[u'species'][2][u'species_info_link'], u'https://eol.org/pages/45510544')
+        self.assertEqual(x.json()[u'species'][2][u'eol_id'], 45510544)
 
 
 null=None; false=False; true=True

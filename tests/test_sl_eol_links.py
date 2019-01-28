@@ -30,11 +30,11 @@ class TestSlEolLinks(SlEolGetLinksTester):
     def test_example_2(self):
         x = self.start_request_tests(example_2)
         self.assert_success(x)
-        self.assertEqual(x.json()[u'species'][0][u'matched_name'], u'Melanerpes erythrocephalus (Linnaeus, 1758)')
-        self.assertEqual(x.json()[u'species'][0][u'species_info_link'], u'http://eol.org/917154?action=overview&controller=taxa') 
+        self.assertEqual(x.json()[u'species'][0][u'matched_name'], u'Melanerpes erythrocephalus')
+        self.assertEqual(x.json()[u'species'][0][u'species_info_link'], u'https://eol.org/pages/45509726') 
 
-        self.assertEqual(x.json()[u'species'][1][u'species_info_link'], u'http://eol.org/912554?action=overview&controller=taxa')
-        self.assertEqual(x.json()[u'species'][1][u'matched_name'], u'Melanerpes uropygialis (S. F. Baird, 1854)')
+        self.assertEqual(x.json()[u'species'][1][u'species_info_link'], u'https://eol.org/pages/45509736')
+        self.assertEqual(x.json()[u'species'][1][u'matched_name'], u'Melanerpes uropygialis')
 
 
 null=None; false=False; true=True

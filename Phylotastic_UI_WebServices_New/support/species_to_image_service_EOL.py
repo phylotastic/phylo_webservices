@@ -134,12 +134,15 @@ def get_images_species(inputSpeciesList, post=False):
  				return { 'status_code': 500, 'message': "Error: Response error from EOL while retrieving data objects"}
  			else:
  				species_obj['matched_name'] = species_info_json[str(species_id)]['scientificName']
- 				species_obj['eol_id'] = species_id			
- 				dataObjects_lst = species_info_json[str(species_id)]['dataObjects']
- 				length = len(dataObjects_lst)		
- 				if length != 0:
- 					images_species = get_imageObjects(dataObjects_lst)
- 					
+ 				species_obj['eol_id'] = species_id
+ 				try:			
+ 					dataObjects_lst = species_info_json[str(species_id)]['dataObjects']
+ 					length = len(dataObjects_lst)		
+ 					if length != 0:
+ 						images_species = get_imageObjects(dataObjects_lst)
+ 				except KeyError as e:
+ 					images_species = []
+ 				 					
  		species_obj['total_images'] = len(images_species)
  		species_obj['images'] = images_species
  		outputSpeciesList.append(species_obj)
@@ -189,15 +192,17 @@ def get_image_species_id(species_id, post=False):
  	 	return json.dumps(response)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-if __name__ == '__main__':
+#if __name__ == '__main__':
 
-	inputSpecies = ["Panthera leo"]#, "Panthera onca", "Panthera pardus"]
- 	#inputTaxon = 'Panthera leo'
+	#inputSpecies = ["Panthera leo"]#, "Panthera onca", "Panthera pardus"]
+#	inputSpecies = ["Catopuma badia", "Catopuma temminckii"] 
+	# Odd example: "Catopuma badia" used to have images. Now, EOL does not return any images 	
+	#inputTaxon = 'Panthera leo'
 	#inputTaxon = 'Canidae' #family
  	
  	#start_time = time.time()    
  	
- 	print get_images_species(inputSpecies)
+ #	print json.dumps(get_images_species(inputSpecies))
  	
  	#end_time = time.time()
  	
