@@ -94,7 +94,7 @@ class Datelife_Service_API(object):
     @cherrypy.tools.json_in()
     def scale(self,**request_data):
         http_method = cherrypy.request.method
-        if http_method not in ['POST']:
+        if http_method not in ['POST', 'OPTIONS']:
            return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
 
         scale_method = "median"
@@ -182,7 +182,7 @@ class OToL_Scaling_Service_API(object):
     @cherrypy.tools.json_in()
     def scale(self,**request_data):
         http_method = cherrypy.request.method
-        if http_method not in ['POST']:
+        if http_method not in ['POST', 'OPTIONS']:
            return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
 
         try:
@@ -236,7 +236,7 @@ if __name__ == '__main__':
     cherrypy.config.update({#'server.socket_host': '0.0.0.0',
                             'server.socket_port': int(PORT),
                             'tools.proxy.on': True,
-                            'tools.proxy.base': 'http://localhost',
+                            'tools.proxy.base': 'https://phylo.cs.nmsu.edu',
                             'log.error_file':ERROR_LOG_CHERRYPY,
                             'log.access_file':ACCESS_LOG_CHERRYPY
                           })
