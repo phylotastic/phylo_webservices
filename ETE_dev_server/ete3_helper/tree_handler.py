@@ -104,8 +104,9 @@ class WebTreeHandler(object):
 
     #------------------------------------------
     def save_image(self, img_format):
-        img_url = os.path.join("http://phylo.cs.nmsu.edu:8080/tmp_dev/", self.treeid+"."+img_format)
-        img_path = os.path.join("/var/www/TreeViewer/html/tmp_dev/", self.treeid+"."+img_format)
+        img_url = os.path.join("https://phylo.cs.nmsu.edu/treeviewer/tmp_dev/", self.treeid+"."+img_format)
+        #img_path = os.path.join("/var/www/TreeViewer/html/tmp_dev/", self.treeid+"."+img_format)
+        img_path = os.path.join("/home/van/phylotastic-portal/public/treeviewer/tmp_dev/", self.treeid+"."+img_format)
         with Xvfb() as xvfb:        
              img = self.tree.render(img_path, tree_style=self.tree.tree_style)
         #print "returning from save image"
