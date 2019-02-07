@@ -60,12 +60,12 @@ def enable_cors():
     response.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
 
 # WEB API FUNCTIONALITY
-@route('/status')
+@route('/ete_pro/status')
 def server_status():
     return web_return('alive', response)
 
 #-------------------------------------------
-@post('/get_tree_image')
+@post('/ete_pro/get_tree_image')
 def get_tree_image():
     # Requires a POST parameter "newick" containing the tree to be loaded.
     #print "get_tree_image called...."
@@ -110,7 +110,7 @@ def get_tree_image():
     return json_return({'tree_newick':tree_handler.treenewick, 'tree_id':tree_handler.treeid, 'html_data': html_img_data, 'actions':{'tree_actions':{}, 'node_actions':[]}}, response)
 
 #------------------------------------------------
-@post('/save_tree_image')
+@post('/ete_pro/save_tree_image')
 def save_tree_image():
     #Requires a POST parameter format of the tree to be saved
     #print "save_tree_image called...."
@@ -144,7 +144,7 @@ def save_tree_image():
     return json_return({'tree_newick':tree_handler.treenewick, 'tree_id':tree_handler.treeid, 'html_data': html_url_part}, response)
 
 #------------------------------------------------
-@post('/get_actions')
+@post('/ete_pro/get_actions')
 def get_action():
     #print "get_actions method called...."
     if request.json:
@@ -192,7 +192,7 @@ def get_action():
     return json_return({'tree_newick':tree_handler.treenewick, 'tree_id':tree_handler.treeid, 'html_data': html}, response)
 
 #---------------------------------------------------------
-@post('/set_all_images')
+@post('/ete_pro/set_all_images')
 def set_all_pictures():
     #print "set_pictures method called...."
     if request.json:
