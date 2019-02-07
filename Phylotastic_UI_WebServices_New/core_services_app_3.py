@@ -1395,8 +1395,11 @@ if __name__ == '__main__':
     #Configure Server
     cherrypy.config.update({#'server.socket_host': HOST, #'0.0.0.0' "127.0.0.1",
                             'server.socket_port': int(PORT),
+                            #'server.ssl_module' : 'pyopenssl',
+                            #'server.ssl_certificate':'/etc/letsencrypt/live/phylo.cs.nmsu.edu/fullchain.pem',
+                            #'server.ssl_private_key':'/etc/letsencrypt/live/phylo.cs.nmsu.edu/privkey.pem',
                             'tools.proxy.on': True,
-                            'tools.proxy.base': 'http://'+HOST,
+                            'tools.proxy.base': 'https://'+HOST,
                             'log.error_file':ERROR_LOG_CHERRYPY,
                             'log.access_file':ACCESS_LOG_CHERRYPY,
                             'tools.log_tracebacks.on': True
