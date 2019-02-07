@@ -10,6 +10,7 @@ import types
 
 WS_NAME = "phylotastic_ws"
 WS_GROUP1 = "ds" #data service
+PORT = "5008"
 
 #===========================================================
 def return_response_error(error_code, error_message,response_format="JSON"):
@@ -61,7 +62,7 @@ class TreeViewer_Data_Service_API(object):
         service_result = data_handler.estimate_image_download(newick)
         #if (service_result['number_species'] != 0):
            #subprocess.Popen(args=['python', 'data_handler.py', '%s' % newick], shell=True)
-        
+        print "images download time: %s" %service_result['download_time']        
         return json.dumps(service_result) 
 
     #---------------------------------------------------------
@@ -71,6 +72,7 @@ class TreeViewer_Data_Service_API(object):
         
         service_result = data_handler.load_all_images(newick)
         if service_result['download_complete']:
+           #print "Download completed"
            return "<b>Done. Click again to display images on tree</b>"
            #return "<b>Download of images completed. Please click the load images button again</b>" 
        
@@ -94,9 +96,14 @@ if __name__ == '__main__':
     
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
-    cherrypy.config.update({'server.socket_host': '0.0.0.0',
-                            'server.socket_port': 5008,
+    cherrypy.config.update({#'server.socket_host': '0.0.0.0',
+                            'server.socket_port': int(PORT),
+                            'tools.proxy.on': True,
+                            'tools.proxy.base': 'https://phylo.cs.nmsu.edu'
+                            #'log.error_file':ERROR_LOG_CHERRYPY,
+                            #'log.access_file':ACCESS_LOG_CHERRYPY
                           })
+
     
     conf_CORS = {
              '/':{
