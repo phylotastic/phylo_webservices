@@ -16,16 +16,17 @@ from support import authenticate_user
 #from distutils.util import strtobool
 
 
-WebService_Group1 = "sls"
+WebService_Group1 = "sls_dev"
 
 WS_NAME = "phylotastic_ws"
 
 ROOT_FOLDER = os.getcwd()
-IP_ADDRESS = "127.0.0.1:5005"
-
+HOST = "phylo.cs.nmsu.edu"  #"127.0.0.1"
+PORT = "5005"
+#PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
 #============================================================================
-ACCESS_LOG_CHERRYPY_5005 = ROOT_FOLDER + "/log/%s_5005_access_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
-ERROR_LOG_CHERRYPY_5005 = ROOT_FOLDER + "/log/%s_5005_error_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ACCESS_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_access_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ERROR_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_error_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 
 #------------------------------------------
 #When user requests invalid resource URI
@@ -335,10 +336,14 @@ class Species_List_Service_API(object):
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     #Configure Server
-    cherrypy.config.update({'server.socket_host': '0.0.0.0',#'127.0.0.1'
-                            'server.socket_port': 5005,
-                            'log.error_file':ERROR_LOG_CHERRYPY_5005,
-                            'log.access_file':ACCESS_LOG_CHERRYPY_5005
+    #Configure Server
+    cherrypy.config.update({#'server.socket_host': HOST, #'0.0.0.0' "127.0.0.1",
+                            'server.socket_port': int(PORT),
+                            'tools.proxy.on': True,
+                            'tools.proxy.base': 'https://'+HOST,
+                            'log.error_file':ERROR_LOG_CHERRYPY,
+                            'log.access_file':ACCESS_LOG_CHERRYPY,
+                            'tools.log_tracebacks.on': True
                           })
     
     config = {
