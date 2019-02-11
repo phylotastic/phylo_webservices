@@ -34,7 +34,9 @@ WS_GROUP3 = "sc"  #scientific name service
 WS_GROUP4 = "tc"  #tree to scientific name service
 
 ROOT_FOLDER = os.getcwd()
-IP_ADDRESS = "127.0.0.1:5013"
+HOST = "phylo.cs.nmsu.edu"  #"127.0.0.1"
+PORT = "5013"
+
 
 
 #PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
@@ -877,10 +879,19 @@ if __name__ == '__main__':
     conn = connect_mongodb()
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
-    cherrypy.config.update({'server.socket_host': '0.0.0.0', #'127.0.0.1',
-                            'server.socket_port': 5013,
-                            'log.error_file':ERROR_LOG_CHERRYPY_5013,
-                            'log.access_file':ACCESS_LOG_CHERRYPY_5013,
+    #cherrypy.config.update({'server.socket_host': '0.0.0.0', #'127.0.0.1',
+    #                        'server.socket_port': 5013,
+    #                        'log.error_file':ERROR_LOG_CHERRYPY_5013,
+    #                        'log.access_file':ACCESS_LOG_CHERRYPY_5013,
+    #                       'tools.log_tracebacks.on': True
+    #                      })
+    #Configure Server
+    cherrypy.config.update({#'server.socket_host': HOST, #'0.0.0.0' "127.0.0.1",
+                            'server.socket_port': int(PORT),
+                            'tools.proxy.on': True,
+                            'tools.proxy.base': 'https://'+HOST,
+                            'log.error_file':ERROR_LOG_CHERRYPY,
+                            'log.access_file':ACCESS_LOG_CHERRYPY,
                             'tools.log_tracebacks.on': True
                           })
     
