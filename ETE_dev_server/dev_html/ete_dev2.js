@@ -1,6 +1,6 @@
 /*  it requires jquery loaded */
 var ete_webplugin_URL = "https://phylo.cs.nmsu.edu/ete_dev";
-var loading_img = '<img border=0 src="http://phylo.cs.nmsu.edu/treeviewer/loader.gif">';
+var loading_img = '<img border=0 src="https://phylo.cs.nmsu.edu/treeviewer/loader.gif">';
 
 var current_tree_id = "";
 var current_tree_newick = "";
@@ -206,7 +206,7 @@ function run_tree_action() {
 }
 //-------------------------------------------
 function load_tip_images(){
-  var service_url = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/";
+  var service_url = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/";
   var service_func1 = "images_download_time";
   //var service_url = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/images_download_time";
   var service_param = "newick="+ encodeURIComponent(current_tree_newick);
