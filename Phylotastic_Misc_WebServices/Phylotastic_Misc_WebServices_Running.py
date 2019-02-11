@@ -1,7 +1,3 @@
-'''
-@author: Abu Saleh
-'''
-
 import cherrypy
 import time
 import datetime
@@ -10,11 +6,13 @@ import os
 import sys
 import collections
 import pymongo
+import types
+
 from cherrypy import tools
+from str2bool import str2bool
 
 from support import compare_trees_service
 from support import tree_studies_service
-from support import popularity_service
 
 #--------------------------------------------------
 logDbName = "WSLog"
@@ -27,13 +25,13 @@ WS_GROUP1 = "md" #metadata service
 WS_GROUP2 = "ts" #taxon_to_species service
 
 ROOT_FOLDER = os.getcwd()
-IP_ADDRESS = "127.0.0.1:5006"
-
+HOST = "phylo.cs.nmsu.edu"  #"127.0.0.1"
+PORT = "5006"
 
 #PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
 #============================================================================
-ACCESS_LOG_CHERRYPY_5006 = ROOT_FOLDER + "/log/%s_5006_access_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
-ERROR_LOG_CHERRYPY_5006 = ROOT_FOLDER + "/log/%s_5006_error_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ACCESS_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_access_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ERROR_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_error_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 
 
 #When user requests invalid resource URI
@@ -92,56 +90,6 @@ def insert_log(log_msg):
  	
  	#document = { "client_ip": log_msg['remote_ip'], "date": datetime.datetime.now(), "request": log_msg['path'], "method":  }
     insert_status = log_collection.insert(log_msg)
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-class Compare_Trees_Service_API(object):
-
-    def index(self):
-        return "Compare_Trees_Service API: Compare two phylogenetic trees"
-    #------------------------------------------------------
-    @cherrypy.tools.json_out()
-    @cherrypy.tools.json_in()
-    def compare_trees(self,**request_data):
-        try:
-            http_method = cherrypy.request.method
-            if http_method not in ['POST']:
-               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
-
-            input_json = cherrypy.request.json
-            tree1_str = input_json["tree1_nwk"]
-            tree2_str = input_json["tree2_nwk"]
-
-            if len(tree1_str) == 0: 
-               raise CustomException("'tree1_nwk' parameter must have a valid value")
-            if len(tree2_str) == 0: 
-               raise CustomException("'tree2_nwk' parameter must have a valid value")
-
-        except KeyError, e:
-            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
-            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
-        except Exception, e:
-            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
- 
-        try:
-            service_result = compare_trees_service.compare_trees(tree1_str, tree2_str)
-            #---------------log-------------------
-            header = cherrypy.request.headers
-            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree1_nwk': tree1_str, 'tree2_nwk': tree2_str}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
-            insert_log(log)
-            #------------------------------------------
-            if service_result['status_code'] == 200:
-               return service_result
-            else:
-               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
-
-        except Exception, e:
-            cherrypy.log("====CompareTreeError====", traceback=True)
-            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
- 	
- 	#------------------------------------------------
-    index.exposed = True	
-    compare_trees.exposed = True
 
 #=======================================================================
 class Tree_Studies_Service_API(object):
@@ -265,33 +213,29 @@ class Tree_Studies_Service_API(object):
     get_studies.exposed = True
     studies.exposed = True
 
-#==========================================================
-class Popularity_Service_API(object):
+#----------------------------------------------------------
+
+class Compare_Trees_Service_API(object):
 
     def index(self):
-        return "Popularity_Service API: Get popular species of a particular taxon using OneZoom API"
+        return "Compare_Trees_Service API: Compare two phylogenetic trees"
     #------------------------------------------------------
     @cherrypy.tools.json_out()
-    def popular_species(self,**request_data):
+    @cherrypy.tools.json_in()
+    def compare_trees(self,**request_data):
         try:
             http_method = cherrypy.request.method
-            if http_method not in ['GET']:
-               return return_response_error(405,"Error: HTTP Methods other than GET are not allowed","JSON")
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
 
-            if request_data is not None and 'taxon' in request_data:
-               taxon = str(request_data['taxon']).strip()
-               if len(taxon) == 0: 
-                  raise CustomException("'taxon' parameter must have a valid value")
-            else:
-               taxon = None
+            input_json = cherrypy.request.json
+            tree1_str = input_json["tree1_nwk"]
+            tree2_str = input_json["tree2_nwk"]
 
-            if request_data is not None and 'num_species' in request_data:
-                num_species = int(request_data['num_species'].strip())
-                if num_species > 100:
-                   raise CustomException("Maximum value allowed for 'num_species' parameter is 100")
-                #print num_species
-            else: 
-                num_species = 20
+            if len(tree1_str) == 0: 
+               raise CustomException("'tree1_nwk' parameter must have a valid value")
+            if len(tree2_str) == 0: 
+               raise CustomException("'tree2_nwk' parameter must have a valid value")
 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -299,15 +243,12 @@ class Popularity_Service_API(object):
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
         except Exception, e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
-        
+ 
         try:
-            if taxon is None:
-               service_result = popularity_service.get_popular_species()
-            else:
-               service_result = popularity_service.get_popular_species(taxon, num_species)
+            service_result = compare_trees_service.compare_trees(tree1_str, tree2_str)
             #---------------log-------------------
             header = cherrypy.request.headers
-            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'tree1_nwk': tree1_str, 'tree2_nwk': tree2_str}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
             insert_log(log)
             #------------------------------------------
             if service_result['status_code'] == 200:
@@ -316,12 +257,12 @@ class Popularity_Service_API(object):
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
         except Exception, e:
-            cherrypy.log("====PopularityServiceError====", traceback=True)
+            cherrypy.log("====CompareTreeError====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
  	
  	#------------------------------------------------
     index.exposed = True	
-    popular_species.exposed = True
+    compare_trees.exposed = True
 
 #-----------------------------------------------------------
 def CORS():
@@ -335,27 +276,29 @@ if __name__ == '__main__':
     conn = connect_mongodb()
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
-    cherrypy.config.update({'server.socket_host': '0.0.0.0', #'127.0.0.1',
-                            'server.socket_port': 5006,
-                            'log.error_file':ERROR_LOG_CHERRYPY_5006,
-                            'log.access_file':ACCESS_LOG_CHERRYPY_5006
+    cherrypy.config.update({#'server.socket_host': HOST, #'0.0.0.0' "127.0.0.1",
+                            'server.socket_port': int(PORT),
+                            'tools.proxy.on': True,
+                            'tools.proxy.base': 'https://'+HOST,
+                            'log.error_file':ERROR_LOG_CHERRYPY,
+                            'log.access_file':ACCESS_LOG_CHERRYPY,
+                            'tools.log_tracebacks.on': True
                           })
     
     conf_CORS = {
              '/':{
                 'tools.CORS.on': True,
                 'error_page.404': error_page_404,
-                'error_page.400': error_page_400,
-                'request.show_tracebacks': False,
-                #'error_page.500': error_page_500
+                'error_page.400': error_page_400
+                #'error_page.500': error_page_500,
+                #'request.show_tracebacks': True
+                
              }
     }
-    cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
-    cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
-
+    
     #Starting Server
     cherrypy.tree.mount(Tree_Studies_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP1)), conf_CORS )
-    cherrypy.tree.mount(Compare_Trees_Service_API(), '/%s' %(str(WS_NAME)), conf_CORS )
-    cherrypy.tree.mount(Popularity_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP2)), conf_CORS )
+    cherrypy.tree.mount(Compare_Trees_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP1), "dp"), conf_CORS )
+    
     cherrypy.engine.start()
     cherrypy.engine.block()
