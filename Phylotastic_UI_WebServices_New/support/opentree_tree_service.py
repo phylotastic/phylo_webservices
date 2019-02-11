@@ -172,7 +172,7 @@ def get_tree_OT(resolvedNames):
 #-------------------------------------------
 #get supporting studies of the tree from OpenTree
 def get_supporting_studies(studyIdList):
- 	resource_url = "http://phylo.cs.nmsu.edu:5006/phylotastic_ws/md/studies"    
+ 	resource_url = "https://phylo.cs.nmsu.edu/phylotastic_ws/md/studies"    
     
  	payload_data = {
  		'list': studyIdList,
