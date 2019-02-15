@@ -92,7 +92,7 @@ class TestFnNamesUrl(webapp.WebappTestCase):
         x = self.start_request_tests(example_2)
         self.assert_success(x)
         self.assertTrue(len(x.json()[u'scientificNames']) > 5)
-        self.assertTrue(u'Macaca sinica' in x.json()[u'scientificNames'])
+        self.assertTrue(u'Macaca fuscata' in x.json()[u'scientificNames'])
 
 null=None; false=False; true=True
 
