@@ -23,7 +23,7 @@ def get_service(group, service_name, specific_path):
     'fn/names_url'. """
 
     if group == 80:
-       url = str('https://phylo.cs.nmsu.edu/phylotastic_ws/%s' % (group, specific_path))
+       url = str('https://phylo.cs.nmsu.edu/phylotastic_ws/%s' % (str(group), specific_path))
     else:
        url = str('http://phylo.cs.nmsu.edu:%s/phylotastic_ws/%s' % (group, specific_path))
     
