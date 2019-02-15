@@ -22,7 +22,10 @@ def get_service(group, service_name, specific_path):
     following the part that is shared by all the services, e.g.
     'fn/names_url'. """
 
-    url = str('http://phylo.cs.nmsu.edu:%s/phylotastic_ws/%s' % (group, specific_path))
+    if group == 80:
+       url = str('https://phylo.cs.nmsu.edu/phylotastic_ws/%s' % (group, specific_path))
+    else:
+       url = str('http://phylo.cs.nmsu.edu:%s/phylotastic_ws/%s' % (group, specific_path))
     
     if url in services_registry:
         return services_registry[url]

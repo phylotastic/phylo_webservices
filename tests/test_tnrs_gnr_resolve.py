@@ -6,7 +6,7 @@ sys.path.append('../')
 import webapp
 from test_tnrs_ot_resolve import TnrsTester
 
-service = webapp.get_service(5004, "GNR_TNRS_wrapper", 'tnrs/gnr/resolve')
+service = webapp.get_service(80, "GNR_TNRS_wrapper", 'tnrs/gnr/resolve')
 
 class TestTnrsGnrResolve(TnrsTester):
     @classmethod

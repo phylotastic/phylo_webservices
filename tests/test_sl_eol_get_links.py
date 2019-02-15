@@ -5,7 +5,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "Info_url_species", 'sl/eol/get_links')
+service = webapp.get_service(80, "Info_url_species", 'sl/eol/get_links')
 
 class SlEolGetLinksTester(webapp.WebappTestCase):
     def test_no_parameter(self):

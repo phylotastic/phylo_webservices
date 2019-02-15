@@ -7,7 +7,7 @@ import webapp
 from test_tnrs_ot_resolve import TnrsTester
 
 
-service = webapp.get_service(5004, "GNR_TNRS_wrapper", 'tnrs/gnr/names')
+service = webapp.get_service(80, "GNR_TNRS_wrapper", 'tnrs/gnr/names')
 
 class TestTnrsGnrNames(TnrsTester):
     @classmethod

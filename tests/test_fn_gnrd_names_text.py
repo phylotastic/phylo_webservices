@@ -7,7 +7,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "GNRD_wrapper_text", 'fn/names_text')
+service = webapp.get_service(80, "GNRD_wrapper_text", 'fn/names_text')
 
 the_sample = None
 

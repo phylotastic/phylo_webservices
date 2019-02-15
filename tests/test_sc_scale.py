@@ -5,7 +5,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5009, "Datelife_scale_tree", 'sc/scale')
+service = webapp.get_service(80, "Datelife_scale_tree", 'sc/scale')
 
 class TestScScale(webapp.WebappTestCase):
     @classmethod

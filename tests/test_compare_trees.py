@@ -5,7 +5,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5006, "Compare_trees",'compare_trees')
+service = webapp.get_service(80, "Compare_trees",'compare_trees')
 
 class TestCompareTrees(webapp.WebappTestCase):
     @classmethod

@@ -6,7 +6,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5006, "OToL_supported_studies", 'md/get_studies')
+service = webapp.get_service(80, "OToL_supported_studies", 'md/get_studies')
 
 class MdStudiesTester(webapp.WebappTestCase):
 

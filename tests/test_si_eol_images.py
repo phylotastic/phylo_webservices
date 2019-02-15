@@ -7,7 +7,7 @@ sys.path.append('../')
 import webapp
 from test_si_eol_get_images import TestSiEolGetImages
 
-service = webapp.get_service(5004, "Image_url_species", 'si/eol/images')
+service = webapp.get_service(80, "Image_url_species", 'si/eol/images')
 
 class TestSiEolImages(TestSiEolGetImages):
     @classmethod

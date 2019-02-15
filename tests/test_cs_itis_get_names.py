@@ -6,7 +6,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5013, "ITIS_common_name", 'cs/itis/get_scientific_names')
+service = webapp.get_service(80, "ITIS_common_name", 'cs/itis/get_scientific_names')
 
 class ITISCommonNameTester(webapp.WebappTestCase):
 

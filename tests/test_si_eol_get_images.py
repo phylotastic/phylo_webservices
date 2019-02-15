@@ -5,7 +5,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "Image_url_species", 'si/eol/get_images')
+service = webapp.get_service(80, "Image_url_species", 'si/eol/get_images')
 
 class SiEolImagesTester(webapp.WebappTestCase):
 

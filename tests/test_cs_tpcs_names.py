@@ -7,7 +7,7 @@ sys.path.append('../')
 import webapp
 from test_cs_tpcs_get_names import TestCsGetTROPICOS
 
-service = webapp.get_service(5013, "TROPICOS_common_name", 'cs/tpcs/scientific_names')
+service = webapp.get_service(80, "TROPICOS_common_name", 'cs/tpcs/scientific_names')
 
 class TestCsTROPICOSNames(TestCsGetTROPICOS):
     @classmethod

@@ -18,7 +18,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "OToL_wrapper_Tree", 'gt/ot/get_tree')
+service = webapp.get_service(80, "OToL_wrapper_Tree", 'gt/ot/get_tree')
 
 the_names = None
 

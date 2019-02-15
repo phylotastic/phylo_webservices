@@ -7,7 +7,7 @@ sys.path.append('../')
 import webapp
 from test_sl_eol_get_links import SlEolGetLinksTester
 
-service = webapp.get_service(5004, "Info_url_species", 'sl/eol/links')
+service = webapp.get_service(80, "Info_url_species", 'sl/eol/links')
 
 class TestSlEolLinks(SlEolGetLinksTester):
     @classmethod

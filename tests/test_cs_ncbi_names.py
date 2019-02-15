@@ -7,7 +7,7 @@ sys.path.append('../')
 import webapp
 from test_cs_ncbi_get_names import TestCsGetNCBI
 
-service = webapp.get_service(5013, "NCBI_common_name", 'cs/ncbi/scientific_names')
+service = webapp.get_service(80, "NCBI_common_name", 'cs/ncbi/scientific_names')
 
 class TestCsNCBINames(TestCsGetNCBI):
     @classmethod

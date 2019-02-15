@@ -6,7 +6,7 @@ sys.path.append('../')
 import webapp
 from test_tnrs_ot_resolve import TnrsTester
 
-service = webapp.get_service(5004, "OToL_TNRS_wrapper", 'tnrs/ot/names')
+service = webapp.get_service(80, "OToL_TNRS_wrapper", 'tnrs/ot/names')
 
 class TestTnrsOtNames(TnrsTester):
     @classmethod

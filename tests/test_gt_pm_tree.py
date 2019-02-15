@@ -6,7 +6,7 @@ sys.path.append('../')
 import webapp
 from test_gt_pm_get_tree import TestGtPmTreeTester
 
-service = webapp.get_service(5004, "Phylomatic_wrapper_Tree", 'gt/pm/tree')
+service = webapp.get_service(80, "Phylomatic_wrapper_Tree", 'gt/pm/tree')
 
 class TestGtPmPostTree(TestGtPmTreeTester):
     @classmethod

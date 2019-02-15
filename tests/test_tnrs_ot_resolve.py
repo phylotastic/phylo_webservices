@@ -6,7 +6,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "OToL_TNRS_wrapper", 'tnrs/ot/resolve')
+service = webapp.get_service(80, "OToL_TNRS_wrapper", 'tnrs/ot/resolve')
 
 class TnrsTester(webapp.WebappTestCase):
     

@@ -7,7 +7,7 @@ sys.path.append('../')
 import webapp
 from test_cs_itis_get_names import TestCsGetITIS
 
-service = webapp.get_service(5013, "ITIS_common_name", 'cs/itis/scientific_names')
+service = webapp.get_service(80, "ITIS_common_name", 'cs/itis/scientific_names')
 
 class TestCsITISNames(TestCsGetITIS):
     @classmethod

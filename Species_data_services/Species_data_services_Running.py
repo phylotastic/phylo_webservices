@@ -20,8 +20,8 @@ from support import common_name_species_service_TROPICOS
 from support import scientific_to_common_name_NCBI
 from support import scientific_to_common_name_EOL
 from support import tree_common_names
+#----------------------------------------------------------
 
-#--------------------------------------------------
 logDbName = "WSLog"
 logCollectionName = "log"
 conn = None
@@ -30,7 +30,7 @@ conn = None
 WS_NAME = "phylotastic_ws"
 WS_GROUP1 = "sd" #species data service
 WS_GROUP2 = "cs" #common name service
-WS_GROUP3 = "sc"  #scientific name service
+WS_GROUP3 = "ss"  #scientific name service
 WS_GROUP4 = "tc"  #tree to scientific name service
 
 ROOT_FOLDER = os.getcwd()
@@ -38,13 +38,13 @@ HOST = "phylo.cs.nmsu.edu"  #"127.0.0.1"
 PORT = "5013"
 
 
-
 #PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
 #============================================================================
-ACCESS_LOG_CHERRYPY_5013 = ROOT_FOLDER + "/log/%s_5013_access_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
-ERROR_LOG_CHERRYPY_5013 = ROOT_FOLDER + "/log/%s_5013_error_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ACCESS_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_access_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ERROR_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_error_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 
 
+#-----------------------------------------------------------
 #When user requests invalid resource URI
 def error_page_404(status, message, traceback, version):
     cherrypy.response.headers['Content-Type'] = 'application/json'
@@ -77,15 +77,12 @@ def return_response_error(error_code, error_message, response_format="JSON"):
         cherrypy.response.body = error_message
         return json.dumps(error_response)
         
-#-------------------------------------------
+#------------------------------------------
+
 class CustomException(Exception):
     pass
 
-#--------------------------------------------------------------
-class ConversionException(Exception):
-    pass
-    
-#-------------------------------------------------------------
+#-----------------------------------------------------------
 def connect_mongodb(host='localhost', port=27017):
  	try:
  		conn=pymongo.MongoClient(host, port)
@@ -94,13 +91,15 @@ def connect_mongodb(host='localhost', port=27017):
  		print "Could not connect to MongoDB: %s" % e 
 
  	return conn
+
 #--------------------------------------------
 def insert_log(log_msg):
     db = conn[logDbName]
     log_collection = db[logCollectionName]
  	
  	#document = { "client_ip": log_msg['remote_ip'], "date": datetime.datetime.now(), "request": log_msg['path'], "method":  }
-    insert_status = log_collection.insert(log_msg)
+    insert_status = log_collection.insert_one(log_msg)
+
 
 #=======================================================================
 class Habitat_Conservation_EOL_Service_API(object):
@@ -865,28 +864,22 @@ class Tree_Common_Name_Service_API(object):
     #Public /index
     index.exposed = True
     common_names.exposed = True
+    
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#-----------------------------------------------------------
 def CORS():
     #print "Run CORS"
     cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
     cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
-
+    
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
-    conn = connect_mongodb()
+    conn = connect_mongodb() 
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
     #Configure Server
-    #cherrypy.config.update({'server.socket_host': '0.0.0.0', #'127.0.0.1',
-    #                        'server.socket_port': 5013,
-    #                        'log.error_file':ERROR_LOG_CHERRYPY_5013,
-    #                        'log.access_file':ACCESS_LOG_CHERRYPY_5013,
-    #                       'tools.log_tracebacks.on': True
-    #                      })
-    #Configure Server
-    cherrypy.config.update({#'server.socket_host': HOST, #'0.0.0.0' "127.0.0.1",
+    cherrypy.config.update({#'server.socket_host': '0.0.0.0',
                             'server.socket_port': int(PORT),
                             'tools.proxy.on': True,
                             'tools.proxy.base': 'https://'+HOST,
@@ -899,15 +892,13 @@ if __name__ == '__main__':
              '/':{
                 'tools.CORS.on': True,
                 'error_page.404': error_page_404,
-                'error_page.400': error_page_400
-                #'error_page.500': error_page_500,
-                #'request.show_tracebacks': True
-                
-             }
+                'error_page.400': error_page_400,
+                'request.show_tracebacks': False
+                }
     }
     
     #Starting Server
-    cherrypy.tree.mount(Habitat_Conservation_EOL_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP1), "eol"), conf_CORS )
+    #cherrypy.tree.mount(Habitat_Conservation_EOL_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP1), "eol"), conf_CORS )
     cherrypy.tree.mount(Conservation_ECOS_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP1), "ecos"), conf_CORS)
     cherrypy.tree.mount(Common_Name_Species_Service_NCBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"ncbi"),conf_CORS )
     cherrypy.tree.mount(Common_Name_Species_Service_ITIS_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"itis"),conf_CORS )
@@ -916,6 +907,6 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Scientific_Name_Service_NCBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3),"ncbi"),conf_CORS )
     cherrypy.tree.mount(Scientific_Name_Service_EOL_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3),"eol"),conf_CORS )	   	
     cherrypy.tree.mount(Tree_Common_Name_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP4)),conf_CORS )	       
-
+    
     cherrypy.engine.start()
     cherrypy.engine.block()

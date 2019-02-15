@@ -7,7 +7,7 @@ import webapp
 from test_tnrs_iplants_resolve import TestTnrsIpResolve
 
 
-service = webapp.get_service(5004, "iPlant_TNRS_wrapper", 'tnrs/ip/names')
+service = webapp.get_service(80, "iPlant_TNRS_wrapper", 'tnrs/ip/names')
 
 class TestTnrsIpNames(TestTnrsIpResolve):
     @classmethod

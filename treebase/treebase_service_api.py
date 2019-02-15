@@ -31,11 +31,12 @@ WebService_Group1 = "gt"
 WS_NAME = "phylotastic_ws"
 
 ROOT_FOLDER = os.getcwd()
-IP_ADDRESS = "127.0.0.1:5012"
+HOST = "phylo.cs.nmsu.edu"
+PORT = "5012"
 #PUBLIC_HOST_ROOT_WS = "http://%s/%s" %(str(IP_ADDRESS),str(WS_NAME))
 #============================================================================
-ACCESS_LOG_CHERRYPY_5012 = ROOT_FOLDER + "/log/%s_5012_access_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
-ERROR_LOG_CHERRYPY_5012 = ROOT_FOLDER + "/log/%s_5012_error_log.log" %(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ACCESS_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_access_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
+ERROR_LOG_CHERRYPY = ROOT_FOLDER + "/log/%s_error_log.log" %(PORT+"_"+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d')))
 
 #------------------------------------------
 #When user requests invalid resource URI
@@ -147,7 +148,7 @@ class Get_Tree_TreeBase_Service_API(object):
     tree.exposed = True
 
 
-#=========================Prune_SuperTree_Phylomatic_Service---INACTIVE=============================
+#=========================Prune_SuperTree_Phylomatic_Service=============================
 class Prune_Tree_Phylomatic_Service_API(object):
     def index(self):
         return "Prune_Tree_Phylomatic_Service_API : Get pruned megatree using taxa from phylomatic";
@@ -212,14 +213,17 @@ if __name__ == '__main__':
     
     conn = connect_mongodb() 
     cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
+    
     #Configure Server
-    cherrypy.config.update({'server.socket_host': "0.0.0.0", #'127.0.0.1',
-                            'server.socket_port': 5012,
-                            'log.error_file':ERROR_LOG_CHERRYPY_5012,
-                            'log.access_file':ACCESS_LOG_CHERRYPY_5012,
+    cherrypy.config.update({#'server.socket_host': '0.0.0.0',
+                            'server.socket_port': int(PORT),
+                            'tools.proxy.on': True,
+                            'tools.proxy.base': 'https://'+HOST,
+                            'log.error_file':ERROR_LOG_CHERRYPY,
+                            'log.access_file':ACCESS_LOG_CHERRYPY,
                             'tools.log_tracebacks.on': True
                           })
-    #cherrypy.config.update({'error_page.404': error_page_404})
+    
     
     server_config = {
              '/':{

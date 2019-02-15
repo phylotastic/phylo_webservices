@@ -6,7 +6,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "Taxon_all_species", 'ts/all_species')
+service = webapp.get_service(80, "Taxon_all_species", 'ts/ot/all_species')
 
 class TestTsAllSpecies(webapp.WebappTestCase):
     @classmethod

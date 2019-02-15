@@ -5,7 +5,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "GNRD_wrapper_url","fn/names_url")
+service = webapp.get_service(80, "GNRD_wrapper_url","fn/names_url")
 
 class TestFnNamesUrl(webapp.WebappTestCase):
     @classmethod

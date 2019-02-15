@@ -7,7 +7,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "TaxonFinder_wrapper_text", 'fn/tf/names_text')
+service = webapp.get_service(80, "TaxonFinder_wrapper_text", 'fn/tf/names_text')
 
 the_sample = None
 

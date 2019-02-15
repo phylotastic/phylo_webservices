@@ -5,7 +5,7 @@ sys.path.append('./')
 sys.path.append('../')
 import webapp
 
-service = webapp.get_service(5004, "TaxonFinder_wrapper_url","fn/tf/names_url")
+service = webapp.get_service(80, "TaxonFinder_wrapper_url","fn/tf/names_url")
 
 class TestFnNamesUrl(webapp.WebappTestCase):
     @classmethod

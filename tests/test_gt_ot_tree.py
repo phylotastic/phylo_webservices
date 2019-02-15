@@ -7,7 +7,7 @@ sys.path.append('../')
 import webapp
 from test_gt_ot_get_tree import GtTreeTester
 
-service = webapp.get_service(5004, "OToL_wrapper_Tree", 'gt/ot/tree')
+service = webapp.get_service(80, "OToL_wrapper_Tree", 'gt/ot/tree')
 
 class TestGtOtTree(GtTreeTester):
     @classmethod
