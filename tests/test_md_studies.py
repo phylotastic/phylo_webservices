@@ -6,7 +6,7 @@ sys.path.append('../')
 import webapp
 from test_md_get_studies import TestMdGetStudies
 
-service = webapp.get_service(5006, "OToL_supported_studies", 'md/studies')
+service = webapp.get_service(80, "OToL_supported_studies", 'md/studies')
 
 class TestMdStudies(TestMdGetStudies):
     @classmethod
