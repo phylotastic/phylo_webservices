@@ -116,7 +116,7 @@ def get_children(ottId):
     resource_url = api_url + "taxonomy/taxon_info"    
     payload = {
         'ott_id': ottId,
-        'include_children': 'true'    
+        'include_children': True    
     }
 
     jsonPayload = json.dumps(payload)
@@ -384,6 +384,7 @@ def get_country_species(inputTaxon, country):
 	#To remove the warning: "the InsecurePlatformWarning: A true SSLContext object is not available"
  	#requests.packages.urllib3.disable_warnings()
 
+ 	#inputTaxon = "Cephalopoda" 
  	#inputTaxon = "Hydropotes"
 	#inputTaxon = 'Vulpes' #genus
  	#inputTaxon = 'Felidae'
@@ -397,7 +398,8 @@ def get_country_species(inputTaxon, country):
  	#country = 'Bangladesh'
  	#country = 'United States'
  	#country = 'Nepal'
- 	#print match_taxon(inputTaxon) 
+ 	#result = match_taxon(inputTaxon)
+ 	#print get_children(result['ott_id'])
  	#print get_all_species(inputTaxon)
  	#get_children(735488)
  	#print check_species_by_country(inputTaxon, country)	
