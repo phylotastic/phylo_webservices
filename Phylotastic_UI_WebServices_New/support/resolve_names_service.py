@@ -294,7 +294,7 @@ def create_sublists(lst, size=200):
 
 #--------------------------------------------
 def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match): 
-    list_size = 1000
+    list_size = 3000
     final_result = []
 
     start_time = time.time()
@@ -304,7 +304,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
 
     if len(inputNamesList) > list_size:
     	sublists = create_sublists(inputNamesList, list_size)
-        print "Number of sublists: %d"%len(sublists)
+        #print "Number of sublists: %d"%len(sublists)
     	for sublst in sublists:
     		resolvedResult = resolve_sn_ot(sublst, do_fuzzy_match, multi_match)
     		resolvedNameslst = resolvedResult['resolvedNames']
@@ -336,7 +336,7 @@ def resolve_names_OT(inputNamesList, do_fuzzy_match, multi_match):
 
 #-----------------------------------------------------------
 def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match): 
-    list_size = 3000
+    list_size = 1000
     resolver_result = []
 
     status_code = 200

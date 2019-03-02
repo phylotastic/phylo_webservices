@@ -20,10 +20,11 @@ def get_sn_url(inputURL, sEngine=0):
         'engine': sEngine	
     }
     
-    encoded_payload = urllib.urlencode(payload)
-    response = requests.get(api_url, params=encoded_payload, headers=headers) 
+    #encoded_payload = urllib.urlencode(payload)
+    response = requests.get(api_url, params=payload) 
     
     scientificNamesList = []
+    print response.text
     try: 
        if response.status_code == requests.codes.ok:    
           data_json = json.loads(response.text)
@@ -323,6 +324,7 @@ def extract_names_taxonfinder(tf_input, input_type=None):
     #inputURL = 'https://en.wikipedia.org/wiki/Setophaga'
     #inputURL = 'https://species.wikimedia.org/wiki/Morganucodontidae'
     #inputURL = 'https://en.wikipedia.org/wiki/Ant'
+    #inputURL = 'https://en.wikipedia.org/wiki/Primate'
     #inputTEXT = 'The Crabronidae are a large paraphyletic group of wasps. Ophiocordyceps, Cordyceps are genus of fungi. The Megalyroidea are a small hymenopteran superfamily that includes a single family, Megalyridae. The Apidae is the largest family within the Apoidea, with at least 5700 species of bees. Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries.'	
     #inputTEXT = "Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries."
     #result = extract_names_URL(inputURL, 0)

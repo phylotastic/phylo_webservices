@@ -1479,8 +1479,8 @@ if __name__ == '__main__':
 
     #Starting Server
     cherrypy.tree.mount(Taxon_Genome_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "ncbi"), conf_app)
-    cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_app)
-    cherrypy.tree.mount(Popularity_Service_API(), '/%s/%s' %(str(WS_NAME),str(WebService_Group1)), conf_app )
+    cherrypy.tree.mount(Taxon_to_Species_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "ot"), conf_app)
+    cherrypy.tree.mount(Popularity_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group1), "oz"), conf_app )
     cherrypy.tree.mount(Species_Image_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group5), "eol"), conf_app)
     cherrypy.tree.mount(Species_Url_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WebService_Group6), "eol"), conf_app)
 
