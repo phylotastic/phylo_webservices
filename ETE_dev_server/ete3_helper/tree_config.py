@@ -503,7 +503,7 @@ def is_empty(any_structure):
        return True
 #-----------------------------------------------------
 def get_link_data(sp_name):
-    service_uri = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/get_link_info"
+    service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/get_link_info"
     #service_uri = "http://localhost:5008/phylotastic_ws/ds/get_link_info"
     service_payload = {'species': sp_name}
     
@@ -516,7 +516,7 @@ def get_link_data(sp_name):
 
 #-----------------------------------------------------
 def get_image_data(sp_name, img_id=0, next_img=False):
-    service_uri = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/get_image_info"
+    service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/get_image_info"
     #service_uri = "http://localhost:5008/phylotastic_ws/ds/get_image_info"
     service_payload = {'species': sp_name, 'image_id': img_id, 'next_image': next_img}
    
@@ -531,7 +531,7 @@ def get_image_data(sp_name, img_id=0, next_img=False):
 
 #----------------------------------------------------
 def can_change_image(sp_name):
-    service_uri = "http://phylo.cs.nmsu.edu:5008/phylotastic_ws/ds/image_info_exists"
+    service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/image_info_exists"
     service_payload = {'species': sp_name}
    
     service_response = execute_webservice(service_uri, service_payload)
