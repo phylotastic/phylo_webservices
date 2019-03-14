@@ -59,7 +59,7 @@ def match_species(speciesName):
 
 #--------------------------------------------   
 def get_species_info(speciesId):
- 	page_url = "http://eol.org/api/pages/1.0.json" 
+ 	page_url = "http://eol.org/api/pages/1.0/" + str(speciesId) +".json" 
  	EOL_API_Key = get_api_key()   
  	payload = {
  		'key': EOL_API_Key,
@@ -92,6 +92,7 @@ def get_species_info(speciesId):
     
  	if response.status_code == requests.codes.ok:    
  		species_info_json = json.loads(response.text)
+ 		#print species_info_json
  		return species_info_json
  	else:
  		return None
@@ -101,8 +102,10 @@ def get_vernacular_names(vernacularInfo):
 	#print vernacularInfo
  	species_comm_name_list = []
  	for info in vernacularInfo:
- 		if 'eol_preferred' in info and info['eol_preferred'] and info["language"] == "en":
- 			species_comm_name_list.append(info['vernacularName'])
+ 		#if 'eol_preferred' in info and info['eol_preferred'] and info["language"] == "en":
+ 		if 'eol_preferred' in info and info["language"] == "en":
+ 			if info['vernacularName'] not in species_comm_name_list:  
+ 				species_comm_name_list.append(info['vernacularName'])
 
  	return species_comm_name_list
 
@@ -126,12 +129,14 @@ def get_sci_to_comm_names(inputSpeciesList):
  			species_obj['total_names'] = 0
  		else: 	
  		 	species_info_json = get_species_info(species_id)
+ 			if species_info_json is None:
+ 				return { 'status_code': 500, 'message': "Error: Response error from EOL while retrieving data objects"}
  			if 'status_code' in species_info_json and species_info_json['status_code'] != 200:
  				return species_info_json
  			else:
- 				species_obj['matched_name'] = species_info_json['scientificName']
+ 				species_obj['matched_name'] = species_info_json[str(species_id)]['scientificName']
  				species_obj['identifier'] = species_id #'eol_id'			
- 				common_name_lst = species_info_json['vernacularNames'] 
+ 				common_name_lst = species_info_json[str(species_id)]['vernacularNames'] 
  				length = len(common_name_lst)		
  				if length != 0:
  					comm__name_species = get_vernacular_names(common_name_lst)
@@ -161,7 +166,7 @@ def get_sci_to_comm_names(inputSpeciesList):
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
 
-	#inputSpecies = ["Rangifer tarandus", "Cervus elaphus", "Bos taurus"]#, "Ovis orientalis", "Suricata suricatta", "Cistophora cristata", "Mephitis mephitis"]
+	#inputSpecies = ["Rangifer tarandus"]#, "Cervus elaphus", "Bos taurus"]#, "Ovis orientalis", "Suricata suricatta", "Cistophora cristata", "Mephitis mephitis"]
    
  	#inputTaxon = 'Felidae'
 	#inputTaxon = 'Canidae' #family

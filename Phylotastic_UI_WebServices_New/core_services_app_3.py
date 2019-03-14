@@ -1135,6 +1135,18 @@ class Get_Tree_OpenTree_Service_API(object):
 
             taxa = str(request_data['taxa']).strip();
             taxalist = taxa.split('|')
+            
+            include_metadata = False
+            include_ottid = True
+            if request_data is not None and 'metadata' in request_data:
+               include_metadata = str(request_data['metadata']).strip()
+               if type(include_metadata) != types.BooleanType:
+                  include_metadata = str2bool(include_metadata)
+
+            if request_data is not None and 'ottid' in request_data:
+               include_ottid = str(request_data['ottid']).strip()
+               if type(include_ottid) != types.BooleanType:
+                  include_ottid = str2bool(include_ottid)
 
             if len(taxalist) == 1 and '' in taxalist: 
                raise CustomException("'taxa' parameter must have a valid value")
@@ -1152,7 +1164,7 @@ class Get_Tree_OpenTree_Service_API(object):
         try:
             nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False)
             nameslist = nameslist_json["resolvedNames"]
-            service_result = opentree_tree_service.get_tree_OT(nameslist)   
+            service_result = opentree_tree_service.get_tree_OT(nameslist,include_metadata,include_ottid)   
             #-------------log request------------------   
             #result_json = json.loads(service_result)
             result_json = service_result
@@ -1178,6 +1190,8 @@ class Get_Tree_OpenTree_Service_API(object):
             if http_method not in ['POST']:
                return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
 
+            include_metadata = False
+            include_ottid = True
             input_json = cherrypy.request.json
             
             if 'taxa' not in input_json and 'resolvedNames' not in input_json:
@@ -1192,6 +1206,11 @@ class Get_Tree_OpenTree_Service_API(object):
 
                 if len(taxalist) > 2000: 
                    return return_response_error(403,"Error: Currently more than 2000 names is not supported","JSON")
+
+            if 'metadata' in input_json:		
+                 include_metadata = input_json['metadata']
+            if 'ottid' in input_json:		
+                 include_ottid = input_json['ottid']
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -1210,7 +1229,7 @@ class Get_Tree_OpenTree_Service_API(object):
                 nameslist = input_json['resolvedNames']
                 taxalist = nameslist
 
-            service_result = opentree_tree_service.get_tree_OT(nameslist)   
+            service_result = opentree_tree_service.get_tree_OT(nameslist, include_metadata, include_ottid)   
             #-------------log request------------------   
             header = cherrypy.request.headers
             log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'taxa': taxalist}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
