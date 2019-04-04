@@ -1,0 +1,449 @@
+[27/Mar/2018:14:43:14] ENGINE Bus STARTING
+[27/Mar/2018:14:43:14] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:43:14] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:43:15] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:43:15] ENGINE Bus STARTED
+[27/Mar/2018:14:47:24] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:47:24] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:47:24] ENGINE Bus STOPPING
+[27/Mar/2018:14:47:24] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:47:24] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:47:24] ENGINE Bus STOPPED
+[27/Mar/2018:14:47:24] ENGINE Bus EXITING
+[27/Mar/2018:14:47:24] ENGINE Bus EXITED
+[27/Mar/2018:14:47:24] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:47:24] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:47:25] ENGINE Bus STARTING
+[27/Mar/2018:14:47:25] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:47:25] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:47:25] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:47:25] ENGINE Bus STARTED
+[27/Mar/2018:14:47:44] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:47:44] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:47:44] ENGINE Bus STOPPING
+[27/Mar/2018:14:47:44] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:47:44] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:47:44] ENGINE Bus STOPPED
+[27/Mar/2018:14:47:44] ENGINE Bus EXITING
+[27/Mar/2018:14:47:44] ENGINE Bus EXITED
+[27/Mar/2018:14:47:44] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:47:44] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:47:45] ENGINE Bus STARTING
+[27/Mar/2018:14:47:45] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:47:45] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:47:45] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:47:45] ENGINE Bus STARTED
+[27/Mar/2018:14:48:40] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:48:40] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:48:40] ENGINE Bus STOPPING
+[27/Mar/2018:14:48:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:48:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:48:40] ENGINE Bus STOPPED
+[27/Mar/2018:14:48:40] ENGINE Bus EXITING
+[27/Mar/2018:14:48:40] ENGINE Bus EXITED
+[27/Mar/2018:14:48:40] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:48:40] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:48:40] ENGINE Bus STARTING
+[27/Mar/2018:14:48:40] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:48:40] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:48:40] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:48:40] ENGINE Bus STARTED
+[27/Mar/2018:14:48:47] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:48:47] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:48:47] ENGINE Bus STOPPING
+[27/Mar/2018:14:48:47] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:48:47] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:48:47] ENGINE Bus STOPPED
+[27/Mar/2018:14:48:47] ENGINE Bus EXITING
+[27/Mar/2018:14:48:47] ENGINE Bus EXITED
+[27/Mar/2018:14:48:47] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:48:47] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:48:48] ENGINE Bus STARTING
+[27/Mar/2018:14:48:48] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:48:48] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:48:48] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:48:48] ENGINE Bus STARTED
+[27/Mar/2018:14:48:56] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:48:56] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:48:56] ENGINE Bus STOPPING
+[27/Mar/2018:14:48:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:48:56] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:48:56] ENGINE Bus STOPPED
+[27/Mar/2018:14:48:56] ENGINE Bus EXITING
+[27/Mar/2018:14:48:56] ENGINE Bus EXITED
+[27/Mar/2018:14:48:56] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:48:56] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:48:57] ENGINE Bus STARTING
+[27/Mar/2018:14:48:57] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:48:57] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:48:57] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:48:57] ENGINE Bus STARTED
+[27/Mar/2018:14:50:52] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:50:52] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:50:52] ENGINE Bus STOPPING
+[27/Mar/2018:14:50:52] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:50:52] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:50:52] ENGINE Bus STOPPED
+[27/Mar/2018:14:50:52] ENGINE Bus EXITING
+[27/Mar/2018:14:50:52] ENGINE Bus EXITED
+[27/Mar/2018:14:50:52] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:50:52] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:50:53] ENGINE Bus STARTING
+[27/Mar/2018:14:50:53] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:50:53] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:50:53] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:50:53] ENGINE Bus STARTED
+[27/Mar/2018:14:52:00] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:52:00] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:52:00] ENGINE Bus STOPPING
+[27/Mar/2018:14:52:00] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:52:00] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:52:00] ENGINE Bus STOPPED
+[27/Mar/2018:14:52:00] ENGINE Bus EXITING
+[27/Mar/2018:14:52:00] ENGINE Bus EXITED
+[27/Mar/2018:14:52:00] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:52:00] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:52:01] ENGINE Bus STARTING
+[27/Mar/2018:14:52:01] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:52:01] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:52:01] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:52:01] ENGINE Bus STARTED
+[27/Mar/2018:14:52:12] ENGINE Keyboard Interrupt: shutting down bus
+[27/Mar/2018:14:52:12] ENGINE Bus STOPPING
+[27/Mar/2018:14:52:12] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:52:12] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:52:12] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:52:12] ENGINE Bus STOPPED
+[27/Mar/2018:14:52:12] ENGINE Bus EXITING
+[27/Mar/2018:14:52:12] ENGINE Bus EXITED
+[27/Mar/2018:14:52:12] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:52:15] ENGINE Bus STARTING
+[27/Mar/2018:14:52:15] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:52:15] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:52:16] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:52:16] ENGINE Bus STARTED
+[27/Mar/2018:14:52:43] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:52:43] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:52:43] ENGINE Bus STOPPING
+[27/Mar/2018:14:52:43] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:52:43] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:52:43] ENGINE Bus STOPPED
+[27/Mar/2018:14:52:43] ENGINE Bus EXITING
+[27/Mar/2018:14:52:43] ENGINE Bus EXITED
+[27/Mar/2018:14:52:43] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:52:43] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:52:43] ENGINE Bus STARTING
+[27/Mar/2018:14:52:43] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:52:43] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:52:44] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:52:44] ENGINE Bus STARTED
+[27/Mar/2018:14:53:13] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:53:13] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:53:13] ENGINE Bus STOPPING
+[27/Mar/2018:14:53:13] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:53:13] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:53:13] ENGINE Bus STOPPED
+[27/Mar/2018:14:53:13] ENGINE Bus EXITING
+[27/Mar/2018:14:53:13] ENGINE Bus EXITED
+[27/Mar/2018:14:53:13] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:53:13] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:53:13] ENGINE Bus STARTING
+[27/Mar/2018:14:53:13] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:53:13] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:53:14] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:53:14] ENGINE Bus STARTED
+[27/Mar/2018:14:53:24] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:53:24] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:53:24] ENGINE Bus STOPPING
+[27/Mar/2018:14:53:24] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:53:24] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:53:24] ENGINE Bus STOPPED
+[27/Mar/2018:14:53:24] ENGINE Bus EXITING
+[27/Mar/2018:14:53:24] ENGINE Bus EXITED
+[27/Mar/2018:14:53:24] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:53:24] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:53:24] ENGINE Bus STARTING
+[27/Mar/2018:14:53:24] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:53:24] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:53:24] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:53:24] ENGINE Bus STARTED
+[27/Mar/2018:14:53:37] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:53:37] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:53:37] ENGINE Bus STOPPING
+[27/Mar/2018:14:53:37] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:53:37] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:53:37] ENGINE Bus STOPPED
+[27/Mar/2018:14:53:37] ENGINE Bus EXITING
+[27/Mar/2018:14:53:37] ENGINE Bus EXITED
+[27/Mar/2018:14:53:38] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:53:38] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:53:38] ENGINE Bus STARTING
+[27/Mar/2018:14:53:38] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:53:38] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:53:38] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:53:38] ENGINE Bus STARTED
+[27/Mar/2018:14:54:15] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:54:15] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:54:15] ENGINE Bus STOPPING
+[27/Mar/2018:14:54:15] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:54:15] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:54:15] ENGINE Bus STOPPED
+[27/Mar/2018:14:54:15] ENGINE Bus EXITING
+[27/Mar/2018:14:54:15] ENGINE Bus EXITED
+[27/Mar/2018:14:54:15] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:54:15] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:54:15] ENGINE Bus STARTING
+[27/Mar/2018:14:54:15] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:54:15] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:54:15] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:54:15] ENGINE Bus STARTED
+[27/Mar/2018:14:54:22] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:54:22] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:54:22] ENGINE Bus STOPPING
+[27/Mar/2018:14:54:22] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:54:22] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:54:22] ENGINE Bus STOPPED
+[27/Mar/2018:14:54:22] ENGINE Bus EXITING
+[27/Mar/2018:14:54:22] ENGINE Bus EXITED
+[27/Mar/2018:14:54:22] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:54:22] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:54:23] ENGINE Bus STARTING
+[27/Mar/2018:14:54:23] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:54:23] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:54:23] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:54:23] ENGINE Bus STARTED
+[27/Mar/2018:14:54:37] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:54:37] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:54:37] ENGINE Bus STOPPING
+[27/Mar/2018:14:54:37] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:54:37] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:54:37] ENGINE Bus STOPPED
+[27/Mar/2018:14:54:37] ENGINE Bus EXITING
+[27/Mar/2018:14:54:37] ENGINE Bus EXITED
+[27/Mar/2018:14:54:37] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:54:37] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:54:38] ENGINE Bus STARTING
+[27/Mar/2018:14:54:38] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:54:38] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:54:38] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:54:38] ENGINE Bus STARTED
+[27/Mar/2018:14:54:43]  ====CommonName_NCBI_GET_Error====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 217, in get_scientific_names
+    service_result = common_name_species_service_NCBI.get_scientific_names(name_st, multi_match)
+NameError: global name 'name_st' is not defined
+[27/Mar/2018:14:55:03] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:55:03] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:55:03] ENGINE Bus STOPPING
+[27/Mar/2018:14:55:03] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:55:03] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:55:03] ENGINE Bus STOPPED
+[27/Mar/2018:14:55:03] ENGINE Bus EXITING
+[27/Mar/2018:14:55:03] ENGINE Bus EXITED
+[27/Mar/2018:14:55:03] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:55:03] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:55:04] ENGINE Bus STARTING
+[27/Mar/2018:14:55:04] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:55:04] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:55:04] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:55:04] ENGINE Bus STARTED
+[27/Mar/2018:14:55:14] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:55:14] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:55:14] ENGINE Bus STOPPING
+[27/Mar/2018:14:55:14] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:55:14] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:55:14] ENGINE Bus STOPPED
+[27/Mar/2018:14:55:14] ENGINE Bus EXITING
+[27/Mar/2018:14:55:14] ENGINE Bus EXITED
+[27/Mar/2018:14:55:14] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:55:14] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:55:15] ENGINE Bus STARTING
+[27/Mar/2018:14:55:15] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:55:15] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:55:15] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:55:15] ENGINE Bus STARTED
+[27/Mar/2018:14:55:42] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:55:42] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:55:42] ENGINE Bus STOPPING
+[27/Mar/2018:14:55:42] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:55:42] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:55:42] ENGINE Bus STOPPED
+[27/Mar/2018:14:55:42] ENGINE Bus EXITING
+[27/Mar/2018:14:55:42] ENGINE Bus EXITED
+[27/Mar/2018:14:55:42] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:55:42] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:55:43] ENGINE Bus STARTING
+[27/Mar/2018:14:55:43] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:55:43] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:55:43] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:55:43] ENGINE Bus STARTED
+[27/Mar/2018:14:57:54] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:57:54] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:57:54] ENGINE Bus STOPPING
+[27/Mar/2018:14:57:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:57:54] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:57:54] ENGINE Bus STOPPED
+[27/Mar/2018:14:57:54] ENGINE Bus EXITING
+[27/Mar/2018:14:57:54] ENGINE Bus EXITED
+[27/Mar/2018:14:57:54] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:57:54] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:57:55] ENGINE Bus STARTING
+[27/Mar/2018:14:57:55] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:57:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:57:55] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:57:55] ENGINE Bus STARTED
+[27/Mar/2018:14:58:07] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:58:07] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:58:07] ENGINE Bus STOPPING
+[27/Mar/2018:14:58:07] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:58:07] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:58:07] ENGINE Bus STOPPED
+[27/Mar/2018:14:58:07] ENGINE Bus EXITING
+[27/Mar/2018:14:58:07] ENGINE Bus EXITED
+[27/Mar/2018:14:58:07] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:58:07] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:58:08] ENGINE Bus STARTING
+[27/Mar/2018:14:58:08] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:58:08] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:58:08] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:58:08] ENGINE Bus STARTED
+[27/Mar/2018:14:59:17] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:59:17] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:59:17] ENGINE Bus STOPPING
+[27/Mar/2018:14:59:17] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:59:17] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:59:17] ENGINE Bus STOPPED
+[27/Mar/2018:14:59:17] ENGINE Bus EXITING
+[27/Mar/2018:14:59:17] ENGINE Bus EXITED
+[27/Mar/2018:14:59:17] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:59:17] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:59:18] ENGINE Bus STARTING
+[27/Mar/2018:14:59:18] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:59:18] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:59:18] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:59:18] ENGINE Bus STARTED
+[27/Mar/2018:14:59:45] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:14:59:45] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:14:59:45] ENGINE Bus STOPPING
+[27/Mar/2018:14:59:45] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:14:59:45] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:14:59:45] ENGINE Bus STOPPED
+[27/Mar/2018:14:59:45] ENGINE Bus EXITING
+[27/Mar/2018:14:59:45] ENGINE Bus EXITED
+[27/Mar/2018:14:59:45] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:14:59:45] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:14:59:46] ENGINE Bus STARTING
+[27/Mar/2018:14:59:46] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:14:59:46] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:14:59:46] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:14:59:46] ENGINE Bus STARTED
+[27/Mar/2018:15:00:54] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:15:00:54] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:00:54] ENGINE Bus STOPPING
+[27/Mar/2018:15:00:54] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:00:54] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:00:54] ENGINE Bus STOPPED
+[27/Mar/2018:15:00:54] ENGINE Bus EXITING
+[27/Mar/2018:15:00:54] ENGINE Bus EXITED
+[27/Mar/2018:15:00:54] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:15:00:54] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:15:00:55] ENGINE Bus STARTING
+[27/Mar/2018:15:00:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:15:00:55] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:15:00:55] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:15:00:55] ENGINE Bus STARTED
+[27/Mar/2018:15:01:16]  ====CommonName_ITIS_GET_Error====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 322, in get_scientific_names
+    service_result = common_name_species_service_ITIS.get_scientific_names(name_lst, not multi_match)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/common_name_species_service_ITIS.py", line 136, in get_scientific_names
+    match_result = search_name(inputName, best_match)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/common_name_species_service_ITIS.py", line 49, in search_name
+    match_name_list = extract_sc_names(cm_name_key_list)
+  File "/home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/common_name_species_service_ITIS.py", line 68, in extract_sc_names
+    sc_name_inof['source_info_url'] = source_info_base + str(cm_key)
+NameError: global name 'sc_name_inof' is not defined
+[27/Mar/2018:15:01:51] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/common_name_species_service_ITIS.py changed.
+[27/Mar/2018:15:01:51] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:01:51] ENGINE Bus STOPPING
+[27/Mar/2018:15:01:51] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:01:51] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:01:51] ENGINE Bus STOPPED
+[27/Mar/2018:15:01:51] ENGINE Bus EXITING
+[27/Mar/2018:15:01:51] ENGINE Bus EXITED
+[27/Mar/2018:15:01:51] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:15:01:51] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:15:01:51] ENGINE Bus STARTING
+[27/Mar/2018:15:01:51] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:15:01:51] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:15:01:52] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:15:01:52] ENGINE Bus STARTED
+[27/Mar/2018:15:04:48] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:15:04:48] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:04:48] ENGINE Bus STOPPING
+[27/Mar/2018:15:04:48] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:04:48] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:04:48] ENGINE Bus STOPPED
+[27/Mar/2018:15:04:48] ENGINE Bus EXITING
+[27/Mar/2018:15:04:48] ENGINE Bus EXITED
+[27/Mar/2018:15:04:48] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:15:04:48] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:15:04:49] ENGINE Bus STARTING
+[27/Mar/2018:15:04:49] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:15:04:49] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:15:04:49] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:15:04:49] ENGINE Bus STARTED
+[27/Mar/2018:15:05:05] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:15:05:05] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:05:05] ENGINE Bus STOPPING
+[27/Mar/2018:15:05:05] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:05:05] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:05:05] ENGINE Bus STOPPED
+[27/Mar/2018:15:05:05] ENGINE Bus EXITING
+[27/Mar/2018:15:05:05] ENGINE Bus EXITED
+[27/Mar/2018:15:05:05] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:15:05:05] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:15:05:05] ENGINE Bus STARTING
+[27/Mar/2018:15:05:05] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:15:05:05] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:15:05:06] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:15:05:06] ENGINE Bus STARTED
+[27/Mar/2018:15:05:21] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:15:05:21] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:05:21] ENGINE Bus STOPPING
+[27/Mar/2018:15:05:21] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:05:21] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:05:21] ENGINE Bus STOPPED
+[27/Mar/2018:15:05:21] ENGINE Bus EXITING
+[27/Mar/2018:15:05:21] ENGINE Bus EXITED
+[27/Mar/2018:15:05:21] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:15:05:21] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:15:05:21] ENGINE Bus STARTING
+[27/Mar/2018:15:05:21] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:15:05:21] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:15:05:22] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:15:05:22] ENGINE Bus STARTED
+[27/Mar/2018:15:06:08] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/Species_data_services_Running.py changed.
+[27/Mar/2018:15:06:08] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:06:08] ENGINE Bus STOPPING
+[27/Mar/2018:15:06:08] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:06:08] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:06:08] ENGINE Bus STOPPED
+[27/Mar/2018:15:06:08] ENGINE Bus EXITING
+[27/Mar/2018:15:06:08] ENGINE Bus EXITED
+[27/Mar/2018:15:06:08] ENGINE Waiting for child threads to terminate...
+[27/Mar/2018:15:06:08] ENGINE Re-spawning Species_data_services_Running.py
+[27/Mar/2018:15:08:39] ENGINE Bus STARTING
+[27/Mar/2018:15:08:39] ENGINE Started monitor thread '_TimeoutMonitor'.
+[27/Mar/2018:15:08:39] ENGINE Started monitor thread 'Autoreloader'.
+[27/Mar/2018:15:08:40] ENGINE Serving on http://0.0.0.0:5013
+[27/Mar/2018:15:08:40] ENGINE Bus STARTED
+[27/Mar/2018:15:20:14] ENGINE Keyboard Interrupt: shutting down bus
+[27/Mar/2018:15:20:14] ENGINE Bus STOPPING
+[27/Mar/2018:15:20:14] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5013)) shut down
+[27/Mar/2018:15:20:14] ENGINE Stopped thread '_TimeoutMonitor'.
+[27/Mar/2018:15:20:14] ENGINE Stopped thread 'Autoreloader'.
+[27/Mar/2018:15:20:14] ENGINE Bus STOPPED
+[27/Mar/2018:15:20:14] ENGINE Bus EXITING
+[27/Mar/2018:15:20:14] ENGINE Bus EXITED
+[27/Mar/2018:15:20:14] ENGINE Waiting for child threads to terminate...

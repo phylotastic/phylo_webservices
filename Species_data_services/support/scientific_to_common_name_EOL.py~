@@ -1,5 +1,4 @@
 #scientific names to common names service: version 1.0
-#https://eol.org/docs/what-is-eol/data-services/classic-apis
 import json
 import requests
 import time

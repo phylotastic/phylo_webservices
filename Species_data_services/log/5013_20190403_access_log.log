@@ -1,0 +1,2 @@
+127.0.0.1 - - [03/Apr/2019:22:49:45] "GET /phylotastic_ws/ss/gnr/get_common_names?scientific_names=Balaenoptera%20musculus HTTP/1.1" 500 62 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
+127.0.0.1 - - [03/Apr/2019:22:51:09] "GET /phylotastic_ws/ss/gnr/get_common_names?scientific_names=Balaenoptera%20musculus HTTP/1.1" 200 1019 "" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"

@@ -96,7 +96,7 @@ def extract_more_info(divSuppTag):
 				comm_name = info_list[1].strip() #None creates a problem, so used empty string
 				rank = info_list[0].strip()
 
-			info = {'commonName': comm_name, 'rank': rank}
+			info = {'commonName': gen_comm_name, 'rank': rank}
 			#info = {'common_name': gen_comm_name, 'rank': rank, 'inherited_blast_name': blast_name}
 		except IndexError:
 			info = None

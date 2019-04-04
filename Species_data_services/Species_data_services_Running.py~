@@ -1116,7 +1116,7 @@ if __name__ == '__main__':
     cherrypy.tree.mount(Common_Name_Species_Service_NCBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"ncbi"),conf_CORS )
     cherrypy.tree.mount(Common_Name_Species_Service_ITIS_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"itis"),conf_CORS )
     cherrypy.tree.mount(Common_Name_Species_Service_TROPICOS_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"tpcs"),conf_CORS )
-    cherrypy.tree.mount(Common_Name_Species_Service_EBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"ebi"),conf_CORS )
+	cherrypy.tree.mount(Common_Name_Species_Service_EBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP2),"ebi"),conf_CORS )
 
     cherrypy.tree.mount(Scientific_Name_Service_NCBI_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3),"ncbi"),conf_CORS )
     cherrypy.tree.mount(Scientific_Name_Service_EOL_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3),"eol"),conf_CORS )	

@@ -1,0 +1,48 @@
+[03/Apr/2019:22:47:15] ENGINE Bus STARTING
+[03/Apr/2019:22:47:15] ENGINE Started monitor thread 'Autoreloader'.
+[03/Apr/2019:22:47:15] ENGINE Started monitor thread '_TimeoutMonitor'.
+[03/Apr/2019:22:47:16] ENGINE Serving on http://127.0.0.1:5013
+[03/Apr/2019:22:47:16] ENGINE Bus STARTED
+[03/Apr/2019:22:47:16] ENGINE Keyboard Interrupt: shutting down bus
+[03/Apr/2019:22:47:16] ENGINE Bus STOPPING
+[03/Apr/2019:22:47:16] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5013)) shut down
+[03/Apr/2019:22:47:16] ENGINE Stopped thread 'Autoreloader'.
+[03/Apr/2019:22:47:16] ENGINE Stopped thread '_TimeoutMonitor'.
+[03/Apr/2019:22:47:16] ENGINE Bus STOPPED
+[03/Apr/2019:22:47:16] ENGINE Bus EXITING
+[03/Apr/2019:22:47:16] ENGINE Bus EXITED
+[03/Apr/2019:22:47:16] ENGINE Waiting for child threads to terminate...
+[03/Apr/2019:22:49:18] ENGINE Bus STARTING
+[03/Apr/2019:22:49:18] ENGINE Started monitor thread 'Autoreloader'.
+[03/Apr/2019:22:49:18] ENGINE Started monitor thread '_TimeoutMonitor'.
+[03/Apr/2019:22:49:18] ENGINE Serving on http://127.0.0.1:5013
+[03/Apr/2019:22:49:18] ENGINE Bus STARTED
+[03/Apr/2019:22:49:45]  ====ScientificName_GNR_GET_Error====
+Traceback (most recent call last):
+  File "Species_data_services_Running.py", line 962, in get_common_names
+    log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+TypeError: string indices must be integers, not str
+[03/Apr/2019:22:50:28] ENGINE Restarting because /home/tayeen/TayeenFolders/Github/phylo_webservices/Species_data_services/support/scientific_to_common_name_GNR.py changed.
+[03/Apr/2019:22:50:28] ENGINE Stopped thread 'Autoreloader'.
+[03/Apr/2019:22:50:28] ENGINE Bus STOPPING
+[03/Apr/2019:22:50:28] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5013)) shut down
+[03/Apr/2019:22:50:28] ENGINE Stopped thread '_TimeoutMonitor'.
+[03/Apr/2019:22:50:28] ENGINE Bus STOPPED
+[03/Apr/2019:22:50:28] ENGINE Bus EXITING
+[03/Apr/2019:22:50:28] ENGINE Bus EXITED
+[03/Apr/2019:22:50:28] ENGINE Waiting for child threads to terminate...
+[03/Apr/2019:22:50:28] ENGINE Re-spawning Species_data_services_Running.py
+[03/Apr/2019:22:50:29] ENGINE Bus STARTING
+[03/Apr/2019:22:50:29] ENGINE Started monitor thread 'Autoreloader'.
+[03/Apr/2019:22:50:29] ENGINE Started monitor thread '_TimeoutMonitor'.
+[03/Apr/2019:22:50:29] ENGINE Serving on http://127.0.0.1:5013
+[03/Apr/2019:22:50:29] ENGINE Bus STARTED
+[03/Apr/2019:22:51:19] ENGINE Keyboard Interrupt: shutting down bus
+[03/Apr/2019:22:51:19] ENGINE Bus STOPPING
+[03/Apr/2019:22:51:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('127.0.0.1', 5013)) shut down
+[03/Apr/2019:22:51:19] ENGINE Stopped thread 'Autoreloader'.
+[03/Apr/2019:22:51:19] ENGINE Stopped thread '_TimeoutMonitor'.
+[03/Apr/2019:22:51:19] ENGINE Bus STOPPED
+[03/Apr/2019:22:51:19] ENGINE Bus EXITING
+[03/Apr/2019:22:51:19] ENGINE Bus EXITED
+[03/Apr/2019:22:51:19] ENGINE Waiting for child threads to terminate...
