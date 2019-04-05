@@ -1209,8 +1209,12 @@ class Get_Tree_OpenTree_Service_API(object):
 
             if 'metadata' in input_json:		
                  include_metadata = input_json['metadata']
+                 if type(include_metadata) != types.BooleanType:
+                    include_metadata = str2bool(include_metadata)
             if 'ottid' in input_json:		
                  include_ottid = input_json['ottid']
+                 if type(include_ottid) != types.BooleanType:
+                    include_ottid = str2bool(include_ottid)	 
    				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")

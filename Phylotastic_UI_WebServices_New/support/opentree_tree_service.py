@@ -8,6 +8,7 @@ import re
 import ast
 import datetime
 
+import r_helper
 import google_dns
 #from requests.packages.urllib3.exceptions import InsecureRequestWarning
 #Suppress warning for using a version of Requests which vendors urllib3 inside
@@ -138,9 +139,15 @@ def get_tree_OT(resolvedNames, include_metadata=False, include_ottid=True):
  		# Delete ott_ids from tip_labels
  		nw_str = newick_str
  		nw_str = re.sub('_ott\d+', "", nw_str)
- 		newick_str = nw_str.replace('_', " ")
+ 		newick_str = nw_str
+ 		#newick_str = nw_str.replace('_', " ")
 
- 	final_result['newick'] = newick_str #newick_str.encode('ascii', 'ignore').decode('ascii')
+ 	#remove singleton nodes from tree
+ 	final_nwk_str = r_helper.remove_singleton(newick_str)
+ 	if final_nwk_str is None: #R function did not work
+ 		final_nwk_str = newick_str
+ 	
+ 	final_result['newick'] = final_nwk_str #newick_str.encode('ascii', 'ignore').decode('ascii')
  	if opentree_result['status_code'] != 200:	
  		return opentree_result 
  
