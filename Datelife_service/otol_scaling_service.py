@@ -7,7 +7,7 @@ from ete3.parser.newick import NewickError
 from ete3.coretype.tree import TreeError
 
 import google_dns
-
+import r_helper
 #===================================
 headers = {'content-type': 'application/json'}
 
@@ -196,10 +196,18 @@ def scale_tree_api(tree_newick):
  				taxon_names = [name.replace(" ", "_") for name in taxon_names]
  				try:
  					#prune the tree to remove internal nodes
- 					scaled_tree = prune_tree(otol_scaled_tree, taxon_names).replace("_", " ")
+ 					#scaled_tree = prune_tree(otol_scaled_tree, taxon_names).replace("_", " ")
+ 					scaled_tree = r_helper.remove_singleton(otol_scaled_tree)
+ 					scaled_tree = scaled_tree.replace("_", " ")
  				except:
  					scaled_tree = otol_scaled_tree.replace("_", " ")
- 
+
+ 	#try:
+ 	#	if scaled_tree is not None:
+ 	#		scaled_tree = r_helper.remove_singleton(scaled_tree)
+ 	#except Exception:
+ 	#	pass
+ 	 
  	response = {}	
  	if scaled_tree is not None:
  		response['message'] = "Success"
