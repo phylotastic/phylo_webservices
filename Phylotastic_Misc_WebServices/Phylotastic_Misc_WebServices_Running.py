@@ -13,7 +13,7 @@ from str2bool import str2bool
 
 from support import compare_trees_service
 from support import tree_studies_service
-
+from support import compound_service_tree
 #--------------------------------------------------
 logDbName = "WSLog"
 logCollectionName = "log"
@@ -23,6 +23,7 @@ conn = None
 WS_NAME = "phylotastic_ws"
 WS_GROUP1 = "md" #metadata service
 WS_GROUP2 = "ts" #taxon_to_species service
+WS_GROUP3 = "cp" #compound service
 
 ROOT_FOLDER = os.getcwd()
 HOST = "phylo.cs.nmsu.edu"  #"127.0.0.1"
@@ -214,7 +215,65 @@ class Tree_Studies_Service_API(object):
     studies.exposed = True
 
 #----------------------------------------------------------
+class Compound_Service_Tree_API(object):
+    def index(self):
+        return "Compound_Service_Tree_API : Get tree combining multiple services"
 
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def tree(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+            input_json = cherrypy.request.json
+            lst = input_json["list"]
+            list_type = input_json["list_type"]
+            if list_type.lower() == "common":
+               common_lst = lst
+            elif list_type.lower() == "scientific":
+               scientific_lst = lst
+            else:
+               raise ConversionException("'%s' is not a valid value for 'list_type' parameter"%(list_type))
+          
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except ConversionException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+            if list_type.lower() == "common":
+               return {'status_code': 500, 'message': "Service under construction"}
+               #service_result = compound_service_tree.get_tree_com_names(common_lst)
+            elif list_type.lower() == "scientific":
+               service_result = compound_service_tree.get_tree_sc_names(scientific_lst)  
+            
+            #--------------------------------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'list_type': list_type, 'list': lst}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+ 
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====CompoundServiceTreeError====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    #-----------------------------------------------------
+    #Public /index
+    index.exposed = True
+    tree.exposed = True	
+
+#============================================================
 class Compare_Trees_Service_API(object):
 
     def index(self):
@@ -299,6 +358,7 @@ if __name__ == '__main__':
     #Starting Server
     cherrypy.tree.mount(Tree_Studies_Service_API(), '/%s/%s' %(str(WS_NAME),str(WS_GROUP1)), conf_CORS )
     cherrypy.tree.mount(Compare_Trees_Service_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP1), "dp"), conf_CORS )
+    cherrypy.tree.mount(Compound_Service_Tree_API(), '/%s/%s/%s' %(str(WS_NAME),str(WS_GROUP3), "gt"), conf_CORS )
     
     cherrypy.engine.start()
     cherrypy.engine.block()
