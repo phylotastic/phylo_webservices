@@ -2,9 +2,10 @@
 #service version: 0.1
 import json
 import requests
+import re
 import time
 import datetime 
-import urllib
+
 from ete3 import Tree
 from ete3.parser.newick import NewickError
 
@@ -38,7 +39,6 @@ def get_tips_list(newick_str):
  	return tips_list
 
 #---------------------------------------
-
 #get the common names of tips
 def get_common_names(tips, source):
 	common_names_mapping = {}
@@ -59,16 +59,37 @@ def get_common_names(tips, source):
 
 	return common_names_mapping
 
+#----------------------------------
+def preprocess_newick(nwk_str):
+	# Delete ott_ids from tip_labels
+	nw_str = nwk_str
+ 	nw_str = re.sub('_ott\d+', "", nw_str)
+ 	newick_str = nw_str.replace('_', " ")
+
+	return newick_str
+
 #----------------------------------------
-def get_common_names_mapping(newick_str, source="NCBI"):
+def get_common_name_tree(newick_str, source="NCBI"):
 	start_time = time.time()
 	response = {}
-	tip_lst = get_tips_list(newick_str)
+	
+	newick_str_c = preprocess_newick(newick_str)
+	#print newick_str_c
+	
+	tip_lst = get_tips_list(newick_str_c)
 	if tip_lst is None:
 		status_code = 500
 		message = "Error: Newick parsing error occured in ETE"
 	else:
 		mapping = get_common_names(tip_lst, source)
+		#replace tips with their common names
+		for tip in mapping['tip_list']:
+			sc_name = tip['scientific_name']
+			com_names = tip['common_names']
+			if len(com_names) >= 1:
+				com_name = com_names[0].capitalize()
+				newick_str_c = newick_str_c.replace(sc_name, com_name)
+ 
 		status_code = 200
 		message = "Success"
 
@@ -82,13 +103,18 @@ def get_common_names_mapping(newick_str, source="NCBI"):
  	
  	response['message'] = message
  	response['status_code'] = status_code
- 	response['result'] = mapping	
+	response['input_tree'] = newick_str 	
+	response['result_tree'] = newick_str_c	
 
 	return response
+
 #-------------------------------------
 #if __name__ == '__main__':
 
 	#input_tree = "(((Rangifer tarandus, Cervus elaphus)Cervidae, (Bos taurus, Ovis orientalis)Bovidae), (Suricata suricatta, (Cistophora cristata,Mephitis mephitis))Carnivora);"
+	#input_tree = "((((Mustela altaica,Lutra lutra),Taxidea taxus)Mustelidae,Canis lupus)Caniformia,Panthera pardus)Carnivora;"
+	#input_tree = "(Setophaga_magnolia_ott532751,Setophaga_striata_ott60236,Setophaga_plumbea_ott45750,Setophaga_angelae_ott381849,Setophaga_virens_ott1014098)Setophaga_ott285198;"
 	#input_tree = "((((((Tipularia discolor)Tipularia)Calypsoinae)Epidendreae)mrcaott334ott908,(((((Spiranthes infernalis)Spiranthes)Spiranthinae,((Ponthieva racemosa)Ponthieva)Cranichidinae)Cranichideae,(((Platanthera praeclara)Platanthera)Orchidinae)Orchideae)Orchidoideae)mrcaott335ott27841)mrcaott334ott335,(((Vanilla inodora)Vanilla)Vanilleae)Vanilloideae)Orchidaceae;"
+	#print get_common_name_tree(input_tree)
 	#tips = get_tips_list(input_tree)
 	#print get_common_names(tips, "NCBI")

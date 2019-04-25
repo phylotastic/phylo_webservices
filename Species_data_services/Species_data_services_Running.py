@@ -1057,7 +1057,7 @@ class Tree_Common_Name_Service_API(object):
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try: 
-            service_result = tree_common_names.get_common_names_mapping(newick_str, source) 
+            service_result = tree_common_names.get_common_name_tree(newick_str, source) 
  
             #--------------------------------------------
             header = cherrypy.request.headers

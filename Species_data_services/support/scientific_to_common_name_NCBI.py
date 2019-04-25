@@ -20,10 +20,16 @@ def search_name(scName, best_match):
 	
 	payload = {'term': scName}
 	encoded_payload = urllib.urlencode(payload)
-	response_html = requests.get(api_url, params=encoded_payload) 
-	
+	try:
+		response_html = requests.get(api_url, params=encoded_payload) 
+	except requests.exceptions.ConnectionError:
+		taxonomy_response['status_code'] = 500
+		taxonomy_response['message'] = "Error: HTTP connection error with NCBI. Please try again later."
+		return taxonomy_response
+
 	match_name_info = {'searched_name': scName}
 	match_name_list = []
+	print scName
 
 	if response_html.status_code == requests.codes.ok:
 		#print response_html.text	 	
@@ -89,7 +95,7 @@ def extract_more_info(divSuppTag):
 		try:
 			if len(info_list) >= 3:
 				gen_comm_name_raw = info_list[0].strip()
-				gen_comm_name =  gen_comm_name_raw[1:len(gen_comm_name_raw)-1] #Genbank common name
+				comm_name =  gen_comm_name_raw[1:len(gen_comm_name_raw)-1] #Genbank common name
 				rank = info_list[1].strip()
 				#blast_name = info_list[2]
 			elif len(info_list) >= 2:
