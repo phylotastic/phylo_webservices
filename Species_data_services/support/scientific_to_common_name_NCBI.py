@@ -51,12 +51,13 @@ def search_name(scName, best_match):
 #get multiple results
 def extract_common_names_info(SoupObj, multiple=False):
 	divRprtTags = SoupObj.find_all("div", {"class": "rprt"})
+	print divRprtTags
 	common_names_list = []
 	scientific_name = None
 	identifier = None
 
 	if len(divRprtTags) == 0:
-		return common_names_list	#no info found	
+		return common_names_list, scientific_name, identifier	#no info found	
 	else:
 		for indx, divtag in enumerate(divRprtTags):
 			aTags = divtag.find_all("a")
@@ -141,20 +142,10 @@ def get_sci_to_comm_names(inputNameList, best_match=True):
 if __name__ == '__main__':
 
 	#inputSpecies = ["Rangifer tarandus", "Cervus elaphus", "Bos taurus", "Ovis orientalis", "Suricata suricatta", "Cistophora cristata", "Mephitis mephitis"]
-	inputSpecies = ["Vanda coerulea"]#, "Trichostema arizonicum", "Coccoloba uvifera"]
-
-	#commonNameList = ["cattle", "cat", "goat", "pig", "sheep", "duck", "chicken", "horse", "domestic dog"]
-	
-	#multiple results ["frog", "black bear"]
-	
-	#commonNameList = ["lion", "tiger", "reindeer", "brown bear", "gray wolf", "red fox", "american crocodile", "black rhinoceros"]  
-	
-	#commonNameList = ["blue whale", "swordfish", "killer whale"]
-
-	#commonNameList = ["american crow", "rock dove", "american robin", "barn owl", "bald eagle"]
-
-	#commonNameList = ["Christmas fern", "cutleaf coneflower", "Castor bean", "Indian sandalwood", "African marigold"]
-	#commonNameList = ["cucumber","tomato","lettuce","pea"]
+	#inputSpecies = ["Vanda coerulea"]#, "Trichostema arizonicum", "Coccoloba uvifera"]
+  
+	#inputSpecies = ["Varanus komodoensis","Brookesia micra","Archaius tigris","Brookesia confidens","Brookesia desperata","Brookesia lambertoni","Brookesia bekolosy","Brookesia tristis","Bradypodion pumilum","Brookesia ramanantsoai","Brookesia antoetrae","Brookesia brunoi","Bradypodion kentanicum","Bradypodion caeruleogula","Bradypodion ngomeense","Bradypodion carpenteri","Palleon nasus","Palleon lolontany","Bradypodion damaranum", "Varanus bitatawa"]
+	inputSpecies = ["Varanus komodoensis"]#["Brookesia bekolosy"]
 	
 	print get_sci_to_comm_names(inputSpecies)
  	
