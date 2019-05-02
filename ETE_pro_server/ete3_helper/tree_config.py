@@ -305,10 +305,10 @@ class WebTreeConfig(object):
         
         if box_highlight:
            node.add_feature("bh_bgcolor", "Yellow")
-           node.add_feature("bh_size", 8)
+           #node.add_feature("bh_size", 8) #to remove the misplaced dots appearing 
         else:
            node.add_feature("bh_bgcolor", "White")
-           node.del_feature("bh_size")
+           #node.del_feature("bh_size")
         
     def run_action_indvhighlight(self, tree, node, status, a_data):
         #is_highlighted = True if ( hasattr(node, "lh_color") and hasattr(node, "lh_width") ) else False
