@@ -225,7 +225,7 @@ class Compound_Service_Tree_API(object):
     def tree(self,**request_data):
         try:
             http_method = cherrypy.request.method
-            if http_method not in ['POST']:
+            if http_method not in ['POST','OPTIONS']:
                return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
 
             input_json = cherrypy.request.json
@@ -326,14 +326,25 @@ class Compare_Trees_Service_API(object):
 #-----------------------------------------------------------
 def CORS():
     #print "Run CORS"
-    cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
-    cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
+    #https://stackoverflow.com/questions/28049898/415-exception-cherrypy-webservice
+    if cherrypy.request.method == 'OPTIONS':
+      # preflight request 
+      # see http://www.w3.org/TR/cors/#cross-origin-request-with-preflight-0
+      cherrypy.response.headers['Access-Control-Allow-Methods'] = 'POST'
+      cherrypy.response.headers['Access-Control-Allow-Headers'] = 'content-type'
+      cherrypy.response.headers['Access-Control-Allow-Origin']  = '*'
+      # tell CherryPy no avoid normal handler
+      return True
+    else:
+      cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
+      cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
 
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
     conn = connect_mongodb()
-    cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
+    #cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
+    cherrypy.tools.CORS = cherrypy._cptools.HandlerTool(CORS)
     #Configure Server
     cherrypy.config.update({#'server.socket_host': HOST, #'0.0.0.0' "127.0.0.1",
                             'server.socket_port': int(PORT),
