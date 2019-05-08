@@ -29,15 +29,19 @@ def search_name(scName, best_match):
 
 	match_name_info = {'searched_name': scName}
 	match_name_list = []
-	print scName
+	#print scName
 
 	if response_html.status_code == requests.codes.ok:
-		#print response_html.text	 	
-		soup = BeautifulSoup(response_html.text, "lxml")
-		match_name_list, sc_name, ncbi_id = extract_common_names_info(soup, not best_match) #best match true = don't want multiple results	
+		#print response_html.text
+		try:	 	
+			soup = BeautifulSoup(response_html.text, "lxml")
+			match_name_list, sc_name, ncbi_id = extract_common_names_info(soup, not best_match) #best match true = don't want multiple results
+		except:
+			taxonomy_response['status_code'] = 500
+			taxonomy_response['message'] = "Error: Could not parse retrieved data from NCBI"
 	else:
 		taxonomy_response['status_code'] = 500
-		taxonomy_response['message'] = "Error: Could not parse retrieved data from NCBI"
+		taxonomy_response['message'] = "Error: HTTP response error from NCBI"
 
 	match_name_info['common_names'] = match_name_list
 	match_name_info['matched_name'] =  sc_name
@@ -51,7 +55,7 @@ def search_name(scName, best_match):
 #get multiple results
 def extract_common_names_info(SoupObj, multiple=False):
 	divRprtTags = SoupObj.find_all("div", {"class": "rprt"})
-	print divRprtTags
+	#print divRprtTags
 	common_names_list = []
 	scientific_name = None
 	identifier = None
@@ -120,9 +124,20 @@ def get_sci_to_comm_names(inputNameList, best_match=True):
 
 	results = []
 	for inputName in inputNameList:
-		match_result = search_name(inputName, best_match)
-		if match_result['status_code'] == 200:
-			results.append(match_result['result'])
+		response = search_name(inputName, best_match)
+		result_obj = {}
+		result_obj['searched_name'] = inputName
+		matched_results = []
+		if response['status_code'] == 200:			
+			matched_obj = {}
+			matched_obj['matched_name'] = response['result']['matched_name']
+			matched_obj['common_names'] = response['result']['common_names']
+			matched_obj['identifier'] = response['result']['identifier']
+			matched_obj['data_source'] = 'NCBI' 
+			matched_results.append(matched_obj)
+			
+		result_obj['matched_results'] = matched_results
+		results.append(result_obj)
 
 	final_result['result'] = results
 
@@ -141,11 +156,11 @@ def get_sci_to_comm_names(inputNameList, best_match=True):
 
 if __name__ == '__main__':
 
-	#inputSpecies = ["Rangifer tarandus", "Cervus elaphus", "Bos taurus", "Ovis orientalis", "Suricata suricatta", "Cistophora cristata", "Mephitis mephitis"]
+	inputSpecies = ["Rangifer tarandus", "Cervus elaphus"]#, "Bos taurus", "Ovis orientalis", "Suricata suricatta", "Cistophora cristata", "Mephitis mephitis"]
 	#inputSpecies = ["Vanda coerulea"]#, "Trichostema arizonicum", "Coccoloba uvifera"]
   
 	#inputSpecies = ["Varanus komodoensis","Brookesia micra","Archaius tigris","Brookesia confidens","Brookesia desperata","Brookesia lambertoni","Brookesia bekolosy","Brookesia tristis","Bradypodion pumilum","Brookesia ramanantsoai","Brookesia antoetrae","Brookesia brunoi","Bradypodion kentanicum","Bradypodion caeruleogula","Bradypodion ngomeense","Bradypodion carpenteri","Palleon nasus","Palleon lolontany","Bradypodion damaranum", "Varanus bitatawa"]
-	inputSpecies = ["Varanus komodoensis"]#["Brookesia bekolosy"]
+	#inputSpecies = ["Varanus komodoensis"]#["Brookesia bekolosy"]
 	
 	print get_sci_to_comm_names(inputSpecies)
  	
