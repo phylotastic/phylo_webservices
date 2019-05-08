@@ -11,6 +11,7 @@ from ete3.parser.newick import NewickError
 
 import scientific_to_common_name_NCBI
 import scientific_to_common_name_EOL
+import scientific_to_common_name_GNR
 
 #==============================================
 #find the tips in the tree
@@ -44,14 +45,28 @@ def get_common_names(tips, source):
 	common_names_mapping = {}
 	tip_list = []
 
-	if source == "EOL":
-		common_names_result = scientific_to_common_name_EOL.get_sci_to_comm_names(tips)    
-	else: #default NCBI source
-		common_names_result = scientific_to_common_name_NCBI.get_sci_to_comm_names(tips)
+	if source == "NCBI":
+		common_names_result = scientific_to_common_name_NCBI.get_sci_to_comm_names(tips)    
+	elif source == "GNR":
+		common_names_result = scientific_to_common_name_GNR.get_sci_to_comm_names(tips)    
+	else: #default EOL source
+		common_names_result = scientific_to_common_name_EOL.get_sci_to_comm_names(tips)
 	
 	for result in common_names_result['result']:
-		#if len(result['common_names']) != 0:
-		tip_mapping = {"scientific_name": result['searched_name'], "common_names": result['common_names']}
+		if len(result['matched_results']) != 0:
+			#GNR source returns result from multiple databases
+			if source != "GNR":
+				tip_mapping = {"scientific_name": result['searched_name'], "common_names": result['matched_results'][0]['common_names']}
+			else: 
+				#first check GBIF; if no name found then check CoL and others
+				tip_mapping = check_mapping(result, 'GBIF') 
+				if tip_mapping is None:
+					tip_mapping = check_mapping(result, 'Catalogue') 
+					if tip_mapping is None:
+						tip_mapping = check_mapping(result, None)
+		else:
+			tip_mapping = {"scientific_name": result['searched_name'], "common_names": []}
+
 		tip_list.append(tip_mapping)
 
 	#print common_names_result
@@ -68,14 +83,38 @@ def preprocess_newick(nwk_str):
 
 	return newick_str
 
+#--------------------------------------
+def remove_duplicate_names(comm_names):
+	processed_names_list = [com_name.lower() for com_name in comm_names]
+	unique_list = []
+	for name in processed_names_list: 
+		if name not in unique_list: 
+			unique_list.append(name) 
+
+	return unique_list
+
+#-----------------------------------
+def check_mapping(result, db=None):
+	mapping = None
+	for match in result['matched_results']:
+		if db is not None and db in match['data_source'] and len(match['common_names']) != 0:
+			mapping = {"scientific_name": result['searched_name'], "common_names": match['common_names']}	
+			break
+		elif db is None and len(match['common_names']) != 0: 
+			mapping = {"scientific_name": result['searched_name'], "common_names": match['common_names']}	
+			break
+
+	return mapping
+
 #----------------------------------------
-def get_common_name_tree(newick_str, source="NCBI"):
+def get_common_name_tree(newick_str, multiple=False, source="GNR"):
 	start_time = time.time()
 	response = {}
 	
 	newick_str_c = preprocess_newick(newick_str)
 	#print newick_str_c
-	
+	name_mapping = []
+
 	tip_lst = get_tips_list(newick_str_c)
 	if tip_lst is None:
 		status_code = 500
@@ -86,9 +125,16 @@ def get_common_name_tree(newick_str, source="NCBI"):
 		for tip in mapping['tip_list']:
 			sc_name = tip['scientific_name']
 			com_names = tip['common_names']
-			if len(com_names) >= 1:
-				com_name = com_names[0].capitalize()
-				newick_str_c = newick_str_c.replace(sc_name, com_name)
+			unq_com_names = remove_duplicate_names(com_names)
+			name_mapping.append({'scientific_name': sc_name, 'common_names': unq_com_names})
+			
+			for common_name in com_names: 
+				com_name = common_name.capitalize()
+				newick_str_c = newick_str_c.replace(sc_name, sc_name+"_"+com_name)
+				if not(multiple):
+					break
+
+		response['mapping'] = name_mapping
  
 		status_code = 200
 		message = "Success"
@@ -103,7 +149,8 @@ def get_common_name_tree(newick_str, source="NCBI"):
  	
  	response['message'] = message
  	response['status_code'] = status_code
-	response['input_tree'] = newick_str 	
+	response['input_tree'] = newick_str
+ 	response['source'] = source
 	response['result_tree'] = newick_str_c	
 
 	return response
@@ -115,6 +162,6 @@ def get_common_name_tree(newick_str, source="NCBI"):
 	#input_tree = "((((Mustela altaica,Lutra lutra),Taxidea taxus)Mustelidae,Canis lupus)Caniformia,Panthera pardus)Carnivora;"
 	#input_tree = "(Setophaga_magnolia_ott532751,Setophaga_striata_ott60236,Setophaga_plumbea_ott45750,Setophaga_angelae_ott381849,Setophaga_virens_ott1014098)Setophaga_ott285198;"
 	#input_tree = "((((((Tipularia discolor)Tipularia)Calypsoinae)Epidendreae)mrcaott334ott908,(((((Spiranthes infernalis)Spiranthes)Spiranthinae,((Ponthieva racemosa)Ponthieva)Cranichidinae)Cranichideae,(((Platanthera praeclara)Platanthera)Orchidinae)Orchideae)Orchidoideae)mrcaott335ott27841)mrcaott334ott335,(((Vanilla inodora)Vanilla)Vanilleae)Vanilloideae)Orchidaceae;"
-	#print get_common_name_tree(input_tree)
+	#print get_common_name_tree(input_tree, False, "GNR")
 	#tips = get_tips_list(input_tree)
-	#print get_common_names(tips, "NCBI")
+	#print get_common_names(tips, "EOL")
