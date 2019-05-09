@@ -1043,11 +1043,17 @@ class Tree_Common_Name_Service_API(object):
             input_json = cherrypy.request.json
             newick_str = input_json["newick_tree"]
             
-            source = "NCBI"
+            source = "GNR"
             if 'source' in input_json:
                source = input_json['source']
-               if source not in ["NCBI", "EOL"]:
+               if source not in ["NCBI", "EOL", "GNR"]:
                   return return_response_error(403,"Error: Invalid source parameter value","JSON")
+
+            multiple = False
+            if 'multiple' in input_json:
+               multiple = input_json['multiple']
+               if type(multiple) != types.BooleanType:
+                  multiple = str2bool(multiple)
  
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -1057,7 +1063,7 @@ class Tree_Common_Name_Service_API(object):
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try: 
-            service_result = tree_common_names.get_common_name_tree(newick_str, source) 
+            service_result = tree_common_names.get_common_name_tree(newick_str, source, multiple) 
  
             #--------------------------------------------
             header = cherrypy.request.headers
@@ -1083,14 +1089,25 @@ class Tree_Common_Name_Service_API(object):
 
 def CORS():
     #print "Run CORS"
-    cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
-    cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
-    
+    #https://stackoverflow.com/questions/28049898/415-exception-cherrypy-webservice
+    if cherrypy.request.method == 'OPTIONS':
+       # preflight request 
+       # see http://www.w3.org/TR/cors/#cross-origin-request-with-preflight-0
+       cherrypy.response.headers['Access-Control-Allow-Methods'] = 'POST'
+       cherrypy.response.headers['Access-Control-Allow-Headers'] = 'content-type'
+       cherrypy.response.headers['Access-Control-Allow-Origin']  = '*'
+       # tell CherryPy no avoid normal handler
+       return True
+    else:
+       cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
+       cherrypy.response.headers["Access-Control-Allow-Credentials"] = "true"
+
 #--------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     
     conn = connect_mongodb() 
-    cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
+    #cherrypy.tools.CORS = cherrypy.Tool("before_finalize",CORS)
+    cherrypy.tools.CORS = cherrypy._cptools.HandlerTool(CORS)
     #Configure Server
     cherrypy.config.update({#'server.socket_host': '0.0.0.0',
                             'server.socket_port': int(PORT),

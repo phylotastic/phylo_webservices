@@ -107,7 +107,7 @@ def check_mapping(result, db=None):
 	return mapping
 
 #----------------------------------------
-def get_common_name_tree(newick_str, multiple=False, source="GNR"):
+def get_common_name_tree(newick_str, source="GNR", multiple=False):
 	start_time = time.time()
 	response = {}
 	
