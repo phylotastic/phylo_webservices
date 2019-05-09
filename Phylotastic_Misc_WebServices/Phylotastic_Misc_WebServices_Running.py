@@ -237,6 +237,19 @@ class Compound_Service_Tree_API(object):
                scientific_lst = lst
             else:
                raise ConversionException("'%s' is not a valid value for 'list_type' parameter"%(list_type))
+
+            source = "GNR"
+            if 'source' in input_json:
+               source = input_json['source']
+               if source not in ["NCBI", "EOL", "GNR"]:
+                  return return_response_error(403,"Error: Invalid source parameter value","JSON")
+
+            multiple = False
+            if 'multiple' in input_json:
+               multiple = input_json['multiple']
+               if type(multiple) != types.BooleanType:
+                  multiple = str2bool(multiple)
+
           
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -252,7 +265,7 @@ class Compound_Service_Tree_API(object):
                return {'status_code': 500, 'message': "Service under construction"}
                #service_result = compound_service_tree.get_tree_com_names(common_lst)
             elif list_type.lower() == "scientific":
-               service_result = compound_service_tree.get_tree_sc_names(scientific_lst)  
+               service_result = compound_service_tree.get_tree_sc_names(scientific_lst, source, multiple)  
             
             #--------------------------------------------
             header = cherrypy.request.headers

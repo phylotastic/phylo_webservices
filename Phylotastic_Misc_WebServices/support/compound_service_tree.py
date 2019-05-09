@@ -42,54 +42,15 @@ def get_tree(taxa_list):
 
     return tree_result
 
-#----------------------------------------------------
-'''
-def get_studies_from_ids(id_list, is_ottid=True):
-    start_time = time.time()
-    studies_info = {}
-    if is_ottid: #check whether the id_list is a list of ott ids or not
-       study_id_list_json = get_study_ids(id_list)
-       if study_id_list_json['status_code'] == 200:
-          study_id_list = study_id_list_json['study_ids']
-          studies_info_resp = get_studies(study_id_list)
-          studies_info['studies'] = studies_info_resp['studies'] 
-          if studies_info_resp['status_code'] != 200:
-              studies_info['message'] = studies_info_resp['message']
-              studies_info['status_code'] = studies_info_resp['status_code']
-          else:
-              studies_info['message'] = "Success"
-              studies_info['status_code'] = 200
-       else:
-          studies_info['studies'] = []
-          studies_info['message'] = study_id_list_json['message']
-          studies_info['status_code'] = study_id_list_json['status_code']
-    else: #when study ids are given directly
-       studies_info_resp = get_studies(id_list)
-       studies_info['studies'] = studies_info_resp['studies'] 
-       if studies_info_resp['status_code'] != 200:
-          studies_info['message'] = studies_info_resp['message']
-          studies_info['status_code'] = studies_info_resp['status_code']
-       else:
-          studies_info['message'] = "Success"
-          studies_info['status_code'] = 200
-       
-    end_time = time.time()
-    execution_time = end_time-start_time
-    #service result creation time
-    creation_time = datetime.datetime.now().isoformat()
-    meta_data = {'creation_time': creation_time, 'execution_time': float('{:4.2f}'.format(execution_time)), 'source_urls':["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#studies"] }
-
-    studies_info['meta_data'] = meta_data
-
-    return studies_info
-'''    
 
 #-------------------(Get newick tree with common names)-----------------------------
-def get_tree_common(newick_str):
+def get_tree_common(newick_str, source, multiple):
     phylo_service_url = phylotastic_base_url + "tc/common_names"
     
     payload = {
-        'newick_tree': newick_str
+        'newick_tree': newick_str,
+        'source': source,
+        'multiple': multiple
     }
     
     jsonPayload = json.dumps(payload)
@@ -106,6 +67,7 @@ def get_tree_common(newick_str):
 
     if response.status_code == requests.codes.ok:    
        tree_result['newick_tree'] = result_data_json['result_tree']
+       tree_result['mapping'] = result_data_json['mapping'] 
        msg =  "Success"
        statuscode = 200
     else:
@@ -118,7 +80,7 @@ def get_tree_common(newick_str):
     return tree_result
 
 #----------------------------------------------------------
-def get_tree_sc_names(taxa_list):
+def get_tree_sc_names(taxa_list, source="GNR", multiple=False):
     start_time = time.time()
 
     tree_result_json = get_tree(taxa_list)
@@ -127,7 +89,7 @@ def get_tree_sc_names(taxa_list):
     if tree_result_json['status_code'] != 200:    
         return tree_result_json   
     else:
-        tree_mod_json = get_tree_common(tree_result_json['newick_tree'])
+        tree_mod_json = get_tree_common(tree_result_json['newick_tree'], source, multiple)
         if tree_mod_json['status_code'] == 200:
            response['newick'] = tree_mod_json['newick_tree']
         else:
