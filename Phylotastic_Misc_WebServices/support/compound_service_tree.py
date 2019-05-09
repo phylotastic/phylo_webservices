@@ -92,6 +92,7 @@ def get_tree_sc_names(taxa_list, source="GNR", multiple=False):
         tree_mod_json = get_tree_common(tree_result_json['newick_tree'], source, multiple)
         if tree_mod_json['status_code'] == 200:
            response['newick'] = tree_mod_json['newick_tree']
+           response['mapping'] = tree_mod_json['mapping']
         else:
            return tree_mod_json
         
@@ -101,6 +102,7 @@ def get_tree_sc_names(taxa_list, source="GNR", multiple=False):
     meta_data = {'creation_time': creation_time, 'execution_time': float('{:4.2f}'.format(execution_time)), 'source_urls':["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs"] }
 
     response['input_list'] = taxa_list
+    response['source'] = source
     response['meta_data'] = meta_data
     response['message'] = "Success"
     response['status_code'] = 200
