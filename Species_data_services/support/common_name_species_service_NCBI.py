@@ -53,7 +53,7 @@ def extract_sc_names_info(SoupObj, multiple=False):
 			#extract scientific name
 			sc_name = aTags[0].text
 			sc_name_link = aTags[0].attrs['href']
-			ncbi_id = sc_name_link[sc_name_link.rfind("=")+1:]		
+			ncbi_id = int(sc_name_link[sc_name_link.rfind("=")+1:])		
 			sc_info_link = "https://www.ncbi.nlm.nih.gov" + sc_name_link
 			#print sc_info_link
 		

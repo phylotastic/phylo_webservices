@@ -81,7 +81,7 @@ def extract_name_info(ITIS_json_resp):
 	for cm_nm_obj in json_content['commonNames']:			
 		cm_name = cm_nm_obj['commonName']
 		cm_lang = cm_nm_obj['language'] 
-		cm_tsn = cm_nm_obj['tsn']
+		cm_tsn = int(cm_nm_obj['tsn'])
 		#print ("%s, %s")%(cm_name, cm_tsn)
 		if cm_lang == "English": #get only english common names
 			found_common_names.append( (cm_name, cm_tsn) )

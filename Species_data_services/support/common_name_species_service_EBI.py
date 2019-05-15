@@ -45,7 +45,7 @@ def extract_sc_names_info(response_result, multiple_match=False):
 		match_name_obj = {}
 		match_name_obj['scientific_name'] = result['scientificName']
 		match_name_obj['common_name'] = result['commonName']  
-		match_name_obj['identifier'] = result['taxId']
+		match_name_obj['identifier'] = int(result['taxId'])
 		matched_names.append(match_name_obj)
 		if not(multiple_match):
 			break
