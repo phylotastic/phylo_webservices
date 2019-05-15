@@ -262,8 +262,8 @@ class Compound_Service_Tree_API(object):
         
         try: 
             if list_type.lower() == "common":
-               return {'status_code': 500, 'message': "Service under construction"}
-               #service_result = compound_service_tree.get_tree_com_names(common_lst)
+               #return {'status_code': 500, 'message': "Service under construction"}
+               service_result = compound_service_tree.get_tree_com_names(common_lst, source, multiple)
             elif list_type.lower() == "scientific":
                service_result = compound_service_tree.get_tree_sc_names(scientific_lst, source, multiple)  
             
