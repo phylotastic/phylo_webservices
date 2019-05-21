@@ -12,7 +12,7 @@ phylotastic_base_url = "https://phylo.cs.nmsu.edu/phylotastic_ws/"
 #~~~~~~~~~~~~~~~(Get Tree from Open-Tree_of_Life)~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def get_tree(taxa_list):
     phylo_service_url = phylotastic_base_url + "gt/ot/tree"
-    
+    print taxa_list
     payload = {
         'taxa': taxa_list	
     }
@@ -22,6 +22,7 @@ def get_tree(taxa_list):
     #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
     try: 
        response = requests.post(phylo_service_url, data=jsonPayload, headers=headers)
+       print response.text
     except requests.exceptions.ConnectionError:
        return {'message': "Error: HTTP connection error from phylotastic. Please try again later.", 'status_code': 500}        
     #---------------------------------------------- 
@@ -65,7 +66,7 @@ def get_tree_common(newick_str, source, multiple):
     tree_result = {}
 
     result_data_json = json.loads(response.text)
-
+    print result_data_json
     if response.status_code == requests.codes.ok:    
        tree_result['newick_tree'] = result_data_json['result_tree']
        tree_result['mapping'] = result_data_json['mapping'] 
@@ -110,7 +111,7 @@ def get_scientific_names(name_list, source, multiple=False):
     name_map_result = {}
 
     result_data_json = json.loads(response.text)
-
+    
     if response.status_code == requests.codes.ok:    
        name_map_result['matched_result'] = result_data_json['result']
        msg =  "Success"
@@ -158,8 +159,9 @@ def get_tree_sc_names(taxa_list, source="GNR", multiple=False):
 #--------------------------------------------
 def comm_to_sci_names(map_result):
 	scientific_names = {}
-
 	for result in map_result:
+		bi_scientific_name = None
+		sc_name = None
 		for match in result['matched_names']:
 			sc_name = match['scientific_name']
 			sc_name_lst = sc_name.split(" ")
@@ -189,9 +191,11 @@ def get_tree_com_names(taxa_list, source="NCBI", multiple=False):
     else:
         com_sc_name_mapping = comm_to_sci_names(name_map_result['matched_result'])
         sc_name_list = list(com_sc_name_mapping.values())
-        newick_tree = get_tree(sc_name_list)
+        newick_tree_result = get_tree(sc_name_list)
         # Delete ott_ids from tip_labels
-        nw_str = newick_tree['newick_tree']
+        if 'newick_tree' not in newick_tree_result:
+            return {"message": "Error: No tree found.", "status_code": 400} 
+        nw_str = newick_tree_result['newick_tree']
         newick_str = re.sub('_ott\d+', "", nw_str)
         newick_tree = newick_str.replace('_', " ")
         #replace all scientific names with common names
@@ -213,7 +217,7 @@ def get_tree_com_names(taxa_list, source="NCBI", multiple=False):
     response['message'] = "Success"
     response['status_code'] = 200
 
-    return json.dumps(response)
+    return response
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':

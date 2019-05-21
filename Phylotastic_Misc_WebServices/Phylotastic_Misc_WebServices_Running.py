@@ -233,15 +233,18 @@ class Compound_Service_Tree_API(object):
             list_type = input_json["list_type"]
             if list_type.lower() == "common":
                common_lst = lst
+               source = "NCBI"
             elif list_type.lower() == "scientific":
                scientific_lst = lst
+               source = "GNR"
             else:
                raise ConversionException("'%s' is not a valid value for 'list_type' parameter"%(list_type))
 
-            source = "GNR"
             if 'source' in input_json:
                source = input_json['source']
-               if source not in ["NCBI", "EOL", "GNR"]:
+               if list_type.lower() == "scientific" and source not in ["NCBI", "EOL", "GNR"]:
+                  return return_response_error(403,"Error: Invalid source parameter value","JSON")
+               elif list_type.lower() == "common" and source not in ["NCBI", "ITIS", "EBI", "TROPICOS"]:
                   return return_response_error(403,"Error: Invalid source parameter value","JSON")
 
             multiple = False
