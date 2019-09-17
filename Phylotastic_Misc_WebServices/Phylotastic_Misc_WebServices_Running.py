@@ -290,8 +290,8 @@ class Tree_Studies_Service_API(object):
     index.exposed = True
     get_studies.exposed = True
     studies.exposed = True
-    study_info = True
-    get_study_info = True
+    study_info.exposed = True
+    get_study_info.exposed = True
 
 #----------------------------------------------------------
 class Compound_Service_Tree_API(object):
