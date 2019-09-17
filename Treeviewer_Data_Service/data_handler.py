@@ -178,7 +178,7 @@ def getNextSequence(collection, seq_name):
 #--------------------------------------------------------------
 def get_image_data(sp_name=None, sp_eol_id=None):
     if sp_eol_id is None:
-       image_service_uri = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/images"
+       image_service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/si/eol/images"
        image_service_payload = {'species': [sp_name]}
        service_response = execute_webservice(image_service_uri, json.dumps(image_service_payload), {'content-type': 'application/json'})
        img_lst = service_response['species'][0]['images']
@@ -186,7 +186,7 @@ def get_image_data(sp_name=None, sp_eol_id=None):
        num_tries = 0
        while num_tries < 6:
           try:
-              image_service_uri = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/si/eol/get_image"
+              image_service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/si/eol/get_image"
               #print sp_eol_id
               image_service_payload = {'species_id': str(sp_eol_id)}
               service_response = execute_webservice(image_service_uri, image_service_payload)
@@ -210,7 +210,7 @@ def get_image_data(sp_name=None, sp_eol_id=None):
 
 #--------------------------------------------------------------
 def get_link_data(sp_name):
-    eol_service_uri = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/sl/eol/links"
+    eol_service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/sl/eol/links"
     eol_service_payload = {'species': [sp_name]}
     
     service_response = execute_webservice(eol_service_uri, json.dumps(eol_service_payload),{'content-type': 'application/json'})
