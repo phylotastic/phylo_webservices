@@ -132,6 +132,7 @@ def get_study_info(studyid):
 
 #----------------------------------------------------
 def get_studies(studyid_list):
+    start_time = time.time()
     studies_list = []
     study_ids = [study[:study.find("@")] for study in studyid_list]
     for studyid in study_ids:
@@ -148,7 +149,13 @@ def get_studies(studyid_list):
            status = study_info['status_code']
            break    
 
-    response = {'studies':studies_list, 'message': msg, 'status_code': status }
+    end_time = time.time()
+    execution_time = end_time-start_time
+    #service result creation time
+    creation_time = datetime.datetime.now().isoformat()
+    meta_data = {'creation_time': creation_time, 'execution_time': float('{:4.2f}'.format(execution_time)), 'source_urls':["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#studies"] }
+
+    response = {'studies':studies_list, 'message': msg, 'status_code': status , 'meta_data': meta_data}
 
     return response
 
@@ -274,8 +281,11 @@ def get_studies_from_names(taxa_list, context=None):
     return final_result
     
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#if __name__ == '__main__':
+if __name__ == '__main__':
  	#idlist = [433666, 18021, 3802384, 912655, 3746533, 918710]
 	#idlist = ["ot_519", "ot_930", "ot_490", "pg_793", "pg_1631"]
  	#idlist = ["ot_519@tree2","ot_930@tree3", "ot_490@Tr70734","pg_793@tree5659","pg_1631@tree3297"]
 	#print get_studies_from_ids(idlist)
+ 	
+ 	idlist = ["pg_1428@tree2855","ot_328@tree1","pg_2685@tree6235","pg_1981@tree4052","ot_278@tree1"]	
+ 	print get_studies(idlist)

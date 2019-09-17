@@ -208,11 +208,90 @@ class Tree_Studies_Service_API(object):
             cherrypy.log("====TreeStudiesError====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
+    #---------------------------------------------
+    @cherrypy.tools.json_out()
+    def get_study_info(self, **request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['GET']:
+               return return_response_error(405,"Error: HTTP Methods other than GET and POST are not allowed","JSON")
+
+            study_id_lst = str(request_data['study_ids']).strip()
+            study_id_lst = study_id_lst.split('|')
+
+            if len(study_id_lst) == 1 and '' in study_id_lst: 
+               raise CustomException("'study_ids' parameter must have a valid value")
+            
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except ConversionException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+           service_result = tree_studies_service.get_studies(study_id_lst) 
+           #-------------------------------------------
+           header = cherrypy.request.headers
+           log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': cherrypy.request.params, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+           insert_log(log)
+           #---------------------------------------------
+           if service_result['status_code'] == 200:
+               return service_result
+           else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====TreeStudiesGetInfoError====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
+    
+ 	#-----------------------------------------------	
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def study_info(self,**request_data):
+        try:
+            http_method = cherrypy.request.method
+            if http_method not in ['POST']:
+               return return_response_error(405,"Error: HTTP Methods other than POST are not allowed","JSON")
+
+            input_json = cherrypy.request.json
+            study_id_lst = input_json["study_ids"]
+            
+        except KeyError, e:
+            return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
+        except CustomException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
+        except ConversionException, e:
+            return return_response_error(400,"Error: %s"%(str(e)),"JSON")
+        except Exception, e:
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+        
+        try: 
+            service_result = tree_studies_service.get_studies(study_id_lst)  
+            #--------------------------------------------
+            header = cherrypy.request.headers
+            log = {'client_ip': cherrypy.request.remote.ip, 'date': datetime.datetime.now(), 'request_base': cherrypy.request.base, 'request_script': cherrypy.request.script_name, 'request_path': cherrypy.request.path_info, 'method': cherrypy.request.method, 'params': {'study_ids': study_id_lst}, 'user_agent': header['User-Agent'], 'response_status': service_result['status_code']}
+            insert_log(log)
+ 
+            if service_result['status_code'] == 200:
+               return service_result
+            else:
+               return return_response_error(service_result['status_code'], service_result['message'], "JSON")
+
+        except Exception, e:
+            cherrypy.log("====TreeStudiesInfoError====", traceback=True)
+            return return_response_error(500,"Error: %s"%(str(e)), "JSON")
+
     #-----------------------------------------------------
     #Public /index
     index.exposed = True
     get_studies.exposed = True
     studies.exposed = True
+    study_info = True
+    get_study_info = True
 
 #----------------------------------------------------------
 class Compound_Service_Tree_API(object):
