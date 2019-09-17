@@ -19,7 +19,7 @@ def find_genome_ids(taxonName):
  		'retmax': 5000,
  		'retmode': 'json',
  		'db': 'genome',
- 		'term': taxonName,
+ 		'term': taxonName + " [Organism]",
  		'tool': "phylotastic-services",
  		'email': "tayeen@nmsu.edu"      
     }
@@ -148,8 +148,8 @@ def form_cs_ids(id_list):
 #---------------------------------------------------
 def get_genome_species(inputTaxon):	
  	start_time = time.time()
- 	service_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/ts/ncbi/genome_species?taxon=" + inputTaxon
- 	service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-9"
+ 	#service_url = "https://phylo.cs.nmsu.edu/phylotastic_ws/ts/ncbi/genome_species?taxon=" + inputTaxon
+ 	#service_documentation = "https://github.com/phylotastic/phylo_services_docs/blob/master/ServiceDescription/PhyloServicesDescription.md#web-service-9"
 
  	final_result = {'status_code': 200, 'message': "Success"}	
  	g_response = find_genome_ids(inputTaxon)
@@ -196,6 +196,7 @@ def get_genome_species(inputTaxon):
 	#inputTaxon = 'Vulpes' #'Panthera'
  	#inputTaxon = 'Rodentia'
 	#inputTaxon = 'Canidae' #family
+ 	#inputTaxon = 'Primates' #family
  	
  	#start_time = time.time()    
  	#print get_genome_species(inputTaxon)
