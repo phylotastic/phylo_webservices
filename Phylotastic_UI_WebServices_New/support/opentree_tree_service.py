@@ -131,6 +131,9 @@ def get_tree_OT(resolvedNames, include_metadata=False, include_ottid=True):
     #get induced_subtree
  	final_result = {} 
  	opentree_result = subtree(ottIdList)
+ 	if opentree_result['status_code'] != 200:	
+ 		return opentree_result 
+
  	newick_str = opentree_result['newick']
  	if newick_str.find(";") == -1:
  		newick_str = newick_str + ";"
@@ -148,8 +151,8 @@ def get_tree_OT(resolvedNames, include_metadata=False, include_ottid=True):
  		final_nwk_str = newick_str
  	
  	final_result['newick'] = final_nwk_str #newick_str.encode('ascii', 'ignore').decode('ascii')
- 	if opentree_result['status_code'] != 200:	
- 		return opentree_result 
+ 	study_ids = opentree_result['studies']
+ 	final_result['studies'] = study_ids
  
  	if opentree_result['newick'] != "":
  		final_result['message'] = "Success"
@@ -166,7 +169,7 @@ def get_tree_OT(resolvedNames, include_metadata=False, include_ottid=True):
  			if num_tips != -1:
  				final_result['tree_metadata']['num_tips'] = num_tips
 
- 			study_ids = opentree_result['studies']
+ 			#get studies 
  			study_list = get_supporting_studies(study_ids) 	
  			final_result['tree_metadata']['supporting_studies'] = study_list['studies']
  		 
