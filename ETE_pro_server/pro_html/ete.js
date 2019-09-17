@@ -5,6 +5,8 @@ var loading_img = '<img border=0 src="https://phylo.cs.nmsu.edu/treeviewer/loade
 var current_tree_id = "";
 var current_tree_newick = "";
 var node_actions_list = [];
+//for common names
+var node_data = null;
 var tree_actions = {};
 var latest_action_node_id = "";
 var tree_state_changed = false;
@@ -36,12 +38,12 @@ function save_tree_image(){
     }
   }
   //parameters for POST request 
-  var params = JSON.stringify({"tree_newick": current_tree_newick,"tree_id":current_tree_id, "actions":{"tree_actions": tree_actions, "node_actions": node_actions_list, "latest_action_node_id":latest_action_node_id},"format": format});
+  var params = JSON.stringify({"tree_newick": current_tree_newick,"tree_id":current_tree_id, "actions":{"tree_actions": tree_actions, "node_actions": node_actions_list, "latest_action_node_id":latest_action_node_id},"format": format, "node_data": node_data});
   xhr.send(params); 
 }
 
 //----------------------------------------------------
-function get_tree_image(treeid, newick, recipient, topOffset, leftOffset){
+function get_tree_image(treeid, newick, recipient, data, topOffset, leftOffset){
   topOffset = (typeof topOffset !== 'undefined') ? topOffset : 0;
   leftOffset = (typeof leftOffset !== 'undefined') ? leftOffset : 0;
   //console.log("topoffset:"+topOffset+" leftoffset:"+leftOffset);
@@ -54,6 +56,12 @@ function get_tree_image(treeid, newick, recipient, topOffset, leftOffset){
   } 
   current_tree_id = treeid;
   current_tree_newick = newick;
+  if (data == undefined) {
+     node_data = null;
+  }
+  else{
+     node_data = data;
+  }
   console.log("recipient:" + recipient);
   console.log("get tree image called");
   if (recipient != ''){
@@ -94,7 +102,7 @@ function get_tree_image(treeid, newick, recipient, topOffset, leftOffset){
     }
   }
   //parameters for POST request 
-  var params = JSON.stringify({"tree_newick": newick,"tree_id":treeid, 'top_offset': topOffset, 'left_offset': leftOffset, "actions":{"tree_actions": tree_actions, "node_actions": node_actions_list, "latest_action_node_id":latest_action_node_id}});
+  var params = JSON.stringify({"tree_newick": newick,"tree_id":treeid, 'top_offset': topOffset, 'left_offset': leftOffset, "actions":{"tree_actions": tree_actions, "node_actions": node_actions_list, "latest_action_node_id":latest_action_node_id}, "node_data": node_data});
   xhr.send(params);
 }
 
@@ -194,11 +202,12 @@ function run_tree_action() {
     ladderize = $("#ladderize").is(':checked');
     showbranch = $("#branch").is(':checked');
     showinternal = $("#internal").is(':checked');
+    showcommon = $("#common").is(':checked');
     $('#'+current_tree_id).html(loading_img);
 
-    tree_actions = {"line_color":colorcode,"line_width": linewidth ,"ladderize": ladderize, "show_branch_length": showbranch, "show_internal_node": showinternal};
+    tree_actions = {"line_color":colorcode,"line_width": linewidth ,"ladderize": ladderize, "show_branch_length": showbranch, "show_internal_node": showinternal, "show_common_names":showcommon};
     //console.log(JSON.stringify(tree_actions));
-    get_tree_image(current_tree_id, current_tree_newick,'');
+    get_tree_image(current_tree_id, current_tree_newick,'', node_data);
 }
 //-------------------------------------------
 function load_tip_images(){
