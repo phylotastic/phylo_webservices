@@ -192,17 +192,18 @@ def get_image_species_id(species_id, post=False):
  	 	return json.dumps(response)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#if __name__ == '__main__':
+if __name__ == '__main__':
 
 	#inputSpecies = ["Panthera leo"]#, "Panthera onca", "Panthera pardus"]
 #	inputSpecies = ["Catopuma badia", "Catopuma temminckii"] 
 	# Odd example: "Catopuma badia" used to have images. Now, EOL does not return any images 	
-	#inputTaxon = 'Panthera leo'
+	inputTaxon = 'Panthera leo'
+	inputSpecies = ["Mareca strepera"]
 	#inputTaxon = 'Canidae' #family
  	
  	#start_time = time.time()    
  	
- #	print json.dumps(get_images_species(inputSpecies))
+	print json.dumps(get_images_species(inputSpecies))
  	
  	#end_time = time.time()
  	
