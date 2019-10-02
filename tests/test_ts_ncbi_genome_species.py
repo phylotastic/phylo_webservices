@@ -79,8 +79,8 @@ class TestTsNcbiGenomeSpecies(webapp.WebappTestCase):
         self.assert_success(x)
         n = len(x.json()[u'species'])
         self.assertTrue(n >= 2, str(n))
-        self.assertTrue(u'Marmota himalayana' in x.json()[u'species'])
-        self.assertTrue(u'Ellobius talpinus' in x.json()[u'species'])
+        self.assertTrue('Myodes glareolus' in x.json()[u'species'])
+        self.assertTrue('Ellobius talpinus' in x.json()[u'species'])
 
     
     
