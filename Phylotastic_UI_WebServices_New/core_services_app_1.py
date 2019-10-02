@@ -326,8 +326,8 @@ class Species_Image_Service_API(object):
             
             if len(specieslist) == 1 and '' in specieslist: 
                raise CustomException("'species' parameter must have a valid value")
-            if len(specieslist) > 30: 
-               return return_response_error(403,"Error: Currently more than 30 species is not supported","JSON")
+            if len(specieslist) > 60: 
+               return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")
             
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -391,8 +391,8 @@ class Species_Image_Service_API(object):
 
             if len(species_list) == 0: 
                raise CustomException("'species' parameter must have a valid value")
-            if len(species_list) > 30: 
-               return return_response_error(403,"Error: Currently more than 30 species is not supported","JSON")
+            if len(species_list) > 60: 
+               return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")
         
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -443,8 +443,8 @@ class Species_Url_Service_API(object):
             
             if len(species_list) == 1 and '' in species_list: 
                raise CustomException("'species' parameter must have a valid value")
-            if len(species_list) > 50: 
-               return return_response_error(403,"Error: Currently more than 50 species is not supported","JSON")
+            if len(species_list) > 60: 
+               return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")
             
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
@@ -485,8 +485,8 @@ class Species_Url_Service_API(object):
 
             if len(species_list) == 0: 
                raise CustomException("'species' parameter must have a valid value")
-            if len(species_list) > 30: 
-               return return_response_error(403,"Error: Currently more than 30 species is not supported","JSON")   				 
+            if len(species_list) > 60: 
+               return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")   				 
         except KeyError, e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
         except CustomException, e:
@@ -631,12 +631,12 @@ class Find_ScientificNames_Service_API(object):
             if file_size == 0:
                raise CustomException("Input file cannot be empty")
 
-            saved_dir_loc = "/var/www/upload/html/"
+            saved_dir_loc = "/home/van/phylotastic-portal/public/upload/"
             file_loc = saved_dir_loc+inputFile.filename
             savedFile=open(file_loc, 'wb')
             savedFile.write(allData)
             savedFile.close()
-            file_url = "http://phylo.cs.nmsu.edu:8888/"+inputFile.filename
+            file_url = "https://phylo.cs.nmsu.edu/upload/"+inputFile.filename
             content_type = inputFile.content_type
             #print content_type
             new_filename = inputFile.filename
@@ -1138,8 +1138,8 @@ class Get_Tree_OpenTree_Service_API(object):
 
             include_metadata = False
             include_ottid = True
-            if request_data is not None and 'metadata' in request_data:
-               include_metadata = str(request_data['metadata']).strip()
+            if request_data is not None and 'studies' in request_data:
+               include_metadata = str(request_data['studies']).strip()
                if type(include_metadata) != types.BooleanType:
                   include_metadata = str2bool(include_metadata)
 
@@ -1206,8 +1206,8 @@ class Get_Tree_OpenTree_Service_API(object):
 
                 if len(taxalist) > 2000: 
                    return return_response_error(403,"Error: Currently more than 2000 names is not supported","JSON")
-            if 'metadata' in input_json:		
-                 include_metadata = input_json['metadata']
+            if 'studies' in input_json:		
+                 include_metadata = input_json['studies']
                  if type(include_metadata) != types.BooleanType:
                     include_metadata = str2bool(include_metadata)
             if 'ottid' in input_json:		

@@ -98,7 +98,7 @@ def subtree(ottidList):
 #-----------------------------------------------------------
 #get newick string for tree from OpenTree
 #input: list of resolved scientific names
-def get_tree_OT(resolvedNames, include_metadata=False, include_ottid=True):
+def get_tree_OT(resolvedNames, include_studies=False, include_ottid=True):
  	start_time = time.time() 
  	ListSize = len(resolvedNames)
     
@@ -151,24 +151,24 @@ def get_tree_OT(resolvedNames, include_metadata=False, include_ottid=True):
  		final_nwk_str = newick_str
  	
  	final_result['newick'] = final_nwk_str #newick_str.encode('ascii', 'ignore').decode('ascii')
- 	study_ids = opentree_result['studies']
- 	final_result['studies'] = study_ids
- 
+ 	
  	if opentree_result['newick'] != "":
  		final_result['message'] = "Success"
  		final_result['status_code'] = 200
- 		if include_metadata:
- 			synth_tree_version = get_tree_version()		
- 			tree_metadata = get_metadata()
- 			tree_metadata['inference_method'] = tree_metadata['inference_method'] + " from synthetic tree with ID "+ synth_tree_version
- 			final_result['tree_metadata'] = tree_metadata
- 			final_result['tree_metadata']['synthetic_tree_id'] = synth_tree_version
- 			#https://wiki.python.org/moin/UnicodeDecodeError
- 			newick_str = newick_str.encode('utf-8', 'ignore')
- 			num_tips = get_num_tips(newick_str)
- 			if num_tips != -1:
- 				final_result['tree_metadata']['num_tips'] = num_tips
+ 		synth_tree_version = get_tree_version()		
+ 		tree_metadata = get_metadata()
+ 		tree_metadata['inference_method'] = tree_metadata['inference_method'] + " from synthetic tree with ID "+ synth_tree_version
+ 		final_result['tree_metadata'] = tree_metadata
+ 		final_result['tree_metadata']['synthetic_tree_id'] = synth_tree_version
+ 		#https://wiki.python.org/moin/UnicodeDecodeError
+ 		newick_str = newick_str.encode('utf-8', 'ignore')
+ 		num_tips = get_num_tips(newick_str)
+ 		if num_tips != -1:
+ 			final_result['tree_metadata']['num_tips'] = num_tips
+ 		study_ids = opentree_result['studies']
+ 		final_result['tree_metadata']['study_ids'] = study_ids
 
+ 		if include_studies:
  			#get studies 
  			study_list = get_supporting_studies(study_ids) 	
  			final_result['tree_metadata']['supporting_studies'] = study_list['studies']

@@ -6,10 +6,10 @@ import re
 import os
 import urllib2
 
-dbName = "EOL_data"
+dbName = "EOL_new_data"
 dataCollectionName ="species_info"
 counterCollectionName = "speciesCounter"
-image_root_loc = "/home/abusaleh/Phylotastic"
+image_root_loc = "/var/web_service"
 #===================================================
 def timeit(f):
     def a_wrapper_accepting_arguments(*args, **kargs):
@@ -62,6 +62,7 @@ def get_image_data(sp_name):
     image_service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/si/eol/images"
     image_service_payload = {'species': [sp_name]}
     service_response = execute_webservice(image_service_uri, json.dumps(image_service_payload), {'content-type': 'application/json'})
+    
     if service_response['species'][0]['matched_name'] == '':
        img_lst = []
     else:
@@ -75,7 +76,7 @@ def execute_webservice(service_url, service_payload, header=None):
        response = requests.post(service_url, data=service_payload)
     else:    
        response = requests.post(service_url, data=service_payload, headers=header)
-
+    print response.text
     if response.status_code == requests.codes.ok:        
         res_json = json.loads(response.text)
     else:
@@ -144,6 +145,18 @@ def download_image(http_url, local_path):
 
 
 #------------------------------------------
+#https://stackoverflow.com/questions/9786736/how-to-read-through-collection-in-chunks-by-1000
+def iterate_by_chunks(collection, chunksize=1, start_from=0, query={}):
+   chunks = range(start_from, collection.find(query).count(), int(chunksize))
+   num_chunks = len(chunks)
+   for i in range(1,num_chunks+1):
+      if i < num_chunks:
+          yield collection.find(query)[chunks[i-1]:chunks[i]]
+      else:
+          yield collection.find(query)[chunks[i-1]:chunks.stop]
+
+
+#---------------------------------------
 @timeit
 def update_collection(data_collection):
 	documents = data_collection.find()
@@ -163,21 +176,41 @@ def update_collection(data_collection):
 #-----------------------------------------
 @timeit
 def update_image_collection(data_collection):
-	documents = data_collection.find()
-	sp_count = 0
-	total_sp = documents.count()
- 	if documents.count() == 0:
-  		return 
- 	else:
- 		for doc in documents:
- 			sp_count += 1
+	#documents = data_collection.find()
+	mess_chunk_iter = iterate_by_chunks(data_collection, 100, 0, query={}) 
+	chunk_n=0
+	total_docs=0
+	for docs in mess_chunk_iter:
+		chunk_n=chunk_n+1        
+		chunk_len = 0
+		for doc in docs:
+			chunk_len=chunk_len+1
+			total_docs=total_docs+1
 			sp_name = doc['species_name']
 			print sp_name
 			img_info = get_image_data(sp_name)
- 			new_img_info = create_species_image_info(sp_name, img_info)
- 			update_species_image_info(sp_name, new_img_info, data_collection)
+			new_img_info = create_species_image_info(sp_name, img_info)
+			update_species_image_info(sp_name, new_img_info, data_collection)
+		time.sleep(1)
+		print('chunk #: {%d}, chunk_len: {%d}'%(chunk_n, chunk_len))
 
-			print "Total %d records out of %d has been updated"%(sp_count, total_sp)
+	print("total docs iterated: ", total_docs)	
+
+	#sp_count = 0
+	#total_sp = documents.count()
+ 	#if documents.count() == 0:
+  	#	return 
+ 	#else:
+ 		#for doc in documents:
+ 	#	for batch in _as_batch(documents): 
+ 	#		sp_count += 1
+	#		sp_name = doc['species_name']
+	#		print sp_name
+	#		img_info = get_image_data(sp_name)
+ 	#		new_img_info = create_species_image_info(sp_name, img_info)
+ 	#		update_species_image_info(sp_name, new_img_info, data_collection)
+
+	#		print "Total %d records out of %d has been updated"%(sp_count, total_sp)
 
 #----------------------------------------------------------
 if __name__ == "__main__":
@@ -187,7 +220,7 @@ if __name__ == "__main__":
 	#update_collection(data_collection)			
 	#update_species_info("Zebrasoma flavescens", data_collection)
  	update_image_collection(data_collection)
-	#img_info = get_image_data("Zebrasoma flavescens")
+	#img_info = get_image_data("Mareca strepera")
 	#new_img_info = create_species_image_info("Zebrasoma flavescens", img_info)
 	#update_species_image_info("Zebrasoma flavescens", new_img_info, data_collection)
 
