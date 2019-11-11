@@ -4,6 +4,8 @@ FROM python:2.7.15-stretch
 # Set the working directory to /app
 WORKDIR /name_finder
 
+RUN mkdir -p /name_finder/data
+
 # Copy the current directory contents into the container at /app
 COPY . /name_finder
 
