@@ -30,7 +30,7 @@ curl -X GET 'http://localhost:5050/phylotastic_ws/fn/names_url?url=https://en.wi
 
 **6.**  To use files as input to the app, mount a local host directory containing the input files and run the docker image using the following command.
 
-> Replace the *<host-directory>* with the complete path of the input directory in localhost.
+> Replace the *host-directory* with the complete path of the input directory in localhost.
 
 ``
 docker run -it --volume <host-directory>:/name_finder/data -p 5050:5050 name_finder:v0.0.1
@@ -38,7 +38,7 @@ docker run -it --volume <host-directory>:/name_finder/data -p 5050:5050 name_fin
 
 **7.** Now test the service with an input file using the following command:
 
-> Replace the *<input-file>* with the input file name that resides in the input directory of the localhost.
+> Replace the *input-file* with the input file name that resides in the input directory of the localhost.
 
 ``
 curl -X GET 'http://localhost:5050/phylotastic_ws/fn/names_file?file_name=<input-file>'
