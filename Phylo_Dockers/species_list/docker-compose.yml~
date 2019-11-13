@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+
+  mongodb:
+    image: mongo:3.4
+
+  mongo-seed:
+    build: ./mongo-seed
+    depends_on:
+       - mongodb
+    image: mongo-seed:v0.0.1
+    ports:
+       - 27017
+    links:
+       - mongodb
+    
+  web:
+    build: .
+    image: species_list:v0.0.1
+    links:
+      - mongodb
