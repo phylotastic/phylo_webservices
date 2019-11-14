@@ -24,4 +24,4 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 5052
 
 # Run app.py when the container launches
-CMD ["python", "get_tree_app.py"]
+CMD ["python3", "get_tree_app.py"]

@@ -1,4 +1,5 @@
 wheel
+setuptools
 CherryPy
 requests
 str2bool

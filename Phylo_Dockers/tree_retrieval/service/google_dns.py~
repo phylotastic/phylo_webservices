@@ -23,7 +23,7 @@ def ip_address_matcher(text):
 #---------------------------------------------------------
 def get_ip_address(service_root): 
 	ip_address = None
-	#print ("Using alternate DNS for %s"%service_root)
+	print ("Using alternate DNS for %s"%service_root)
 	dns_url = "https://dns.google.com/resolve"
 	payload = {'name': service_root}
 	

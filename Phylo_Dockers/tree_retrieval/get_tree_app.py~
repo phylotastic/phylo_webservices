@@ -114,8 +114,7 @@ class Get_Tree_OpenTree_Service_API(object):
         try:
             nameslist_json = resolve_names_service.resolve_names_OT(taxalist, False, False)
             nameslist = nameslist_json["resolvedNames"]
-            service_result = opentree_tree_service.get_tree_OT(nameslist,include_metadata,include_ottid) 
-            result_json = service_result  
+            service_result = opentree_tree_service.get_tree_OT(nameslist,include_metadata,include_ottid)   
             if result_json['status_code'] == 200:
                return service_result
             else:

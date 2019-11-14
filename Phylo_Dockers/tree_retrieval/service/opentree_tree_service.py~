@@ -189,6 +189,42 @@ def get_tree_OT(resolvedNames, include_studies=False, include_ottid=True):
 
  	return final_result
  	
+#-------------------------------------------
+#get supporting studies of the tree from OpenTree
+def get_supporting_studies(studyIdList):
+ 	resource_url = "https://phylo.cs.nmsu.edu/phylotastic_ws/md/studies"    
+    
+ 	payload_data = {
+ 		'list': studyIdList,
+ 		'list_type': "studyids"		
+    }
+ 	jsonPayload = json.dumps(payload_data)
+    
+    #+++++++++++Solution 2++++++++++++++++
+ 	try: 
+ 		response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError:
+ 		alt_url = google_dns.alt_service_url(resource_url)      
+ 		response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+    #----------------------------------------------    
+    
+ 	studies_info = {}
+
+ 	data_json = json.loads(response.text)  
+ 	if response.status_code == requests.codes.ok:	
+ 		studies_info['studies'] = data_json['studies']		
+ 		studies_info['message'] = data_json['message']
+ 		studies_info['status_code'] = data_json['status_code']
+ 	else:
+ 		studies_info['studies'] = []
+ 		if 'message' in data_json:
+ 			studies_info['message'] = data_json['message']
+ 		else:			
+ 			studies_info['message'] = "Error: Response error while getting study info using Phylotastic"
+ 		studies_info['status_code'] = response.status_code
+
+ 	return studies_info
+
 #--------------------------------------------
 #find the number of tips in the tree
 def get_num_tips(newick_str):

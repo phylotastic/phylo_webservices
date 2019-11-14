@@ -410,7 +410,7 @@ def resolve_names_iPlant(inputNamesList, do_fuzzy_match, multi_match):
 
     #inputList = ["Formica polyctena", "Tetramorium caespitum","Carebara diversa", "Formicinae"]
     #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"]
-    #inputList = ["Dionaea muscipula", "Sarracenia", "Darlingtonia californica", "Drosera", "Pinguicula", "Utricularia", "Roridulaceae"]
+    inputList = ["Dionaea muscipula", "Sarracenia", "Darlingtonia californica", "Drosera", "Pinguicula", "Utricularia", "Roridulaceae"]
     #inputList = ["Ran Temporaria"]
     #result = resolve_names_GNR(inputList, True, True)    
     #print result
