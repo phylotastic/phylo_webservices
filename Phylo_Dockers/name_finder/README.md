@@ -30,7 +30,7 @@ docker run -it --volume <host-directory>:/name_finder/data -p 5050:5050 name_fin
 
 #### Example 1: (input file)
 ``
-curl -X POST 'https://localhost:5050/phylotastic_ws/fn/names_file' -F 'inputFile=@scnames.txt' -F 'engine=2'
+curl -X POST 'http://localhost:5050/phylotastic_ws/fn/names_file' -F 'inputFile=@scnames.txt' -F 'engine=2'
 ``
 
 #### Example 2: (input url)
