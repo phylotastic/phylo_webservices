@@ -15,7 +15,7 @@ docker build -t name_finder:v0.0.1 .
 docker images
 ``
 
-**4.**  To use files as input to the app, this docker must mount a local host directory containing the input files and run the docker image using the following command.
+**4.**  To use files as input to the app, mount a local host directory containing the input files and run the docker image using the following command.
 
 > Replace the *host-directory* with the complete path of the input directory in localhost.
 

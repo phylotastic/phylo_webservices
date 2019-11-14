@@ -143,7 +143,7 @@ def get_sn_text(inputTEXT, sEngine=0):
 #get scientific names from file
 def get_sn_file(dir_name, file_name, sEngine=0):
     try:
-       file_obj = open(dir_name+'/data/'+file_name, 'rb')
+       file_obj = open(dir_name+file_name, 'rb')
     except IOError:
        return {'status_code': 400, 'message': "File with name %s could not be found"%file_name }
 

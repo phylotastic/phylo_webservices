@@ -123,7 +123,7 @@ class Find_ScientificNames_Service_API(object):
     def names_text(self,**request_data):
         try:
             http_method = cherrypy.request.method
-            if http_method not in ['GET', 'POST']:
+            if http_method not in ['GET']:
                return return_response_error(405,"Error: HTTP Methods other than GET or POST are not allowed","JSON")
 
             text = str(request_data['text']).strip()
