@@ -1,4 +1,4 @@
-###Instructions to setup tree_retrieval app docker. 
+### Instructions to setup tree_retrieval app docker. 
 
 **1.** Download the directory named *tree_retrieval*.
 
@@ -13,7 +13,6 @@ docker build -t tree_retrieval:v0.0.1 .
 
 ``
 docker images
-
 ``
 
 **4.** Run the docker image by mapping exposed docker port 80 to internal service port 5052 by using the following command. If port 80 is already in use by another app, then just replace the port number 80 with another port number.
