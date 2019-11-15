@@ -10,7 +10,7 @@ COPY . /name_resolver
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-# Make port 80 available to the world outside this container
+# Make port 5051 available to the world outside this container
 EXPOSE 5051
 
 # Define environment variable
