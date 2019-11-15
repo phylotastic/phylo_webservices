@@ -1,0 +1,230 @@
+[10/Nov/2019:14:17:48] ENGINE Bus STARTING
+[10/Nov/2019:14:17:48] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:17:48] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:17:51] ENGINE Error in HTTP server: shutting down
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/process/servers.py", line 206, in _start_http_thread
+    self.httpserver.start()
+  File "/usr/local/lib/python2.7/dist-packages/cherrypy/wsgiserver/wsgiserver2.py", line 1960, in start
+    raise socket.error(msg)
+error: No socket could be created -- (('128.123.63.10', 5050): [Errno 99] Cannot assign requested address)
+
+[10/Nov/2019:14:17:51] ENGINE Bus STOPPING
+[10/Nov/2019:14:17:51] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('phylo.cs.nmsu.edu', 5050)) already shut down
+[10/Nov/2019:14:17:51] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:17:51] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:17:51] ENGINE Bus STOPPED
+[10/Nov/2019:14:17:51] ENGINE Bus EXITING
+[10/Nov/2019:14:17:51] ENGINE Bus EXITED
+[10/Nov/2019:14:18:28] ENGINE Bus STARTING
+[10/Nov/2019:14:18:28] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:18:28] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:18:28] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:18:28] ENGINE Bus STARTED
+[10/Nov/2019:14:25:51] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:25:51] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:25:51] ENGINE Bus STOPPING
+[10/Nov/2019:14:25:51] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:25:51] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:25:51] ENGINE Bus STOPPED
+[10/Nov/2019:14:25:51] ENGINE Bus EXITING
+[10/Nov/2019:14:25:51] ENGINE Bus EXITED
+[10/Nov/2019:14:25:51] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:25:51] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:25:52] ENGINE Bus STARTING
+[10/Nov/2019:14:25:52] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:25:52] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:25:52] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:25:52] ENGINE Bus STARTED
+[10/Nov/2019:14:26:16] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:26:16] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:26:16] ENGINE Bus STOPPING
+[10/Nov/2019:14:26:16] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:26:16] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:26:16] ENGINE Bus STOPPED
+[10/Nov/2019:14:26:16] ENGINE Bus EXITING
+[10/Nov/2019:14:26:16] ENGINE Bus EXITED
+[10/Nov/2019:14:26:16] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:26:16] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:26:17] ENGINE Bus STARTING
+[10/Nov/2019:14:26:17] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:26:17] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:26:17] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:26:17] ENGINE Bus STARTED
+[10/Nov/2019:14:26:28] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:26:28] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:26:28] ENGINE Bus STOPPING
+[10/Nov/2019:14:26:28] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:26:28] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:26:28] ENGINE Bus STOPPED
+[10/Nov/2019:14:26:28] ENGINE Bus EXITING
+[10/Nov/2019:14:26:28] ENGINE Bus EXITED
+[10/Nov/2019:14:26:28] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:26:28] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:26:29] ENGINE Bus STARTING
+[10/Nov/2019:14:26:29] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:26:29] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:26:29] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:26:29] ENGINE Bus STARTED
+[10/Nov/2019:14:26:33] ENGINE Keyboard Interrupt: shutting down bus
+[10/Nov/2019:14:26:33] ENGINE Bus STOPPING
+[10/Nov/2019:14:26:33] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:26:33] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:26:33] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:26:33] ENGINE Bus STOPPED
+[10/Nov/2019:14:26:33] ENGINE Bus EXITING
+[10/Nov/2019:14:26:33] ENGINE Bus EXITED
+[10/Nov/2019:14:26:33] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:26:35] ENGINE Bus STARTING
+[10/Nov/2019:14:26:35] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:26:35] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:26:35] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:26:35] ENGINE Bus STARTED
+[10/Nov/2019:14:27:06] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:27:06] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:27:06] ENGINE Bus STOPPING
+[10/Nov/2019:14:27:06] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:27:06] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:27:06] ENGINE Bus STOPPED
+[10/Nov/2019:14:27:06] ENGINE Bus EXITING
+[10/Nov/2019:14:27:06] ENGINE Bus EXITED
+[10/Nov/2019:14:27:06] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:27:06] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:27:07] ENGINE Bus STARTING
+[10/Nov/2019:14:27:07] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:27:07] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:27:07] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:27:07] ENGINE Bus STARTED
+[10/Nov/2019:14:27:09] ENGINE Keyboard Interrupt: shutting down bus
+[10/Nov/2019:14:27:09] ENGINE Bus STOPPING
+[10/Nov/2019:14:27:09] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:27:09] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:27:09] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:27:09] ENGINE Bus STOPPED
+[10/Nov/2019:14:27:09] ENGINE Bus EXITING
+[10/Nov/2019:14:27:09] ENGINE Bus EXITED
+[10/Nov/2019:14:27:09] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:27:11] ENGINE Bus STARTING
+[10/Nov/2019:14:27:11] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:27:11] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:27:11] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:27:11] ENGINE Bus STARTED
+[10/Nov/2019:14:27:51] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:27:51] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:27:51] ENGINE Bus STOPPING
+[10/Nov/2019:14:27:51] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:27:51] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:27:51] ENGINE Bus STOPPED
+[10/Nov/2019:14:27:51] ENGINE Bus EXITING
+[10/Nov/2019:14:27:51] ENGINE Bus EXITED
+[10/Nov/2019:14:27:51] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:27:51] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:27:52] ENGINE Bus STARTING
+[10/Nov/2019:14:27:52] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:27:52] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:27:52] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:27:52] ENGINE Bus STARTED
+[10/Nov/2019:14:29:07] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:29:07] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:29:07] ENGINE Bus STOPPING
+[10/Nov/2019:14:29:07] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:29:07] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:29:07] ENGINE Bus STOPPED
+[10/Nov/2019:14:29:07] ENGINE Bus EXITING
+[10/Nov/2019:14:29:07] ENGINE Bus EXITED
+[10/Nov/2019:14:29:07] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:29:07] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:29:08] ENGINE Bus STARTING
+[10/Nov/2019:14:29:08] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:29:08] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:29:08] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:29:08] ENGINE Bus STARTED
+[10/Nov/2019:14:29:15]  =====NamesFileError=====
+Traceback (most recent call last):
+  File "find_names_app.py", line 185, in names_file
+    service_result = extract_names_service.extract_names_FILE(file_name, int(engine))
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 246, in extract_names_FILE
+    final_result = get_sn_file(input_file, sEngine)
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 156, in get_sn_file
+    requests.post(url, data=payload, files=files)
+NameError: global name 'url' is not defined
+[10/Nov/2019:14:29:40] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:29:40] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:29:40] ENGINE Bus STOPPING
+[10/Nov/2019:14:29:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:29:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:29:40] ENGINE Bus STOPPED
+[10/Nov/2019:14:29:40] ENGINE Bus EXITING
+[10/Nov/2019:14:29:40] ENGINE Bus EXITED
+[10/Nov/2019:14:29:40] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:29:40] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:29:41] ENGINE Bus STARTING
+[10/Nov/2019:14:29:41] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:29:41] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:29:41] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:29:41] ENGINE Bus STARTED
+[10/Nov/2019:14:29:51]  =====NamesFileError=====
+Traceback (most recent call last):
+  File "find_names_app.py", line 185, in names_file
+    service_result = extract_names_service.extract_names_FILE(file_name, int(engine))
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 246, in extract_names_FILE
+    final_result = get_sn_file(input_file, sEngine)
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 160, in get_sn_file
+    if response.status_code == requests.codes.ok:
+NameError: global name 'response' is not defined
+[10/Nov/2019:14:30:11] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:30:11] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:30:11] ENGINE Bus STOPPING
+[10/Nov/2019:14:30:11] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:30:11] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:30:11] ENGINE Bus STOPPED
+[10/Nov/2019:14:30:11] ENGINE Bus EXITING
+[10/Nov/2019:14:30:11] ENGINE Bus EXITED
+[10/Nov/2019:14:30:11] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:30:11] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:30:12] ENGINE Bus STARTING
+[10/Nov/2019:14:30:12] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:30:12] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:30:12] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:30:12] ENGINE Bus STARTED
+[10/Nov/2019:14:30:19]  =====NamesFileError=====
+Traceback (most recent call last):
+  File "find_names_app.py", line 185, in names_file
+    service_result = extract_names_service.extract_names_FILE(file_name, int(engine))
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 246, in extract_names_FILE
+    final_result = get_sn_file(input_file, sEngine)
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 175, in get_sn_file
+    token_result = get_token_result(data_json)
+  File "/home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py", line 98, in get_token_result
+    result_json = json.loads(token_result.text)
+  File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python2.7/json/decoder.py", line 384, in raw_decode
+    raise ValueError("No JSON object could be decoded")
+ValueError: No JSON object could be decoded
+[10/Nov/2019:14:59:47] ENGINE Restarting because /home/tayeen/Phylo-Dockers/name_finder/service/extract_names_service.py changed.
+[10/Nov/2019:14:59:47] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:14:59:47] ENGINE Bus STOPPING
+[10/Nov/2019:14:59:47] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:14:59:47] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:14:59:47] ENGINE Bus STOPPED
+[10/Nov/2019:14:59:47] ENGINE Bus EXITING
+[10/Nov/2019:14:59:47] ENGINE Bus EXITED
+[10/Nov/2019:14:59:47] ENGINE Waiting for child threads to terminate...
+[10/Nov/2019:14:59:47] ENGINE Re-spawning find_names_app.py
+[10/Nov/2019:14:59:48] ENGINE Bus STARTING
+[10/Nov/2019:14:59:48] ENGINE Started monitor thread 'Autoreloader'.
+[10/Nov/2019:14:59:48] ENGINE Started monitor thread '_TimeoutMonitor'.
+[10/Nov/2019:14:59:48] ENGINE Serving on http://0.0.0.0:5050
+[10/Nov/2019:14:59:48] ENGINE Bus STARTED
+[10/Nov/2019:15:03:51] ENGINE Keyboard Interrupt: shutting down bus
+[10/Nov/2019:15:03:51] ENGINE Bus STOPPING
+[10/Nov/2019:15:03:51] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5050)) shut down
+[10/Nov/2019:15:03:51] ENGINE Stopped thread 'Autoreloader'.
+[10/Nov/2019:15:03:51] ENGINE Stopped thread '_TimeoutMonitor'.
+[10/Nov/2019:15:03:51] ENGINE Bus STOPPED
+[10/Nov/2019:15:03:51] ENGINE Bus EXITING
+[10/Nov/2019:15:03:51] ENGINE Bus EXITED
+[10/Nov/2019:15:03:51] ENGINE Waiting for child threads to terminate...
