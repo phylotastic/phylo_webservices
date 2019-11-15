@@ -1,22 +1,29 @@
-import pyRserve
+import subprocess
+import os
+# Define command and arguments
+command = 'Rscript'
 
+path2script = os.getcwd() + "/service/"+'remove_singleton.R'
+
+#https://www.r-bloggers.com/integrating-python-and-r-part-ii-executing-r-from-python-and-vice-versa/
 def remove_singleton(tree_nwk):
-	result = None
-	try:
-		conn = pyRserve.connect(host='localhost', port=6311)
-		conn.voidEval('library(ape);collapse_tree<-function(tree_newick){ tree_phylo <-read.tree(text=tree_newick); collapsed_tree <- collapse.singles(tree_phylo); collapsed_tree_nwk<-write.tree(collapsed_tree); collapsed_tree_nwk};')
-		result = conn.r.collapse_tree(tree_nwk)
-	#print type(result)
-	#print result
-	except Exception as e:
-		#print (str(e))
-		if 'Connection denied' in str(e):
-			print "Connection Error"
-	return result
 
-#------------------------------------
+	# Build subprocess command
+	cmd = [command, path2script, tree_nwk]
+	
+	# check_output will run the command and store to result
+	#x = subprocess.check_output(cmd, shell=True, universal_newlines=True)
+	
+	process = subprocess.Popen(cmd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+	returncode = process.wait()
+	print('cmd returned {0}'.format(returncode))
+	x = process.stdout.read()
+	#print(x)
+	return x
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
+#	input_tree = "((((Setophaga_striata_ott60236)mrcaott22834ott60236)mrcaott22834ott455853)mrcaott22834ott285200,Setophaga_plumbea_ott45750,Setophaga_angelae_ott381849,Setophaga_magnolia_ott532751,Setophaga_virens_ott1014098)Setophaga_ott285198;"
+#	remove_singleton(input_tree)
 
-#	tree = "((((((((Cervus_canadensis_ott936010)Cervus_ott460519)Cervinae_ott534970)Cervidae_ott460505)mrcaott1548ott12371)Pecora_ott403912)Ruminantia_ott986971,((((((Platanista_gangetica_ott5256)Platanista_ott477489)Platanistidae_ott698419)mrcaott5269ott234629)Odontoceti_ott698417)Cetacea_ott698424)mrcaott5269ott662806)mrcaott1548ott5269,(((Sus_scrofa_ott730013)Sus_ott730021)Suidae_ott730008)Suina_ott916745)mrcaott1548ott21987;"
 
-#	remove_singleton(tree)

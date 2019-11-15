@@ -15,10 +15,10 @@ docker build -t tree_retrieval:v0.0.1 .
 docker images
 ``
 
-**4.** Run the docker image by mapping exposed docker port 80 to internal service port 5052 by using the following command. If port 80 is already in use by another app, then just replace the port number 80 with another port number.
+**4.** Run the docker image by mapping exposed docker port 5052 to internal service port 5052 by using the following command. 
 
 ``
-docker run -p 80:5052 tree_retrieval:v0.0.1
+docker run -p 5052:5052 tree_retrieval:v0.0.1
 ``
 
 **5.** Now test the service using the following commands:

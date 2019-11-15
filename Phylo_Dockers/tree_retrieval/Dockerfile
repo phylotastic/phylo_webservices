@@ -1,9 +1,9 @@
-FROM rocker/verse:3.6.0
+FROM rocker/verse:3.5.0
 
-RUN apt-get -y update -qq && apt-get install -y --no-install-recommends build-essential python2.7 python2.7-dev python-pip  
+RUN apt-get -y update -qq && apt-get install -y python-pip python-dev build-essential
 
 RUN apt-get install -y --no-install-recommends \
-    libgsl0-dev libssl-dev
+    libgsl0-dev libssl-dev libffi-dev zlib1g-dev libxml2-dev libxslt1-dev libreadline-dev
 
 # Set the working directory to /app
 WORKDIR /tree_retrieval
@@ -12,10 +12,6 @@ WORKDIR /tree_retrieval
 COPY . /tree_retrieval
 
 RUN Rscript install_packages.R
-
-RUN Rscript r_serve.R
-
-RUN pip install setuptools --upgrade
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
