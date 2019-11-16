@@ -1,5 +1,13 @@
 version: '3.3'
 
+volumes:
+  backup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/tayeen/backups
+
 services:
 
   mongodb:
@@ -14,6 +22,8 @@ services:
        - 27017
     links:
        - mongodb
+    volumes:
+       - backup:/species_list/backups
     
   web:
     build: .
@@ -22,3 +32,5 @@ services:
       - mongodb
     ports:
        - 5055:5055
+
+
