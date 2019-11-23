@@ -1,0 +1,178 @@
+[20/Nov/2019:20:23:23] ENGINE Bus STARTING
+[20/Nov/2019:20:23:23] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:23:23] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:23:23] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:23:23] ENGINE Bus STARTED
+[20/Nov/2019:20:25:26] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:25:26] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:25:26] ENGINE Bus STOPPING
+[20/Nov/2019:20:25:26] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:25:26] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:25:26] ENGINE Bus STOPPED
+[20/Nov/2019:20:25:26] ENGINE Bus EXITING
+[20/Nov/2019:20:25:26] ENGINE Bus EXITED
+[20/Nov/2019:20:25:26] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:25:26] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:25:27] ENGINE Bus STARTING
+[20/Nov/2019:20:25:27] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:25:27] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:25:27] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:25:27] ENGINE Bus STARTED
+[20/Nov/2019:20:27:40] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:27:40] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:27:40] ENGINE Bus STOPPING
+[20/Nov/2019:20:27:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:27:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:27:40] ENGINE Bus STOPPED
+[20/Nov/2019:20:27:40] ENGINE Bus EXITING
+[20/Nov/2019:20:27:40] ENGINE Bus EXITED
+[20/Nov/2019:20:27:40] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:27:40] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:27:41] ENGINE Bus STARTING
+[20/Nov/2019:20:27:41] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:27:41] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:27:41] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:27:41] ENGINE Bus STARTED
+[20/Nov/2019:20:28:16] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:28:16] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:28:16] ENGINE Bus STOPPING
+[20/Nov/2019:20:28:16] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:28:16] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:28:16] ENGINE Bus STOPPED
+[20/Nov/2019:20:28:16] ENGINE Bus EXITING
+[20/Nov/2019:20:28:16] ENGINE Bus EXITED
+[20/Nov/2019:20:28:16] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:28:16] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:28:17] ENGINE Bus STARTING
+[20/Nov/2019:20:28:17] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:28:17] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:28:17] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:28:17] ENGINE Bus STARTED
+[20/Nov/2019:20:29:56] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:29:56] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:29:56] ENGINE Bus STOPPING
+[20/Nov/2019:20:29:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:29:56] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:29:56] ENGINE Bus STOPPED
+[20/Nov/2019:20:29:56] ENGINE Bus EXITING
+[20/Nov/2019:20:29:56] ENGINE Bus EXITED
+[20/Nov/2019:20:29:56] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:29:56] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:29:57] ENGINE Bus STARTING
+[20/Nov/2019:20:29:57] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:29:57] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:29:57] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:29:57] ENGINE Bus STARTED
+[20/Nov/2019:20:36:07] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:36:07] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:36:07] ENGINE Bus STOPPING
+[20/Nov/2019:20:36:07] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:36:07] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:07] ENGINE Bus STOPPED
+[20/Nov/2019:20:36:07] ENGINE Bus EXITING
+[20/Nov/2019:20:36:07] ENGINE Bus EXITED
+[20/Nov/2019:20:36:07] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:36:07] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:36:08] ENGINE Bus STARTING
+[20/Nov/2019:20:36:08] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:08] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:36:08] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:36:08] ENGINE Bus STARTED
+[20/Nov/2019:20:36:14] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:36:14] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:36:14] ENGINE Bus STOPPING
+[20/Nov/2019:20:36:14] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:36:14] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:14] ENGINE Bus STOPPED
+[20/Nov/2019:20:36:14] ENGINE Bus EXITING
+[20/Nov/2019:20:36:14] ENGINE Bus EXITED
+[20/Nov/2019:20:36:14] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:36:14] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:36:15] ENGINE Bus STARTING
+[20/Nov/2019:20:36:15] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:15] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:36:15] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:36:15] ENGINE Bus STARTED
+[20/Nov/2019:20:36:30] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:36:30] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:36:30] ENGINE Bus STOPPING
+[20/Nov/2019:20:36:30] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:36:30] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:30] ENGINE Bus STOPPED
+[20/Nov/2019:20:36:30] ENGINE Bus EXITING
+[20/Nov/2019:20:36:30] ENGINE Bus EXITED
+[20/Nov/2019:20:36:30] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:36:30] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:36:31] ENGINE Bus STARTING
+[20/Nov/2019:20:36:31] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:31] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:36:31] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:36:31] ENGINE Bus STARTED
+[20/Nov/2019:20:36:56] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:36:56] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:36:56] ENGINE Bus STOPPING
+[20/Nov/2019:20:36:56] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:36:56] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:56] ENGINE Bus STOPPED
+[20/Nov/2019:20:36:56] ENGINE Bus EXITING
+[20/Nov/2019:20:36:56] ENGINE Bus EXITED
+[20/Nov/2019:20:36:56] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:36:56] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:36:57] ENGINE Bus STARTING
+[20/Nov/2019:20:36:57] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:36:57] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:36:57] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:36:57] ENGINE Bus STARTED
+[20/Nov/2019:20:37:49] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:20:37:49] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:37:49] ENGINE Bus STOPPING
+[20/Nov/2019:20:37:49] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:37:49] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:37:49] ENGINE Bus STOPPED
+[20/Nov/2019:20:37:49] ENGINE Bus EXITING
+[20/Nov/2019:20:37:49] ENGINE Bus EXITED
+[20/Nov/2019:20:37:49] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:20:37:49] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:20:37:50] ENGINE Bus STARTING
+[20/Nov/2019:20:37:50] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:20:37:50] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:20:37:50] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:20:37:50] ENGINE Bus STARTED
+[20/Nov/2019:20:39:19] ENGINE Keyboard Interrupt: shutting down bus
+[20/Nov/2019:20:39:19] ENGINE Bus STOPPING
+[20/Nov/2019:20:39:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:20:39:19] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:20:39:19] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:20:39:19] ENGINE Bus STOPPED
+[20/Nov/2019:20:39:19] ENGINE Bus EXITING
+[20/Nov/2019:20:39:19] ENGINE Bus EXITED
+[20/Nov/2019:20:39:19] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:21:00:55] ENGINE Bus STARTING
+[20/Nov/2019:21:00:55] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:21:00:55] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:21:00:55] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:21:00:55] ENGINE Bus STARTED
+[20/Nov/2019:21:01:22] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_scale/service/r_helper.py changed.
+[20/Nov/2019:21:01:22] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:21:01:22] ENGINE Bus STOPPING
+[20/Nov/2019:21:01:22] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:21:01:22] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:21:01:22] ENGINE Bus STOPPED
+[20/Nov/2019:21:01:22] ENGINE Bus EXITING
+[20/Nov/2019:21:01:22] ENGINE Bus EXITED
+[20/Nov/2019:21:01:22] ENGINE Waiting for child threads to terminate...
+[20/Nov/2019:21:01:22] ENGINE Re-spawning tree_scaling_app.py
+[20/Nov/2019:21:01:23] ENGINE Bus STARTING
+[20/Nov/2019:21:01:23] ENGINE Started monitor thread '_TimeoutMonitor'.
+[20/Nov/2019:21:01:23] ENGINE Started monitor thread 'Autoreloader'.
+[20/Nov/2019:21:01:23] ENGINE Serving on http://0.0.0.0:5056
+[20/Nov/2019:21:01:23] ENGINE Bus STARTED
+[20/Nov/2019:21:16:18] ENGINE Keyboard Interrupt: shutting down bus
+[20/Nov/2019:21:16:18] ENGINE Bus STOPPING
+[20/Nov/2019:21:16:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5056)) shut down
+[20/Nov/2019:21:16:19] ENGINE Stopped thread '_TimeoutMonitor'.
+[20/Nov/2019:21:16:19] ENGINE Stopped thread 'Autoreloader'.
+[20/Nov/2019:21:16:19] ENGINE Bus STOPPED
+[20/Nov/2019:21:16:19] ENGINE Bus EXITING
+[20/Nov/2019:21:16:19] ENGINE Bus EXITED
+[20/Nov/2019:21:16:19] ENGINE Waiting for child threads to terminate...
