@@ -1,4 +1,4 @@
-### Instructions to setup image_info_retrieval app docker. 
+### Instructions to setup tree_scale app docker. 
 
 **1.** Download the directory named *tree_scale*.
 
