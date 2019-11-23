@@ -1,4 +1,4 @@
-### Instructions to setup image_info_retrieval app docker. 
+### Instructions to setup tree_scale app docker. 
 
 **1.** Download the directory named *tree_scale*.
 
@@ -9,7 +9,7 @@ docker build -t tree_scale:v0.0.1 .
 ``
 > To rebuild everything use `--no-cache` at the end of the above command.
 
-> Building the image may take more than 1 hr to finish.
+> *Building the image may take approximately an hour or more to finish.*
 
 **3.** Check whether the docker image *tree_scale* has been built by listing all containers:
 
