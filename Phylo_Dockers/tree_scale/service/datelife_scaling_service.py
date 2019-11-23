@@ -6,7 +6,7 @@ import rpy2.robjects as ro
 #Datelife full script
 script_str = '''
 library(datelife)
-scale_datelife<-function(tree_newick, out_method){ normal_op <- function(){ cleaned_input <-make_datelife_query(input=tree_newick, use_tnrs = FALSE, approximate_match = TRUE,get_spp_from_taxon = FALSE, verbose = FALSE);datelife_result_obj <- get_datelife_result(input=cleaned_input, partial = TRUE, use_tnrs = FALSE, approximate_match = TRUE, update_cache = FALSE, dating_method = "PATHd8", get_spp_from_taxon = FALSE, verbose = FALSE);return (list(scaled_tree=summarize_datelife_result(datelife_query = NULL, datelife_result= datelife_result_obj, summary_format = out_method, partial = TRUE, update_cache = FALSE, summary_print = c("taxa"), verbose = FALSE), message="Success", status_code=200) ) };error_op <- function(err){return ( list(scaled_tree=NA, message=paste("Datelife Error: ", err), status_code=500) )};results <- tryCatch(normal_op(), error=error_op);return(results)};
+scale_datelife<-function(tree_newick, out_method){ normal_op <- function(){ cleaned_input <-make_datelife_query(input=tree_newick, use_tnrs = FALSE, approximate_match = TRUE,get_spp_from_taxon = FALSE, verbose = FALSE);datelife_result_obj <- get_datelife_result(input=cleaned_input, partial = TRUE, use_tnrs = FALSE, approximate_match = TRUE, update_cache = FALSE, get_spp_from_taxon = FALSE, verbose = FALSE);return (list(scaled_tree=summarize_datelife_result(datelife_query = NULL, datelife_result= datelife_result_obj, summary_format = out_method, partial = TRUE, update_cache = FALSE, summary_print = c("taxa"), verbose = FALSE), message="Success", status_code=200) ) };error_op <- function(err){return ( list(scaled_tree=NA, message=paste("Datelife Error: ", err), status_code=500) )};results <- tryCatch(normal_op(), error=error_op);return(results)};
 '''
 
 #--------------------------------------------------
@@ -29,7 +29,7 @@ def scale_tree(tree, method):
 		else:
 			raise Exception(message)
 	except Exception as e:
-		return {'scaled_tree': "", 'message': "R access error: "+str(e), 'status_code': 500}
+		return {'scaled_tree': "", 'message': "Error: "+str(e), 'status_code': 500}
 
 #--------------------------------------------------
 def scale_tree_api(tree_newick, method="median"):
@@ -64,7 +64,7 @@ def scale_tree_api(tree_newick, method="median"):
  	
 	return response
 
-
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #if __name__ == '__main__':
 #	input_tree = "((Zea mays,Oryza sativa),((Arabidopsis thaliana,(Glycine max,Medicago sativa)),Solanum lycopersicum)Pentapetalae);"
 #	print scale_tree_api(input_tree)
