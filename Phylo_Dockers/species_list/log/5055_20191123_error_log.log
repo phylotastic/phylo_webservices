@@ -1,0 +1,103 @@
+[23/Nov/2019:16:58:00] ENGINE Bus STARTING
+[23/Nov/2019:16:58:00] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:16:58:00] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:16:58:00] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:16:58:00] ENGINE Bus STARTED
+[23/Nov/2019:16:59:18] ENGINE Restarting because /home/tayeen/Phylo-Dockers/species_list/list_species_app.py changed.
+[23/Nov/2019:16:59:18] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:16:59:18] ENGINE Bus STOPPING
+[23/Nov/2019:16:59:18] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:16:59:18] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:16:59:18] ENGINE Bus STOPPED
+[23/Nov/2019:16:59:18] ENGINE Bus EXITING
+[23/Nov/2019:16:59:18] ENGINE Bus EXITED
+[23/Nov/2019:16:59:18] ENGINE Waiting for child threads to terminate...
+[23/Nov/2019:16:59:18] ENGINE Re-spawning list_species_app.py
+[23/Nov/2019:16:59:18] ENGINE Bus STARTING
+[23/Nov/2019:16:59:18] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:16:59:18] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:16:59:18] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:16:59:18] ENGINE Bus STARTED
+[23/Nov/2019:16:59:40] ENGINE Restarting because /home/tayeen/Phylo-Dockers/species_list/service/species_list_service.py changed.
+[23/Nov/2019:16:59:40] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:16:59:40] ENGINE Bus STOPPING
+[23/Nov/2019:16:59:40] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:16:59:40] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:16:59:40] ENGINE Bus STOPPED
+[23/Nov/2019:16:59:40] ENGINE Bus EXITING
+[23/Nov/2019:16:59:40] ENGINE Bus EXITED
+[23/Nov/2019:16:59:40] ENGINE Waiting for child threads to terminate...
+[23/Nov/2019:16:59:40] ENGINE Re-spawning list_species_app.py
+[23/Nov/2019:16:59:49] ENGINE Bus STARTING
+[23/Nov/2019:16:59:49] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:16:59:49] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:16:59:49] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:16:59:49] ENGINE Bus STARTED
+[23/Nov/2019:17:00:20] ENGINE Restarting because /home/tayeen/Phylo-Dockers/species_list/service/species_list_service.py changed.
+[23/Nov/2019:17:00:20] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:17:00:20] ENGINE Bus STOPPING
+[23/Nov/2019:17:00:20] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:17:00:20] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:17:00:20] ENGINE Bus STOPPED
+[23/Nov/2019:17:00:20] ENGINE Bus EXITING
+[23/Nov/2019:17:00:20] ENGINE Bus EXITED
+[23/Nov/2019:17:00:20] ENGINE Waiting for child threads to terminate...
+[23/Nov/2019:17:00:20] ENGINE Re-spawning list_species_app.py
+[23/Nov/2019:17:00:21] ENGINE Bus STARTING
+[23/Nov/2019:17:00:21] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:17:00:21] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:17:00:21] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:17:00:21] ENGINE Bus STARTED
+[23/Nov/2019:17:02:02] ENGINE Restarting because /home/tayeen/Phylo-Dockers/species_list/service/species_list_service.py changed.
+[23/Nov/2019:17:02:02] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:17:02:02] ENGINE Bus STOPPING
+[23/Nov/2019:17:02:02] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:17:02:02] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:02] ENGINE Bus STOPPED
+[23/Nov/2019:17:02:02] ENGINE Bus EXITING
+[23/Nov/2019:17:02:02] ENGINE Bus EXITED
+[23/Nov/2019:17:02:02] ENGINE Waiting for child threads to terminate...
+[23/Nov/2019:17:02:02] ENGINE Re-spawning list_species_app.py
+[23/Nov/2019:17:02:03] ENGINE Bus STARTING
+[23/Nov/2019:17:02:03] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:03] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:17:02:03] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:17:02:03] ENGINE Bus STARTED
+[23/Nov/2019:17:02:11] ENGINE Restarting because /home/tayeen/Phylo-Dockers/species_list/service/species_list_service.py changed.
+[23/Nov/2019:17:02:11] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:17:02:11] ENGINE Bus STOPPING
+[23/Nov/2019:17:02:11] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:17:02:11] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:11] ENGINE Bus STOPPED
+[23/Nov/2019:17:02:11] ENGINE Bus EXITING
+[23/Nov/2019:17:02:11] ENGINE Bus EXITED
+[23/Nov/2019:17:02:11] ENGINE Waiting for child threads to terminate...
+[23/Nov/2019:17:02:11] ENGINE Re-spawning list_species_app.py
+[23/Nov/2019:17:02:12] ENGINE Bus STARTING
+[23/Nov/2019:17:02:12] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:12] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:17:02:12] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:17:02:12] ENGINE Bus STARTED
+[23/Nov/2019:17:02:13] ENGINE Keyboard Interrupt: shutting down bus
+[23/Nov/2019:17:02:13] ENGINE Bus STOPPING
+[23/Nov/2019:17:02:13] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:17:02:13] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:13] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:17:02:13] ENGINE Bus STOPPED
+[23/Nov/2019:17:02:13] ENGINE Bus EXITING
+[23/Nov/2019:17:02:13] ENGINE Bus EXITED
+[23/Nov/2019:17:02:13] ENGINE Waiting for child threads to terminate...
+[23/Nov/2019:17:02:16] ENGINE Bus STARTING
+[23/Nov/2019:17:02:16] ENGINE Started monitor thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:16] ENGINE Started monitor thread 'Autoreloader'.
+[23/Nov/2019:17:02:16] ENGINE Serving on http://0.0.0.0:5055
+[23/Nov/2019:17:02:16] ENGINE Bus STARTED
+[23/Nov/2019:17:02:33] ENGINE Keyboard Interrupt: shutting down bus
+[23/Nov/2019:17:02:33] ENGINE Bus STOPPING
+[23/Nov/2019:17:02:33] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5055)) shut down
+[23/Nov/2019:17:02:33] ENGINE Stopped thread '_TimeoutMonitor'.
+[23/Nov/2019:17:02:33] ENGINE Stopped thread 'Autoreloader'.
+[23/Nov/2019:17:02:33] ENGINE Bus STOPPED
+[23/Nov/2019:17:02:33] ENGINE Bus EXITING
+[23/Nov/2019:17:02:33] ENGINE Bus EXITED
+[23/Nov/2019:17:02:33] ENGINE Waiting for child threads to terminate...

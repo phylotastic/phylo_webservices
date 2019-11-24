@@ -1,0 +1,2 @@
+127.0.0.1 - - [23/Nov/2019:17:01:39] "GET /phylotastic_ws/sls/check_db HTTP/1.1" 500 53 "" "curl/7.35.0"
+127.0.0.1 - - [23/Nov/2019:17:02:20] "GET /phylotastic_ws/sls/check_db HTTP/1.1" 200 87 "" "curl/7.35.0"
