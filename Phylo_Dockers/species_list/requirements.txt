@@ -1,4 +1,0 @@
-CherryPy
-requests
-str2bool
-pymongo
