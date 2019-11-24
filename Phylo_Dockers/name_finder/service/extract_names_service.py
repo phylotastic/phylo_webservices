@@ -4,7 +4,7 @@ import time
 import requests
 import re
 import ast
-import urllib
+#import urllib
 import datetime
 import os
 
@@ -20,8 +20,8 @@ def get_sn_url(inputURL, sEngine=0):
         'engine': sEngine	
     }
     
-    encoded_payload = urllib.urlencode(payload)
-    response = requests.get(api_url, params=encoded_payload, headers=headers) 
+    #encoded_payload = urllib.urlencode(payload)
+    response = requests.get(api_url, params=payload, headers=headers) 
     
     scientificNamesList = []
     try: 
@@ -91,10 +91,10 @@ def get_token_result(response_json):
         'token': str_token,
     }
     
-    encoded_payload = urllib.urlencode(payload)
+    #encoded_payload = urllib.urlencode(payload)
     
     while True:
-        token_result = requests.get(api_url, params=encoded_payload, headers=headers)
+        token_result = requests.get(api_url, params=payload, headers=headers)
         result_json = json.loads(token_result.text)
         if token_result.status_code == result_json['status']:
            return result_json 
@@ -142,6 +142,7 @@ def get_sn_text(inputTEXT, sEngine=0):
 #-----------------------------------------------------------
 #get scientific names from file
 def get_sn_file(dir_name, file_name, sEngine=0):
+     
     try:
        file_obj = open(dir_name+file_name, 'rb')
     except IOError:
@@ -151,7 +152,7 @@ def get_sn_file(dir_name, file_name, sEngine=0):
     files = {'file': file_obj}
 
     response = requests.post(api_url, data=payload, files=files)
-    print response.text
+    print (response.text)
     scientificNamesList = []
     
     if response.status_code == requests.codes.ok:    

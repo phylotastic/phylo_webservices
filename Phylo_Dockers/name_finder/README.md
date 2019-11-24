@@ -15,20 +15,23 @@ docker build -t name_finder:v0.0.1 .
 docker images
 ``
 
-**4.**  To use files as input to the app, this docker must mount a local host directory containing the input files and run the docker image using the following command.
+**4.**  To use files as input to the app, this docker must mount a local host directory and run the docker image using the following command.
 
-> Replace the *host-directory* with the complete path of the input directory in localhost.
+> Replace the */tmp* with the complete path of the localhost directory.
 
 ``
-docker run -it --volume <host-directory>:/name_finder/data -p 5050:5050 name_finder:v0.0.1
+docker run -it --volume /tmp:/name_finder/data -p 5050:5050 name_finder:v0.0.1
 ``
 
 > Assuming that the exposed host port is 5050. 
 
 
-**5.** Now test the service using the following commands:
+**5.** Now open a new terminal and test the service using the following commands:
 
 #### Example 1: (input file)
+
+> To test this example, use the terminal to first go to the directory where the input file *scnames.txt* is located and run the command from there.
+
 ``
 curl -X POST 'http://localhost:5050/phylotastic_ws/fn/names_file' -F 'inputFile=@scnames.txt' -F 'engine=2'
 ``

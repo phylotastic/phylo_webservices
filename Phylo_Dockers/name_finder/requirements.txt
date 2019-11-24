@@ -1,3 +1,4 @@
 CherryPy
 requests
 str2bool
+urllib3

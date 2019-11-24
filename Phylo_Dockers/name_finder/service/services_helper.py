@@ -1,7 +1,6 @@
 import requests
 import re
-import urllib2
-from urllib2 import urlopen
+import urllib3
 
 #------------------------------------------------------
 def is_http_url(url):
@@ -17,16 +16,17 @@ def is_http_url(url):
 #---------------------------------------------------------
 def does_url_exist(url):
 	try:
-		code = urlopen(url).code
-	except urllib2.URLError:
+		http = urllib3.PoolManager()
+		r = http.request('GET', url)
+		if (r.status == 200):
+			return True
+		else:
+			return False
+	except Exception:
 		return False
-	if (code == 200):
-		return True
-	else:
-		print False
-
+	
 #=====================================
-#if __name__ == '__main__':
-	#print does_url_exist("https://www.google.com")
-	#print does_url_exist("http://notexist.example.com")
+if __name__ == '__main__':
+	print (does_url_exist("https://www.google.com"))
+	print (does_url_exist("http://notexist.example.com"))
 
