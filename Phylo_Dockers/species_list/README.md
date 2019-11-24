@@ -12,11 +12,12 @@ docker-compose build
 > To rebuild everything use `--no-cache` at the end of the above command.
 
 **4.** Now run the container using the following command.
+
 ``
 docker-compose up
 ``
 
-> When running the docker image for the first time, it will import some seed data into the database and start taking backup of the database weekly (every 604800 seconds). The backup interval can be changed by modifying the `INTERVAL` value in the `start.sh` script which is located inside **mongo-seed** directory.
+> When running the docker image for the first time, it will import some seed data into the database and start taking backup of the database weekly (every 604800 seconds). The backup files will be stored as `.tgz` format in the host directory which is set at step 2. The backup interval can be changed by modifying the `INTERVAL` value in the `start.sh` script which is located inside **mongo-seed** directory.
 
 **5.** Now open a new terminal and test the service using the following commands:
 
@@ -40,7 +41,9 @@ curl -X GET 'http://localhost:5055/phylotastic_ws/sls/get_list'
 ``
 docker-compose build --no-cache
 ``
+
 **4.** Now run the docker container using the following command.
+
 ``
 docker-compose up
 ``
