@@ -3,18 +3,13 @@
 import json
 import time
 import requests
-import types
 import re
 import ast
 import datetime
 
-import r_helper
-import google_dns
-
-import tree_studies_service
-#from requests.packages.urllib3.exceptions import InsecureRequestWarning
-#Suppress warning for using a version of Requests which vendors urllib3 inside
-#requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+from . import r_helper
+from . import google_dns
+from . import tree_studies_service
 #------------------------
 from ete3 import Tree
 from ete3.parser.newick import NewickError
@@ -27,45 +22,31 @@ headers = {'content-type': 'application/json'}
 #input: list (comma separated) of ottids (long)   
 #output: json object with inducedsubtree in newick key and status message in message key
 def get_inducedSubtree(ottIdList):
-    resource_url = api_url + "induced_subtree"    
+ 	resource_url = api_url + "induced_subtree"    
     
-    payload_data = {
+ 	payload_data = {
      	'ott_ids': ottIdList
-    }
-    jsonPayload = json.dumps(payload_data)
+ 	}
+ 	jsonPayload = json.dumps(payload_data)
     
-    #----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool due to DNS resolver problem--------
-    #+++++++++++Solution 1++++++++++++++++
-    #max_tries = 20
-    #remaining_tries = max_tries
-    #while remaining_tries > 0:
-    #    try:
-    #        response = requests.post(resource_url, data=jsonPayload, headers=headers)
-    #        break
-    #    except requests.exceptions.ConnectionError:
-    #        time.sleep(20)
-    #    remaining_tries = remaining_tries - 1
-    #+++++++++++++++++++++++++++++++++++++++
-    
-    #+++++++++++Solution 2++++++++++++++++
-    try: 
-       response = requests.post(resource_url, data=jsonPayload, headers=headers)
-    except requests.exceptions.ConnectionError:
-       alt_url = google_dns.alt_service_url(resource_url)
-       response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
+ 	try: 
+ 		response = requests.post(resource_url, data=jsonPayload, headers=headers)
+ 	except requests.exceptions.ConnectionError:
+ 		alt_url = google_dns.alt_service_url(resource_url)
+ 		response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
     #----------------------------------------------
 
-    newick_tree_str = ""
-    studies = ""
-    inducedtree_info = {}
+ 	newick_tree_str = ""
+ 	studies = ""
+ 	inducedtree_info = {}
 
-    if response.status_code == requests.codes.ok:
+ 	if response.status_code == requests.codes.ok:
  		data_json = json.loads(response.text)
  		newick_tree_str = data_json['newick']
  		studies = data_json['supporting_studies']		
  		inducedtree_info['message'] = "Success"
  		inducedtree_info['status_code'] = 200
-    else:
+ 	else:
  		try: 
  			error_msg = str(response.text)
  			if 'node_id' in error_msg:
@@ -78,22 +59,22 @@ def get_inducedSubtree(ottIdList):
  			else:
  				error_json = json.loads(error_msg)
  				error_msg = error_json['message']
- 		 		inducedtree_info['message'] = "OpenTreeofLife API Error: " + error_msg
+ 				inducedtree_info['message'] = "OpenTreeofLife API Error: " + error_msg
          	
  		except Exception as e:
  			inducedtree_info['message'] =  "OpenTreeofLife API Error: " + str(e)
      		 	
-    inducedtree_info['status_code'] = response.status_code
+ 	inducedtree_info['status_code'] = response.status_code
 
-    inducedtree_info['newick'] = newick_tree_str
-    inducedtree_info['studies'] = studies
+ 	inducedtree_info['newick'] = newick_tree_str
+ 	inducedtree_info['studies'] = studies
  	
-    return inducedtree_info
+ 	return inducedtree_info
 
 #-------------------------------------------------------
 def subtree(ottidList):   
  	induced_response = get_inducedSubtree(ottidList)
- 	while type(induced_response) == types.ListType: 
+ 	while type(induced_response) is list: 
  		induced_response = get_inducedSubtree(induced_response)    
  
  	return induced_response 
@@ -128,7 +109,7 @@ def get_tree_OT(resolvedNames, include_studies=False, include_ottid=True):
  				response['newick'] = ""
  				response['message'] = "Error: wrong TNRS. Need to resolve with OpenTreeofLife TNRS"
  				response['status_code'] = 500
- 			 	return response
+ 				return response
  			     
     #get induced_subtree
  	final_result = {} 
@@ -148,7 +129,9 @@ def get_tree_OT(resolvedNames, include_studies=False, include_ottid=True):
  		#newick_str = nw_str.replace('_', " ")
 
  	#remove singleton nodes from tree
- 	final_nwk_str = r_helper.remove_singleton(newick_str)
+ 	final_nwk_bytes = r_helper.remove_singleton(newick_str)
+ 	final_nwk_str = str(final_nwk_bytes, 'utf-8') #convert a Python 3 byte-string variable into a regular string
+ 	#print (type(final_nwk_str))
  	if final_nwk_str is None: #R function did not work
  		final_nwk_str = newick_str
  	
@@ -182,7 +165,6 @@ def get_tree_OT(resolvedNames, include_studies=False, include_ottid=True):
  	meta_data = {}
  	meta_data['creation_time'] = creation_time
  	meta_data['execution_time'] = float("{:4.2f}".format(execution_time))
- 	#meta_data['service_documentation'] = service_documentation
  	meta_data['source_urls'] = ["https://github.com/OpenTreeOfLife/opentree/wiki/Open-Tree-of-Life-APIs#tree_of_life"]
 
  	final_result['meta_data'] = meta_data  
@@ -221,7 +203,6 @@ def get_tree_version():
  	resource_url = api_url + "about"    
     
  	#----------TO handle requests.exceptions.ConnectionError: HTTPSConnectionPool--------------
-    #+++++++++++Solution 2++++++++++++++++
  	try: 
  		response = requests.post(resource_url)
  	except requests.exceptions.ConnectionError:

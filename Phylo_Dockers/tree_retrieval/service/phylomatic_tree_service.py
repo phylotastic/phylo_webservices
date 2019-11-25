@@ -1,10 +1,9 @@
 import requests
-import urllib
 import json
 import time
 import datetime
 
-import google_dns
+from . import google_dns
 
 #----------------------------------------
 megatree_plants = ["R20120829", "smith2011", "zanne2014", "silk2015"]
@@ -25,9 +24,8 @@ def get_phylomatic_tree(megatree_id, taxa):
  		'clean': "true",
  		'taxa': taxa       
 	}
- 	encoded_payload = urllib.urlencode(payload)
- 
- 	response = requests.post(api_url, data=encoded_payload) 
+ 	
+ 	response = requests.post(api_url, data=payload) 
   	
  	phylomatic_response = {}
  	
@@ -141,8 +139,8 @@ def tree_controller(taxaList):
  				context_name = cname
  				break
  		context_l = context_name.lower()
-	else:
-		context_l = ""
+ 	else:
+ 		context_l = ""
 
  	#find megatree corresponding to this list	
  	if  context_l == "animals":
@@ -181,7 +179,7 @@ def tree_controller(taxaList):
  	creation_time = datetime.datetime.now().isoformat()
  	source_urls = ["http://phylodiversity.net/phylomatic/"]
  	
-	meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': source_urls} #'service_documentation': service_documentation
+ 	meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': source_urls} 
  	final_result['meta_data'] = meta_data 
  	final_result['input_taxa'] = taxaList 	 
 

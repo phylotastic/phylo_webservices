@@ -10,7 +10,6 @@ import json
 import os
 import sys
 import collections
-import types
 
 from cherrypy import tools
 from str2bool import str2bool
@@ -90,12 +89,12 @@ class Get_Tree_OpenTree_Service_API(object):
             include_ottid = True
             if request_data is not None and 'studies' in request_data:
                include_metadata = str(request_data['studies']).strip()
-               if type(include_metadata) != types.BooleanType:
+               if type(include_metadata) is not bool:
                   include_metadata = str2bool(include_metadata)
 
             if request_data is not None and 'ottid' in request_data:
                include_ottid = str(request_data['ottid']).strip()
-               if type(include_ottid) != types.BooleanType:
+               if type(include_ottid) is not bool:
                   include_ottid = str2bool(include_ottid)
 
             if len(taxalist) == 1 and '' in taxalist: 
@@ -104,11 +103,11 @@ class Get_Tree_OpenTree_Service_API(object):
             if len(taxalist) > 2000: 
                return return_response_error(403,"Error: Currently more than 2000 taxa is not supported","JSON")
 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)),"JSON")
         
         try:
@@ -121,7 +120,7 @@ class Get_Tree_OpenTree_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====OToLTreeGetError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -142,7 +141,7 @@ class Get_Tree_OpenTree_Service_API(object):
                 raise KeyError("taxa")
             elif 'taxa' in input_json and 'resolvedNames' not in input_json:
                 taxalist = input_json["taxa"]
-                if type(taxalist) != types.ListType:
+                if type(taxalist) is not list:
                    return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON")
 
                 if len(taxalist) == 0 and 'resolvedNames' not in input_json: 
@@ -152,18 +151,18 @@ class Get_Tree_OpenTree_Service_API(object):
                    return return_response_error(403,"Error: Currently more than 2000 names is not supported","JSON")
             if 'studies' in input_json:		
                  include_metadata = input_json['studies']
-                 if type(include_metadata) != types.BooleanType:
+                 if type(include_metadata) is not bool:
                     include_metadata = str2bool(include_metadata)
             if 'ottid' in input_json:		
                  include_ottid = input_json['ottid']
-                 if type(include_ottid) != types.BooleanType:
+                 if type(include_ottid) is not bool:
                     include_ottid = str2bool(include_ottid)	 
 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -182,7 +181,7 @@ class Get_Tree_OpenTree_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====OToLTreePostError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -213,11 +212,11 @@ class Get_Tree_Phylomatic_Service_API(object):
             if len(taxalist) > 1000: 
                return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)),"JSON")
 
         try:                
@@ -228,7 +227,7 @@ class Get_Tree_Phylomatic_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====PhylomaticTreeGetError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -247,7 +246,7 @@ class Get_Tree_Phylomatic_Service_API(object):
                 raise KeyError("taxa")
             elif 'taxa' in input_json and 'resolvedNames' not in input_json:
                 taxalist = input_json["taxa"]
-                if type(taxalist) != types.ListType:
+                if type(taxalist) is not list:
                    return return_response_error(400,"Error: 'taxa' parameter must be of list type","JSON")
 
                 if len(taxalist) == 0 and 'resolvedNames' not in input_json: 
@@ -256,11 +255,11 @@ class Get_Tree_Phylomatic_Service_API(object):
                 if len(taxalist) > 1000: 
                    return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON") 
   				 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -279,7 +278,7 @@ class Get_Tree_Phylomatic_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====PhylomaticTreePostError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 

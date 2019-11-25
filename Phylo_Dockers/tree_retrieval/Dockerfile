@@ -1,9 +1,13 @@
-FROM rocker/verse:3.5.0
+FROM r-base:latest
 
-RUN apt-get -y update -qq && apt-get install -y python-pip python-dev build-essential
+RUN apt-get -y update -qq && apt-get install -y --no-install-recommends \
+    libgsl0-dev libssl-dev libffi-dev zlib1g-dev libxml2-dev libcurl4-openssl-dev libxslt1-dev libreadline-dev python3-pip python3-dev
 
-RUN apt-get install -y --no-install-recommends \
-    libgsl0-dev libssl-dev libffi-dev zlib1g-dev libxml2-dev libxslt1-dev libreadline-dev
+RUN \
+  python3 -m pip install --no-cache-dir --upgrade pip && \
+  python3 -m pip install --no-cache-dir --upgrade setuptools && \
+  python3 -m pip install --no-cache-dir --upgrade wheel && \
+  rm -rf /root/.cache
 
 # Set the working directory to /app
 WORKDIR /tree_retrieval
@@ -20,4 +24,4 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 5052
 
 # Run app.py when the container launches
-CMD ["python", "get_tree_app.py"]
+CMD ["python3", "get_tree_app.py"]

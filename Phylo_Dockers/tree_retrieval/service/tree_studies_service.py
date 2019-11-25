@@ -3,8 +3,8 @@ import json
 import time
 import requests
 import datetime
-#import urllib
-import google_dns
+
+from . import google_dns
 
 #===================================
 headers = {'content-type': 'application/json'}
@@ -82,7 +82,7 @@ def get_study_info(studyid):
         
         if (len(result_data_json['matched_studies']) == 0):
            studyinfo_result['message'] =  "No matching study found"
-     	   studyinfo_result['status_code'] = 200
+           studyinfo_result['status_code'] = 200
         else: 
            if ('ot:studyPublicationReference' in result_data_json['matched_studies'][0]):
               studyinfo_result['Publication'] = result_data_json['matched_studies'][0]['ot:studyPublicationReference']
@@ -118,7 +118,7 @@ def get_study_info(studyid):
               studyinfo_result['CandidateTreeForSynthesis'] = ""
         
         studyinfo_result['message'] =  "Success"
-     	studyinfo_result['status_code'] = 200
+        studyinfo_result['status_code'] = 200
     else:    
         if 'message' in result_data_json:
            studyinfo_result['message'] = "OpenTree Error: "+result_data_json['message']

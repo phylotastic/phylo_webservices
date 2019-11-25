@@ -23,7 +23,7 @@ def ip_address_matcher(text):
 #---------------------------------------------------------
 def get_ip_address(service_root): 
 	ip_address = None
-	#print ("Using alternate DNS for %s"%service_root)
+	print ("Using alternate DNS for %s"%service_root)
 	dns_url = "https://dns.google.com/resolve"
 	payload = {'name': service_root}
 	
@@ -34,7 +34,7 @@ def get_ip_address(service_root):
 		for ans in answers:
 			ans_data = ans['data']
 			if ip_address_matcher(ans_data):
-	 			ip_address = ans_data
+				ip_address = ans_data
 				break
 	
 	return ip_address
@@ -54,7 +54,7 @@ def alt_service_url(service_url):
 	alt_api_url = service_url[:slash_pos[1]+1] + ip_address + service_url[slash_pos[2]: ]
 
 	#resp = requests.post(api_url, data=json.dumps(service_payload), headers={'Content-Type': "application/json"}, verify=False)
- 	return alt_api_url
+	return alt_api_url
 
 #=====================================
 #if __name__ == '__main__':
