@@ -22,7 +22,7 @@ docker images
 docker run -p 5051:5051 name_resolver:v0.0.1
 ``
 
-**5.** Now test the service using the following commands:
+**5.** Now open a new terminal and test the service using the following commands:
 
 #### Example 1: 
 ``
