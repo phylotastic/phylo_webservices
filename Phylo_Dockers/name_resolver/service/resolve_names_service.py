@@ -4,15 +4,13 @@ import time
 import requests
 import re
 import ast
-import urllib
 import datetime
 import types
 
-import google_dns
+from . import google_dns
 #-------------------------------------------------------------------
 api_url = "https://resolver.globalnames.org/name_resolvers.json?"
 headers = {'content-type': 'application/json'}
-#base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/tnrs/"
 
 #~~~~~~~~~~~~~~~~~~~~ (GlobalNamesResolver-TNRS)~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #resolve scientific names
@@ -52,12 +50,12 @@ def resolve_sn_gnr(scNames, do_fuzzy_match, multi_match):
                 if float(match['score']) >= 0.75:
                    rsname = match['canonical_form']
        	           namesList['search_string'] = input_name
-            	   namesList['matched_name'] =  rsname
-            	   namesList['match_type'] = 'Exact' if match['match_type'] == 1 else 'Fuzzy'
+                   namesList['matched_name'] =  rsname
+                   namesList['match_type'] = 'Exact' if match['match_type'] == 1 else 'Fuzzy'
                    namesList['data_source'] = match['data_source_title']      
-            	   namesList['synonyms'] = []
+                   namesList['synonyms'] = []
                    namesList['match_score'] = match['score']  
-            	   namesList['taxon_id'] = match['taxon_id']		
+                   namesList['taxon_id'] = match['taxon_id']		
                    mult_matches_list.append(namesList)	
                 if not(multi_match) and do_fuzzy_match: 
                    break
@@ -137,8 +135,8 @@ def resolve_sn_iplant(scNames, do_fuzzy_match, multi_match):
         'retrieve': match_type
     }
     
-    encoded_payload = urllib.urlencode(payload)
-    response = requests.get(iplant_api_url, params=encoded_payload) 
+    #encoded_payload = urllib.urlencode(payload)
+    response = requests.get(iplant_api_url, params=payload) 
     #print response.text
     
     resolvedNamesList = [] 
@@ -344,22 +342,22 @@ def resolve_names_GNR(inputNamesList, do_fuzzy_match, multi_match):
     start_time = time.time()
 
     if len(inputNamesList) > list_size:
- 		sublists = create_sublists(inputNamesList, list_size)
+        sublists = create_sublists(inputNamesList, list_size)
  		#print "Number of sublists: %d"%len(sublists)
- 		for sublst in sublists:
- 			api_friendly_list = make_api_friendly_list(inputNamesList)
- 			resolvedResult = resolve_sn_gnr(api_friendly_list, do_fuzzy_match, multi_match)
- 			resolvedNameslst = resolvedResult['resolvedNames']
+        for sublst in sublists:
+            api_friendly_list = make_api_friendly_list(inputNamesList)
+            resolvedResult = resolve_sn_gnr(api_friendly_list, do_fuzzy_match, multi_match)
+            resolvedNameslst = resolvedResult['resolvedNames']
     		 
-    		if resolvedResult['status_code'] != 200:
-    			return {'status_code': resolvedResult['status_code'], 'message': resolvedResult['message']}
-    		resolver_result.extend(resolvedNameslst)  
+            if resolvedResult['status_code'] != 200:
+               return {'status_code': resolvedResult['status_code'], 'message': resolvedResult['message']}
+            resolver_result.extend(resolvedNameslst)  
     else:
         api_friendly_list = make_api_friendly_list(inputNamesList)	
         resolvedResult = resolve_sn_gnr(api_friendly_list, do_fuzzy_match, multi_match)
-    	resolver_result = resolvedResult['resolvedNames']
-    	status_code = resolvedResult['status_code']
-    	message = resolvedResult['message']
+        resolver_result = resolvedResult['resolvedNames']
+        status_code = resolvedResult['status_code']
+        message = resolvedResult['message']
      
     result_len = len(resolver_result)
     if result_len <= 0 and status_code == 200:
@@ -393,7 +391,6 @@ def resolve_names_iPlant(inputNamesList, do_fuzzy_match, multi_match):
     if result_len <= 0 and final_result['status_code'] == 200:
         final_result['message'] = "Could not resolve any name"
 
-    #service_documentation = ""
     #service result creation time
     creation_time = datetime.datetime.now().isoformat()
     meta_data = {'creation_time': creation_time, 'execution_time': float("{:4.2f}".format(execution_time)), 'source_urls': ["http://tnrs.iplantcollaborative.org"] }
@@ -405,16 +402,14 @@ def resolve_names_iPlant(inputNamesList, do_fuzzy_match, multi_match):
     return final_result
     
 #-------------------------------------------------
-if __name__ == '__main__':
+#if __name__ == '__main__':
 
     #inputList = ["Formica polyctena", "Tetramorium caespitum","Carebara diversa", "Formicinae"]
     #inputList = ["Setophaga plambea", "Setophaga angilae", "Setophaga magnolia", "Setophaga strieta", "Setophaga virens"]
-    inputList = ["Dionaea muscipula", "Sarracenia", "Darlingtonia californica", "Drosera", "Pinguicula", "Utricularia", "Roridulaceae"]
+    #inputList = ["Dionaea muscipula", "Sarracenia", "Darlingtonia californica", "Drosera", "Pinguicula", "Utricularia", "Roridulaceae"]
     #inputList = ["Ran Temporaria"]
     #result = resolve_names_GNR(inputList, True, True)    
+    #result = resolve_names_OT(inputList, True, True)
     #print result
-    
-    result = resolve_names_OT(inputList, True, True)
-    print result
     
        

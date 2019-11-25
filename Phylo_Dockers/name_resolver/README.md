@@ -26,7 +26,7 @@ docker run -p 5051:5051 name_resolver:v0.0.1
 
 #### Example 1: 
 ``
-curl -X GET 'http://localhost:5051/phylotastic_ws/tnrs/ot/resolve?names=Formica polyctena|Formica exsectoides|Formica pecefica'
+curl -X GET 'http://localhost:5051/phylotastic_ws/tnrs/ot/resolve?names=Formica%20polyctena|Formica%20exsectoides|Formica%20pecefica%27'
 ``
 
 #### Example 2: 

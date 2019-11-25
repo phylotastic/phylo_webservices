@@ -10,15 +10,11 @@ import json
 import os
 import sys
 import collections
-import datetime 
-import types
 
 from cherrypy import tools
 from str2bool import str2bool
 
 from service import resolve_names_service
-
-#from __builtin__ import True
 
 #==============================================================
 
@@ -93,23 +89,23 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             match_type = False
             if request_data is not None and 'fuzzy_match' in request_data:
                match_type = str(request_data['fuzzy_match']).strip()
-               if type(match_type) != types.BooleanType:
+               if type(match_type) is not bool:
                   match_type = str2bool(match_type)
                
             multi_match = False
             if request_data is not None and 'multiple_match' in request_data:
                multi_match = str(request_data['multiple_match']).strip()
-               if type(multi_match) != types.BooleanType:
+               if type(multi_match) is not bool:
                   multi_match = str2bool(multi_match)
             
             if len(nameslist) > 3000: 
                return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)),"JSON")
         
         try:
@@ -121,7 +117,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====ResolveNamesOTGetError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -136,7 +132,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
 
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
-            if type(nameslist) != types.ListType:
+            if type(nameslist) is not list:
                return return_response_error(400,"Error: 'scientificNames' parameter must be of list type","JSON")    
      
             if len(nameslist) == 0: 
@@ -145,23 +141,23 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             match_type = False
             if 'fuzzy_match' in input_json:
                match_type = input_json['fuzzy_match']
-               if type(match_type) != types.BooleanType:
+               if type(match_type) is not bool:
                   match_type = str2bool(match_type)
                   
             multi_match = False
             if 'multiple_match' in input_json:
                multi_match = input_json['multiple_match']
-               if type(multi_match) != types.BooleanType:
+               if type(multi_match) is not bool:
                   multi_match = str2bool(multi_match)
 
             if len(nameslist) > 3000: 
                return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
    				 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -171,7 +167,7 @@ class Resolve_ScientificNames_OpenTree_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====ResolveNamesOTPostError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -202,23 +198,23 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             match_type = False
             if request_data is not None and 'fuzzy_match' in request_data:
                match_type = str(request_data['fuzzy_match']).strip()
-               if type(match_type) != types.BooleanType:
+               if type(match_type) is not bool:
                   match_type = str2bool(match_type)
 
             multi_match = False
             if request_data is not None and 'multiple_match' in request_data:
                multi_match = str(request_data['multiple_match']).strip()
-               if type(multi_match) != types.BooleanType:
+               if type(multi_match) is not bool:
                   multi_match = str2bool(multi_match)   
             
             if len(nameslist) > 3000: 
                return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)),"JSON")
         
         try:
@@ -229,7 +225,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====ResolveNamesGNRGetError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -244,7 +240,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
 
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
-            if type(nameslist) != types.ListType:
+            if type(nameslist) is not list:
                return return_response_error(400,"Error: 'scientificNames' parameter must be of list type","JSON")
 
             if len(nameslist) == 0: 
@@ -253,23 +249,23 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             match_type = False
             if 'fuzzy_match' in input_json:
                match_type = input_json['fuzzy_match']
-               if type(match_type) != types.BooleanType:
+               if type(match_type) is not bool:
                   match_type = str2bool(match_type)
 
             multi_match = False      
             if 'multiple_match' in input_json:
                multi_match = input_json['multiple_match']
-               if type(multi_match) != types.BooleanType:
+               if type(multi_match) is not bool:
                   multi_match = str2bool(multi_match)
                
             if len(nameslist) > 3000: 
                return return_response_error(403,"Error: Currently more than 3000 names is not supported","JSON")
    				 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -279,7 +275,7 @@ class Resolve_ScientificNames_GNR_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====ResolveNamesGNRPostError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -310,23 +306,23 @@ class Resolve_ScientificNames_iPLant_Service_API(object):
             match_type = False
             if request_data is not None and 'fuzzy_match' in request_data:
                match_type = str(request_data['fuzzy_match']).strip()
-               if type(match_type) != types.BooleanType:
+               if type(match_type) is not bool:
                   match_type = str2bool(match_type)
 
             multi_match = False
             if request_data is not None and 'multiple_match' in request_data:
                multi_match = str(request_data['multiple_match']).strip()
-               if type(multi_match) != types.BooleanType:
+               if type(multi_match) is not bool:
                   multi_match = str2bool(multi_match)   
             
             if len(nameslist) > 500: 
                return return_response_error(403,"Error: Currently more than 500 names is not supported","JSON")
 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)),"JSON")
         
         try:
@@ -336,7 +332,7 @@ class Resolve_ScientificNames_iPLant_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====ResolveNamesiPlantGetError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -351,7 +347,7 @@ class Resolve_ScientificNames_iPLant_Service_API(object):
 
             input_json = cherrypy.request.json
             nameslist = input_json["scientificNames"]
-            if type(nameslist) != types.ListType:
+            if type(nameslist) is not list:
                return return_response_error(400,"Error: 'scientificNames' parameter must be of list type","JSON")
 
             if len(nameslist) == 0: 
@@ -360,23 +356,23 @@ class Resolve_ScientificNames_iPLant_Service_API(object):
             match_type = False
             if 'fuzzy_match' in input_json:
                match_type = input_json['fuzzy_match']
-               if type(match_type) != types.BooleanType:
+               if type(match_type) is not bool:
                   match_type = str2bool(match_type)
 
             multi_match = False      
             if 'multiple_match' in input_json:
                multi_match = input_json['multiple_match']
-               if type(multi_match) != types.BooleanType:
+               if type(multi_match) is not bool:
                   multi_match = str2bool(multi_match)
                
             if len(nameslist) > 1000: 
                return return_response_error(403,"Error: Currently more than 1000 names is not supported","JSON")
    				 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -386,7 +382,7 @@ class Resolve_ScientificNames_iPLant_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====ResolveNamesiPlantPostError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
