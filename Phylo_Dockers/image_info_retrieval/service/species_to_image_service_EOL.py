@@ -4,14 +4,25 @@ import json
 import requests
 import time
 import datetime 
-import urllib
+import configparser
+
+from os.path import dirname, abspath
 
 #----------------------------------------------
-EOL_API_Key = "b6499be78b900c60fb28d38715650e826240ba7b"
 headers = {'content-type': 'application/json'}
+#------------------------------------------
+def get_api_key():
+	config = configparser.ConfigParser()
+	current_dir = dirname(abspath(__file__))
+	config.read(current_dir + "/"+ "service.cfg")
+	
+	eol_api_key = config.get('EOL', 'api_key')
+
+	return eol_api_key
 
 #----------------------------------------------
 def match_species(speciesName):
+ 	EOL_API_Key = get_api_key()
  	search_url = "http://eol.org/api/search/1.0.json"    
  	payload = {
  		'key': EOL_API_Key,
@@ -23,8 +34,8 @@ def match_species(speciesName):
  		'filter_by_string': "", 
  		'cache_ttl': ""
     }
- 	encoded_payload = urllib.urlencode(payload)
- 	response = requests.get(search_url, params=encoded_payload, headers=headers) 
+ 	#encoded_payload = urllib.urlencode(payload)
+ 	response = requests.get(search_url, params=payload, headers=headers) 
     
  	numResults = 0
  	eol_response = {}
@@ -46,6 +57,7 @@ def match_species(speciesName):
 
 #--------------------------------------------   
 def get_species_info(speciesId):
+ 	EOL_API_Key = get_api_key()
  	page_url = "http://eol.org/api/pages/1.0/" + str(speciesId) +".json"    
  	payload = {
  		'key': EOL_API_Key,
@@ -73,8 +85,8 @@ def get_species_info(speciesId):
  		'cache_ttl': "", 
  		'language': "en"
     }
- 	encoded_payload = urllib.urlencode(payload)
- 	response = requests.get(page_url, params=encoded_payload, headers=headers) 
+ 	#encoded_payload = urllib.urlencode(payload)
+ 	response = requests.get(page_url, params=payload, headers=headers) 
     
  	if response.status_code == requests.codes.ok:    
  		species_info_json = json.loads(response.text)
@@ -103,7 +115,7 @@ def create_image_obj(dataObject):
  	image_obj['eolMediaURL'] = dataObject['eolMediaURL']
  	image_obj['eolThumbnailURL'] = dataObject['eolThumbnailURL']
  	image_obj['license'] = dataObject['license']
- 	if dataObject.has_key('rightsHolder'):
+ 	if 'rightsHolder' in dataObject:
  		image_obj['rightsHolder'] = dataObject['rightsHolder']
  	else:
  		image_obj['rightsHolder'] = ""
@@ -129,7 +141,7 @@ def get_images_species(inputSpeciesList, post=False):
  			species_obj['matched_name'] = ""
  			species_obj['total_images'] = 0
  		else: 	
- 		 	species_info_json = get_species_info(species_id)
+ 			species_info_json = get_species_info(species_id)
  			if species_info_json is None:
  				return { 'status_code': 500, 'message': "Error: Response error from EOL while retrieving data objects"}
  			else:
@@ -176,7 +188,7 @@ def get_image_species_id(species_id, post=False):
  		if length != 0:
  			images_species = get_imageObjects(dataObjects_lst)
  		else:
-			images_species = []
+ 			images_species = []
 
  		species_obj['images'] = images_species
  	else:

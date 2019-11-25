@@ -3,14 +3,27 @@ import json
 import requests
 import time
 import datetime 
-import urllib
+import configparser
+
+from os.path import dirname, abspath
 
 #----------------------------------------------
-EOL_API_Key = "b6499be78b900c60fb28d38715650e826240ba7b"
 headers = {'content-type': 'application/json'}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#------------------------------------------
+def get_api_key():
+	config = configparser.ConfigParser()
+	current_dir = dirname(abspath(__file__))
+	config.read(current_dir + "/"+ "service.cfg")
+	
+	eol_api_key = config.get('EOL', 'api_key')
+
+	return eol_api_key
 
 #----------------------------------------------
 def match_species(speciesName):
+ 	EOL_API_Key = get_api_key()
  	search_url = "http://eol.org/api/search/1.0.json"    
  	payload = {
  		'key': EOL_API_Key,
@@ -22,8 +35,8 @@ def match_species(speciesName):
  		'filter_by_string': "", 
  		'cache_ttl': ""
     }
- 	encoded_payload = urllib.urlencode(payload)
- 	response = requests.get(search_url, params=encoded_payload, headers=headers) 
+ 	#encoded_payload = urllib.urlencode(payload)
+ 	response = requests.get(search_url, params=payload, headers=headers) 
 
  	numResults = 0    
  	data_json = {}
@@ -59,7 +72,7 @@ def get_eolurls_species(inputSpeciesList, post=False):
  			species_obj['eol_id'] = match_species_json['results'][0]['id']			
  			species_obj['species_info_link'] = species_info_link 
  		else: 
-			return match_species_json	
+ 			return match_species_json	
  		outputSpeciesList.append(species_obj)	
  	
  	end_time = time.time()

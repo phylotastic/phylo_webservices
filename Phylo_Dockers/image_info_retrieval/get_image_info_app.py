@@ -10,7 +10,6 @@ import json
 import os
 import sys
 import collections
-import types
 
 from cherrypy import tools
 from str2bool import str2bool
@@ -19,9 +18,6 @@ from service import species_to_image_service_EOL
 from service import species_to_url_service_EOL
 
 #==============================================================
-logDbName = "WSLog"
-logCollectionName = "log"
-conn = None
 
 WebService_Group1 = "si"
 WebService_Group2 = "sl"
@@ -96,11 +92,11 @@ class Species_Image_Service_API(object):
             if len(specieslist) > 60: 
                return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")
             
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -113,7 +109,7 @@ class Species_Image_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====SpeciesGetImageError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -127,7 +123,7 @@ class Species_Image_Service_API(object):
             result_json = json.loads(service_result)
             return service_result
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====GetImageError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -143,7 +139,7 @@ class Species_Image_Service_API(object):
             input_json = cherrypy.request.json
             
             species_list = input_json["species"]
-            if type(species_list) != types.ListType:
+            if type(species_list) is not list:
                return return_response_error(400,"Error: 'species' parameter must be of list type","JSON")
 
             if len(species_list) == 0: 
@@ -151,11 +147,11 @@ class Species_Image_Service_API(object):
             if len(species_list) > 60: 
                return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")
         
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -167,7 +163,7 @@ class Species_Image_Service_API(object):
             else:
                return return_response_error(result_json['status_code'], result_json['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====SpeciesPostImageError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -199,11 +195,11 @@ class Species_Url_Service_API(object):
             if len(species_list) > 60: 
                return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")
             
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")   
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -214,7 +210,7 @@ class Species_Url_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====SpeciesGetLinkError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
 
@@ -229,18 +225,18 @@ class Species_Url_Service_API(object):
 
             input_json = cherrypy.request.json
             species_list = input_json["species"]
-            if type(species_list) != types.ListType:
+            if type(species_list) is not list:
                return return_response_error(400,"Error: 'species' parameter must be of list type","JSON")
 
             if len(species_list) == 0: 
                raise CustomException("'species' parameter must have a valid value")
             if len(species_list) > 60: 
                return return_response_error(403,"Error: Currently more than 60 species is not supported","JSON")   				 
-        except KeyError, e:
+        except KeyError as e:
             return return_response_error(400,"Error: Missing parameter %s"%(str(e)),"JSON")
-        except CustomException, e:
+        except CustomException as e:
             return return_response_error(400,"Error: %s"%(str(e)),"JSON")     
-        except Exception, e:
+        except Exception as e:
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")
         
         try:
@@ -251,7 +247,7 @@ class Species_Url_Service_API(object):
             else:
                return return_response_error(service_result['status_code'], service_result['message'], "JSON")
 
-        except Exception, e:
+        except Exception as e:
             cherrypy.log("=====SpeciesPostLinkError=====", traceback=True)
             return return_response_error(500,"Error: %s"%(str(e)), "JSON")   
         

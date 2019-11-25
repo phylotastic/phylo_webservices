@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:2.7.15-stretch
+FROM python:3
 
 # Set the working directory to /app
 WORKDIR /image_info_retrieval
@@ -14,5 +14,5 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 5054
 
 # Run app.py when the container launches
-CMD ["python", "get_image_info_app.py"]
+CMD ["python3", "get_image_info_app.py"]
 
