@@ -1,0 +1,38 @@
+version: '3.3'
+
+volumes:
+  backup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /tmp/backups
+
+services:
+
+  mongodb:
+    image: mongo
+    ports:
+       - 27017
+
+  mongo-seed:
+    build: ./mongo-seed
+    depends_on:
+       - mongodb
+    image: mongo-seed
+    links:
+       - mongodb
+    volumes:
+       - backup:/backups    
+
+  web:
+    build: .
+    image: taxon_species:v0.0.1
+    links:
+      - mongodb
+    depends_on:
+       - mongodb
+       - mongo-seed
+    ports:
+       - 5053:5053
+
