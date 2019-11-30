@@ -21,6 +21,7 @@ The services available in each group are listed below:
 | *image_info_retrieval* | Image_url_species, Info_url_species|
 | *name_converter* | NCBI_common_name, EBI_commmon_name, ITIS_common_name, TROPICOS_commmon_name, GNR_scientific_name, EOL_scientific_name, NCBI_scientific_name|
 | *species_list*   | Add_new_list, Get_list, Replace_species_list, Update_metadata_list, Remove_list|
+| *tree_info*   | Compare_trees, OToL_supported_studies_info, OToL_common_Tree|
 
 
 > Details about the services can be found [here](https://github.com/phylotastic/phylo_services_docs/tree/master/ServiceDescription#servicesdocumentation).
