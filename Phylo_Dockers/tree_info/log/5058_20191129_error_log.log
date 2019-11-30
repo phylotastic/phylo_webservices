@@ -1,0 +1,12 @@
+[29/Nov/2019:21:40:18] ENGINE Bus STARTING
+[29/Nov/2019:21:40:18] ENGINE Started monitor thread 'Autoreloader'.
+[29/Nov/2019:21:40:19] ENGINE Serving on http://0.0.0.0:5058
+[29/Nov/2019:21:40:19] ENGINE Bus STARTED
+[29/Nov/2019:21:40:43] ENGINE Keyboard Interrupt: shutting down bus
+[29/Nov/2019:21:40:43] ENGINE Bus STOPPING
+[29/Nov/2019:21:40:43] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5058)) shut down
+[29/Nov/2019:21:40:43] ENGINE Stopped thread 'Autoreloader'.
+[29/Nov/2019:21:40:43] ENGINE Bus STOPPED
+[29/Nov/2019:21:40:43] ENGINE Bus EXITING
+[29/Nov/2019:21:40:43] ENGINE Bus EXITED
+[29/Nov/2019:21:40:43] ENGINE Waiting for child threads to terminate...
