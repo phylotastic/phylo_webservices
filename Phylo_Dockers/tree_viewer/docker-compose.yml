@@ -1,0 +1,54 @@
+version: '3.3'
+
+volumes:
+  backup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/tayeen/backups
+
+services:
+
+  mongodb:
+    image: mongo
+    ports:
+       - 27017
+
+  mongo-seed:
+    build: ./mongo-seed
+    depends_on:
+       - mongodb
+    image: mongo-seed
+    links:
+       - mongodb
+    volumes:
+       - backup:/backups    
+
+  data_api:
+    build: ./data-service
+    image: tree_viewer_data:v0.0.1
+    links:
+      - mongodb
+    depends_on:
+       - mongodb
+       - mongo-seed
+    ports:
+       - "5000:5000"
+    volumes:
+       - backup:/images
+
+  web_api:
+    build: .
+    image: tree_viewer:v0.0.1
+    links:
+      - data_api
+      - mongodb
+    depends_on:
+       - mongodb
+       - mongo-seed
+       - data_api
+    ports:
+       - "8989:8989"
+    volumes:
+       - backup:/trees 

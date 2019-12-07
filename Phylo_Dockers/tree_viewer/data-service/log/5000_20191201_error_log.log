@@ -1,0 +1,38 @@
+[01/Dec/2019:13:02:55] ENGINE Bus STARTING
+[01/Dec/2019:13:02:55] ENGINE Started monitor thread 'Autoreloader'.
+[01/Dec/2019:13:02:55] ENGINE Serving on http://0.0.0.0:5000
+[01/Dec/2019:13:02:55] ENGINE Bus STARTED
+[01/Dec/2019:13:04:19] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_viewer/data-service/data_service_app.py changed.
+[01/Dec/2019:13:04:19] ENGINE Stopped thread 'Autoreloader'.
+[01/Dec/2019:13:04:19] ENGINE Bus STOPPING
+[01/Dec/2019:13:04:19] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+[01/Dec/2019:13:04:19] ENGINE Bus STOPPED
+[01/Dec/2019:13:04:19] ENGINE Bus EXITING
+[01/Dec/2019:13:04:19] ENGINE Bus EXITED
+[01/Dec/2019:13:04:19] ENGINE Waiting for child threads to terminate...
+[01/Dec/2019:13:04:19] ENGINE Re-spawning python3 data_service_app.py
+[01/Dec/2019:13:04:20] ENGINE Bus STARTING
+[01/Dec/2019:13:04:20] ENGINE Started monitor thread 'Autoreloader'.
+[01/Dec/2019:13:04:20] ENGINE Serving on http://0.0.0.0:5000
+[01/Dec/2019:13:04:20] ENGINE Bus STARTED
+[01/Dec/2019:13:04:57] ENGINE Restarting because /home/tayeen/Phylo-Dockers/tree_viewer/data-service/data_handler.py changed.
+[01/Dec/2019:13:04:57] ENGINE Stopped thread 'Autoreloader'.
+[01/Dec/2019:13:04:57] ENGINE Bus STOPPING
+[01/Dec/2019:13:04:57] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+[01/Dec/2019:13:04:57] ENGINE Bus STOPPED
+[01/Dec/2019:13:04:57] ENGINE Bus EXITING
+[01/Dec/2019:13:04:57] ENGINE Bus EXITED
+[01/Dec/2019:13:04:57] ENGINE Waiting for child threads to terminate...
+[01/Dec/2019:13:04:57] ENGINE Re-spawning python3 data_service_app.py
+[01/Dec/2019:13:04:57] ENGINE Bus STARTING
+[01/Dec/2019:13:04:57] ENGINE Started monitor thread 'Autoreloader'.
+[01/Dec/2019:13:04:58] ENGINE Serving on http://0.0.0.0:5000
+[01/Dec/2019:13:04:58] ENGINE Bus STARTED
+[01/Dec/2019:13:05:05] ENGINE Keyboard Interrupt: shutting down bus
+[01/Dec/2019:13:05:05] ENGINE Bus STOPPING
+[01/Dec/2019:13:05:05] ENGINE HTTP Server cherrypy._cpwsgi_server.CPWSGIServer(('0.0.0.0', 5000)) shut down
+[01/Dec/2019:13:05:05] ENGINE Stopped thread 'Autoreloader'.
+[01/Dec/2019:13:05:05] ENGINE Bus STOPPED
+[01/Dec/2019:13:05:05] ENGINE Bus EXITING
+[01/Dec/2019:13:05:05] ENGINE Bus EXITED
+[01/Dec/2019:13:05:05] ENGINE Waiting for child threads to terminate...

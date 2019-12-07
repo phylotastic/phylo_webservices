@@ -1,0 +1,7 @@
+uwsgi
+ete3
+bottle
+requests
+six
+PyQt5
+xvfbwrapper
