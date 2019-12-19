@@ -88,7 +88,8 @@ class WebTreeHandler(object):
         #print "Inside redraw calling tree.render()"
         #os.environ["DISPLAY"]=":0" # Used by ete to render images
         with Xvfb() as xvfb:
-             base64_img, img_map = self.tree.render("%%return.PNG", tree_style=self.tree.tree_style)
+             base64_img_byte, img_map = self.tree.render("%%return.PNG", tree_style=self.tree.tree_style)
+             base64_img = str(base64_img_byte, 'utf-8', 'ignore') #need only in python3
              #print "Inside redraw calling get_html_map()...."
              html_map = self.get_html_map(img_map)
 
