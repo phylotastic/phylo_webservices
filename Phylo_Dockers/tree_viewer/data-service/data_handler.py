@@ -194,6 +194,7 @@ def getNextSequence(collection, seq_name):
 
 #--------------------------------------------------------------
 def get_image_data(sp_name=None, sp_eol_id=None):
+    img_lst = []
     if sp_eol_id is None:
        service_response = EOL_image.get_images_species([sp_name], True)
        img_lst = service_response['species'][0]['images']
@@ -211,7 +212,7 @@ def get_image_data(sp_name=None, sp_eol_id=None):
               print ("Exception getting EOL image data: %s"%str(e))
               num_tries += 1
               pass
-    print (img_lst)
+    #print (img_lst)
     #print "image data response %s" %service_response
     if len(img_lst) != 0:
        species_img_urls = img_lst
