@@ -9,8 +9,18 @@ from ete3.parser.newick import NewickError
 from xvfbwrapper import Xvfb
 
 from . import tree_actions
+#import importlib, importlib.util
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#def module_from_file(module_name, file_path):
+#    spec = importlib.util.spec_from_file_location(module_name, file_path)
+#    module = importlib.util.module_from_spec(spec)
+#    spec.loader.exec_module(module)
+#    return module
+
+#na = module_from_file("NodeActions", os.getcwd()+"/ete_helper/"+"tree_actions.py")
+#NodeActions = na
+
+
 def timeit(f):
     def a_wrapper_accepting_arguments(*args, **kargs):
         t1 = time.time()
@@ -48,7 +58,7 @@ class WebTreeHandler(object):
             n._nid = index
 
     def parse_newick(self):
-        print (self.treenewick)
+        #print (self.treenewick)
         newick_str = self.treenewick.encode('ascii', 'ignore').decode('ascii') #to remove unicode errors
         tmp_nwk =  newick_str.replace("&#39;", "'") #to remove the html code of apostrophe 
         self.treenewick = tmp_nwk  
@@ -157,14 +167,21 @@ class WebTreeHandler(object):
         return target_node.name
     #--------------------------------------
     def get_avail_actions(self, nodeid):
-        target = self.tree.search_nodes(_nid=int(nodeid))[0]
-        action_list = []
-        for aindex, aname, aorder, show_fn, run_fn, html_generator in self.tree.actions:
-            if show_fn(target):
-                action_list.append([aindex, aname, aorder, html_generator])
-        action_list.sort(key=lambda x: x[2])
+        #print("getting available options")
+        try:
+          target = self.tree.search_nodes(_nid=int(nodeid))[0]
+          action_list = []
+          for aindex, aname, aorder, show_fn, run_fn, html_generator in self.tree.actions:
+              if show_fn(target):
+                  action_list.append([aindex, aname, aorder, html_generator])
+          action_list.sort(key=lambda x: x[2])
+          #print(action_list)
+        except Exception as e:
+          print("Error in nodeaction: %s"%str(e))
+
         return action_list
 
+    #--------------------------------------------
     def run_action(self, aindex, nodeid, astatus,a_data=-1):
         if aindex is None:
            return #no_action
@@ -173,6 +190,7 @@ class WebTreeHandler(object):
         run_fn = self.tree.actions.actions[aindex][3]
         #print "run action called in tree handler"
         return run_fn(self.tree, target, astatus, a_data)
+
     #--------------------------------------------
     def run_tree_action(self, color_code,line_width):
         #print "run_tree_action called..."

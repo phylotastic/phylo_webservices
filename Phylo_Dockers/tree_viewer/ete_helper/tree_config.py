@@ -1,14 +1,25 @@
+#from tree_handler import NodeActions
 from ete3 import TreeStyle, NodeStyle, TextFace, add_face_to_node, ImgFace, BarChartFace, faces
 import os, json
 import requests
 import random
 
 from . import tree_actions
+#import importlib, importlib.util
+
+#def module_from_file(module_name, file_path):
+#    spec = importlib.util.spec_from_file_location(module_name, file_path)
+#    module = importlib.util.module_from_spec(spec)
+#    spec.loader.exec_module(module)
+#    return module
+
+#na = module_from_file("NodeActions", os.getcwd()+"/ete_helper/"+"tree_actions.py")
+#NodeActions = na
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Custom ETE Tree styles and web actions
-image_path = "/images" #"/var/web_service"
-
+#image_path = "/images" #"/var/web_service"
+image_path = ""
 
 class WebTreeConfig(object):
     def __init__(self, treeobj, tid):
@@ -47,6 +58,7 @@ class WebTreeConfig(object):
         return ts
 
     def get_node_action(self):
+        print("get_node_action called..")
         act = tree_actions.NodeActions() #NodeActions()
         #act.add_action('Root here', self.show_action_root, self.run_action_root, None)
         act.add_action('Box Highlight', "Add (remove) box", 3, self.show_action_highlight, self.run_action_boxhighlight, None)
@@ -59,6 +71,8 @@ class WebTreeConfig(object):
         act.add_action('Collapse', "Collapse subtree", 1, self.show_action_collapse, self.collapse, None)
         act.add_action('Expand', "Expand subtree", 1, self.show_action_expand, self.expand, None)
         act.add_action('Swap Children',"Rotate subtree", 2, self.show_action_swap,self.swap_branches,None)
+
+        print(act)
 
         return act
 
@@ -194,12 +208,14 @@ class WebTreeConfig(object):
            #----------------------------------------------
            if (node.name in self._img_chk_list):
               image_local_path = "file://" + image_path
-              if self._img_data_dic[node.name] is not None: 
+              if self._img_data_dic[node.name] is not None:
+                  print(image_local_path + self._img_data_dic[node.name][0]) 
                   img_face = ImgFace(image_local_path + self._img_data_dic[node.name][0], is_url=True)
                   #add_face_to_node(img_face, node, column=3, position='branch-right')
                   #add_face_to_node(img_face, node, column=3, aligned= True, position='branch-right')
               else:
-                  img_face = ImgFace(image_local_path + "/ina.jpg", is_url=True)  
+                  print("No image data found")
+                  img_face = ImgFace(image_local_path + "/images/ina.jpg", is_url=True)  
               img_face.margin_top = 10
               img_face.margin_right = 10
               img_face.margin_left = 10
@@ -528,7 +544,7 @@ def is_empty(any_structure):
 #-----------------------------------------------------
 def get_link_data(sp_name):
     #service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/get_link_info"
-    service_uri = "http://localhost:5000/phylotastic_ws/ds/get_link_info"
+    service_uri = "http://data_api:5000/phylotastic_ws/ds/get_link_info"
     service_payload = {'species': sp_name}
     
     service_response = execute_webservice(service_uri, service_payload)
@@ -541,7 +557,7 @@ def get_link_data(sp_name):
 #-----------------------------------------------------
 def get_image_data(sp_name, img_id=0, next_img=False):
     #service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/get_image_info"
-    service_uri = "http://localhost:5000/phylotastic_ws/ds/get_image_info"
+    service_uri = "http://data_api:5000/phylotastic_ws/ds/get_image_info"
     service_payload = {'species': sp_name, 'image_id': img_id, 'next_image': next_img}
    
     service_response = execute_webservice(service_uri, service_payload)
@@ -556,7 +572,7 @@ def get_image_data(sp_name, img_id=0, next_img=False):
 #----------------------------------------------------
 def can_change_image(sp_name):
     #service_uri = "https://phylo.cs.nmsu.edu/phylotastic_ws/ds/image_info_exists"
-    service_uri = "http://localhost:5000/phylotastic_ws/ds/image_info_exists"
+    service_uri = "http://data_api:5000/phylotastic_ws/ds/image_info_exists"
     service_payload = {'species': sp_name}
    
     service_response = execute_webservice(service_uri, service_payload)

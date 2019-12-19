@@ -2,37 +2,52 @@
 from ete3 import Tree, TreeStyle
 from ete3.parser.newick import NewickError
 
+#from tree_handler import WebTreeHandler, NodeActions #, TreeStyle
+#from tree_config import WebTreeConfig
 import os, json
 
 from . import tree_handler
 from . import tree_config
+#import importlib, importlib.util
+
+#def module_from_file(module_name, file_path):
+#    spec = importlib.util.spec_from_file_location(module_name, file_path)
+#    module = importlib.util.module_from_spec(spec)
+#    spec.loader.exec_module(module)
+#    return module
+
+#th = module_from_file("WebTreeHandler", os.getcwd()+"/ete_helper/"+"tree_handler.py")
+#tc = module_from_file("WebTreeConfig", os.getcwd()+"/ete_helper/"+"tree_config.py")
 
 TREE_HANDLER = tree_handler.WebTreeHandler
 TREE_CONFIG = tree_config.WebTreeConfig
 
 def create_tree_obj(tree_newick, tree_id, node_data=None):
-
+    #print("creating tree object..")
     tree_handler_obj = TREE_HANDLER(tree_newick, tree_id)
     newick_checker = tree_handler_obj.parse_newick()
 
     if type(newick_checker) is not bool:
+       #print("Error checking newick: %s"%tree_newick)
        return {"message:":newick_checker, "status_code": 500}
     
+    #print("creating tree config object")
     tree_config_obj = TREE_CONFIG(tree_handler_obj.tree, tree_id)
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #add node data to tree
     if node_data is not None:
-       #print "node data is not none"
+       #print ("node data is not none")
        data_dict =  ast.literal_eval(node_data.strip())
        #print data_dict
        #data_json = json.loads(node_data)
        #print data_json
        tree_config_obj.set_extra_tipdata(data_dict)
     #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #print("setting actions and styles..")
     #set default actions and styles
     tree_handler_obj.set_actions(tree_config_obj.get_node_action())
     tree_handler_obj.set_style(tree_config_obj.get_tree_style())
-    
+    #print("setting tree config object..")
     tree_handler_obj.set_tree_config(tree_config_obj)
     
     return tree_handler_obj
@@ -154,7 +169,7 @@ def apply_node_pre_actions(tree_handler, node_actions_dic, latest_action_node_id
  			ds_nodes = tree_handler.get_node_descendants(node_id)
  			box_highlights[int(node_id)] = [[dsnode._nid for dsnode in ds_nodes],n_action['box_highlight']]
  	
- 	for key in sorted(box_highlights.iterkeys(),reverse=True):
+ 	for key in sorted(box_highlights.keys(),reverse=True):
  		hglight_nodes = box_highlights[key][0]
  		hg_property = box_highlights[key][1]
  		for n_index, n_action in enumerate(new_node_actions_dic):
