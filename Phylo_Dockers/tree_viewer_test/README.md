@@ -16,7 +16,7 @@
 6. Write the following content in the *ete_pro_config* file.
 
 ``
-  server {
+server {
 	listen 8080;
 
 	server_name localhost;
