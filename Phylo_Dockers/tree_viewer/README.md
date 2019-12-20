@@ -12,9 +12,12 @@ docker-compose build
 docker-compose up
 ``
   
-### Test
+### Test the app using command
 
 ``
 curl -X POST http://localhost:8989/ete_pro/get_tree_image -H "content-type:application/json" -d '{"tree_newick": "(((Rangifer tarandus, Cervus elaphus)Cervidae, (Bos taurus, Ovis orientalis)Bovidae), (Suricata suricatta, (Cistophora cristata,Mephitis mephitis))Carnivora);" ,"tree_id": 12, "actions": ""}'
 ``
 
+### Test the app using site
+
+Setup the site according to the instructions in **tree_viewer_test** to test the treeviewer service. 
