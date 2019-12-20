@@ -1,8 +1,0 @@
-[uwsgi]
-http = 0.0.0.0:8989
-wsgi-file = webapi_pro.py
-master = true
-processes = 5
-stats = 0.0.0.0:9191
-pidfile = /tmp/ete_pro.pid
-vacuum = true
