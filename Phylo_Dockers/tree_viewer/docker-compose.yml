@@ -8,6 +8,8 @@ volumes:
       o: bind
       device: /home/tayeen/backups
 
+  tree-data: {}  
+
 services:
 
   mongodb:
@@ -36,7 +38,7 @@ services:
     ports:
        - "5000:5000"
     volumes:
-       - backup:/images
+       - tree-data:/images
 
   web_api:
     build: .
@@ -51,4 +53,5 @@ services:
     ports:
        - "8989:8989"
     volumes:
-       - backup:/trees 
+       - tree-data:/images
+       - /home/$USER/trees:/trees 

@@ -5,16 +5,6 @@ import requests
 import random
 
 from . import tree_actions
-#import importlib, importlib.util
-
-#def module_from_file(module_name, file_path):
-#    spec = importlib.util.spec_from_file_location(module_name, file_path)
-#    module = importlib.util.module_from_spec(spec)
-#    spec.loader.exec_module(module)
-#    return module
-
-#na = module_from_file("NodeActions", os.getcwd()+"/ete_helper/"+"tree_actions.py")
-#NodeActions = na
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Custom ETE Tree styles and web actions
@@ -58,7 +48,7 @@ class WebTreeConfig(object):
         return ts
 
     def get_node_action(self):
-        print("get_node_action called..")
+        #print("get_node_action called..")
         act = tree_actions.NodeActions() #NodeActions()
         #act.add_action('Root here', self.show_action_root, self.run_action_root, None)
         act.add_action('Box Highlight', "Add (remove) box", 3, self.show_action_highlight, self.run_action_boxhighlight, None)
@@ -72,7 +62,7 @@ class WebTreeConfig(object):
         act.add_action('Expand', "Expand subtree", 1, self.show_action_expand, self.expand, None)
         act.add_action('Swap Children',"Rotate subtree", 2, self.show_action_swap,self.swap_branches,None)
 
-        print(act)
+        #print(act)
 
         return act
 

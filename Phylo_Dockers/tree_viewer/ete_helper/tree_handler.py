@@ -9,17 +9,6 @@ from ete3.parser.newick import NewickError
 from xvfbwrapper import Xvfb
 
 from . import tree_actions
-#import importlib, importlib.util
-
-#def module_from_file(module_name, file_path):
-#    spec = importlib.util.spec_from_file_location(module_name, file_path)
-#    module = importlib.util.module_from_spec(spec)
-#    spec.loader.exec_module(module)
-#    return module
-
-#na = module_from_file("NodeActions", os.getcwd()+"/ete_helper/"+"tree_actions.py")
-#NodeActions = na
-
 
 def timeit(f):
     def a_wrapper_accepting_arguments(*args, **kargs):
@@ -62,7 +51,7 @@ class WebTreeHandler(object):
         newick_str = self.treenewick.encode('ascii', 'ignore').decode('ascii') #to remove unicode errors
         tmp_nwk =  newick_str.replace("&#39;", "'") #to remove the html code of apostrophe 
         self.treenewick = tmp_nwk  
-        print (self.treenewick)
+        #print (self.treenewick)
         try:
            self.tree = Tree(self.treenewick)
         except NewickError:
@@ -113,7 +102,7 @@ class WebTreeHandler(object):
 
     #------------------------------------------
     def save_image(self, img_format):
-        img_url = os.path.join("https://phylo.cs.nmsu.edu/treeviewer/trees/", self.treeid+"."+img_format)
+        img_url = os.path.join("http://localhost:8080/trees/", self.treeid+"."+img_format)
         #img_path = os.path.join("/var/www/TreeViewer/html/tmp/", self.treeid+"."+img_format)
         img_path = os.path.join("/trees/", self.treeid+"."+img_format)
         with Xvfb() as xvfb:        

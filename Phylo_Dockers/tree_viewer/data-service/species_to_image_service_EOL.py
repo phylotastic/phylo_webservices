@@ -180,10 +180,14 @@ def get_image_species_id(species_id, post=False):
  	response = {}	
  	species_obj = {}
  	species_info_json = get_species_info(species_id)
+ 	#print(species_info_json)
  	if species_info_json is not None:
- 		species_obj['matched_name'] = species_info_json['scientificName']
- 		species_obj['eol_id'] = species_id			
- 		dataObjects_lst = species_info_json['dataObjects'] 
+ 		species_obj['matched_name'] = species_info_json[str(species_id)]['scientificName']
+ 		species_obj['eol_id'] = species_id
+ 		dataObjects_lst = []
+ 		if 'dataObjects' in species_info_json[str(species_id)]:			
+ 			dataObjects_lst = species_info_json[str(species_id)]['dataObjects'] 
+ 		
  		length = len(dataObjects_lst)		
  		if length != 0:
  			images_species = get_imageObjects(dataObjects_lst)
@@ -212,10 +216,10 @@ def get_image_species_id(species_id, post=False):
 	#inputTaxon = 'Panthera leo'
 	#inputSpecies = ["Mareca strepera"]
 	#inputTaxon = 'Canidae' #family
- 	
+ 	#inputSpecies = ["Pleodorina californica"]
  	#start_time = time.time()    
  	
-	#print json.dumps(get_images_species(inputSpecies))
+ 	#print (get_image_species_id(326448), True)
  	
  	#end_time = time.time()
  	

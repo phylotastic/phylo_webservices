@@ -2,22 +2,10 @@
 from ete3 import Tree, TreeStyle
 from ete3.parser.newick import NewickError
 
-#from tree_handler import WebTreeHandler, NodeActions #, TreeStyle
-#from tree_config import WebTreeConfig
 import os, json
 
 from . import tree_handler
 from . import tree_config
-#import importlib, importlib.util
-
-#def module_from_file(module_name, file_path):
-#    spec = importlib.util.spec_from_file_location(module_name, file_path)
-#    module = importlib.util.module_from_spec(spec)
-#    spec.loader.exec_module(module)
-#    return module
-
-#th = module_from_file("WebTreeHandler", os.getcwd()+"/ete_helper/"+"tree_handler.py")
-#tc = module_from_file("WebTreeConfig", os.getcwd()+"/ete_helper/"+"tree_config.py")
 
 TREE_HANDLER = tree_handler.WebTreeHandler
 TREE_CONFIG = tree_config.WebTreeConfig

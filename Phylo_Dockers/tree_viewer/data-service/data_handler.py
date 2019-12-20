@@ -137,7 +137,7 @@ def create_species_image_info(sp_name, sp_image_data, sp_id):
  		img_count += 1
  		img_format = thumb_url[thumb_url.rindex(".")+1:len(thumb_url)]
  		relative_path = "/images/" + re.sub(r"\s+", '_', sp_name) + "_" + str(img_count) + "." + img_format
- 		absolute_path = image_root_loc + relative_path
+ 		absolute_path = relative_path #image_root_loc + relative_path
  		if not(download_image(thumb_url, absolute_path)):
  			img_count -= 1
  			continue
@@ -200,10 +200,11 @@ def get_image_data(sp_name=None, sp_eol_id=None):
        img_lst = service_response['species'][0]['images']
     else:
        num_tries = 0
-       while num_tries < 6:
+       while num_tries < 5:
           try:
               service_response = EOL_image.get_image_species_id(int(sp_eol_id))
-              if service_response is not None:
+              service_response = json.loads(service_response) 			
+              if service_response['status_code'] == 200:
                  img_lst = service_response['species']['images']
               else:
                  img_lst = []
@@ -283,7 +284,7 @@ def list_info_controller(species_list):
  	db = conn[dbName]
  	counter_collection = db[counterCollectionName]
  	data_collection = db[dataCollectionName]
- 	set_image_loc()
+ 	#set_image_loc()
  	nonexistent_species = find_nonexistent_species(species_list, data_collection)
  	if len(nonexistent_species) != 0:
  	 	get_species_info(nonexistent_species, data_collection, counter_collection)
@@ -295,6 +296,7 @@ def set_image_loc():
  	#get the parent directory of the directory containing the script
  	d = dirname(dirname(abspath(__file__)))
  	image_root_loc = d
+ 	#print("image dir: %s"%image_root_loc)
 
 #----------------------------------------------------------
 def estimate_image_download(newick_str):
@@ -345,7 +347,7 @@ def image_info_controller(species, image_id, next_image):
  	db = conn[dbName]
  	counter_collection = db[counterCollectionName]
  	data_collection = db[dataCollectionName]
- 	set_image_loc()
+ 	#set_image_loc()
  	nonexistent_species = find_nonexistent_species([species], data_collection)
  	if len(nonexistent_species) != 0:
  		get_species_info(nonexistent_species, data_collection, counter_collection)
@@ -466,4 +468,4 @@ def find_image_leaves(newick_str):
 #if __name__ == "__main__":
 
 # 	script, newick_str = argv
-# 	find_image_leaves(newick_str)
+ 	#print(get_image_data(sp_eol_id=2923523))
