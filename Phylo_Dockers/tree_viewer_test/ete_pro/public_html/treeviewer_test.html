@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <title>ETE2 - webplugin demonstration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Import scripts in this specific order -->
+    <script src="jquery-1.4.2.min.js"></script>
+    <script src="jquery-ui-1.8.4.custom.min.js"></script>
+    <script src="ete.js"></script>
+    <script src="jsxcompressor.min.js"></script>
+    <script type="text/javascript">
+       /* YOU MUST SET THIS VARIABLE */
+       var ete_webplugin_URL = "http://localhost:8989/ete_pro"
+    
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="ete.css" >
+  </head>
+  <body>
+    <!-- This layer must be called "popup" -->
+    <div id="popup"></div>
+    <div style='text-align: left;'>
+    <b> Paste a tree in newick format and press "Draw tree":</b><br>
+<div style="float:left; margin-right:15px; ">
+      <textarea  id="tree" style='width: 500px; height: 80px; vertical-align:middle;'>
+   (((Rangifer tarandus, Cervus elaphus)Cervidae, (Bos taurus, Ovis orientalis)Bovidae), (Suricata suricatta, (Cistophora cristata,Mephitis mephitis))Carnivora);
+      </textarea>
+      <br>
+</div>
+
+<br>
+TreeViewerWebService status: <span id='server_status'>
+</span>
+
+
+<div style="clear:both;" >
+      <!-- This is the most important part. We start tree visualization by calling draw_tree function.
+           draw_tree(treeid, newick, container)
+       -->
+      <input type='submit' value='Draw tree'  onClick='get_tree_image(1,$("#tree").val(), "#img1", $("#data").val());'>
+      <input type='button' value='Clear' onClick='$(".ete_image").html("");'>
+</div>
+    </div>
+    <br>
+    <div style="">
+    
+    <fieldset>
+    <legend>Tree Actions</legend>
+    
+   Line Width:  <select name="lwidth" id="line-weight">
+              <option value="1" selected="selected">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+
+     Line Color:<input type="text" name="color" value="" size=20>
+    
+    <br/>
+    Show branch length: <input type="checkbox" id="branch">
+    Show internal nodes: <input type="checkbox" id="internal">
+    Show common names: <input type="checkbox" id="common">
+    Ladderize Tree: <input type="checkbox" id="ladderize">
+    <input type="submit" value="Apply" onclick="run_tree_action();">
+    <br/>
+    </fieldset>
+    <input type="submit" value="Load images of all tips" onclick="load_tip_images();">
+    <p id="tree_image_message"> </p>
+    Image format: <input type="radio" name="format" value="png" checked="checked">png
+    <input type="radio" name="format" value="svg">svg
+    <input type='submit' value='Generate image link for download' onClick='save_tree_image();'>
+    <div id="svg_image"></div>
+
+    </div>
+    <p id="message"></p>
+    <!-- Tree container -->
+    <div class="ete_image" id="img1"></div>
+
+    <br>
+
+  </body>
+</html>
+<script>
+update_server_status();
+</script>
