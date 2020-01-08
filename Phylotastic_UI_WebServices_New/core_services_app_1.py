@@ -534,7 +534,7 @@ class Find_ScientificNames_Service_API(object):
                raise CustomException("'url' parameter must have a valid value")
             if request_data is not None and 'engine' in request_data:
                engine = str(request_data['engine']).strip()
-               if engine not in ['0', '1', '2']:
+               if engine not in ['0', '1']:
                   return return_response_error(400,"Error: 'engine' parameter must have a valid value","JSON") 
             else:
                engine = '0'
@@ -582,7 +582,7 @@ class Find_ScientificNames_Service_API(object):
                raise CustomException("'text' parameter must have a valid value")
             if request_data is not None and 'engine' in request_data:
                engine = str(request_data['engine']).strip()
-               if engine not in ['0', '1', '2']:
+               if engine not in ['0', '1']:
                   return return_response_error(400,"Error: 'engine' parameter must have a valid value","JSON") 
             else:
                engine = '0'

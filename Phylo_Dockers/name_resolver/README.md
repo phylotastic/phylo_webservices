@@ -34,3 +34,24 @@ curl -X GET 'http://localhost:5051/phylotastic_ws/tnrs/ot/resolve?names=Formica%
 curl -X POST "http://localhost:5051/phylotastic_ws/tnrs/gnr/names" -H "content-type:application/json" -d '{"scientificNames": ["Rana Temporaria"],"fuzzy_match":true, "multiple_match":false}'
 ``
 
+**6.** To stop the service press `CTRL+C`.
+
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker run -d --rm -p 5051:5051 --name name_resolver name_resolver:v0.0.1
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command.
+
+``
+docker ps
+``
+
+**9.** To stop the docker image from running, use the following command.
+
+``
+docker stop <IMAGE_ID>
+``
+
+

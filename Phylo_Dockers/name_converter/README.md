@@ -37,3 +37,23 @@ curl -X POST "http://localhost:5057/phylotastic_ws/cs/ncbi/scientific_names" -H 
 curl -X POST "http://localhost:5057/phylotastic_ws/ss/gnr/common_names" -H "content-type:application/json" -d '{"scientific_names": ["Felis catus", "Bos taurus"]}'
 ``
 
+**6.** To stop the service press `CTRL+C`.
+
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker run -d --rm -p 5057:5057 --name name_converter name_converter:v0.0.1
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command and check the <IMAGE_ID>.
+
+``
+docker ps
+``
+
+**9.** To stop the docker image from running, use the following command.
+
+``
+docker stop <IMAGE_ID>
+``
+
