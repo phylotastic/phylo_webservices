@@ -24,8 +24,10 @@ class TestMdStudies(TestMdGetStudies):
         self.assert_success(x, mess)
         # Check whether the number of studies in the result is more than the minimum expected
         self.assertTrue(len(x.json()[u'studies']) >= 1)
+        studies_list = [ study['PublicationDOI'] for study in x.json()[u'studies']]
         # Check whether result is what it should be according to docs
-        self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in x.json()[u'studies'][0]['PublicationDOI'])
+        self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in studies_list)
+        #self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in x.json()[u'studies'][0]['PublicationDOI'])
 
         
     #@unittest.skip("temporarily to fix later")
@@ -36,8 +38,10 @@ class TestMdStudies(TestMdGetStudies):
         
         # Check whether the number of studies in the result is more than the minimum expected
         self.assertTrue(len(x.json()[u'studies']) >= 1)
+        studies_list = [ study['PublicationDOI'] for study in x.json()[u'studies']]
         # Check whether result is what it should be according to docs
-        self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in x.json()[u'studies'][0]['PublicationDOI'])
+        self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in studies_list)
+        #self.assertTrue(u'http://dx.doi.org/10.1016/j.ympev.2009.08.018' in x.json()[u'studies'][0]['PublicationDOI'])
 
 
 null=None; false=False; true=True

@@ -77,8 +77,10 @@ class TestMdGetStudies(MdStudiesTester):
         self.assert_success(x, mess)
         # Check whether the number of studies in the result is more than the minimum expected
         self.assertTrue(len(x.json()[u'studies']) >= 1)
+        studies_list = [ study['PublicationDOI'] for study in x.json()[u'studies']]
         # Check whether result is what it should be according to docs
-        self.assertTrue(u'http://dx.doi.org/10.1126/science.1122277' in x.json()[u'studies'][1]['PublicationDOI'])
+        self.assertTrue(u'http://dx.doi.org/10.1126/science.1122277' in studies_list)
+        #self.assertTrue(u'http://dx.doi.org/10.1126/science.1122277' in x.json()[u'studies'][1]['PublicationDOI'])
                           
 
     #@unittest.skip("temporarily to fix later")
@@ -88,8 +90,10 @@ class TestMdGetStudies(MdStudiesTester):
         self.assert_success(x, mess)
         # Check whether the number of studies in the result is more than the minimum expected
         self.assertTrue(len(x.json()[u'studies']) >= 2)
+        studies_list = [ study['PublicationDOI'] for study in x.json()[u'studies']]
         # Check whether result is what it should be according to docs
-        self.assertTrue(u'http://dx.doi.org/10.1642/auk-14-110.1' in x.json()[u'studies'][0]['PublicationDOI'])
+        self.assertTrue(u'http://dx.doi.org/10.1642/auk-14-110.1' in studies_list)
+        #self.assertTrue(u'http://dx.doi.org/10.1642/auk-14-110.1' in x.json()[u'studies'][0]['PublicationDOI'])
 
 
 
