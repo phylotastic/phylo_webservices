@@ -33,11 +33,32 @@ docker run -it --volume /tmp:/name_finder/data -p 5050:5050 name_finder:v0.0.1
 > To test this example, use the terminal to first go to the directory where the input file *scnames.txt* is located and run the command from there.
 
 ``
-curl -X POST 'http://localhost:5050/phylotastic_ws/fn/names_file' -F 'inputFile=@scnames.txt' -F 'engine=2'
+curl -X POST 'http://localhost:5050/phylotastic_ws/fn/names_file' -F 'inputFile=@scnames.txt' -F 'engine=1'
 ``
 
 #### Example 2: (input url)
 ``
 curl -X GET 'http://localhost:5050/phylotastic_ws/fn/names_url?url=https://en.wikipedia.org/wiki/Plain_pigeon&engine=1'
 ``
+
+**6.** To stop the service press `CTRL+C`.
+
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker run -d --rm --volume /tmp:/name_finder/data -p 5050:5050 --name name_finder name_finder:v0.0.1
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command.
+
+``
+docker ps
+``
+
+**9.** To stop the docker image from running, use the following command.
+
+``
+docker stop <IMAGE_ID>
+``
+
 
