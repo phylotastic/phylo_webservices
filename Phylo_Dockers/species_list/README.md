@@ -28,6 +28,20 @@ docker-compose up
 curl -X GET 'http://localhost:5055/phylotastic_ws/sls/get_list'
 ``
 
+**6.** To stop the docker container press `CTRL+C`.
+
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker-compose up -d
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command.
+
+``
+docker ps
+``
+
 ### Instructions to setup species_list app docker second time using a backup database. 
 
 > Assuming that the docker has been run at least once and there exists some backup of the database.
