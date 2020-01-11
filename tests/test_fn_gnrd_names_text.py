@@ -66,7 +66,7 @@ class TestFnNamesText(webapp.WebappTestCase):
         for engine in range(0, 6):
             request = service.get_request('GET', {u'engine': engine, u'text': "Whales are a widely distributed and diverse group of fully aquatic placental marine mammals. They are an informal grouping within the infraorder Cetacea, usually excluding dolphins and porpoises. Whales, dolphins and porpoises belong to the order Cetartiodactyla with even-toed ungulates and their closest living relatives are the hippopotamuses, having diverged about 40 million years ago. The two parvorders of whales, baleen whales (Mysticeti) and toothed whales (Odontoceti), are thought to have split apart around 34 million years ago. The whales comprise eight extant families: Balaenopteridae (the rorquals), Balaenidae (right whales), Cetotheriidae (the pygmy right whale), Eschrichtiidae (the grey whale), Monodontidae (belugas and narwhals), Physeteridae (the sperm whale), Kogiidae (the dwarf and pygmy sperm whale), and Ziphiidae (the beaked whales)."})
             x = self.start_request_tests(request)
-            if engine >= 0 and engine <= 2:
+            if engine >= 0 and engine <= 1:
                self.assert_success(x)
                self.assertTrue(len(x.json()[u'scientificNames']) >= 5)
                self.assertTrue(u'Balaenidae' in x.json()[u'scientificNames'])

@@ -58,7 +58,7 @@ class TestFnNamesUrl(webapp.WebappTestCase):
         for engine in range(0, 6):
             request = service.get_request('GET', {u'engine': engine, u'url': u'https://en.wikipedia.org/wiki/Plain_pigeon'})
             x = self.start_request_tests(request)
-            if engine >= 0 and engine <= 2:
+            if engine >= 0 and engine <= 1:
                self.assert_success(x)
                self.assertTrue(len(x.json()[u'scientificNames']) >= 5)
                self.assertTrue(u'Patagioenas inornata' in x.json()[u'scientificNames'])
