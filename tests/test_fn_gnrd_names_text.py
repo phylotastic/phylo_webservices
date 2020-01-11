@@ -96,7 +96,7 @@ class TestFnNamesText(webapp.WebappTestCase):
 null=None; false=False; true=True
 
 example_2 = service.get_request('GET', {u'text': u'Formica polyctena is a species of European red wood ant in the genus Formica. The pavement ant, Tetramorium caespitum is an ant native to Europe. Pseudomyrmex is a genus of stinging, wasp-like ants. Adetomyrma venatrix is an endangered species of ants endemic to Madagascar. Carebara diversa is a species of ants in the subfamily Formicinae. It is found in many Asian countries.'})
-example_1 = service.get_request('GET', {u'engine': u'2', u'text': u'The lemon dove (Columba larvata) is a species of bird in the pigeon family Columbidae found in montane forests of sub-Saharan Africa.'})
+example_1 = service.get_request('GET', {u'engine': u'1', u'text': u'The lemon dove (Columba larvata) is a species of bird in the pigeon family Columbidae found in montane forests of sub-Saharan Africa.'})
 
 if __name__ == '__main__':
     print >>sys.stdout, '\n=================GNRD_wrapper_text=========================' 
