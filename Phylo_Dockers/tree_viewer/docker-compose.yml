@@ -6,7 +6,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/tayeen/backups
+      device: /var/web_services/tree_backups
+
+  trees:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/www/trees
 
   tree-data: {}  
 
@@ -54,4 +61,4 @@ services:
        - "8989:8989"
     volumes:
        - tree-data:/images
-       - /home/$USER/trees:/trees 
+       - trees:/trees 

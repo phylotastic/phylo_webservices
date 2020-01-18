@@ -16,6 +16,10 @@ COPY . /
 
 RUN mkdir -p /trees
 
+RUN useradd ete
+
+RUN chown ete:ete /trees
+
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
@@ -23,6 +27,8 @@ RUN pip install --upgrade ete3
 
 # Make port 8989 available to the world outside this container
 EXPOSE 8989
+
+USER ete
 
 # Run app.py when the container launches
 CMD ["uwsgi", "ete_pro.ini"]
