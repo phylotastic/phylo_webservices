@@ -17,7 +17,7 @@
 
 
 ``
-server {
+  server {
 	listen 8080;
 
 	server_name localhost;
@@ -27,7 +27,7 @@ server {
 	location / {
 		try_files $uri $uri/ =404;
 	}
-}
+ }
 ``
 
 7. Create a symbolic link from that file to the **sites-enabled** directory using the following command.
