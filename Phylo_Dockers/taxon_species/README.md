@@ -33,6 +33,19 @@ curl -X GET 'http://localhost:5053/phylotastic_ws/ts/ot/all_species?taxon=Vulpes
 curl -X GET 'http://localhost:5053/phylotastic_ws/ts/ncbi/genome_species?taxon=Rodentia'
 ``
 
+**6.** To stop the docker container press `CTRL+C`.
+
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker-compose up -d
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command.
+
+``
+docker ps
+``
 
 ### Instructions to setup taxon_species app docker second time using a backup database. 
 

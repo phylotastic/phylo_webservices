@@ -40,3 +40,22 @@ curl -X GET 'http://localhost:5052/phylotastic_ws/gt/ot/get_tree?taxa=Panthera%2
 curl -X POST "http://localhost:5052/phylotastic_ws/gt/pm/tree" -H "content-type:application/json" -d '{"taxa": ["Helianthus annuus","Passiflora edulis", "Rosa arkansana", "Saccharomyces cerevisiae"]}'
 ``
 
+**6.** To stop the service press `CTRL+C`.
+
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker run -d --rm -p 5052:5052 --name tree_retrieval tree_retrieval:v0.0.1
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command.
+
+``
+docker ps
+``
+
+**9.** To stop the docker image from running, use the following command.
+
+``
+docker stop <IMAGE_ID>
+``

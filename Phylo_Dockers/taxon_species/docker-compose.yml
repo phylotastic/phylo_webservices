@@ -19,7 +19,7 @@ services:
     build: ./mongo-seed
     depends_on:
        - mongodb
-    image: mongo-seed
+    image: mongo-source
     links:
        - mongodb
     volumes:

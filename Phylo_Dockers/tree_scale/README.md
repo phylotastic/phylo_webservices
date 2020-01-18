@@ -35,4 +35,22 @@ curl -X POST http://localhost:5056/phylotastic_ws/sc/scale -H 'content-type:appl
 ``
 curl -X POST http://localhost:5056/phylotastic_ws/sc/ot/scale -H 'content-type:application/json' -d '{"newick": "(Aulacopone_relicta,(((Myrmecia_gulosa,(Aneuretus_simoni,Dolichoderus_mariae)),((Ectatomma_ruidum,Huberia_brounii),Formica_rufa)),Apomyrma_stygia),Martialis_heureka)Formicidae;"}'
 ``
+**6.** To stop the service press `CTRL+C`.
 
+**7.** To run the docker image in background mode, use the following command.
+
+``
+docker run -d --rm -p 5056:5056 --name tree_scale tree_scale:v0.0.1
+`` 
+
+**8.** To check whether the docker image is running in the background, use the following command.
+
+``
+docker ps
+``
+
+**9.** To stop the docker image from running, use the following command.
+
+``
+docker stop <IMAGE_ID>
+``
