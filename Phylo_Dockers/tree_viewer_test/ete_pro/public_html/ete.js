@@ -1,6 +1,6 @@
 /*  it requires jquery loaded */
 var ete_webplugin_URL = "http://localhost:8989/ete_pro";
-var loading_img = '<img border=0 src="https://phylo.cs.nmsu.edu/treeviewer/loader.gif">';
+var loading_img = '<img border=0 src="http://localhost:8080/loader.gif">';
 
 var current_tree_id = "";
 var current_tree_newick = "";
