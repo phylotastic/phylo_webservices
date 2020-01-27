@@ -48,4 +48,3 @@ sudo service nginx restart
 
 11. To test the site in public, first replace the `localhost` with the *HOSTNAME* or *IP ADDRESS* of the machine inside the following two files: **ete.js** and **treeviewer_test.html**, which are located in the **/var/www/ete** folder. Then type the above address replacing the `localhost` with *HOSTNAME* or *IP ADDRESS* in the web browser.
 
-12. 
