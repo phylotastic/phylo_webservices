@@ -13,7 +13,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /var/www/trees
+      device: /var/www/ete/trees
 
   tree-data: {}  
 
@@ -50,6 +50,8 @@ services:
   web_api:
     build: .
     image: tree_viewer:v0.0.1
+    environment:
+      - HOST=localhost
     links:
       - data_api
       - mongodb

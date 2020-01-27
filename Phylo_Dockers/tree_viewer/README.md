@@ -4,6 +4,8 @@
 
 **2.** Open the *docker-compose.yml* file. Find the `device` key in the `backup` section under `volumes`. Replace the default path `/var/web_services/tree_backups` with the full path where database backups will be stored. The full path must exist in the local host system.
  
+> Replace the `localhost` in **environment** section under **web_api** inside *docker-compose.yml* file with the *HOSTNAME* of the machine where the app is deployed.
+
 **3.** Run the following command to build the image first.
 
 ``
