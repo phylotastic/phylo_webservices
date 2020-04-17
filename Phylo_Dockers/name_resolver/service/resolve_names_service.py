@@ -260,6 +260,8 @@ def get_resolved_names(results, do_fuzzy_match, multi_match):
  		input_name = element['name']
  		match_list = element['matches']
  		mult_matches_list = []
+ 		if match_list is None:
+ 			continue
  		for match_result in match_list:
  			namesList = {}
  			search_str = match_result['search_string']
