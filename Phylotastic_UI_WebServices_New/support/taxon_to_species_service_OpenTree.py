@@ -76,7 +76,7 @@ def match_taxon(taxonName):
     resource_url = api_url + "tnrs/match_names"    
     payload = {
         'names': [taxonName], 
-        'do_approximate_matching': 'false'
+        'do_approximate_matching': False
     }
     jsonPayload = json.dumps(payload)
     #response = requests.post(resource_url, data=json.dumps(payload), headers=headers)
@@ -87,7 +87,7 @@ def match_taxon(taxonName):
        alt_url = google_dns.alt_service_url(resource_url)
        response = requests.post(alt_url, data=jsonPayload, headers=headers, verify=False)        
     #----------------------------------------------
-    
+    print(response.text)
     if response.status_code == requests.codes.ok: 
        data_json = json.loads(response.text)
        length = len(data_json['results'])
@@ -379,14 +379,14 @@ def get_country_species(inputTaxon, country):
 #--------------------------------------------
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#if __name__ == '__main__':
+if __name__ == '__main__':
 
 	#To remove the warning: "the InsecurePlatformWarning: A true SSLContext object is not available"
  	#requests.packages.urllib3.disable_warnings()
 
  	#inputTaxon = "Cephalopoda" 
  	#inputTaxon = "Hydropotes"
-	#inputTaxon = 'Vulpes' #genus
+	inputTaxon = 'Vulpes' #genus
  	#inputTaxon = 'Felidae'
 	#inputTaxon = 'Canidae' #family
  	#inputTaxon = 'Carnivora' #order
@@ -397,11 +397,11 @@ def get_country_species(inputTaxon, country):
  	#countries = ['Bhutan', 'Nepal', 'Canada']
  	#country = 'Bangladesh'
  	#country = 'United States'
- 	#country = 'Nepal'
+ 	country = 'Nepal'
  	#result = match_taxon(inputTaxon)
  	#print get_children(result['ott_id'])
  	#print get_all_species(inputTaxon)
  	#get_children(735488)
  	#print check_species_by_country(inputTaxon, country)	
- 	#print get_country_species(inputTaxon, country)
+ 	print get_country_species(inputTaxon, country)
  	
