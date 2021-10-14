@@ -127,13 +127,19 @@ def get_token_result(response_json):
 #get scientific names from Text
 def get_sn_text(inputTEXT, sEngine=0):
     payload = {
-        'text': inputTEXT,
-        'engine': sEngine
+        "text": inputTEXT,
+        "noBayes": True,
+  		"oddsDetails": False,
+  		"language": "eng",
+  		"wordsAround": 0,
+  		"verification": False,		
     }
+    
+    payload = json.dumps(payload)
     
     #encoded_payload = urllib.urlencode(payload)
     #response = requests.get(api_url, params=encoded_payload, headers=headers) 
-    response = requests.post(api_url, data=payload) 
+    response = requests.post(api_url, data=payload, headers=headers, verify=False) 
 
     scientificNamesList = []
     
@@ -153,13 +159,16 @@ def get_sn_text(inputTEXT, sEngine=0):
         #return {'input_text': inputTEXT, 'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
         return {'scientificNames': scientificNamesList, 'status_code': statuscode, 'message': msg} 
     
-    token_result = get_token_result(data_json)
+    if 'metadata' in data_json:
+        total_count = data_json['metadata']['totalNames']
+    else:
+        total_count = 0
     
-    if token_result['total'] == 0:
+    if total_count == 0:
          return {'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
-         scientificNamesList = get_sn(token_result['names'])
-         parametersList = token_result['parameters']
+         scientificNamesList = get_sn(data_json['names'])
+         parametersList = {"withBayes": data_json['metadata']["withBayes"], "language": data_json['metadata']["language"], "withVerification": data_json['metadata']["withVerification"]}        
          #scientificNamesList = uniquify(all_scientificNamesList) 
          return {'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200,'message': "Success"} 
 
@@ -207,7 +216,7 @@ def extract_names_URL(inputURL, sEngine=0):
 #-----------------------------------------------------
 def extract_names_TEXT(inputTEXT, sEngine=0):
     start_time = time.time()
-    final_result = get_sn_text(inputTEXT, sEngine)    
+    final_result = get_sn_text(inputTEXT)    
     end_time = time.time()
     execution_time = end_time-start_time
     
