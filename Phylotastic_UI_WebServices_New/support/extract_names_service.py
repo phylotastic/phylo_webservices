@@ -1,5 +1,8 @@
-#GNRD wrapper: Find scientific names service: version 1.0
+#GNRD wrapper: Find scientific names service: version 2.0
+#https://apidoc.globalnames.org/gnfinder#/default/post_find
+
 import json
+import sys
 import time
 import requests
 import re
@@ -8,23 +11,38 @@ import urllib
 import datetime
 
 #------------------------------------------------
-api_url = "https://gnrd.globalnames.org/name_finder.json?"
-headers = {'content-type': 'application/json'}
+api_url = "https://gnfinder.globalnames.org/api/v1/find"
+headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 base_url = "http://phylo.cs.nmsu.edu:5004/phylotastic_ws/fn/"
 
 #-------------------------------------------------
 #get scientific names from URL
-def get_sn_url(inputURL, sEngine=0):
+def get_sn_url(inputURL):
     payload = {
-        'url': inputURL,
-        'engine': sEngine	
+        "url": inputURL,
+        "noBayes": True,
+  		"oddsDetails": False,
+  		"language": "eng",
+  		"wordsAround": 0,
+  		"verification": False,		
     }
     
+    payload = json.dumps(payload)
+    #print payload
     #encoded_payload = urllib.urlencode(payload)
-    response = requests.get(api_url, params=payload) 
-    
+    #response = requests.get(api_url, params=encoded_payload, headers=headers) 
+    response = requests.post(api_url, data=payload, headers=headers, verify=False) 
+
     scientificNamesList = []
-    print response.text
+    
+    if response.status_code == requests.codes.ok:    
+        data_json = json.loads(response.text)
+    else:
+        data_json = json.loads(response.text)  
+    
+    #scientificNamesList = []
+    #print response.text
+    
     try: 
        if response.status_code == requests.codes.ok:    
           data_json = json.loads(response.text)
@@ -44,13 +62,16 @@ def get_sn_url(inputURL, sEngine=0):
     except ValueError:
           return {'input_url': inputURL, 'scientificNames': [], 'status_code': 500, 'message': "No JSON object could be decoded from GNRD response"}      
 
-    token_result = get_token_result(data_json)
-    
-    if token_result['total'] == 0:
+    if 'metadata' in data_json:
+        total_count = data_json['metadata']['totalNames']
+    else:
+        total_count = 0
+
+    if total_count == 0:
          return {'input_url': inputURL, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "No scientific names found"} 
     else:
-         scientificNamesList = get_sn(token_result['names'])
-         parametersList = token_result['parameters']        
+         scientificNamesList = get_sn(data_json['names'])
+         parametersList = {"withBayes": data_json['metadata']["withBayes"], "language": data_json['metadata']["language"], "withVerification": data_json['metadata']["withVerification"]}        
          #scientificNamesList = uniquify(all_scientificNamesList) 
          return {'input_url': inputURL, 'gnrd_parameters': parametersList, 'scientificNames': scientificNamesList, 'status_code': 200, 'message': "Success"} 
      
@@ -61,7 +82,7 @@ def get_sn(namesList):
     uclist = []    
     for sn in namesList:
         #scName = element['scientificName'].replace(' ', '+')
-        scName = sn['scientificName']       
+        scName = sn['name']       
         if is_ascii(scName): #check if there is any string with unicode character
             # Remove any parenthesis
             scName = re.sub(r'[()]', "", scName)
@@ -76,7 +97,9 @@ def get_sn(namesList):
 def is_ascii(str_val):
     return bool(re.match(r'[\x00-\x7F]+$', str_val))
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'''
 #get the final-api result using the token
 def get_token_result(response_json):
         
@@ -99,7 +122,7 @@ def get_token_result(response_json):
         result_json = json.loads(token_result.text)
         if token_result.status_code == result_json['status']:
            return result_json 
-
+'''
 #---------------------------------------------------
 #get scientific names from Text
 def get_sn_text(inputTEXT, sEngine=0):
@@ -155,7 +178,7 @@ def uniquify(lst):
 def extract_names_URL(inputURL, sEngine=0):
     #service execution time
     start_time = time.time()
-    final_result = get_sn_url(inputURL, sEngine)
+    final_result = get_sn_url(inputURL)
     
     if final_result['status_code'] != 200:
        return final_result
@@ -320,7 +343,7 @@ def extract_names_taxonfinder(tf_input, input_type=None):
 #--------------------------------------------
 
 #if __name__ == '__main__':
-    #inputURL = 'http://en.wikipedia.org/wiki/Sharks'    
+    #inputURL = "https://en.wikipedia.org/wiki/Sharks"    
     #inputURL = 'https://en.wikipedia.org/wiki/Setophaga'
     #inputURL = 'https://species.wikimedia.org/wiki/Morganucodontidae'
     #inputURL = 'https://en.wikipedia.org/wiki/Ant'
